@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 book:
-  title: "EE6653"
-  author: "Norah Jones"
+  title: "EE6653 - Power Electronics Notes"
+  author: "Qiaoxuan Zhang"
   date: "5/6/2026"
   chapters:
     - index.qmd
