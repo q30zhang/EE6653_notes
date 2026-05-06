@@ -1,0 +1,289 @@
+# Fourier Transform
+
+## Frequency domain
+
+<ul style="list-style-type: '① ';">
+<li>The convolution in time domain is the multiplication in frequency domain:</li>
+<span>
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+  \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+
+  \draw[->] (-3,0) -- (sys.west);
+  \draw[->] (sys.east) -- (3,0);
+
+  \node[above] at (-3,0) {$x(t)$};
+  \node[above] at (3,0) {$y(t)=x(t) * h(t)$};
+  \node[below] at (sys.south) {$h(t)$};
+\end{tikzpicture}
+```
+</span>
+
+<span>
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+  \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+
+  \draw[->] (-3,0) -- (sys.west);
+  \draw[->] (sys.east) -- (3,0);
+
+  \node[above] at (-3,0) {$X(\omega)$};
+  \node[above] at (3,0) {$Y(\omega)=X(\omega) \cdot H(\omega)$};
+  \node[below] at (sys.south) {$H(\omega)$};
+\end{tikzpicture}
+```
+</span>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>More convenient.</li>
+
+E.g. sine wave
+
+Time domain:
+```{.tikz}
+\begin{tikzpicture}
+  \draw[->] (-1, 0) -- (6, 0) node[right] {$x$};
+  \draw[->] (0, -1) -- (0, 1) node[above] {$y$};
+  \draw[scale=0.5, domain=0:12, smooth, variable=\x, blue] plot ({\x}, {sin(deg(\x))});
+\end{tikzpicture}
+```
+
+Frequency domain:
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    curve/.style={thick, blue},
+    marker/.style={thick, magenta},
+    labelpink/.style={magenta}
+]
+
+\begin{scope}[yshift=3.2cm]
+    \draw[axis] (0,0) -- (6.3,0) node[right] {$\omega$};
+    \draw[axis] (0,0) -- (0,1.8) node[above] {$A$};
+
+    \draw[marker] (1.6,0) -- (1.6,1.2);
+    \fill[magenta] (1.6,1.2) circle (1.3pt);
+    \node[labelpink, below] at (1.6,-0.1) {$\omega_0$};
+    \node[labelpink, right] at (1.78,1.12) {$A_0$};
+\end{scope}
+
+\begin{scope}
+    \draw[axis] (0,0) -- (6.3,0) node[right] {$\omega$};
+    \draw[axis] (0,0) -- (0,1.8) node[above] {$\varphi$};
+
+    \draw[marker] (1.6,0) -- (1.6,1.0);
+    \fill[magenta] (1.6,1.0) circle (1.3pt);
+    \node[labelpink, below] at (1.6,-0.1) {$\omega_0$};
+    \node[labelpink, right] at (1.78,0.92) {$\varphi_0$};
+\end{scope}
+
+\end{tikzpicture}
+```
+</ul>
+
+<ul style="list-style-type: '③ ';">
+<li>More direct.</li>
+
+<!-- **③** More direct. -->
+
+Time domain:
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    wave/.style={thick, green!60!black},
+    op/.style={font=\Large}
+]
+
+% ---------- first signal ----------
+\begin{scope}[xshift=0cm]
+    \draw[axis] (0,-1) -- (0,1);
+    \draw[axis] (-0.2,0) -- (3.4,0) node[right] {$t$};
+    \draw[domain=0:3.14, smooth, variable=\x, green!60!black] plot ({\x}, {0.6*sin(deg(2*\x))});
+    \draw[blue, dashed] (0,0.6) -- (0.78,0.6);
+    \node[blue, left] at (0,0.6) {$A_1$};
+    \node[green!60!black, below] at (1.6,-0.85) {$\omega_1$};
+\end{scope}
+
+% plus sign
+\node[op] at (4.3,0.1) {$+$};
+
+% ---------- second signal ----------
+\begin{scope}[xshift=5.2cm]
+    \draw[axis] (0,-1) -- (0,1);
+    \draw[axis] (-0.2,0) -- (3.4,0) node[right] {$t$};
+    \draw[domain=0:3.14, smooth, variable=\x, green!60!black] plot ({\x}, {0.15*sin(deg(10*\x))});
+    \draw[blue, dashed] (0,0.15) -- (0.157,0.15);
+    \node[blue, left] at (0,0.15) {$A_2$};
+    \node[green!60!black, below] at (1.6,-0.85) {$\omega_2$};
+\end{scope}
+
+% equals sign
+\node[op] at (9.5,0.1) {$=$};
+
+% ---------- resulting signal ----------
+\begin{scope}[xshift=10.5cm]
+    \draw[axis] (0,-1) -- (0,1);
+    \draw[axis] (-0.2,0) -- (3.4,0) node[right] {$t$};
+    \draw[domain=0:3.14, smooth, variable=\x, green!60!black] plot ({\x}, {0.6*sin(deg(2*\x)) + 0.15*sin(deg(10*\x))});
+\end{scope}
+
+\end{tikzpicture}
+```
+
+Frequency domain:
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    curve/.style={thick, blue},
+    marker/.style={thick, magenta},
+    labelpink/.style={magenta}
+]
+
+\begin{scope}[yshift=3.2cm]
+    \draw[axis] (0,0) -- (6.3,0) node[right] {$\omega$};
+    \draw[axis] (0,0) -- (0,1.8) node[above] {$A$};
+
+    \draw[marker] (1.2,0) -- (1.2,1.2);
+    \fill[magenta] (1.2,1.2) circle (1.3pt);
+    \node[labelpink, below] at (1.2,-0.1) {$\omega_1$};
+    \node[labelpink, right] at (1.3,1.12) {$A_1$};
+    \draw[marker] (3.2,0) -- (3.2,0.4);
+    \fill[magenta] (3.2,0.4) circle (1.3pt);
+    \node[labelpink, below] at (3.2,-0.1) {$\omega_2$};
+    \node[labelpink, right] at (3.3,0.52) {$A_2$};
+\end{scope}
+
+\begin{scope}
+    \draw[axis] (0,0) -- (6.3,0) node[right] {$\omega$};
+    \draw[axis] (0,0) -- (0,1.8) node[above] {$\varphi$};
+
+    \draw[marker] (1.2,0) -- (1.2,0.8);
+    \fill[magenta] (1.2,0.8) circle (1.3pt);
+    \node[labelpink, below] at (1.2,-0.1) {$\omega_1$};
+    \node[labelpink, right] at (1.3,0.72) {$\varphi_1$};
+    \draw[marker] (3.2,0) -- (3.2,0.5);
+    \fill[magenta] (3.2,0.5) circle (1.3pt);
+    \node[labelpink, below] at (3.2,-0.1) {$\omega_2$};
+    \node[labelpink, right] at (3.3,0.42) {$\varphi_2$};
+\end{scope}
+
+\end{tikzpicture}
+```
+</ul>
+
+Fourier Series: Every periodic function can be represented by a series of (co)sines.
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    labelpink/.style={magenta},
+    note/.style={blue}
+]
+
+% ---------- time-domain signal ----------
+\begin{scope}[xshift=0cm]
+    % axes
+    \draw[axis] (-0.5,0) -- (5.5,0) node[right] {$t$};
+    \draw[axis] (0,-0.3) -- (0,1.8);
+
+    % periodic ramp / sawtooth
+    \foreach \k in {0,1,2,3,4} {
+        \draw[signal] (\k,0) -- ({\k+1},1.5);
+        \draw[signal] ({\k+1},1.5) -- ({\k+1},0);
+    }
+
+    % period marker
+    \draw[<->, signal] (0,-0.55) -- (1,-0.55);
+    \node[signal, below] at (0.5,-0.55) {$T_0$};
+
+    % omega_0 equation
+    \node[labelpink] at (2.5,-1.05) {$\omega_0 = \displaystyle\frac{2\pi}{T_0}$};
+\end{scope}
+
+% ---------- Fourier series arrow ----------
+\node[note] at (6.9,0.85) {F. S.};
+\draw[axis] (6.5,0.5) -- (7.5,0.5);
+
+% ---------- frequency-domain spectrum ----------
+\begin{scope}[xshift=8.5cm]
+    % axes
+    \draw[axis] (-0.5,0) -- (5.5,0) node[right] {$\omega$};
+    \draw[axis] (0,-0.3) -- (0,1.8);
+
+    % spectral lines
+    \draw[marker] (1,0) -- (1,1.2);
+    \draw[marker] (2,0) -- (2,0.9);
+    \draw[marker] (3,0) -- (3,0.7);
+    \draw[marker] (4,0) -- (4,0.55);
+    \draw[marker] (5,0) -- (5,0.45);
+
+    % labels
+    \node[labelpink, below] at (1,-0.1) {$\omega_0$};
+    \node[labelpink, below] at (2,-0.1) {$2\omega_0$};
+    \node[labelpink, below] at (3,-0.1) {$3\omega_0$};
+    \node[labelpink, below] at (4,-0.1) {$4\omega_0$};
+    \node[labelpink, below] at (5,-0.1) {$5\omega_0$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    labelpink/.style={magenta},
+    note/.style={magenta}
+]
+
+% ---------- time-domain signal ----------
+\begin{scope}[xshift=0cm]
+    % axes
+    \draw[axis] (-0.5,0) -- (5.5,0) node[right] {$t$};
+    \draw[axis] (0,-0.3) -- (0,1.8);
+
+    \draw[signal] (0,0) -- (5,1.5);
+    \draw[signal] (5,1.5) -- (5,0);
+
+    % period marker
+    \node[signal, below] at (2.5,-0.25) {$T_0 \to \infty$};
+
+    % omega_0 equation
+    \node[labelpink] at (2.5,-1.25) {$\omega_0 \to 0$};
+\end{scope}
+
+% ---------- Fourier series arrow ----------
+\node[note] at (6.9,0.85) {F. T.};
+\draw[axis] (6.5,0.5) -- (7.5,0.5);
+
+% ---------- frequency-domain spectrum ----------
+\begin{scope}[xshift=8.5cm]
+    % axes
+    \draw[axis] (-0.5,0) -- (5.5,0) node[right] {$\omega$};
+    \draw[axis] (0,-0.3) -- (0,1.8);
+    \draw[domain=0:5, smooth, thick, variable=\x, magenta] plot ({\x}, {1.5*exp(-0.2*\x)});
+
+    % spectral lines
+    \foreach \k in {1,...,40} {
+        \draw[magenta] (\k/8,0) -- ({\k/8},1.5*exp(-0.2*(\k/8)));
+    }
+
+    % labels
+    \node[labelpink, below] at (1/8,-0.25) {$\omega_0$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+
+Why decompose into sinusoids?
+

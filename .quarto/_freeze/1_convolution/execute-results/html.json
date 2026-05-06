@@ -1,0 +1,12 @@
+{
+  "hash": "1954163e9d13ebbf2161ff43bd259633",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "# Convolution\n\n## Linear Time-Invariant (LTI) Systems\n\n![](images/chapter_1-1.png)\n\n## Convolution\n\n\\begin{equation}\n    h(t) * x(t) = \\int_{-\\infty}^{\\infty} x(\\tau)h(t-\\tau) \\,d\\tau\n\\end{equation}\n\n![](images/1-2_1.png){width=200}\n\nwhere $h(t)$ is the unit impulse response: $\\begin{cases}\\text{when } x(t) = \\delta(t)\\\\\\text{then } y(t) = h(t)\\end{cases}$\n\n![](images/1-2_2.png){width=400}\n\n$$ \\int_{-\\infty}^{\\infty} h(t) \\,dt = 1.  \\qquad y(t) = \\delta(0) \\cdot h(t) + \\delta(1) \\cdot h(t-1) + \\delta(2) \\cdot h(t-2) .$$\n\nFor LTI system, $y(t)$ is the sum of the scaled unit impulse response of $x(t)$ at each time instant $\\tau$.\n$$y(t) = \\int_{-\\infty}^{\\infty} x(\\tau)h(t-\\tau) \\,d\\tau$$\nwhere $x(\\tau)$ is the scaling factor at $t=\\tau$, and $h(t-\\tau)$ is the unit impulse response at $t=\\tau$.\n\nFor a continuous $x(t) with $h(t) = \\dfrac{1}{2}t$, ($0 \\le t \\le 2$), what is $y(t)$?\n![](images/1-2_3.png){width=400}\n\n::: {#94917e50 .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nt = np.linspace(0, 2, 100)\nh = 0.5 * t\n\nfig, axs = plt.subplots(2, 2, figsize=(8, 4))\n\naxs[0, 0].plot(t, h)\n# axs[0, 0].set_title(\"Impulse Response h(t)\")\naxs[0, 0].set_xlabel(\"Time (t)\")\naxs[0, 0].set_ylabel(\"$x(t)$\")\nplt.grid(\"off\")\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](1_convolution_files/figure-html/cell-2-output-1.png){width=675 height=336}\n:::\n:::\n\n\n",
+    "supporting": [
+      "1_convolution_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

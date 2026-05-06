@@ -1,0 +1,20 @@
+{
+  "index.qmd": {
+    "index.html": "57efdd5d"
+  },
+  "intro.qmd": {
+    "intro.html": "806fc4d3"
+  },
+  "summary.qmd": {
+    "summary.html": "da615a21"
+  },
+  "references.qmd": {
+    "references.html": "c232edc7"
+  },
+  "1_convolution.qmd": {
+    "1_convolution.html": "96ad16ea"
+  },
+  "2_fourier_transform.qmd": {
+    "2_fourier_transform.html": "c0ce187b"
+  }
+}

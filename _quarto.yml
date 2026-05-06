@@ -1,0 +1,32 @@
+project:
+  type: book
+
+book:
+  title: "EE6653"
+  author: "Norah Jones"
+  date: "5/6/2026"
+  chapters:
+    - index.qmd
+    - 1_convolution.qmd
+    - 2_fourier_transform.qmd
+    # - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    page-layout: full
+    mathjax: true
+    highlight: true
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+filters:
+  - diagram
+
+
+
+
