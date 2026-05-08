@@ -391,6 +391,14 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
     \draw[axis] (-4,0) -- (4,0);
     \draw[axis] (0,-1.5) -- (0,1.5);
 
+    \fill[green!20] (-pi,0) -- plot[domain=-pi:0] ({\x}, {sin(deg(\x))}); -- (0,0) -- cycle;
+    \fill[orange!20] (0,0) -- plot[domain=0:pi] ({\x}, {sin(deg(\x))}); -- (pi,0) -- cycle;
+
+    \fill[yellow!20] (-pi,0) -- plot[domain=-pi:-pi/2] ({\x}, {sin(deg(2*\x))}); -- (-pi/2,0) -- cycle;
+    \fill[cyan!20] (-pi/2,0) -- plot[domain=-pi/2:0] ({\x}, {sin(deg(2*\x))}); -- (0,0) -- cycle;
+    \fill[yellow!20] (0,0) -- plot[domain=0:pi/2] ({\x}, {sin(deg(2*\x))}); -- (pi/2,0) -- cycle;
+    \fill[cyan!20] (pi/2,0) -- plot[domain=pi/2:pi] ({\x}, {sin(deg(2*\x))}); -- (pi,0) -- cycle;
+
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(\x))});
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(2*\x))});
 
@@ -408,7 +416,9 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
     \draw[axis] (-4,0) -- (4,0);
     \draw[axis] (0,-1.5) -- (0,1.5);
 
-    \fill[orange!20] (-3.14,0) -- plot ({\x}, {cos(deg(\x))}); -- (3.14,0) -- cycle;
+    \fill[green!20] (-pi,0) -- plot[domain=-pi:-pi/2] ({\x}, {cos(deg(\x))}); -- (-pi/2,0) -- cycle;
+    \fill[orange!20] (-pi/2,0) -- plot[domain=-pi/2:pi/2] ({\x}, {cos(deg(\x))}); -- (pi/2,0) -- cycle;
+    \fill[green!20] (pi,0) -- plot[domain=pi/2:pi] ({\x}, {cos(deg(\x))}); -- (pi/2,0) -- cycle;
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(\x))});
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(2*\x))});
 
