@@ -170,6 +170,7 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2.2.1</span> Overview</a></li>
   <li><a href="#finding-fourier-coefficients" id="toc-finding-fourier-coefficients" class="nav-link" data-scroll-target="#finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</a></li>
   </ul></li>
+  <li><a href="#fourier-transform" id="toc-fourier-transform" class="nav-link" data-scroll-target="#fourier-transform"><span class="header-section-number">2.3</span> Fourier Transform</a></li>
   </ul>
 </nav>
     </div>
@@ -342,7 +343,7 @@ Every 2 same functions are unorthogonal.
 <p><span class="math display">\[\begin{equation}
     \color{red}{a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx}
 \end{equation}\]</span></p>
-<p><span color="blue">Alternatively, with</span></p>
+<p><span style="color:blue;">Alternatively, with</span></p>
 <p><span class="math display">\[\begin{equation}
     f(x) = \color{blue}{\frac{a_0}{2}} \color{black} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) ,
 \end{equation}\]</span></p>
@@ -384,9 +385,68 @@ Every 2 same functions are unorthogonal.
     \color{red}{f(x) = \frac{4}{\pi} \left( \sin x + \frac{1}{3}\sin 3x + \frac{1}{5}\sin 5x + \frac{1}{7}\sin 7x \cdots \right) = \boxed{\sum_{n=1,3,5,\dots}^{\infty} \frac{4}{n\pi} \cdot \sin nx}}
 \end{equation}\]</span></p>
 <img src="2_fourier_transform_files/mediabag/628eaaacc9c6b38b3e072e94e3f39861c446e6ad.svg" class="img-fluid">
-
-
 </section>
+</section>
+<section id="fourier-transform" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="fourier-transform"><span class="header-section-number">2.3</span> Fourier Transform</h2>
+<p><span class="math display">\[\begin{equation}
+    f(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty} A_n \cdot \sin(nx+\varphi_n)
+\end{equation}\]</span></p>
+<p><span style="color:#FFAA33;">Let <span class="math inline">\(a_n = A_n\sin\varphi_n\)</span>, <span class="math inline">\(b_n = A_n\cos\varphi_n\)</span>,</span></p>
+<p><span class="math display">\[\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{equation}\]</span></p>
+<p><span style="color:blue;">Euler’s formula:</span></p>
+<p><span class="math display">\[\begin{equation}\color{blue}
+    \begin{cases}
+        e^{ix} &amp;= \cos x + i \sin x \\
+        e^{-ix} &amp;= \cos x - i \sin x
+    \end{cases} \implies \begin{cases}
+        \cos x &amp;= \displaystyle\frac{e^{ix} + e^{-ix}}{2} \\
+        \sin x &amp;= \displaystyle\frac{e^{ix} - e^{-ix}}{2i}
+    \end{cases}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \frac{e^{inx} + e^{-inx}}{2} + b_n \cdot \frac{e^{inx} - e^{-inx}}{2i} \right) \\
+    &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( \frac{a_n - ib_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n + ib_n}{2} \cdot e^{-inx} \right) \\
+    &amp;= \sum_{n=0}^{\infty} \frac{a_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n-ib_n}{2} \cdot e^{inx} + \sum_{n=-1,-2,-3}^{-\infty} \frac{a_{-n}+ib_{-n}}{2} \cdot e^{inx}
+\end{align*}\]</span></p>
+<p>Define: <span class="math display">\[\begin{equation}
+    c_n = \begin{cases}
+        \displaystyle\frac{a_0}{2}, &amp; n = 0 \\
+        \displaystyle\frac{a_n - ib_n}{2}, &amp; n = 1,2,3,\dots \\
+        \displaystyle\frac{a_{-n} + ib_{-n}}{2}, &amp; n = -1,-2,-3,\dots
+    \end{cases}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{YellowOrange} a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
+    \color{YellowOrange} b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \text{Then, }\quad n=0: c_n &amp;= \frac{a_0}{2} = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \color{red}{\cdot e^{-inx}} \,dx \\
+    n=1,2,3,\dots\, : c_n &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - i f(x) \cdot \sin nx\right]\,dx \\
+    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot \left(\cos nx - i \sin nx\right)\,dx \\
+    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx \\
+    n=-1,-2,-3,\dots\, : c_n &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - f(x) \cdot i \cdot \sin nx\right] \,dx \\
+    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \left(\cos nx - i\cdot \sin nx\right) \,dx \\
+    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx .
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{Periwinkle}f(x) &amp;\color{Periwinkle}= \sum_{n=0}^\infty c_n \cdot e^{inx} + \sum_{n=1}^{+\infty} c_n \cdot e^{inx} + \sum_{n=-1}^{-\infty} c_n \cdot e^{inx} \\
+    &amp;\color{Periwinkle}= \sum_{n=-\infty}^{+\infty} c_n \cdot e^{inx}
+\end{align*}\]</span> <span style="color:#5453A6;">where <span class="math inline">\(\color{Periwinkle}c_n = \displaystyle\frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx\)</span>.</span></p>
+<p>When the period is NOT <span class="math inline">\(2\pi\)</span>, <span class="math display">\[f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i \omega_n t}\]</span> where <span class="math inline">\(c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i \omega_n t} \,dt\)</span>.</p>
+<p><span style="color:green;"> When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(T \to \infty\)</span>, <span class="math inline">\(\Delta \omega_n = \omega_{n+1}-\omega_n = \displaystyle\frac{2\pi}{T} \to 0\)</span>.</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{green}c_n &amp;\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^  {-i\omega_n t}\,dt \\
+    &amp;\color{green}= \lim_{\Delta\omega_n \to 0} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \frac{1}{2\pi} \int_{\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \cdot e^{i\omega_n t} \Delta \omega_n \\
+    &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n
+\end{align*}\]</span></p>
+
+
 </section>
 
 </main> <!-- /main -->

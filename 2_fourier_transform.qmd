@@ -497,7 +497,7 @@ To find $a_0$:
     \color{red}{a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx}
 \end{equation}
 
-<span color="blue">Alternatively, with</span>
+<span style="color:blue;">Alternatively, with</span>
 
 \begin{equation}
     f(x) = \color{blue}{\frac{a_0}{2}} \color{black} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) ,
@@ -611,3 +611,81 @@ E.g. $f(x) = \begin{cases}
 
 \end{tikzpicture}
 ```
+
+## Fourier Transform
+
+\begin{equation}
+    f(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty} A_n \cdot \sin(nx+\varphi_n)
+\end{equation}
+
+<span style="color:#FFAA33;">Let $a_n = A_n\sin\varphi_n$, $b_n = A_n\cos\varphi_n$,</span>
+
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{equation}
+
+<span style="color:blue;">Euler's formula:</span>
+
+\begin{equation}\color{blue}
+    \begin{cases}
+        e^{ix} &= \cos x + i \sin x \\
+        e^{-ix} &= \cos x - i \sin x
+    \end{cases} \implies \begin{cases}
+        \cos x &= \displaystyle\frac{e^{ix} + e^{-ix}}{2} \\
+        \sin x &= \displaystyle\frac{e^{ix} - e^{-ix}}{2i}
+    \end{cases}
+\end{equation}
+
+\begin{align*}
+    f(x) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \frac{e^{inx} + e^{-inx}}{2} + b_n \cdot \frac{e^{inx} - e^{-inx}}{2i} \right) \\
+    &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( \frac{a_n - ib_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n + ib_n}{2} \cdot e^{-inx} \right) \\
+    &= \sum_{n=0}^{\infty} \frac{a_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n-ib_n}{2} \cdot e^{inx} + \sum_{n=-1,-2,-3}^{-\infty} \frac{a_{-n}+ib_{-n}}{2} \cdot e^{inx}
+\end{align*}
+
+Define: 
+\begin{equation}
+    c_n = \begin{cases}
+        \displaystyle\frac{a_0}{2}, & n = 0 \\
+        \displaystyle\frac{a_n - ib_n}{2}, & n = 1,2,3,\dots \\
+        \displaystyle\frac{a_{-n} + ib_{-n}}{2}, & n = -1,-2,-3,\dots
+    \end{cases}
+\end{equation}
+
+\begin{align*}
+    \color{YellowOrange} a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
+    \color{YellowOrange} b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx
+\end{align*}
+
+\begin{align*}
+    \text{Then, }\quad n=0: c_n &= \frac{a_0}{2} = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \color{red}{\cdot e^{-inx}} \,dx \\
+    n=1,2,3,\dots\, : c_n &= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - i f(x) \cdot \sin nx\right]\,dx \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot \left(\cos nx - i \sin nx\right)\,dx \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx \\
+    n=-1,-2,-3,\dots\, : c_n &= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - f(x) \cdot i \cdot \sin nx\right] \,dx \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \left(\cos nx - i\cdot \sin nx\right) \,dx \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx .
+\end{align*}
+
+\begin{align*}
+    \color{Periwinkle}f(x) &\color{Periwinkle}= \sum_{n=0}^\infty c_n \cdot e^{inx} + \sum_{n=1}^{+\infty} c_n \cdot e^{inx} + \sum_{n=-1}^{-\infty} c_n \cdot e^{inx} \\
+    &\color{Periwinkle}= \sum_{n=-\infty}^{+\infty} c_n \cdot e^{inx}
+\end{align*}
+<span style="color:#5453A6;">where $\color{Periwinkle}c_n = \displaystyle\frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx$.</span>
+
+When the period is NOT $2\pi$,
+$$f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i \omega_n t}$$
+where $c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i \omega_n t} \,dt$.
+
+<span style="color:green;"> When $f(t)$ is non-periodic, $T \to \infty$, $\Delta \omega_n = \omega_{n+1}-\omega_n = \displaystyle\frac{2\pi}{T} \to 0$.</span>
+
+\begin{align*}
+    \color{green}c_n &\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^  {-i\omega_n t}\,dt \\
+    &\color{green}= \lim_{\Delta\omega_n \to 0} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+\end{align*}
+
+\begin{align*}
+    \color{YellowOrange}f(t) &\color{YellowOrange}= \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \frac{1}{2\pi} \int_{\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \cdot e^{i\omega_n t} \Delta \omega_n \\
+    &\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n
+\end{align*}
+
+
