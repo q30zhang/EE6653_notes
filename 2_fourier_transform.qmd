@@ -430,7 +430,7 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
 \end{tikzpicture}
 ```
 
-<span color="orange">
+<div style="color:#994C01;">
 a. 
 
 \begin{align*}
@@ -464,7 +464,7 @@ c.
     \end{cases}
 \end{align*}
 
-</span>
+</div>
 
 ### Finding Fourier coefficients
 
@@ -634,7 +634,7 @@ E.g. $f(x) = \begin{cases}
     f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
 \end{equation}
 
-<span style="color:blue;">Euler's formula:</span>
+Applying <span style="color:blue;">Euler's formula</span>:
 
 \begin{equation}\color{blue}
     \begin{cases}
@@ -643,7 +643,7 @@ E.g. $f(x) = \begin{cases}
     \end{cases} \implies \begin{cases}
         \cos x &= \displaystyle\frac{e^{ix} + e^{-ix}}{2} \\
         \sin x &= \displaystyle\frac{e^{ix} - e^{-ix}}{2i}
-    \end{cases}
+    \end{cases},
 \end{equation}
 
 \begin{align*}

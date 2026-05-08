@@ -278,7 +278,10 @@ Every 2 same functions are unorthogonal.
 </ol></ul>
 
 <img src="2_fourier_transform_files/mediabag/1d7d48edd8bb4260050ac81560f9bd9f3dc83557.svg" class="img-fluid">
-<p><span color="orange"> a.</span></p>
+<div style="color:#994C01;">
+<ol type="a">
+<li></li>
+</ol>
 <p><span class="math display">\[\begin{align*}
     &amp;\, \int_{-\pi}^{\pi} \sin nx \cdot \cos mx \,dx \\
     =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\sin(nx + mx) + \sin(nx - mx)\right] \,dx \\
@@ -309,7 +312,7 @@ Every 2 same functions are unorthogonal.
         \pi, &amp; n = m
     \end{cases}
 \end{align*}\]</span></p>
-<p></p>
+</div>
 </section>
 <section id="finding-fourier-coefficients" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</h3>
@@ -396,7 +399,7 @@ Every 2 same functions are unorthogonal.
 <p><span class="math display">\[\begin{equation}
     f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
 \end{equation}\]</span></p>
-<p><span style="color:blue;">Euler’s formula:</span></p>
+<p>Applying <span style="color:blue;">Euler’s formula</span>:</p>
 <p><span class="math display">\[\begin{equation}\color{blue}
     \begin{cases}
         e^{ix} &amp;= \cos x + i \sin x \\
@@ -404,7 +407,7 @@ Every 2 same functions are unorthogonal.
     \end{cases} \implies \begin{cases}
         \cos x &amp;= \displaystyle\frac{e^{ix} + e^{-ix}}{2} \\
         \sin x &amp;= \displaystyle\frac{e^{ix} - e^{-ix}}{2i}
-    \end{cases}
+    \end{cases},
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{align*}
     f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \frac{e^{inx} + e^{-inx}}{2} + b_n \cdot \frac{e^{inx} - e^{-inx}}{2i} \right) \\
