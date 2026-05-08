@@ -287,3 +287,327 @@ Fourier Series: Every periodic function can be represented by a series of (co)si
 
 Why decompose into sinusoids?
 
+
+## Fourier Series
+
+### Overview
+
+Every periodic function can be represented by a series of (co)sines.
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    orange/.style={orange!60!black},
+    note/.style={magenta}
+]
+
+% ---------- time-domain signal ----------
+\begin{scope}[xshift=0cm]
+    % axes
+    \draw[axis] (-0.5,0) -- (3.5,0) node[right] {$t\,(s)$};
+    \draw[axis] (0,-2) -- (0,2) node[above] {$f(t)$};
+
+    \draw[orange] (0,1) -- (1,1);
+    \draw[orange] (1,1) -- (1,-1);
+    \draw[orange] (1,-1) -- (2,-1);
+    \draw[orange] (2,-1) -- (2,1);
+    \draw[orange] (2,1) -- (3,1);
+
+    % period marker
+    \node[orange, below] at (0.8,-0.1) {1};
+    \node[orange, below] at (2.2,-0.1) {2};
+
+    \node[blue, below] at (1.5,-1.25) {$T = 2\,s$};
+    \node[blue, below] at (1.5,-2) {$f = \displaystyle\frac{1}{T} = 0.5\,Hz$};
+    \node[blue, below] at (1.5,-3) {$\omega = 2\pi f = \pi\,rad/s$};
+\end{scope}
+
+% ---------- Fourier series arrow ----------
+\draw[axis] (4.5,0.5) -- (5.5,0.5);
+
+% ---------- frequency-domain spectrum ----------
+\begin{scope}[xshift=6.5cm]
+    % axes
+    \draw[axis] (-1,0) -- (9,0) node[right] {$\omega t = x$};
+    \draw[axis] (0,-2) -- (0,2) node[above] {$f(x)$};
+
+    \draw[orange] (0,1) -- (3.14,1);
+    \draw[orange] (3.14,1) -- (3.14,-1);
+    \draw[orange] (3.14,-1) -- (6.28,-1);
+    \draw[orange] (6.28,-1) -- (6.28,1);
+    \draw[orange] (6.28,1) -- (9.42,1);
+
+    \node[orange, below] at (2.9,-0.1) {$\pi$};
+    \node[orange, below] at (6.6,-0.1) {$2\pi$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+\begin{align*}
+    f(x) &= a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
+    &+ b_0 \cdot \sin(0x) + b_1 \cdot \sin(1\omega x) + b_2 \cdot \sin(2\omega x) + \cdots \\
+    &= a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{align*}
+
+To find $\begin{cases}a_0,\,a_1,\,a_2, \dots \\ b_0,\,b_1,\,b_2, \dots \end{cases}$
+
+Orthogonal functions:
+
+If $\displaystyle\int_a^b g(x) \cdot f(x) \,dx = 0$, then $f(x)$ and $g(x)$ are orthogonal on $[a, b]$.
+
+Orthogonal collection of (co)sines:
+
+\usepackage{cancel}
+$$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\, \sin 3x,\, \cos 3x,\, \dots \}$$
+
+<ul style="list-style-type: '① ';">
+<li>Every 2 different functions are orthogonal.</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>Every 2 same functions are unorthogonal.</li>
+<ol type="a">
+    <li>$\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \cos nx \,dx = 0$.</li>
+    <li>$\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx = 0,\, n \ne m$.</li>
+    <li>$\displaystyle\int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx = 0,\, n \ne m$.</li>
+    <li>$\displaystyle\int_{-\pi}^{\pi} 1 \cdot \sin nx \,dx = 0$.</li>
+    <li>$\displaystyle\int_{-\pi}^{\pi} 1 \cdot \cos nx \,dx = 0$.</li>
+</ul>
+</ul>
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, orange!60!black},
+    orange/.style={orange!60!black}
+]
+\node[orange, right] at (0,0) {d.};
+% ---------- time-domain signal ----------
+\begin{scope}[xshift=4cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-4,0) -- (4,0);
+    \draw[axis] (0,-1.5) -- (0,1.5);
+
+    \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(\x))});
+    \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(2*\x))});
+
+    % period marker
+    \node[orange, below] at (-3.3,-0.1) {$-\pi$};
+    \node[orange, below] at (3.3,-0.1) {$\pi$};
+\end{scope}
+
+% ---------- Fourier series arrow ----------
+\node[orange, right] at (10,0) {e.};
+
+% ---------- frequency-domain spectrum ----------
+\begin{scope}[xshift=14cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-4,0) -- (4,0);
+    \draw[axis] (0,-1.5) -- (0,1.5);
+
+    \fill[orange!20] (-3.14,0) -- plot ({\x}, {cos(deg(\x))}); -- (3.14,0) -- cycle;
+    \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(\x))});
+    \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(2*\x))});
+
+    % period marker
+    \node[orange, below] at (-3.3,-0.1) {$-\pi$};
+    \node[orange, below] at (3.3,-0.1) {$\pi$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+<span color="orange">
+a. 
+
+\begin{align*}
+    &\, \int_{-\pi}^{\pi} \sin nx \cdot \cos mx \,dx \\
+    =&\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\sin(nx + mx) + \sin(nx - mx)\right] \,dx \\
+    =&\, \frac{1}{2} \int_{-\pi}^{\pi} \sin(n + m)x + \sin(n - m)x \,dx \\
+    =&\, 0
+\end{align*}
+
+b. 
+
+\begin{align*}
+    &\, \int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx \\
+    =&\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx - mx) - \cos(nx + mx)\right] \,dx \\
+    =&\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n - m)x - \cos(n + m)x \,dx \\
+    =&\, \begin{cases}
+        0, & n \ne m \\
+        \pi, & n = m
+    \end{cases}
+\end{align*}
+
+c. 
+
+\begin{align*}
+    &\, \int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx \\
+    =&\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx + mx) + \cos(nx - mx)\right] \,dx \\
+    =&\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n + m)x + \cos(n - m)x \,dx \\
+    =&\, \begin{cases}
+        0, & n \ne m \\
+        \pi, & n = m
+    \end{cases}
+\end{align*}
+
+</span>
+
+### Finding Fourier coefficients
+
+$$ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) $$
+
+To find $a_2$:
+
+\begin{align*}
+    &\, \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx \\
+    =&\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cos x + a_2 \cdot \cos 2x + \cdots\right. \\
+    &\, \quad\quad\, \left.b_1 \cdot \sin x + b_2 \cdot \sin 2x + \cdots\right) \cdot \cos 2x \,dx \\
+    =&\, \int_{-\pi}^{\pi} \big( a_0 \cdot \cancelto{0}{\cos 2x} + a_1 \cdot \cancelto{0}{\cos x \cdot \cos 2x} + \boxed{a_2 \cdot \cos^2 2x} + \cdots \\
+    &+ b_1 \cdot \cancelto{0}{\sin x \cdot \cos 2x} + b_2 \cdot \cancelto{0}{\sin 2x \cdot \cos 2x} + \cdots \big) \,dx \\
+    =&\, a_2 \cdot \int_{-\pi}^{\pi} \cos^2 2x \,dx \\
+    =&\, a_2 \cdot \int_{-\pi}^{\pi} \frac{1 + \cancelto{0}{\cos 4x}}{2} \,dx \\
+    =&\, \pi \cdot a_2 .
+\end{align*}
+
+\begin{equation}
+    a_2 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx
+\end{equation}
+
+\begin{equation}
+    \color{red}{a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx}
+\end{equation}
+
+\begin{equation}
+    \color{red}{b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx}
+\end{equation}
+
+To find $a_0$:
+\begin{align*}
+    &\, \int_{-\pi}^{\pi} f(x) \cdot 1 \,dx \\
+    =&\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cancelto{0}{\cos x} + a_2 \cdot \cancelto{0}{\cos 2x} + \cdots\right. \\
+    &\, \quad\quad\, \left.b_1 \cdot \cancelto{0}{\sin x} + b_2 \cdot \cancelto{0}{\sin 2x} + \cdots\right) \cdot 1 \,dx \\
+    =&\, 2\pi a_0 .
+\end{align*}
+
+\begin{equation}
+    \color{red}{a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx}
+\end{equation}
+
+<span color="blue">Alternatively, with</span>
+
+\begin{equation}
+    f(x) = \color{blue}{\frac{a_0}{2}} \color{black} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) ,
+\end{equation}
+
+\begin{equation}
+    \color{blue}{a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \,dx}
+\end{equation}
+
+E.g. $f(x) = \begin{cases}
+    1, & \quad [0, \pi] \\
+    -1, & \quad [-\pi, 0)
+    \end{cases}$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    orange/.style={orange!60!black},
+    note/.style={magenta}
+]
+    \draw[axis] (-6,0) -- (10,0) node[right] {$x$};
+    \draw[axis] (0,-2) -- (0,2) node[above] {$f(x)$};
+
+    \draw[black] (-6.28, 1) -- (-3.14,1);
+    \draw[black] (-3.14,1) -- (-3.14,-1);
+    \draw[black] (-3.14,-1) -- (0,-1);
+    \draw[black] (0,-1) -- (0,1);
+    \draw[black] (0,1) -- (3.14,1);
+    \draw[black] (3.14,1) -- (3.14,-1);
+    \draw[black] (3.14,-1) -- (6.28,-1);
+    \draw[black] (6.28,-1) -- (6.28,1);
+    \draw[black] (6.28,1) -- (9.42,1);
+
+    % period marker
+    \node[black, below] at (-3.5,-0.1) {$-\pi$};
+    \node[black, below] at (3.4,-0.1) {$\pi$};
+    \node[black, left] at (0,1) {$1$};
+    \node[black, right] at (0,-1) {$-1$};
+
+\end{tikzpicture}
+```
+
+\begin{equation}
+    f(x) = \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_0}} + \sum_{n=1}^{\infty} \left( \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_n}} \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{equation}
+
+\begin{align*}
+    a_0 &= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx \\
+    &= \frac{1}{2\pi} \left[ \int_{0}^{\pi} 1 \,dx + \int_{-\pi}^{0} -1 \,dx \right] \\
+    &= \frac{1}{2\pi} \left[] \pi + (-\pi) \right] \\
+    &= 0 .
+\end{align*}
+
+\begin{align*}
+    a_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
+    &= \frac{1}{\pi} \left[ \int_{0}^{\pi} \cos nx \,dx + \int_{-\pi}^{0} -\cos nx \,dx \right] \\
+    &= \frac{1}{\pi} \left[ \frac{1}{n}\sin nx \Big|_0^{\pi} + \frac{1}{n}\sin nx \Big|_{-\pi}^{0} \right] \\
+    &= 0 .
+\end{align*}
+
+\begin{align*}
+    b_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx \\
+    &= \frac{1}{\pi} \left[ \int_{0}^{\pi} \sin nx \,dx + \int_{-\pi}^{0} -\sin nx \,dx \right] \\
+    &= \frac{1}{\pi} \left[ -\frac{1}{n}\cos nx \Big|_0^{\pi} + \frac{1}{n}\cos nx \Big|_{-\pi}^{0} \right] \\
+    &= \frac{1}{n\pi} \left(-\cos n\pi + \cos 0 + \cos 0 - \cos(-n\pi) \right) \\
+    &= \frac{2}{n\pi} \left(1 - \cos n\pi\right) \\
+    &= \begin{cases}
+        \displaystyle\frac{4}{n\pi}, & n = 1,\,3,\,5,\, \dots \\
+        0, & n = 0,\,2,\,4,\, \dots
+    \end{cases}
+\end{align*}
+
+\begin{equation}
+    \color{red}{f(x) = \frac{4}{\pi} \left( \sin x + \frac{1}{3}\sin 3x + \frac{1}{5}\sin 5x + \frac{1}{7}\sin 7x \cdots \right) = \boxed{\sum_{n=1,3,5,\dots}^{\infty} \frac{4}{n\pi} \cdot \sin nx}}
+\end{equation}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    orange/.style={orange!60!black},
+    note/.style={magenta}
+]
+    \draw[axis] (-6,0) -- (10,0) node[right] {$x$};
+    \draw[axis] (0,-2) -- (0,2) node[above] {$f(x)$};
+
+    \draw[black] (-6.28, 1) -- (-3.14,1);
+    \draw[black] (-3.14,1) -- (-3.14,-1);
+    \draw[black] (-3.14,-1) -- (0,-1);
+    \draw[black] (0,-1) -- (0,1);
+    \draw[black] (0,1) -- (3.14,1);
+    \draw[black] (3.14,1) -- (3.14,-1);
+    \draw[black] (3.14,-1) -- (6.28,-1);
+    \draw[black] (6.28,-1) -- (6.28,1);
+    \draw[black] (6.28,1) -- (9.42,1);
+
+    \draw[domain=-3.14:6.28, smooth, variable=\x, red] plot ({\x}, {4/3.14159*sin(deg(\x))});
+    \draw[domain=-3.14:6.28, smooth, variable=\x, blue] plot ({\x}, {4/3.14159/3*sin(deg(3*\x))});
+    \draw[domain=-3.14:6.28, dashed, variable=\x, orange] plot ({\x}, {4/3.14159*sin(deg(\x)) + 4/3.14159/3*sin(deg(3*\x))});
+
+    % period marker
+    \node[black, below] at (-3.5,-0.1) {$-\pi$};
+    \node[black, below] at (3.4,-0.1) {$\pi$};
+    \node[black, left] at (0,1) {$1$};
+    \node[black, right] at (0,-1) {$-1$};
+
+\end{tikzpicture}
+```

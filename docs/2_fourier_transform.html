@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -136,6 +165,11 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#frequency-domain" id="toc-frequency-domain" class="nav-link active" data-scroll-target="#frequency-domain"><span class="header-section-number">2.1</span> Frequency domain</a></li>
+  <li><a href="#fourier-series" id="toc-fourier-series" class="nav-link" data-scroll-target="#fourier-series"><span class="header-section-number">2.2</span> Fourier Series</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2.2.1</span> Overview</a></li>
+  <li><a href="#finding-fourier-coefficients" id="toc-finding-fourier-coefficients" class="nav-link" data-scroll-target="#finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -198,8 +232,161 @@ More direct.
 <img src="2_fourier_transform_files/mediabag/2efa92726c0737e62b34428e23ea44c8e35d23cf.svg" class="img-fluid">
 <img src="2_fourier_transform_files/mediabag/8347c16053ee14c63f677bc60a7b45e30ffb4a7f.svg" class="img-fluid">
 <p>Why decompose into sinusoids?</p>
+</section>
+<section id="fourier-series" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="fourier-series"><span class="header-section-number">2.2</span> Fourier Series</h2>
+<section id="overview" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">2.2.1</span> Overview</h3>
+<p>Every periodic function can be represented by a series of (co)sines.</p>
+<img src="2_fourier_transform_files/mediabag/db7540f51951b6bc6a83b41fe43348a91483fe07.svg" class="img-fluid">
+<p><span class="math display">\[\begin{align*}
+    f(x) &amp;= a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
+    &amp;+ b_0 \cdot \sin(0x) + b_1 \cdot \sin(1\omega x) + b_2 \cdot \sin(2\omega x) + \cdots \\
+    &amp;= a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{align*}\]</span></p>
+<p>To find <span class="math inline">\(\begin{cases}a_0,\,a_1,\,a_2, \dots \\ b_0,\,b_1,\,b_2, \dots \end{cases}\)</span></p>
+<p>Orthogonal functions:</p>
+<p>If <span class="math inline">\(\displaystyle\int_a^b g(x) \cdot f(x) \,dx = 0\)</span>, then <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are orthogonal on <span class="math inline">\([a, b]\)</span>.</p>
+<p>Orthogonal collection of (co)sines:</p>
+<p><span class="math display">\[\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\, \sin 3x,\, \cos 3x,\, \dots \}\]</span></p>
+<ul style="list-style-type: '① ';">
+<li>
+Every 2 different functions are orthogonal.
+</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Every 2 same functions are unorthogonal.
+</li>
+<ol type="a">
+<li>
+<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \cos nx \,dx = 0\)</span>.
+</li>
+<li>
+<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx = 0,\, n \ne m\)</span>.
+</li>
+<li>
+<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx = 0,\, n \ne m\)</span>.
+</li>
+<li>
+<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} 1 \cdot \sin nx \,dx = 0\)</span>.
+</li>
+<li>
+<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} 1 \cdot \cos nx \,dx = 0\)</span>.
+</li>
+</ol></ul>
+
+<img src="2_fourier_transform_files/mediabag/051d8e867d8eab19f541c9c2cf5491eab2a17bfe.svg" class="img-fluid">
+<p><span color="orange"> a.</span></p>
+<p><span class="math display">\[\begin{align*}
+    &amp;\, \int_{-\pi}^{\pi} \sin nx \cdot \cos mx \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\sin(nx + mx) + \sin(nx - mx)\right] \,dx \\
+    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \sin(n + m)x + \sin(n - m)x \,dx \\
+    =&amp;\, 0
+\end{align*}\]</span></p>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}
+    &amp;\, \int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx - mx) - \cos(nx + mx)\right] \,dx \\
+    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n - m)x - \cos(n + m)x \,dx \\
+    =&amp;\, \begin{cases}
+        0, &amp; n \ne m \\
+        \pi, &amp; n = m
+    \end{cases}
+\end{align*}\]</span></p>
+<ol start="3" type="a">
+<li></li>
+</ol>
+<p><span class="math display">\[\begin{align*}
+    &amp;\, \int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx + mx) + \cos(nx - mx)\right] \,dx \\
+    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n + m)x + \cos(n - m)x \,dx \\
+    =&amp;\, \begin{cases}
+        0, &amp; n \ne m \\
+        \pi, &amp; n = m
+    \end{cases}
+\end{align*}\]</span></p>
+<p></p>
+</section>
+<section id="finding-fourier-coefficients" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</h3>
+<p><span class="math display">\[ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) \]</span></p>
+<p>To find <span class="math inline">\(a_2\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+    &amp;\, \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cos x + a_2 \cdot \cos 2x + \cdots\right. \\
+    &amp;\, \quad\quad\, \left.b_1 \cdot \sin x + b_2 \cdot \sin 2x + \cdots\right) \cdot \cos 2x \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \big( a_0 \cdot \cancelto{0}{\cos 2x} + a_1 \cdot \cancelto{0}{\cos x \cdot \cos 2x} + \boxed{a_2 \cdot \cos^2 2x} + \cdots \\
+    &amp;+ b_1 \cdot \cancelto{0}{\sin x \cdot \cos 2x} + b_2 \cdot \cancelto{0}{\sin 2x \cdot \cos 2x} + \cdots \big) \,dx \\
+    =&amp;\, a_2 \cdot \int_{-\pi}^{\pi} \cos^2 2x \,dx \\
+    =&amp;\, a_2 \cdot \int_{-\pi}^{\pi} \frac{1 + \cancelto{0}{\cos 4x}}{2} \,dx \\
+    =&amp;\, \pi \cdot a_2 .
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    a_2 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}{a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}{b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx}
+\end{equation}\]</span></p>
+<p>To find <span class="math inline">\(a_0\)</span>: <span class="math display">\[\begin{align*}
+    &amp;\, \int_{-\pi}^{\pi} f(x) \cdot 1 \,dx \\
+    =&amp;\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cancelto{0}{\cos x} + a_2 \cdot \cancelto{0}{\cos 2x} + \cdots\right. \\
+    &amp;\, \quad\quad\, \left.b_1 \cdot \cancelto{0}{\sin x} + b_2 \cdot \cancelto{0}{\sin 2x} + \cdots\right) \cdot 1 \,dx \\
+    =&amp;\, 2\pi a_0 .
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}{a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx}
+\end{equation}\]</span></p>
+<p><span color="blue">Alternatively, with</span></p>
+<p><span class="math display">\[\begin{equation}
+    f(x) = \color{blue}{\frac{a_0}{2}} \color{black} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) ,
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{blue}{a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \,dx}
+\end{equation}\]</span></p>
+<p>E.g. <span class="math inline">\(f(x) = \begin{cases}
+    1, &amp; \quad [0, \pi] \\
+    -1, &amp; \quad [-\pi, 0)
+    \end{cases}\)</span></p>
+<img src="2_fourier_transform_files/mediabag/9fa402145ab673f7a22d0a4e3cba5fd288e640c8.svg" class="img-fluid">
+<p><span class="math display">\[\begin{equation}
+    f(x) = \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_0}} + \sum_{n=1}^{\infty} \left( \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_n}} \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    a_0 &amp;= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx \\
+    &amp;= \frac{1}{2\pi} \left[ \int_{0}^{\pi} 1 \,dx + \int_{-\pi}^{0} -1 \,dx \right] \\
+    &amp;= \frac{1}{2\pi} \left[] \pi + (-\pi) \right] \\
+    &amp;= 0 .
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    a_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
+    &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \cos nx \,dx + \int_{-\pi}^{0} -\cos nx \,dx \right] \\
+    &amp;= \frac{1}{\pi} \left[ \frac{1}{n}\sin nx \Big|_0^{\pi} + \frac{1}{n}\sin nx \Big|_{-\pi}^{0} \right] \\
+    &amp;= 0 .
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    b_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx \\
+    &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \sin nx \,dx + \int_{-\pi}^{0} -\sin nx \,dx \right] \\
+    &amp;= \frac{1}{\pi} \left[ -\frac{1}{n}\cos nx \Big|_0^{\pi} + \frac{1}{n}\cos nx \Big|_{-\pi}^{0} \right] \\
+    &amp;= \frac{1}{n\pi} \left(-\cos n\pi + \cos 0 + \cos 0 - \cos(-n\pi) \right) \\
+    &amp;= \frac{2}{n\pi} \left(1 - \cos n\pi\right) \\
+    &amp;= \begin{cases}
+        \displaystyle\frac{4}{n\pi}, &amp; n = 1,\,3,\,5,\, \dots \\
+        0, &amp; n = 0,\,2,\,4,\, \dots
+    \end{cases}
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}{f(x) = \frac{4}{\pi} \left( \sin x + \frac{1}{3}\sin 3x + \frac{1}{5}\sin 5x + \frac{1}{7}\sin 7x \cdots \right) = \boxed{\sum_{n=1,3,5,\dots}^{\infty} \frac{4}{n\pi} \cdot \sin nx}}
+\end{equation}\]</span></p>
+<img src="2_fourier_transform_files/mediabag/628eaaacc9c6b38b3e072e94e3f39861c446e6ad.svg" class="img-fluid">
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
