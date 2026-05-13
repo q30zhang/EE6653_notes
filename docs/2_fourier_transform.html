@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./3_laplace_transform.html" rel="next">
 <link href="./1_convolution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -154,6 +155,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fourier Transform</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_laplace_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Laplace Transform</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -171,6 +178,7 @@ window.Quarto = {
   <li><a href="#finding-fourier-coefficients" id="toc-finding-fourier-coefficients" class="nav-link" data-scroll-target="#finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</a></li>
   </ul></li>
   <li><a href="#fourier-transform" id="toc-fourier-transform" class="nav-link" data-scroll-target="#fourier-transform"><span class="header-section-number">2.3</span> Fourier Transform</a></li>
+  <li><a href="#fourier-transform-contd---0513" id="toc-fourier-transform-contd---0513" class="nav-link" data-scroll-target="#fourier-transform-contd---0513">Fourier Transform (cont’d) - 05/13</a></li>
   </ul>
 </nav>
     </div>
@@ -277,7 +285,7 @@ Every 2 same functions are unorthogonal.
 </li>
 </ol></ul>
 
-<img src="2_fourier_transform_files/mediabag/1d7d48edd8bb4260050ac81560f9bd9f3dc83557.svg" class="img-fluid">
+<img src="2_fourier_transform_files/mediabag/d92d211e699d2996add9bbc6a430848339a59915.svg" class="img-fluid">
 <div style="color:#994C01;">
 <ol type="a">
 <li></li>
@@ -441,13 +449,54 @@ Every 2 same functions are unorthogonal.
 <p>When the period is NOT <span class="math inline">\(2\pi\)</span>, <span class="math display">\[f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i \omega_n t}\]</span> where <span class="math inline">\(c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i \omega_n t} \,dt\)</span>.</p>
 <p><span style="color:green;"> When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(T \to \infty\)</span>, <span class="math inline">\(\Delta \omega_n = \omega_{n+1}-\omega_n = \displaystyle\frac{2\pi}{T} \to 0\)</span>.</span></p>
 <p><span class="math display">\[\begin{align*}
-    \color{green}c_n &amp;\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^  {-i\omega_n t}\,dt \\
-    &amp;\color{green}= \lim_{\Delta\omega_n \to 0} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+    \color{green}c_n &amp;\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
+    &amp;\color{green}= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
 \end{align*}\]</span></p>
 <p><span class="math display">\[\begin{align*}
     \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \frac{1}{2\pi} \int_{\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \cdot e^{i\omega_n t} \Delta \omega_n \\
     &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n
 \end{align*}\]</span></p>
+</section>
+<section id="fourier-transform-contd---0513" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="fourier-transform-contd---0513">Fourier Transform (cont’d) - 05/13</h2>
+<p><span class="math display">\[ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}\]</span> where <span class="math display">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt\]</span>.</p>
+<div style="color:blue;">
+<p>When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(\begin{array}{l}
+T \to \infty,\\
+\Delta \omega_n\to 0.
+\end{array}\)</span></p>
+</div>
+<p><span class="math display">\[\begin{align*}
+    c_n &amp;= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
+    &amp;= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,\Delta\omega_n
+\end{equation}\]</span></p>
+<img src="2_fourier_transform_files/mediabag/9973f6021981a6f74c62d0c5f6ffd58a2d9d378b.svg" class="img-fluid">
+<p><span class="math display">\[\begin{align*}
+    \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n \\
+    &amp;\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,d\omega
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}F(\omega) = \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt \quad\text{(F.T.)}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    \color{red}f(t) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} F(\omega) \cdot e^{i\omega t} \,d\omega \quad\text{(inverse F.T.)}
+\end{equation}\]</span></p>
+<div style="color:#5453A6;">
+<p><span class="math display">\[\begin{align*}
+    \text{F. S.} \quad \longrightarrow &amp;\quad \text{periodic} \\
+    \text{F. T.} \quad \longrightarrow &amp;\quad \text{non-periodic}
+\end{align*}\]</span></p>
+</div>
+<div style="color:green;">
+<p><b>Limitation</b>: F.T. can only deal with time-domain function that is absolutely convergent.</p>
+</div>
+<div style="color:blue;">
+<p>Side note: <span class="math display">\[ e^{i\omega t} = \cos \omega t + i \sin \omega t \]</span> <span class="math display">\[ \int_{-\infty}^{+\infty} f(t) \div e^{i\omega t} \,dt\]</span> <span class="math inline">\(6 \div 2\)</span></p>
+<p><span class="math inline">\(6 - 2 - 2 - 2 = 0\)</span></p>
+</div>
 
 
 </section>
@@ -860,6 +909,9 @@ Every 2 same functions are unorthogonal.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./3_laplace_transform.html" class="pagination-link" aria-label="Laplace Transform">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Laplace Transform</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

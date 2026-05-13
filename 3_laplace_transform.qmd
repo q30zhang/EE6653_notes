@@ -1,0 +1,577 @@
+# Laplace Transform
+
+## F.T. Limitation
+
+<div style="color:#994C01;">
+Q1. What is the F.T. of $u(t) \cdot e^{-t}$?
+</div>
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=2cm, yshift=-2cm]
+    % axes
+    \draw[axis] (-1,0) -- (3,0) node[right] {$t$};
+    \draw[axis] (0,-1) -- (0,2) node[above] {$e^{-t}$};
+
+    \draw[domain=-0:2, smooth, variable=\x, blue] plot ({\x}, {e^(-\x)});
+
+    \node[blue, left] at (-0.1, 1) {$1$};
+\end{scope}
+
+\begin{scope}[xshift=8cm, yshift=-2cm]
+    % axes
+    \draw[axis] (-1,0) -- (3,0) node[right] {$t$};
+    \draw[axis] (0,-1) -- (0,2) node[above] {$u(t)$};
+
+    \draw[blue, thick] (-1,0) -- (0,0);
+    \draw[blue, thick] (0,0) -- (0,1);
+    \draw[blue, thick] (0,1) -- (2,1);
+
+    \node[blue, left] at (-0.1, 1) {$1$};
+\end{scope}
+\end{tikzpicture}
+```
+
+
+\begin{align*}
+    \mathcal{F}[u(t) \cdot e^{-t}] &= \int_{-\infty}^{+\infty} u(t) \cdot e^{-t} \cdot e^{-i\omega t} \,dt \\
+    &= \int_{0}^{+\infty} e^{-(1 + i\omega) t} \,dt \\
+    &= \left. -\frac{1}{1 + i\omega} e^{-(1 + i\omega) t} \right\rvert_{0}^{+\infty} \\
+    &= 0 + \frac{1}{1 + i\omega} \cdot \color{red} \frac{1-i\omega}{1-i\omega} \\
+    &= \frac{1 - i\omega}{1 + \omega^2} \\
+    &= \frac{1}{1 + \omega^2} + \frac{-i\omega}{1 + \omega^2} .
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=-4cm, yshift=-2cm]
+    % axes
+    \draw[axis] (-3,0) -- (3,0) node[right] {$\omega$};
+    \draw[axis] (0,-1) -- (0,2) node[above] {Re};
+
+    \draw[domain=-3:3, smooth, variable=\x, orange] plot ({\x}, {1/(1 + (\x)^2)});
+
+    \node[orange, left] at (-0.1, 1.2) {$1$};
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=-2cm]
+    % axes
+    \draw[axis] (-3,0) -- (3,0) node[right] {$\omega$};
+    \draw[axis] (0,-1) -- (0,2) node[above] {Im};
+
+    \draw[domain=-3:3, smooth, variable=\x, orange] plot ({\x}, {-\x/(1 + (\x)^2)});
+\end{scope}
+\end{tikzpicture}
+```
+
+<div style="color:#994C01;">
+ <br>
+Q2. What is the F.T. of $u(t)$?
+</div>
+
+\begin{align*}
+    \mathcal{F}[u(t)] &= \int_{-\infty}^{+\infty} u(t) \cdot e^{-i\omega t} \,dt \\
+    &= \int_{0}^{+\infty} e^{-i\omega t} \,dt \\
+    &= \left. -\frac{1}{i\omega} e^{-i\omega t} \right\rvert_{0}^{+\infty} \\
+    &= -\frac{1}{i\omega} \big(\color{red}\underset{\text{value}}{\underset{\text{undetermined}}{\underline{\color{black}e^{-i\omega\infty}}}} \color{black} - 1\big)
+\end{align*}
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+
+\begin{scope}[xshift=-1.5cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {Re};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {Im};
+
+    \draw[domain=0:2*pi,samples=500, red, thick] plot ({deg(\x)}:1);
+
+    \node[red, left] at (-0.1, 1.2) {$1$};
+\end{scope}
+
+\node[red] at (-0.5,-0.5) {$e^{-i\omega t}$};
+\end{tikzpicture}
+```
+
+</div>
+
+<div style="color:#994C01;">
+Q3. What is the F.T. of $e^t \cdot u(t)$?
+</div>
+
+\begin{align*}
+    \mathcal{F}[e^t \cdot u(t)] &= \int_{-\infty}^{+\infty} e^t \cdot u(t) \cdot e^{-i\omega t} \,dt \\
+    &= \int_{0}^{+\infty} e^{(1 - i\omega) t} \,dt \\
+    &= \left. \frac{1}{1 - i\omega} e^{(1 - i\omega) t} \right\rvert_{0}^{+\infty} \\
+    &= \frac{1}{1 - i\omega} \cdot (\infty - 1)
+\end{align*}
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+
+\begin{scope}[xshift=-1.5cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {Re};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {Im};
+
+    \draw[domain=0:4*pi,samples=500, red, thick] plot ({deg(\x)}:\x/10);
+
+    \node[red, left] at (-0.1, 1.2) {$1$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+</div>
+
+
+## Laplace Transform
+
+The premise of F.T. is that $f(t)$ must be convergent.
+
+<div style="color:red;">
+<u>What if $f(t)$ is not convergent?</u>
+</div>
+
+\begin{align*}
+    & \int_{-\infty}^{+\infty} u(t) \cdot \color{red}\underbrace{\color{blue} e^{-\sigma t} \color{black} \cdot e^{-i\omega t}} \color{black} \,dt \\
+    =& \int_{\color{red}{0}}^{+\infty} u(t) \cdot \color{red}{e^{-(\sigma + i\omega) t}} \color{black} \,dt
+\end{align*}
+
+Define $s = \sigma + i\omega$
+
+$$\mathcal{L}[f(t)] = \int_{0}^{+\infty} f(t) \cdot e^{-st} \,dt .$$
+
+\begin{array}{ll}
+    \text{L.T.: } & f(t) \div e^{\sigma t} \text{ to find } e^{\sigma t} \text{ in } f(t) \\
+    & f(t) \div e^{i\omega t} \text{ to find AC components at } \omega.
+\end{array}
+
+\usepackage{cancel}
+
+::: {layout-ncol=2}
+\begin{align*}
+    \mathcal{L}[u(t)] &= \int_{0}^{+\infty} \color{red}\cancel{\color{black}u(t)} \color{black} \cdot e^{-st} \,dt \\
+    &= -\frac{1}{s} \cdot e^{-st} \bigg\rvert_{0}^{+\infty} \\
+    &= 0 + \frac{1}{s}
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (0,0) circle (2pt);
+\end{tikzpicture}
+```
+:::
+
+::: {layout-ncol=2}
+<span style="color:green;">
+$s=1$: $\displaystyle \int_{0}^{+\infty} e^{-t} \,dt = 1$.
+</span><br>
+<span style="color:#994C01;">
+$s=2$: $\displaystyle \int_{0}^{+\infty} e^{-2t} \,dt = \frac{1}{2}$.
+</span><br>
+<span style="color:red;">
+$s=3$: $\displaystyle \int_{0}^{+\infty} e^{-3t} \,dt = \frac{1}{3}$.
+</span><br>
+<span style="color:blue;">
+$s=0$: $\displaystyle \frac{1}{0} = \infty$.
+</span>
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    % axes
+    \draw[axis] (-0.5,0) -- (3.5,0) node[right] {$t$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$u(t) \cdot e^{-st}$};
+
+    \draw[domain=0:3, smooth, variable=\x, blue, thick] plot ({\x}, {1});
+    \draw[domain=0:3, smooth, variable=\x, green, thick] plot ({\x}, {e^(-\x)});
+    \draw[domain=0:3, smooth, variable=\x, orange!60!black, thick] plot ({\x}, {e^(-2*\x)});
+    \draw[domain=0:3, smooth, variable=\x, red, thick] plot ({\x}, {e^(-3*\x)});
+
+    \node[blue, right] at (3, 1.2) {$s=0$};
+    \node[blue, right] at (3, 0.8) {$e^{0t}$};
+    \node[black, left] at (-0.1, 1) {$1$};
+\end{tikzpicture}
+```
+:::
+
+::: {layout-ncol=2}
+\begin{align*}
+    \mathcal{L}[e^t] &= \int_{0}^{+\infty} \cancel{u(t)} \cdot e^t \cdot e^{-st} \,dt \\
+    &= \int_{0}^{+\infty} e^{(1-s)t} \,dt \\
+    &= \left. \frac{1}{1-s} e^{(1-s)t} \right\rvert_{0}^{+\infty} \\
+    &= 0 - \frac{1}{1-s} \\
+    &= \frac{1}{s-1}
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (1,0) circle (2pt);
+    \node[red, below] at (1, -0.1) {$1$};
+\end{tikzpicture}
+```
+:::
+
+<div style="color:blue;">
+When $s=1$, $\mathcal{L}[e^t] = \displaystyle\frac{1}{0} = \infty$, meaning that the original function contains $\underline{\underline{e^t}}$.
+</div>
+
+
+## Why do we need to find exponentials?
+
+<ul style="list-style-type: '① ';">
+<li>LTI system is differential equations (D.E.)</li>
+
+::: {layout-ncol=2}
+```{.tikz}
+\begin{tikzpicture}[thick, >=latex]
+
+% Coordinates
+\coordinate (A) at (0,0);
+\coordinate (B) at (0,3);
+\coordinate (C) at (4,3);
+\coordinate (D) at (4,0);
+
+% Left side: battery
+\draw (A) -- (0,1.1);
+\draw (-0.35,1.1) -- (0.35,1.1);   % short plate
+\draw (-0.55,1.45) -- (0.55,1.45); % long plate
+\draw (0,1.45) -- (B);
+\node[left] at (-0.5,1.3) {$V_i$};
+
+% Top side: inductor, concave-down loops
+\draw (B) -- (1.0,3);
+
+\draw (1.0,3)
+  arc[start angle=180, end angle=0, radius=0.3]
+  arc[start angle=180, end angle=0, radius=0.3]
+  arc[start angle=180, end angle=0, radius=0.3]
+  arc[start angle=180, end angle=0, radius=0.3];
+
+\draw (3.4,3) -- (C);
+\node[below] at (2.2,2.8) {$L$};
+\node[above, red] at (2.2,3.4) {$V_L$};
+
+% Right side: resistor
+\draw (C) -- (4,2.4);
+
+\draw (4,2.4) -- (3.7,2.2)
+              -- (4.3,1.9)
+              -- (3.7,1.6)
+              -- (4.3,1.3)
+              -- (3.7,1.0)
+              -- (4,0.8);
+
+\draw (4,0.8) -- (D);
+\node[left] at (3.65,1.6) {$R$};
+\node[right,red] at (4.35,1.6) {$V_R$};
+
+% Bottom wire
+\draw (D) -- (A);
+
+\node[below, red] at (2,0) {$V_L = L \cdot \frac{di(t)}{dt}$};
+\node[below, red] at (2,-1) {$V_R = R \cdot i(t)$};
+
+\end{tikzpicture}
+```
+
+<div>
+<b>KVL</b>:<br>
+$$\underset{\text{D.E.}}{\underbrace{V_i = L \cdot \frac{di(t)}{dt} + R \cdot i(t)}}$$
+</div>
+
+:::
+
+::: {layout-ncol=2}
+```{.tikz}
+\begin{tikzpicture}[thick, >=latex]
+
+% Overall reference size similar to previous circuit: about 4 x 3
+% Coordinates
+\coordinate (O) at (0,0);
+\coordinate (WallTop) at (0,3);
+\coordinate (MassCenter) at (3.2,0.7);
+
+% Left wall
+\draw (0,0) -- (0,2.2);
+
+% Bottom wall / floor
+\draw (0,0) -- (4.5,0);
+
+% Wall hatching
+\foreach \y in {0.2,0.5,...,2.2} {
+    \draw (-0.25,\y-0.15) -- (0,\y+0.1);
+}
+
+% Floor hatching
+\foreach \x in {0.3,0.6,...,4.3} {
+    \draw (\x-0.15,-0.25) -- (\x+0.1,0);
+}
+
+% Mass block
+\draw (2.6,0.1) rectangle (3.8,1.3);
+\node[below] at (3.2,0.7) {$m$};
+
+% Spring from wall to mass
+\draw (0,0.7) -- (0.45,0.7);
+
+\draw (0.45,0.7)
+    -- (0.60,0.95)
+    -- (0.90,0.45)
+    -- (1.20,0.95)
+    -- (1.50,0.45)
+    -- (1.80,0.95)
+    -- (2.10,0.45)
+    -- (2.40,0.95)
+    -- (2.55,0.7);
+
+\draw (2.55,0.7) -- (2.6,0.7);
+
+% Force arrow from center of gravity of mass
+\draw[->, blue] (MassCenter) -- (4.5,0.7);
+\node[above, blue] at (4.05,0.7) {$F$};
+
+\node[below, red] at (2,-0.5) {spring force: $-kx$};
+\node[below, red] at (2,-1) {resistance force: $-\alpha \cdot \dot{x}$};
+
+\end{tikzpicture}
+```
+
+<div>
+<b>NSL</b>:<br>
+$$\underset{\text{D.E.}}{\underbrace{F - kx - \alpha \cdot \dot{x} = m \cdot \ddot{x}}}$$
+</div>
+
+:::
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>Solutions to D.E. must be either \begin{cases}
+    \text{Exponential: } & e^{at} \\
+    \text{Sinusoid: } & \sin(\omega t)
+\end{cases}</li>
+
+</ul>
+
+
+## L.T. Examples
+
+<ul style="list-style-type: '① ';">
+<li> &nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=-1cm, yshift=-2cm]
+    % axes
+    \draw[axis] (0,0) -- (2,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,2) node[above] {$u(t)$};
+
+    \draw[domain=0:2, smooth, variable=\x, orange, thick] plot ({\x}, {1});
+
+    \node[orange, left] at (-0.1, 1) {$1$};
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (0,0) circle (2pt);
+    \node[red, above] at (0.5,0.2) {$\displaystyle\frac{1}{s}$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+</li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li> &nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=-1cm, yshift=-2cm]
+    % axes
+    \draw[axis] (0,0) -- (2,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,2) node[above] {$e^{at}$};
+
+    \draw[domain=0:2, smooth, variable=\x, orange, thick] plot ({\x}, {e^(0.5*\x)});
+    \draw[domain=0:2, loosely dotted, variable=\x, orange, thick] plot ({\x}, {1});
+    \draw[domain=0:2, smooth, variable=\x, orange, thick] plot ({\x}, {e^(-0.5*\x)});
+
+    \node[orange, left] at (-0.1, 1) {$1$};
+    \node[orange, right] at (1.5, 2) {$a>0$};
+    \node[orange, right] at (2, 1.2) {$a=0$};
+    \node[orange, right] at (1.5, 0.7) {$a<0$};
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (0.5,0) circle (2pt);
+    \fill[red] (-0.5,0) circle (2pt);
+    \node[red, above] at (1,0.2) {$\displaystyle\frac{1}{s-a}$};
+    \node[red, below] at (0.8,-0.1) {$a>0$};
+    \node[red, below] at (-0.8,-0.1) {$a<0$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+</li>
+</ul>
+
+<ul style="list-style-type: '③ ';">
+<li> &nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=-1cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (0,0) -- (2,0) node[right] {$t$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$\cos \omega t$};
+
+    \draw[domain=0:2, smooth, variable=\x, orange, thick] plot ({\x}, {cos(deg(2*pi*\x))});
+    \draw[domain=0:2, loosely dotted, variable=\x, orange, thick] plot ({\x}, {1});
+    \draw[domain=0:2, loosely dotted, variable=\x, orange, thick] plot ({\x}, {-1});
+
+    \node[orange, left] at (-0.1, 1) {$1$};
+    \node[orange, left] at (-0.1, -1) {$-1$};
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (0,1) circle (2pt);
+    \fill[red] (0,-1) circle (2pt);
+    \node[red, above] at (1,0.2) {$\displaystyle\frac{s}{s^2+\omega^2}$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+\begin{align*}
+    \mathcal{L}[\cos(\omega t)] &= \int_{0}^{+\infty} \cos(\omega t) \cdot e^{-st} \,dt \\
+    &= \frac{1}{2} \int_{0}^{+\infty} \left(e^{i\omega t} + e^{-i\omega t}\right) \cdot e^{-st} \,dt \\
+    &= \frac{1}{2} \int_{0}^{+\infty} \left[e^{-(s - i\omega) t} + e^{-(s + i\omega) t}\right] \,dt \\
+    &= \frac{1}{2} \left.\left[ -\frac{1}{s - i\omega} \cdot e^{-(s - i\omega) t} - \frac{1}{s + i\omega} \cdot e^{-(s + i\omega) t} \right] \right\rvert_{0}^{+\infty} \\
+    &= \frac{1}{2} \left[ \frac{1}{s - i\omega} + \frac{1}{s + i\omega} \right] \\
+    &= \frac{s}{s^2 + \omega^2}
+\end{align*}
+
+</li>
+</ul>
+
+<ul style="list-style-type: '④ ';">
+<li> &nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    orange/.style={orange!60!black}
+]
+
+\begin{scope}[xshift=-1cm, yshift=-2cm]
+    % axes
+    \draw[axis] (0,0) -- (2,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,2) node[above] {$t \cdot u(t)$};
+
+    \draw[domain=0:2, smooth, variable=\x, orange, thick] plot ({\x}, {\x});
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=-1.5cm]
+    % axes
+    \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \fill[red] (0,0) circle (2pt);
+    \node[red, below] at (0.5,-0.1) {$\displaystyle\frac{1}{s^2}$};
+\end{scope}
+
+\end{tikzpicture}
+```
+
+::: {layout-ncol=2}
+
+\begin{align*}
+    \mathcal{L}[t \cdot u(t)] &= \int_{0}^{+\infty} t \cdot e^{-st} \,dt \\
+    &= \int_{0}^{+\infty} -\frac{1}{s} \cdot t \,de^{-st} \\
+    &= -\frac{1}{s} \int_{0}^{\infty} t \cdot \,de^{-st} \\
+    &= -\frac{1}{s} \left[ t \cdot e^{-st} \bigg\rvert_{0}^{\infty} - \int_{0}^{\infty} e^{-st} \,dt \right] \\
+    &= -\frac{1}{s} \left[ \cancel{0 - 0} - \left(-\frac{1}{s}\right)\cdot e^{-st} \bigg\rvert_{0}^{\infty} \right] \\
+    &= -\frac{1}{s} \cdot \frac{1}{s} \cdot (0-1) \\
+    &= \frac{1}{s^2}
+\end{align*}
+
+<div style="color:green;">
+\begin{align*}
+    (xy)' &= x'y + xy' \\
+    xy &= \int x\,dy + \int y\,dx \\
+    \int x\,dy &= xy - \int y\,dx
+\end{align*}
+</div>
+
+</li>
+</ul>
+
+
+
+

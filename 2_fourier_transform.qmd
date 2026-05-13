@@ -387,10 +387,6 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
 \node[orange, right] at (0,0) {d.};
 % ---------- time-domain signal ----------
 \begin{scope}[xshift=4cm, yshift=-1.5cm]
-    % axes
-    \draw[axis] (-4,0) -- (4,0);
-    \draw[axis] (0,-1.5) -- (0,1.5);
-
     \fill[green!20] (-pi,0) -- plot[domain=-pi:0] ({\x}, {sin(deg(\x))}); -- (0,0) -- cycle;
     \fill[orange!20] (0,0) -- plot[domain=0:pi] ({\x}, {sin(deg(\x))}); -- (pi,0) -- cycle;
 
@@ -398,6 +394,10 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
     \fill[cyan!20] (-pi/2,0) -- plot[domain=-pi/2:0] ({\x}, {sin(deg(2*\x))}); -- (0,0) -- cycle;
     \fill[yellow!20] (0,0) -- plot[domain=0:pi/2] ({\x}, {sin(deg(2*\x))}); -- (pi/2,0) -- cycle;
     \fill[cyan!20] (pi/2,0) -- plot[domain=pi/2:pi] ({\x}, {sin(deg(2*\x))}); -- (pi,0) -- cycle;
+
+    % axes
+    \draw[axis] (-4,0) -- (4,0);
+    \draw[axis] (0,-1.5) -- (0,1.5);
 
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(\x))});
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {sin(deg(2*\x))});
@@ -412,15 +412,15 @@ $$\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\
 
 % ---------- frequency-domain spectrum ----------
 \begin{scope}[xshift=14cm, yshift=-1.5cm]
-    % axes
-    \draw[axis] (-4,0) -- (4,0);
-    \draw[axis] (0,-1.5) -- (0,1.5);
-
     \fill[green!20] (-pi,0) -- plot[domain=-pi:-pi/2] ({\x}, {cos(deg(\x))}); -- (-pi/2,0) -- cycle;
     \fill[orange!20] (-pi/2,0) -- plot[domain=-pi/2:pi/2] ({\x}, {cos(deg(\x))}); -- (pi/2,0) -- cycle;
     \fill[green!20] (pi,0) -- plot[domain=pi/2:pi] ({\x}, {cos(deg(\x))}); -- (pi/2,0) -- cycle;
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(\x))});
     \draw[domain=-3.14:3.14, smooth, variable=\x, orange] plot ({\x}, {cos(deg(2*\x))});
+
+    % axes
+    \draw[axis] (-4,0) -- (4,0);
+    \draw[axis] (0,-1.5) -- (0,1.5);
 
     % period marker
     \node[orange, below] at (-3.3,-0.1) {$-\pi$};
@@ -689,8 +689,8 @@ where $c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \c
 <span style="color:green;"> When $f(t)$ is non-periodic, $T \to \infty$, $\Delta \omega_n = \omega_{n+1}-\omega_n = \displaystyle\frac{2\pi}{T} \to 0$.</span>
 
 \begin{align*}
-    \color{green}c_n &\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^  {-i\omega_n t}\,dt \\
-    &\color{green}= \lim_{\Delta\omega_n \to 0} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+    \color{green}c_n &\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
+    &\color{green}= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
 \end{align*}
 
 \begin{align*}
@@ -698,4 +698,81 @@ where $c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \c
     &\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n
 \end{align*}
 
+## Fourier Transform (cont'd) - 05/13 {-}
 
+$$ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}$$
+where
+$$c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt$$.
+
+<div style="color:blue;">When $f(t)$ is non-periodic, $\begin{array}{l}
+T \to \infty,\\
+\Delta \omega_n\to 0.
+\end{array}$
+</div>
+
+\begin{align*}
+    c_n &= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
+    &= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
+\end{align*}
+
+\begin{equation}
+    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,\Delta\omega_n
+\end{equation}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black},
+    signal/.style={thick, green!60!black},
+    marker/.style={thick, magenta},
+    orange/.style={orange!60!black},
+    note/.style={magenta}
+]
+    \draw[axis] (0,-0.5) -- (0,2) node[above] {$y(x)$};
+    \draw[axis] (-3,0) -- (11,0) node[right] {$x$};
+
+    \draw[wave]
+        plot[thick,smooth,orange] coordinates {
+            (-2,1) (-1,0.6) (0,0.9) (1,1.3) (2,0.6) (3,0.9) (4,1.1)
+            (5,1.4) (6,0.8) (7,1.2) (8,1.3) (9,0.7) (10,1.0)
+        };
+
+    \draw[red] (4,0) -- (4,1.1);
+    \draw[red] (4.1,0) -- (4.1,1.1);
+    \node[red, below] at (4.05,-0.1) {$\Delta x$};
+    \node[orange, below] at (4,-1.1) {$\displaystyle\sum_{-\infty}^{+\infty} y(x) \cdot \Delta x = \int_{-\infty}^{+\infty} y(x) \,dx$};
+\end{tikzpicture}
+```
+
+\begin{align*}
+    \color{YellowOrange}f(t) &\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n \\
+    &\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,d\omega
+\end{align*}
+
+\begin{equation}
+    \color{red}F(\omega) = \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt \quad\text{(F.T.)}
+\end{equation}
+
+\begin{equation}
+    \color{red}f(t) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} F(\omega) \cdot e^{i\omega t} \,d\omega \quad\text{(inverse F.T.)}
+\end{equation}
+
+<div style="color:#5453A6;">
+\begin{align*}
+    \text{F. S.} \quad \longrightarrow &\quad \text{periodic} \\
+    \text{F. T.} \quad \longrightarrow &\quad \text{non-periodic}
+\end{align*}
+</div>
+
+<div style="color:green;">
+<b>Limitation</b>: F.T. can only deal with time-domain function that is absolutely convergent.
+</div>
+
+<div style="color:blue;">
+Side note:
+$$ e^{i\omega t} = \cos \omega t + i \sin \omega t $$
+$$ \int_{-\infty}^{+\infty} f(t) \div e^{i\omega t} \,dt$$
+$6 \div 2$
+
+$6 - 2 - 2 - 2 = 0$
+</div>

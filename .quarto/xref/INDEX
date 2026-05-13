@@ -16,5 +16,8 @@
   },
   "2_fourier_transform.qmd": {
     "2_fourier_transform.html": "c0ce187b"
+  },
+  "3_laplace_transform.qmd": {
+    "3_laplace_transform.html": "05b0462b"
   }
 }
