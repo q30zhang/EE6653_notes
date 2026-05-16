@@ -4,7 +4,9 @@
 
 <ul style="list-style-type: '① ';">
 <li>The convolution in time domain is the multiplication in frequency domain:</li>
-<span>
+
+<div style="text-align: center;">
+
 ```{.tikz}
 \begin{tikzpicture}[>=latex, thick]
   \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
@@ -15,24 +17,20 @@
   \node[above] at (-3,0) {$x(t)$};
   \node[above] at (3,0) {$y(t)=x(t) * h(t)$};
   \node[below] at (sys.south) {$h(t)$};
-\end{tikzpicture}
-```
-</span>
+  
+  \node[draw, minimum width=2.2cm, minimum height=1cm] at (0,-2) (sys) {$LTI$};
 
-<span>
-```{.tikz}
-\begin{tikzpicture}[>=latex, thick]
-  \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+  \draw[->] (-3,-2) -- (sys.west);
+  \draw[->] (sys.east) -- (3,-2);
 
-  \draw[->] (-3,0) -- (sys.west);
-  \draw[->] (sys.east) -- (3,0);
-
-  \node[above] at (-3,0) {$X(\omega)$};
-  \node[above] at (3,0) {$Y(\omega)=X(\omega) \cdot H(\omega)$};
+  \node[above] at (-3,-2) {$X(\omega)$};
+  \node[above] at (3,-2) {$Y(\omega)=X(\omega) \cdot H(\omega)$};
   \node[below] at (sys.south) {$H(\omega)$};
 \end{tikzpicture}
 ```
-</span>
+
+</div>
+
 </ul>
 
 <ul style="list-style-type: '② ';">
@@ -705,6 +703,7 @@ where
 $$c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt$$.
 
 <div style="color:blue;">When $f(t)$ is non-periodic, $\begin{array}{l}
+\ \\
 T \to \infty,\\
 \Delta \omega_n\to 0.
 \end{array}$

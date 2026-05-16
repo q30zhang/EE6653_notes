@@ -1,0 +1,612 @@
+# Time-domain Response
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \begin{scope}
+        % Coordinates
+        \coordinate (O) at (0,0);
+        \coordinate (WallTop) at (0,3);
+
+        % Left wall
+        \draw (0,0) -- (0,2.2);
+
+        % Bottom wall / floor
+        \draw (0,0) -- (4.5,0);
+
+        % Wall hatching
+        \foreach \y in {0.2,0.5,...,2.2} {
+            \draw (-0.25,\y-0.15) -- (0,\y+0.1);
+        }
+
+        % Floor hatching
+        \foreach \x in {0.3,0.6,...,4.3} {
+            \draw (\x-0.15,-0.25) -- (\x+0.1,0);
+        }
+
+        \draw (0,0.5) -- (0.5,0.5);
+        \draw (0.5,0.5)
+        arc[start angle=180, end angle=0, radius=0.2]
+        arc[start angle=0, end angle=-180, radius=0.05]
+        arc[start angle=180, end angle=0, radius=0.2]
+        arc[start angle=0, end angle=-180, radius=0.05]
+        arc[start angle=180, end angle=0, radius=0.2]
+        arc[start angle=0, end angle=-180, radius=0.05]
+        arc[start angle=180, end angle=0, radius=0.2]
+        arc[start angle=0, end angle=-180, radius=0.05]
+        arc[start angle=180, end angle=0, radius=0.2];
+        \draw (2.1,0.5) -- (2.5,0.5);
+
+        % Mass block
+        \draw (2.5,0.1) rectangle (3.5,0.9);
+        \node at (3,0.5) {$m$};
+
+        % Force arrow from center of gravity of mass
+        \draw[->, blue] (3,0.5) -- (4,0.5);
+        \node[above, blue] at (3.8,0.5) {$F$};
+
+        \draw[dashed] (3,2) -- (3,0.9);
+        \draw[dashed] (3,0.1) -- (3,-0.5);
+        \draw[->,red,thick] (3,1.5) -- (3.3,1.5);
+        \node[above,red] at (3.2,1.5) {$x$};
+    \end{scope}
+
+    \begin{scope}[xshift=7cm]
+         % wires
+        \draw (0,2.5) -- (1.4,2.5);
+        \draw (2.6,2.5) -- (4,2.5);
+        \draw (4,2.5) -- (4,1.35);
+        \draw (4,1.15) -- (4,0);
+        \draw (4,0) -- (0,0);
+
+        % Left side: potential difference
+        \draw[fill=white] (0,0) circle[radius=0.1];
+        \draw[fill=white] (0,2.5) circle[radius=0.1];
+        \node at (0,1.25) {$V_i$};
+        \node at (-0.3,0.3) {$-$};
+        \node at (-0.3,2.2) {$+$};
+
+        % Top side: inductor, concave-down loops
+        \draw (1.4,2.5)
+        arc[start angle=180, end angle=0, radius=0.15]
+        arc[start angle=180, end angle=0, radius=0.15]
+        arc[start angle=180, end angle=0, radius=0.15]
+        arc[start angle=180, end angle=0, radius=0.15];
+
+        \node[below] at (2,2.5) {$L$};
+        \node[above, red] at (2,2.7) {$V_L(t)$};
+
+        % Right side: resistor
+        \draw (3.6, 1.35) -- (4.4,1.35);
+        \draw (3.6, 1.15) -- (4.4,1.15);
+        \node[left] at (3.6,1.25) {$C$};
+        \node[right,red] at (4.4,1.25) {$V_C(t)$};
+        \node[right,red] at (4.4,1.8) {\small{$+$}};
+        \node[right,red] at (4.4,0.7) {\small{$-$}};
+
+        \draw[->,red] (3.3,2.5) -- (3.4,2.5);
+        \node[above,red] at (3.3,2.5) {$i(t)$};
+    \end{scope}
+\end{tikzpicture}
+```
+
+</div>
+
+&nbsp;
+
+**Modeling:**
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+<ul style="list-style-type: '① ';">
+<li>Differential equation</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>Transfer function <span style="color:#994C01;">(L.T. of D.E.)</span></li>
+</ul>
+:::
+
+::: {.column}
+$\left.\begin{array}{c}\ \\[2ex] \ \end{array}\right\}$ <span style="color:red;">Classical S.I.S.O</span>
+:::
+
+::: {.column style="width: fit-content;"}
+<ul style="list-style-type: '③ ';">
+<li>State-space model <span style="color:#994C01;">(Matrix of D.E.)</span></li>
+</ul>
+:::
+
+::: {.column}
+<span style="color:red;">&nbsp; Modern M.I.M.O</span>
+:::
+::::
+
+&nbsp;<br>
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+    
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    
+    \node[above] at (-2.5,0) {$x(t)$};
+    \node[below] at (-2.5,0) {\begin{array}{c}\rotatebox{90}{$=$}\\x_1(t)\\+\\x_2(t)\\+\\\vdots\end{array}};
+    \node[above] at (2.5,0) {$y(t)$};
+    \node[below] at (2.5,0) {\begin{array}{c}\rotatebox{90}{$=$}\\y_1(t)\\+\\y_2(t)\\+\\\vdots\end{array}};
+    \node[red, right] at (3,-1) {superposition};
+\end{tikzpicture}
+```
+
+</div>
+
+Input $x(t)$:
+
+::: {layout-ncol=2}
+
+<div>
+<ul style="list-style-type: '① ';">
+<li>periodic</li>
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \def\t{1}
+    \foreach \x in {1,2,...,4} {
+        \draw ({\x},0) -- ({\t/4+\x},1);
+        \draw ({\t/4+\x},1) -- ({\t*3/4+\x},-1);
+        \draw ({\t*3/4+\x},-1) -- ({\t+\x},0);
+    }
+    \draw (5,0) -- ({\t/4+5},1);
+    \draw ({\t/4+5},1) -- ({\t/2+5},0);
+\end{tikzpicture}
+```
+</ul>
+</div>
+
+<div>
+<ul style="list-style-type: '② ';">
+<li>non-periodic</span></li>
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \def\t{1}
+    \draw (0,0) -- (1.5,0);
+    \draw (1.5,0) -- (2,1);
+    \draw (2,1) -- (2.5,0);
+    \draw (2.5,0) -- (4,0);
+\end{tikzpicture}
+```
+</ul>
+</div>
+
+\begin{align*}
+    \color{YellowOrange}\text{F.S.:} \\
+    \color{blue}\underset{\Big\downarrow}{\color{YellowOrange} x(t)} \,&\color{YellowOrange}= \color{green}\overset{\text{step input}}{\color{blue}\underset{\Big\downarrow}{\color{green}\boxed{\color{YellowOrange}\text{DC}}}} \color{YellowOrange} + \color{green}\overset{\text{AC input}}{\underset{\omega_0,2\omega_0,3\omega_0}{\boxed{\color{YellowOrange}\text{Sine}}}} \\
+    \color{blue} y(t) \,&\color{blue}= \, \color{red}\underset{\text{response}}{\underset{\text{step}}{\underset{\downarrow}{\underline{\color{blue}y_{\mathrm{DC}}(t)}}}} \color{blue} \, + \,  \color{red}\underset{\text{response}}{\underset{\text{frequency}}{\underset{\downarrow}{\underline{\color{blue}y_{\mathrm{AC}}(t)}}}} \color{blue}
+\end{align*}
+
+\begin{align*}
+    \color{YellowOrange}\text{F.T.:} \\
+    \color{YellowOrange}x(t) \,&\color{YellowOrange}= \text{DC} + \color{green}\overset{\text{AC input}}{\underset{\omega_0 \to 0}{\boxed{\color{YellowOrange}\text{Sine}}}}
+\end{align*}
+
+:::
+
+
+# Time-domain Response (cont'd) {-}
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+
+    \node[above] at (-2.5,0) {$x(t)$};
+    \node[above] at (2.5,0) {$y(t)$};
+
+    \draw[->, orange!60!black, thick] (-2.5,-0.2) -- (-2.5, -1.5);
+    \node[below,orange!60!black] at (-2.5, -1.5) {DC};
+    \node[below,orange!60!black] at (-2.5, -1.8) {$+$};
+    \node[below,orange!60!black] at (-2.5, -2.1) {AC};
+
+    \draw[->, red, thick] (sys.south) -- (0,-2.5);
+    \node[below, red] at (0.3,-2.5) {High-order $LTI = \displaystyle\sum \frac{a_i}{s+p_i} \,+$};
+    \node[below,red] at (2.4,-3.3) {\displaystyle\sum \frac{b_is + c_i}{s^2 + 2 \xi \omega_n s + \omega_n^2}$};
+
+    \draw[->, green!60!black, thick] (2.3,-2.6) -- (2.8,-2.4);
+    \node[right, green!60!black] at (2.8,-2.5) {1st order};
+    \draw[->, green!60!black, thick] (3.5,-3.5) -- (4,-3.3);
+    \node[right, green!60!black] at (4,-3.3) {2nd order};
+\end{tikzpicture}
+```
+
+</div>
+
+&nbsp;
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \draw[thick] (0,0) -- (2,0);
+    \node[above] at (0.5,0) {$x(t)$};
+    \node[below, orange!60!black] at (0.5,0) {DC $+$ AC};
+    \draw[thick] (2,1.5) -- (2,-1.5);
+
+    \node[draw, minimum width=2cm, minimum height=1cm] at (4.5, 1.5) (top) {$\displaystyle\frac{a_i}{s+p_i}$};
+    \draw[->, thick] (2,1.5) -- (top.west);
+    \draw[thick] (top.east) -- (7,1.5);
+    \node[above,green!60!black] at (6.5,1.5) {$y_1(t)$};
+    
+    \node[draw, minimum width=2cm, minimum height=1cm] at (4.5, -1.5) (bot) {$\displaystyle\frac{b_is+c_i}{s^2+ 2\xi \omega_n s + \omega_n^2}$};
+    \draw[->, thick] (2,-1.5) -- (bot.west);
+    \draw[thick] (bot.east) -- (7,-1.5);
+    \node[above,green!60!black] at (6.5,-1.5) {$y_n(t)$};
+
+    \draw[thick, densely dashed] (top.south) -- (bot.north);
+    \draw[thick] (7,1.5) -- (7,-1.5);
+    \draw[->, thick] (7,0) -- (8.5,0);
+    \draw[fill=white] (7,0) circle[radius=0.1];
+    \node at (6.85,0.2) {\tiny{$+$}};
+    \node at (6.75,0) {\tiny{$+$}};
+    \node at (6.85,-0.2) {\tiny{$+$}};
+    \node[above] at (9,0) {$y(t) = y_1(t) + y_2(t)$};
+    \node[below] at (9.5,0) {$+ \cdots + y_n(t)$};
+    
+
+\end{tikzpicture}
+```
+
+</div>
+
+&nbsp;
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node at (0,0.6) (dc) {DC};
+    \node at (0,-0.6) (sine) {Sine};
+    \draw[thick] (-0.5,1) rectangle (0.5,-1);
+    \node[below] at (0,-1) {$x(t)$};
+
+    \node[green!60!black] at (4,0.6) (1st) {1st order};
+    \node[green!60!black] at (4,-0.6) (2nd) {2nd order};
+    \draw[thick] (3,1) rectangle (5,-1);
+    \node[below] at (4,-1) {$LTI$};
+
+    \draw[->,blue,thick] (dc.east) -- (1st.west);
+    \draw[->,blue,thick] (dc.east) -- (2nd.west);
+    \node[above,blue] at (1.75,0.7) {time-domain};
+
+    \draw[->,red,thick] (sine.east) -- (1st.west);
+    \draw[->,red,thick] (sine.east) -- (2nd.west);
+    \node[below,red] at (1.75,-0.7) {frequency};
+    \node[below,red] at (1.75,-1.25) {response};
+
+    \draw[thick] (5,0.6) -- (7,0.6);
+    \draw[thick] (5,-0.6) -- (7,-0.6);
+    \node[above] at (6,0.6) {$y_{\mathrm{1st}}(t)$};
+    \node[below,blue] at (6,0.6) {$y_{\mathrm{DC\,1st}}$};
+    \node[above] at (6,-0.6) {$y_{\mathrm{2nd}}(t)$};
+    \node[below,blue] at (6,-0.6) {$y_{\mathrm{DC\,2nd}}$};
+
+    \draw[thick] (7,0.6) -- (7,-0.6);
+    \draw[->, thick] (7,0) -- (8.5,0);
+    \draw[fill=white] (7,0) circle[radius=0.1];
+    \node at (6.85,0.3) {\tiny{$+$}};
+    \node at (6.75,0.1) {\tiny{$+$}};
+    \node at (6.75,-0.1) {\tiny{$+$}};
+    \node at (6.85,-0.3) {\tiny{$+$}};
+    \node[above] at (8,0) {$y(t)$};
+\end{tikzpicture}
+```
+
+</div>
+
+
+
+
+## Unit step response of 1st order system
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+  \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$\displaystyle\frac{a}{s+a}$};
+
+  \draw[->] (-3,0) -- (sys.west);
+  \draw[->] (sys.east) -- (3,0);
+
+  \node[above] at (-3,0.5) {$X(s)$};
+  \node[below] at (-3,0.5) {$\displaystyle\frac{1}{s}$};
+  \node[above] at (3,0) {$Y(s)$};
+
+\end{tikzpicture}
+```
+
+</div>
+
+::: {layout-ncol=2}
+
+\begin{align*}
+    Y(s) &= \frac{1}{s} \cdot \frac{a}{s+a} \\
+    &= \frac{1}{s} - \frac{1}{s+a}
+\end{align*}
+
+&nbsp;
+
+<span style="color:blue;">Inverse L.T.:</span>
+$$ \color{blue} y(t) = 1 - e^{-at} $$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \draw[axis] (0,0) -- (4.3,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,1.5) node[above] {$y(t)$};
+
+    \draw[domain=0:4, samples=100, smooth, thick, blue] plot (\x, {1 - exp(-1*\x)});
+
+    \draw[dashed] (1,0) -- (1,0.6321);
+    \draw[dashed] (0,0.6321) -- (1,0.6321);
+    \draw[dashed] (0,1) -- (4,1);
+    \draw[dashed] (4,0) -- (4,0.98);
+
+    \node[below] at (1,0) {$\tau = \frac{1}{a}$};
+    \node[left] at (0,0.6321) {$0.63$};
+    \node[below, red] at (4,0) {$4 \tau$};
+    \node[left, blue] at (0,1) {$1$};
+    \node[right, red] at (4,0.98) {$0.98$};
+\end{tikzpicture}
+```
+
+:::
+
+&nbsp;<br>
+$\boxed{\textbf{Performance Index}}$
+
+<ul style="list-style-type: '① ';">
+<li>Time constant $\tau = \displaystyle\frac{1}{a}$<br>
+$y(t=\tau) = 1 - e^{-1} \approx 0.63(2121)$</li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>Settling time:<br>
+$T_{ss} = 4 \tau = \displaystyle\frac{4}{a}\quad$ <span style="color:red;">(2%)</span><br>
+$y(t=4\tau) = 1 - e^{-4} \approx 0.98(1684)$<br>
+$\color{green} T_{ss} = 3 \tau$ <span style="color:green;">(5%)</span><br>
+$\color{green}y(t=3\tau) = 1 - e^{-3} \approx 0.95(0213)$
+</li>
+</ul>
+
+::: {layout="[0.3, 0.7]"}
+
+$\color{YellowOrange}\underline{\text{Unit impulse response}}$<br>
+
+&nbsp;
+
+$\color{YellowOrange}\mathcal{L}\{\delta(t)\} = 1$<br>
+$\color{YellowOrange}Y(s) = \displaystyle\frac{a}{s+a}$<br>
+$\color{YellowOrange}y(t) = a \cdot e^{-at}$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, orange!80!black}
+]
+    \draw[axis] (0,0) -- (2,0) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,1.5) node[above] {$y(t)$};
+    \draw[domain=0:2, samples=100, smooth, thick, axis] plot (\x, {exp(-1*\x)});
+    \node[left,orange!80!black] at (0,1) {$a$};
+\end{tikzpicture}
+```
+
+:::
+
+
+## Unit impulse response of 2nd order system
+
+$$\color{red}\boxed{\color{black}\frac{\omega_n^2}{s^2+2 \xi \omega_n s + \omega_n^2}} \quad \color{red}\text{typical}$$
+
+::: {layout-ncol=2}
+
+$$ \frac{\omega_n^2}{s^2 + 2 \xi \omega_n s} = \frac{\omega_n^2}{s(s + 2 \xi \omega_n)} = \color{red}\underset{\text{1st}}{\underline{\color{black}\frac{a_1}{s}}} \color{black} - \color{red}\underset{\text{1st}}{\underline{\color{black}\frac{a_2}{s+2\xi\omega_n}}}$$
+
+&nbsp;
+
+$$ \frac{\omega_n^2}{s^2 + \omega_n^2} = \frac{\omega_n^2}{(s + j\omega_n)(s - j\omega_n)} $$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \begin{scope}
+    \draw[->, axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[->, axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+
+    \node[red, right] at (0,1) {$j\omega_n$};
+    \node[red, right] at (0,-1) {$-j\omega_n$};
+    \fill[red] (0,1) circle (0.1);
+    \fill[red] (0,-1) circle (0.1);
+    \end{scope}
+
+    \begin{scope}[xshift=2.2cm]
+    \draw[domain=0:2, samples=100, smooth, thick, red] plot (\x, {0.5*sin(deg(4*pi*\x))});
+    \end{scope}
+\end{tikzpicture}
+```
+
+:::
+
+<span style="color:red;">For typical 2nd order systems:</span>
+$$\color{red}\text{C.E.} \quad \color{blue}\underset{a}{\underline{1}}\color{red}s^2 + \color{blue}\underset{b}{\underline{\color{red}2 \xi \omega_n}} \color{red} s + \color{blue}\underset{c}{\underline{\color{red}\omega_n^2}} \color{red} = 0$$
+
+\begin{align*}
+    s &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
+      &= \frac{-2 \xi \omega_n \pm \sqrt{(2 \xi \omega_n)^2 - 4 \omega_n^2}}{2} \\
+      &= \frac{-2 \xi \omega_n \pm 2 \omega_n \sqrt{\xi^2 - 1}}{2} \\
+      &= -\xi \omega_n \pm \omega_n \sqrt{\xi^2 - 1}
+\end{align*}
+
+::: {layout="[0.75, 0.25]"}
+
+When $\xi > 1$, overdamped.
+$$\color{YellowOrange}\text{S.O.S.} = \frac{a_1}{s+p_1} + \frac{a_2}{s+p_2} \color{blue} = \boxed{a_1 \cdot e^{p_1 t} + a_2 \cdot e^{p_2 t}}$$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \draw[->, axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[->, axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+    \node[red, below] at (-1,0) {$p_1$};
+    \node[red, below] at (-0.5,0) {$p_2$};
+    \fill[red] (-1,0) circle (0.05);
+    \fill[red] (-0.5,0) circle (0.05);
+\end{tikzpicture}
+```
+
+:::
+
+::: {layout="[0.75, 0.25]"}
+
+When $\xi = 1$, critically damped.
+$$\color{YellowOrange}\text{S.O.S.} = \frac{\omega_n^2}{(s+\omega_n)^2} = \color{blue} \boxed{(a_1 + a_2 t) \cdot e^{-\omega_n t}}$$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \draw[->, axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[->, axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+    \node[red, below] at (-0.8,0) {$-\xi \omega_n$};
+    \fill[red] (-0.8,0) circle (0.05);
+\end{tikzpicture}
+```
+
+:::
+
+::: {layout="[0.75, 0.25]"}
+
+$\color{red}\boxed{\color{black}\text{When }\xi < 1\text{, underdamped.}}$
+\begin{align*}
+\color{YellowOrange}s &\color{YellowOrange}= -\color{red}\underset{\sigma}{\underbrace{\color{YellowOrange}\xi \omega_n}} \pm j \cdot \color{red}\underset{\omega}{\underbrace{\color{YellowOrange}\sqrt{1 - \xi^2} \cdot \omega_n}} \\
+\color{red} s &\color{red}= -\sigma \pm j \omega
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \draw[->, axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[->, axis] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+    \fill[red] (-0.8,0.7) circle (0.05);
+    \node[red, below] at (-0.8,0) {$-\xi \omega_n$};
+    \node[red, right] at (0,0.7) {$\sqrt{1-\xi^2} \cdot \omega_n$};
+    \draw[red, dashed] (-0.8,0) -- (-0.8,0.7);
+    \draw[red, dashed] (-0.8,0.7) -- (0,0.7);
+\end{tikzpicture}
+```
+
+:::
+
+\begin{align*}
+    \frac{\omega_n^2}{s^2 + 2 \xi \omega_n s + \omega_n^2} &= \frac{\omega_n^2}{(s + \xi \omega_n)^2 + (1-\xi^2) \omega_n^2} \\
+    &= \frac{\omega_n^2}{(s + \sigma)^2 + \omega^2} \\
+    &= \frac{c_1}{(s + \sigma) + j \omega} + \frac{c_2}{(s + \sigma) - j \omega}
+\end{align*}
+
+<div style="color:green;">
+To find $c_1$ and $c_2$:
+\begin{align*}
+    c_1 \cdot (s+\sigma - j \omega) + c_2 \cdot (s+\sigma + j \omega) &= \omega_n^2 \\
+    \color{red}\underset{0}{\underbrace{\color{green}(c_1 + c_2)}} \cdot (s+\sigma) + j \omega (c_2 - c_1) &= \omega_n^2
+\end{align*}
+</div>
+
+$$ \color{Orchid}c_1 = -c_2 $$
+$$ \color{Orchid}2c_2 \cdot j \omega = \omega_n^2 \implies c_2 = \frac{\omega_n^2}{2 j \omega},\quad c_1 = -\frac{\omega_n^2}{2 j \omega}$$
+
+\usepackage{cancel}
+\begin{align*}
+    \mathcal{L}^{-1}\left\{\frac{\omega_n^2}{(s + \sigma)^2 + \omega^2}\right\} &= c_1\cdot e^{-(\sigma + j \omega)t} + c_2\cdot e^{-(\sigma - j \omega)t} \\
+    &= -\frac{\omega_n^2}{2 j \omega} \cdot e^{-\sigma t} \cdot e^{-j \omega t} + \frac{\omega_n^2}{2 j \omega} \cdot e^{-\sigma t} \cdot e^{j \omega t} \\
+    &= \frac{\omega_n^2}{\color{YellowOrange}\cancel{\color{black}2j}\color{black}\omega} \color{black}\cdot e^{-\sigma t} \cdot \color{YellowOrange}\frac{\color{black}(e^{j \omega t} - e^{-j \omega t})}{2j} \\
+    &= \frac{\omega_n^2}{\omega} \cdot e^{-\sigma t} \cdot \sin(\omega t) \\
+    &= \color{red}\underline{\underline{\color{black}\frac{\omega_n}{\sqrt{1-\xi^2}} \cdot e^{-\xi \omega_n t} \cdot \sin(\sqrt{1-\xi^2} \cdot \omega_n t)}} \quad \text{unit impulse response}
+\end{align*}
+
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, thick, black}
+]
+    \begin{scope}
+    \draw[->, axis] (0,0) -- (4,0) node[right] {$t$};
+    \draw[->, axis] (0,-1.5) -- (0,1.5) node[above] {$y(t)$};
+    \draw[domain=0:4, samples=100, smooth, thick, blue] plot (\x, {exp(-0.5*\x) * sin(deg(pi*\x))});
+    \draw[domain=0:4, samples=100, loosely dashed, green!60!black] plot (\x, {exp(-0.5*\x)});
+    \draw[domain=0:4, samples=100, loosely dashed, green!60!black] plot (\x, {-exp(-0.5*\x)});
+    \draw[->,green!60!black] (1.5,0.8) -- (1.2,exp(-0.6));
+    \node[right, green!60!black] at (1.5,0.8) {$e^{-\xi \omega_n t}$};
+    \end{scope}
+
+    \begin{scope}[xshift=5cm]
+    \draw[->, axis] (0,0) -- (4,0);
+    \draw[->, axis] (0,-1.5) -- (0,1.5);
+    \draw[domain=0:4, samples=100, smooth, thick, blue] plot (\x, {sin(deg(pi*\x))});
+    \node[above] at (3,1) {$\xi=0$};
+    \node[below, blue] at (2,-1) {$\omega_n \cdot \sin(\omega_n t)$};
+    \end{scope}
+\end{tikzpicture}
+```
+
+</div>
+
+
+## Unit step response of S.O.S.
+
+\begin{array}{lll}
+\text{Overdamped } & \xi > 1 & \displaystyle\frac{a_1}{s+p_1} + \frac{a_2}{s+p_2} \\
+& & \boxed{a_1 \cdot e^{p_1 t} + a_2 \cdot e^{p_2 t}} \\
+\text{Critically damped } & \xi = 1 & \displaystyle\frac{\omega_n^2}{(s+\omega_n)^2} \\
+& & \boxed{(a_1 + a_2 t) \cdot e^{-\omega_n t}} \\
+\text{Underdamped } & \xi < 1 & \displaystyle\frac{c_1}{s + \sigma + j \omega} + \frac{c_2}{s + \sigma - j \omega} \\
+& & \boxed{\frac{\omega_n}{\sqrt{1-\xi^2}} \cdot e^{-\xi \omega_n t} \cdot \sin(\sqrt{1-\xi^2} \cdot \omega_n t)}
+\end{array}
+
+<div style="text-align: center">
+
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+  \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$\displaystyle\frac{\omega_n^2}{s^2 + 2 \xi \omega_n s + \omega_n^2}$};
+
+  \draw[->] (-3,0) -- (sys.west);
+  \draw[->] (sys.east) -- (3,0);
+
+  \node[above,red] at (-3,0) {$\displaystyle\frac{1}{s}$};
+  \node[above,red] at (3,0) {$Y(s)$};
+\end{tikzpicture}
+```
+
+</div>
+
+\begin{align*}
+    Y(s) &= \frac{1}{s} \cdot \frac{\omega_n^2}{s^2 + 2 \xi \omega_n s + \omega_n^2} \\
+    &= \frac{c_1}{s} + \frac{c_2}{s + \sigma + j\omega} + \frac{c_3}{s + \sigma - j\omega}
+\end{align*}
+
+<span style="color:red;">Assignment 1 due on May 22nd.</span>

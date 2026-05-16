@@ -1,5 +1,15 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EE6653 - Power Electronics Notes",
+    "section": "",
+    "text": "Preface\nThis is the course notes for EE6653: Power Electronics taught by Prof. Shuang Xu at the University of New Brunswick in Summer 2026.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
     "objectID": "1_convolution.html",
     "href": "1_convolution.html",
     "title": "1  Convolution",
@@ -34,19 +44,9 @@
     "href": "2_fourier_transform.html#frequency-domain",
     "title": "2  Fourier Transform",
     "section": "",
-    "text": "The convolution in time domain is the multiplication in frequency domain:\n\n\n\n\n\n\n\n\n\n\nMore convenient.\n\nE.g. sine wave\nTime domain:\n\nFrequency domain:\n\n\n\n\nMore direct.\n\n\nTime domain:\n\nFrequency domain:",
+    "text": "The convolution in time domain is the multiplication in frequency domain:\n\n\n\n\n\n\n\nMore convenient.\n\nE.g. sine wave\nTime domain:\n\nFrequency domain:\n\n\n\n\nMore direct.\n\n\nTime domain:\n\nFrequency domain:",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fourier Transform</span>"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EE6653 - Power Electronics Notes",
-    "section": "",
-    "text": "Preface\nThis is the course notes for EE6653: Power Electronics taught by Prof. Shuang Xu at the University of New Brunswick in Summer 2026.",
-    "crumbs": [
-      "Preface"
     ]
   },
   {
@@ -74,7 +74,7 @@
     "href": "2_fourier_transform.html#fourier-transform-contd---0513",
     "title": "2  Fourier Transform",
     "section": "Fourier Transform (cont’d) - 05/13",
-    "text": "Fourier Transform (cont’d) - 05/13\n\\[ f(t) = \\sum_{n=-\\infty}^{+\\infty} c_n \\cdot e^{i\\omega_n t} \\quad\\text{(discrete)}\\] where \\[c_n = \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} f(t) \\cdot e^{-i\\omega_n t} \\,dt\\].\n\nWhen \\(f(t)\\) is non-periodic, \\(\\begin{array}{l}\nT \\to \\infty,\\\\\n\\Delta \\omega_n\\to 0.\n\\end{array}\\)\n\n\\[\\begin{align*}\n    c_n &= \\lim_{T\\to\\infty} \\frac{1}{T} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_n t}\\,dt \\\\\n    &= \\lim_{\\Delta\\omega_n \\to 0} \\int_{-\\infty}^{+\\infty} \\frac{\\Delta \\omega_n}{2\\pi} f(t) \\cdot e^{-i\\omega_n t} \\,dt\n\\end{align*}\\]\n\\[\\begin{equation}\n    \\color{YellowOrange}f(t) = \\sum_{n=-\\infty}^{+\\infty} \\lim_{\\Delta \\omega_n \\to 0} \\color{blue}\\underset{y(\\omega_n)}{\\underline{\\color{YellowOrange}\\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_nt} \\,dt}} \\color{YellowOrange} \\cdot e^{i\\omega_nt} \\,\\Delta\\omega_n\n\\end{equation}\\]\n\n\\[\\begin{align*}\n    \\color{YellowOrange}f(t) &\\color{YellowOrange}= \\int_{-\\infty}^{+\\infty} \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_nt} \\,dt \\cdot e^{i\\omega_nt} \\,d\\omega_n \\\\\n    &\\color{YellowOrange}= \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} \\color{red}\\underset{F(\\omega)}{\\underline{\\color{YellowOrange}\\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega t} \\,dt}} \\color{YellowOrange} \\cdot e^{i\\omega_nt} \\,d\\omega\n\\end{align*}\\]\n\\[\\begin{equation}\n    \\color{red}F(\\omega) = \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega t} \\,dt \\quad\\text{(F.T.)}\n\\end{equation}\\]\n\\[\\begin{equation}\n    \\color{red}f(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} F(\\omega) \\cdot e^{i\\omega t} \\,d\\omega \\quad\\text{(inverse F.T.)}\n\\end{equation}\\]\n\n\\[\\begin{align*}\n    \\text{F. S.} \\quad \\longrightarrow &\\quad \\text{periodic} \\\\\n    \\text{F. T.} \\quad \\longrightarrow &\\quad \\text{non-periodic}\n\\end{align*}\\]\n\n\nLimitation: F.T. can only deal with time-domain function that is absolutely convergent.\n\n\nSide note: \\[ e^{i\\omega t} = \\cos \\omega t + i \\sin \\omega t \\] \\[ \\int_{-\\infty}^{+\\infty} f(t) \\div e^{i\\omega t} \\,dt\\] \\(6 \\div 2\\)\n\\(6 - 2 - 2 - 2 = 0\\)",
+    "text": "Fourier Transform (cont’d) - 05/13\n\\[ f(t) = \\sum_{n=-\\infty}^{+\\infty} c_n \\cdot e^{i\\omega_n t} \\quad\\text{(discrete)}\\] where \\[c_n = \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} f(t) \\cdot e^{-i\\omega_n t} \\,dt\\].\n\nWhen \\(f(t)\\) is non-periodic, \\(\\begin{array}{l}\n\\ \\\\\nT \\to \\infty,\\\\\n\\Delta \\omega_n\\to 0.\n\\end{array}\\)\n\n\\[\\begin{align*}\n    c_n &= \\lim_{T\\to\\infty} \\frac{1}{T} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_n t}\\,dt \\\\\n    &= \\lim_{\\Delta\\omega_n \\to 0} \\int_{-\\infty}^{+\\infty} \\frac{\\Delta \\omega_n}{2\\pi} f(t) \\cdot e^{-i\\omega_n t} \\,dt\n\\end{align*}\\]\n\\[\\begin{equation}\n    \\color{YellowOrange}f(t) = \\sum_{n=-\\infty}^{+\\infty} \\lim_{\\Delta \\omega_n \\to 0} \\color{blue}\\underset{y(\\omega_n)}{\\underline{\\color{YellowOrange}\\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_nt} \\,dt}} \\color{YellowOrange} \\cdot e^{i\\omega_nt} \\,\\Delta\\omega_n\n\\end{equation}\\]\n\n\\[\\begin{align*}\n    \\color{YellowOrange}f(t) &\\color{YellowOrange}= \\int_{-\\infty}^{+\\infty} \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega_nt} \\,dt \\cdot e^{i\\omega_nt} \\,d\\omega_n \\\\\n    &\\color{YellowOrange}= \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} \\color{red}\\underset{F(\\omega)}{\\underline{\\color{YellowOrange}\\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega t} \\,dt}} \\color{YellowOrange} \\cdot e^{i\\omega_nt} \\,d\\omega\n\\end{align*}\\]\n\\[\\begin{equation}\n    \\color{red}F(\\omega) = \\int_{-\\infty}^{+\\infty} f(t) \\cdot e^{-i\\omega t} \\,dt \\quad\\text{(F.T.)}\n\\end{equation}\\]\n\\[\\begin{equation}\n    \\color{red}f(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} F(\\omega) \\cdot e^{i\\omega t} \\,d\\omega \\quad\\text{(inverse F.T.)}\n\\end{equation}\\]\n\n\\[\\begin{align*}\n    \\text{F. S.} \\quad \\longrightarrow &\\quad \\text{periodic} \\\\\n    \\text{F. T.} \\quad \\longrightarrow &\\quad \\text{non-periodic}\n\\end{align*}\\]\n\n\nLimitation: F.T. can only deal with time-domain function that is absolutely convergent.\n\n\nSide note: \\[ e^{i\\omega t} = \\cos \\omega t + i \\sin \\omega t \\] \\[ \\int_{-\\infty}^{+\\infty} f(t) \\div e^{i\\omega t} \\,dt\\] \\(6 \\div 2\\)\n\\(6 - 2 - 2 - 2 = 0\\)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fourier Transform</span>"
     ]
@@ -84,7 +84,7 @@
     "href": "3_laplace_transform.html",
     "title": "3  Laplace Transform",
     "section": "",
-    "text": "3.1 F.T. Limitation\n\\[\\begin{align*}\n    \\mathcal{F}[u(t) \\cdot e^{-t}] &= \\int_{-\\infty}^{+\\infty} u(t) \\cdot e^{-t} \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{-(1 + i\\omega) t} \\,dt \\\\\n    &= \\left. -\\frac{1}{1 + i\\omega} e^{-(1 + i\\omega) t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= 0 + \\frac{1}{1 + i\\omega} \\cdot \\color{red} \\frac{1-i\\omega}{1-i\\omega} \\\\\n    &= \\frac{1 - i\\omega}{1 + \\omega^2} \\\\\n    &= \\frac{1}{1 + \\omega^2} + \\frac{-i\\omega}{1 + \\omega^2} .\n\\end{align*}\\]\n\\[\\begin{align*}\n    \\mathcal{F}[u(t)] &= \\int_{-\\infty}^{+\\infty} u(t) \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{-i\\omega t} \\,dt \\\\\n    &= \\left. -\\frac{1}{i\\omega} e^{-i\\omega t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= -\\frac{1}{i\\omega} \\big(\\color{red}\\underset{\\text{value}}{\\underset{\\text{undetermined}}{\\underline{\\color{black}e^{-i\\omega\\infty}}}} \\color{black} - 1\\big)\n\\end{align*}\\]\n\\[\\begin{align*}\n    \\mathcal{F}[e^t \\cdot u(t)] &= \\int_{-\\infty}^{+\\infty} e^t \\cdot u(t) \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{(1 - i\\omega) t} \\,dt \\\\\n    &= \\left. \\frac{1}{1 - i\\omega} e^{(1 - i\\omega) t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= \\frac{1}{1 - i\\omega} \\cdot (\\infty - 1)\n\\end{align*}\\]",
+    "text": "3.1 F.T. Limitation\n\\[\\begin{align*}\n    \\mathcal{F}[u(t) \\cdot e^{-t}] &= \\int_{-\\infty}^{+\\infty} u(t) \\cdot e^{-t} \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{-(1 + i\\omega) t} \\,dt \\\\\n    &= \\left. -\\frac{1}{1 + i\\omega} e^{-(1 + i\\omega) t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= 0 + \\frac{1}{1 + i\\omega} \\cdot \\color{red} \\frac{1-i\\omega}{1-i\\omega} \\\\\n    &= \\frac{1 - i\\omega}{1 + \\omega^2} \\\\\n    &= \\frac{1}{1 + \\omega^2} + \\frac{-i\\omega}{1 + \\omega^2} .\n\\end{align*}\\]",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
     ]
@@ -94,7 +94,7 @@
     "href": "3_laplace_transform.html#f.t.-limitation",
     "title": "3  Laplace Transform",
     "section": "",
-    "text": "Q1. What is the F.T. of \\(u(t) \\cdot e^{-t}\\)?\n\n\n\n\n\n Q2. What is the F.T. of \\(u(t)\\)?\n\n\n\n\n\n\nQ3. What is the F.T. of \\(e^t \\cdot u(t)\\)?",
+    "text": "Q1. What is the F.T. of \\(u(t) \\cdot e^{-t}\\)?\n\n\n\n\n\n\n\n Q2. What is the F.T. of \\(u(t)\\)?\n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{F}[u(t)] &= \\int_{-\\infty}^{+\\infty} u(t) \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{-i\\omega t} \\,dt \\\\\n    &= \\left. -\\frac{1}{i\\omega} e^{-i\\omega t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= -\\frac{1}{i\\omega} \\big(\\color{red}\\underset{\\text{value}}{\\underset{\\text{undetermined}}{\\underline{\\color{black}e^{-i\\omega\\infty}}}} \\color{black} - 1\\big)\n\\end{align*}\\]\n\n\n\n\n\n\n\nQ3. What is the F.T. of \\(e^t \\cdot u(t)\\)?\n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{F}[e^t \\cdot u(t)] &= \\int_{-\\infty}^{+\\infty} e^t \\cdot u(t) \\cdot e^{-i\\omega t} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{(1 - i\\omega) t} \\,dt \\\\\n    &= \\left. \\frac{1}{1 - i\\omega} e^{(1 - i\\omega) t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= \\frac{1}{1 - i\\omega} \\cdot (\\infty - 1)\n\\end{align*}\\]",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
     ]
@@ -105,16 +105,6 @@
     "title": "3  Laplace Transform",
     "section": "3.2 Laplace Transform",
     "text": "3.2 Laplace Transform\nThe premise of F.T. is that \\(f(t)\\) must be convergent.\n\nWhat if \\(f(t)\\) is not convergent?\n\n\\[\\begin{align*}\n    & \\int_{-\\infty}^{+\\infty} u(t) \\cdot \\color{red}\\underbrace{\\color{blue} e^{-\\sigma t} \\color{black} \\cdot e^{-i\\omega t}} \\color{black} \\,dt \\\\\n    =& \\int_{\\color{red}{0}}^{+\\infty} u(t) \\cdot \\color{red}{e^{-(\\sigma + i\\omega) t}} \\color{black} \\,dt\n\\end{align*}\\]\nDefine \\(s = \\sigma + i\\omega\\)\n\\[\\mathcal{L}[f(t)] = \\int_{0}^{+\\infty} f(t) \\cdot e^{-st} \\,dt .\\]\n\\[\\begin{array}{ll}\n    \\text{L.T.: } & f(t) \\div e^{\\sigma t} \\text{ to find } e^{\\sigma t} \\text{ in } f(t) \\\\\n    & f(t) \\div e^{i\\omega t} \\text{ to find AC components at } \\omega.\n\\end{array}\\]\n\n\n\n\\[\\begin{align*}\n    \\mathcal{L}[u(t)] &= \\int_{0}^{+\\infty} \\color{red}\\cancel{\\color{black}u(t)} \\color{black} \\cdot e^{-st} \\,dt \\\\\n    &= -\\frac{1}{s} \\cdot e^{-st} \\bigg\\rvert_{0}^{+\\infty} \\\\\n    &= 0 + \\frac{1}{s}\n\\end{align*}\\]\n\n\n\n\n\n\n\n\n\n \\(s=1\\): \\(\\displaystyle \\int_{0}^{+\\infty} e^{-t} \\,dt = 1\\).   \\(s=2\\): \\(\\displaystyle \\int_{0}^{+\\infty} e^{-2t} \\,dt = \\frac{1}{2}\\).   \\(s=3\\): \\(\\displaystyle \\int_{0}^{+\\infty} e^{-3t} \\,dt = \\frac{1}{3}\\).   \\(s=0\\): \\(\\displaystyle \\frac{1}{0} = \\infty\\). \n\n\n\n\n\n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{L}[e^t] &= \\int_{0}^{+\\infty} \\cancel{u(t)} \\cdot e^t \\cdot e^{-st} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} e^{(1-s)t} \\,dt \\\\\n    &= \\left. \\frac{1}{1-s} e^{(1-s)t} \\right\\rvert_{0}^{+\\infty} \\\\\n    &= 0 - \\frac{1}{1-s} \\\\\n    &= \\frac{1}{s-1}\n\\end{align*}\\]\n\n\n\n\n\n\n\nWhen \\(s=1\\), \\(\\mathcal{L}[e^t] = \\displaystyle\\frac{1}{0} = \\infty\\), meaning that the original function contains \\(\\underline{\\underline{e^t}}\\).",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
-    ]
-  },
-  {
-    "objectID": "3_laplace_transform.html#section",
-    "href": "3_laplace_transform.html#section",
-    "title": "3  Laplace Transform",
-    "section": "3.3 ",
-    "text": "3.3",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
     ]
@@ -134,9 +124,59 @@
     "href": "3_laplace_transform.html#l.t.-examples",
     "title": "3  Laplace Transform",
     "section": "3.4 L.T. Examples",
-    "text": "3.4 L.T. Examples\n\n\n \n\n\n\n\n\n \n\n\n\n\n\n \n\n\\[\\begin{align*}\n    \\mathcal{L}[\\cos(\\omega t)] &= \\int_{0}^{+\\infty} \\cos(\\omega t) \\cdot e^{-st} \\,dt \\\\\n    &= \\frac{1}{2} \\int_{0}^{+\\infty} \\left(e^{i\\omega t} + e^{-i\\omega t}\\right) \\cdot e^{-st} \\,dt \\\\\n    &= \\frac{1}{2} \\int_{0}^{+\\infty} \\left[e^{-(s - i\\omega) t} + e^{-(s + i\\omega) t}\\right] \\,dt \\\\\n    &= \\frac{1}{2} \\left.\\left[ -\\frac{1}{s - i\\omega} \\cdot e^{-(s - i\\omega) t} - \\frac{1}{s + i\\omega} \\cdot e^{-(s + i\\omega) t} \\right] \\right\\rvert_{0}^{+\\infty} \\\\\n    &= \\frac{1}{2} \\left[ \\frac{1}{s - i\\omega} + \\frac{1}{s + i\\omega} \\right] \\\\\n    &= \\frac{s}{s^2 + \\omega^2}\n\\end{align*}\\]\n\n\n\n\n \n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{L}[t \\cdot u(t)] &= \\int_{0}^{+\\infty} t \\cdot e^{-st} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} -\\frac{1}{s} \\cdot t \\,de^{-st} \\\\\n    &= -\\frac{1}{s} \\int_{0}^{\\infty} t \\cdot \\,de^{-st} \\\\\n    &= -\\frac{1}{s} \\left[ t \\cdot e^{-st} \\bigg\\rvert_{0}^{\\infty} - \\int_{0}^{\\infty} e^{-st} \\,dt \\right] \\\\\n    &= -\\frac{1}{s} \\left[ \\cancel{0 - 0} - \\left(-\\frac{1}{s}\\right)\\cdot e^{-st} \\bigg\\rvert_{0}^{\\infty} \\right] \\\\\n    &= -\\frac{1}{s} \\cdot \\frac{1}{s} \\cdot (0-1) \\\\\n    &= \\frac{1}{s^2}\n\\end{align*}\\]\n\n\nSide notes: \\[\\begin{align*}\n    \\color{green}(xy)' \\,&\\color{green}= x'y + xy' \\\\\n    \\color{green}xy \\,&\\color{green}= \\int x\\,dy + \\int y\\,dx \\\\\n    \\color{green}\\int x\\,dy \\,&\\color{green}= xy - \\int y\\,dx\n\\end{align*}\\]",
+    "text": "3.4 L.T. Examples\n\n\n \n\n\n\n\n\n \n\n\n\n\n\n \n\n\\[\\begin{align*}\n    \\mathcal{L}[\\cos(\\omega t)] &= \\int_{0}^{+\\infty} \\cos(\\omega t) \\cdot e^{-st} \\,dt \\\\\n    &= \\frac{1}{2} \\int_{0}^{+\\infty} \\left(e^{i\\omega t} + e^{-i\\omega t}\\right) \\cdot e^{-st} \\,dt \\\\\n    &= \\frac{1}{2} \\int_{0}^{+\\infty} \\left[e^{-(s - i\\omega) t} + e^{-(s + i\\omega) t}\\right] \\,dt \\\\\n    &= \\frac{1}{2} \\left.\\left[ -\\frac{1}{s - i\\omega} \\cdot e^{-(s - i\\omega) t} - \\frac{1}{s + i\\omega} \\cdot e^{-(s + i\\omega) t} \\right] \\right\\rvert_{0}^{+\\infty} \\\\\n    &= \\frac{1}{2} \\left[ \\frac{1}{s - i\\omega} + \\frac{1}{s + i\\omega} \\right] \\\\\n    &= \\frac{s}{s^2 + \\omega^2}\n\\end{align*}\\]\n\n\n\n\n \n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{L}[t \\cdot u(t)] &= \\int_{0}^{+\\infty} t \\cdot e^{-st} \\,dt \\\\\n    &= \\int_{0}^{+\\infty} -\\frac{1}{s} \\cdot t \\,de^{-st} \\qquad \\color{YellowOrange}\\frac{d e^{-st}}{dt} = -s \\cdot e^{-st}\\\\\n    &= -\\frac{1}{s} \\int_{0}^{\\infty} t \\cdot \\,de^{-st} \\\\\n    &= -\\frac{1}{s} \\left[ t \\cdot e^{-st} \\bigg\\rvert_{0}^{\\infty} - \\int_{0}^{\\infty} e^{-st} \\,dt \\right] \\\\\n    &= -\\frac{1}{s} \\left[ \\cancel{0 - 0} - \\left(-\\frac{1}{s}\\right)\\cdot e^{-st} \\bigg\\rvert_{0}^{\\infty} \\right] \\\\\n    &= -\\frac{1}{s} \\cdot \\frac{1}{s} \\cdot (0-1) \\\\\n    &= \\frac{1}{s^2}\n\\end{align*}\\]\n\n\nSide notes: \\[\\begin{align*}\n    \\color{green}(xy)' \\,&\\color{green}= x'y + xy' \\\\\n    \\color{green}xy \\,&\\color{green}= \\int x\\,dy + \\int y\\,dx \\\\\n    \\color{green}\\int x\\,dy \\,&\\color{green}= xy - \\int y\\,dx\n\\end{align*}\\]",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
+    ]
+  },
+  {
+    "objectID": "3_laplace_transform.html#l.t.-examples-contd---0515",
+    "href": "3_laplace_transform.html#l.t.-examples-contd---0515",
+    "title": "3  Laplace Transform",
+    "section": "L.T. Examples (cont’d) - 05/15",
+    "text": "L.T. Examples (cont’d) - 05/15\n\n\n \n\n\n\n\n\\[\\begin{align*}\n    \\mathcal{L}[t \\cdot \\sin(\\omega t)] &= \\mathcal{L}\\{\\frac{1}{2i} \\cdot t \\cdot e^{it} - \\frac{1}{2i} \\cdot t \\cdot e^{-it}\\} \\\\\n    &= \\frac{1}{2i} \\cdot \\mathcal{L}\\{t \\cdot e^{it}\\} - \\frac{1}{2i} \\cdot \\mathcal{L}\\{t \\cdot e^{-it}\\} \\\\\n    &= \\frac{1}{2i} \\cdot \\frac{1}{(s - i)^2} - \\frac{1}{2i} \\cdot \\frac{1}{(s + i)^2} \\\\\n    &= \\frac{1}{2i} \\cdot \\frac{4i \\cdot s}{(s-i)^2 (s+i)^2} \\\\\n    &= \\frac{2s}{(s^2 + 1)^2}\n\\end{align*}\\]\n\n\n\\[\\begin{align*}\n    &\\color{YellowOrange} \\sin t= \\frac{e^{it} - e^{-it}}{2i} \\\\\n    &\\color{red} \\mathcal{L}\\{t\\} = \\frac{1}{s^2} \\\\\n    &\\color{red} \\mathcal{L}\\{t \\cdot e^{at}\\} = \\frac{1}{(s-a)^2} \\\\\n    &\\color{red} (s+i)(s-i) = s^2 + 1\n\\end{align*}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Laplace Transform</span>"
+    ]
+  },
+  {
+    "objectID": "4_time-domain_response.html",
+    "href": "4_time-domain_response.html",
+    "title": "4  Time-domain Response",
+    "section": "",
+    "text": "Time-domain Response (cont’d)\nModeling:\nInput \\(x(t)\\):",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Time-domain Response</span>"
+    ]
+  },
+  {
+    "objectID": "4_time-domain_response.html#unit-step-response-of-1st-order-system",
+    "href": "4_time-domain_response.html#unit-step-response-of-1st-order-system",
+    "title": "4  Time-domain Response",
+    "section": "4.1 Unit step response of 1st order system",
+    "text": "4.1 Unit step response of 1st order system\n\n\n\n\n\n\n\\[\\begin{align*}\n    Y(s) &= \\frac{1}{s} \\cdot \\frac{a}{s+a} \\\\\n    &= \\frac{1}{s} - \\frac{1}{s+a}\n\\end{align*}\\]\n\n\n \n\n\n\n\nInverse L.T.: \\[ \\color{blue} y(t) = 1 - e^{-at} \\]\n\n\n\n\n\n\n  \\(\\boxed{\\textbf{Performance Index}}\\)\n\n\nTime constant \\(\\tau = \\displaystyle\\frac{1}{a}\\) \\(y(t=\\tau) = 1 - e^{-1} \\approx 0.63(2121)\\)\n\n\n\n\nSettling time: \\(T_{ss} = 4 \\tau = \\displaystyle\\frac{4}{a}\\quad\\) (2%) \\(y(t=4\\tau) = 1 - e^{-4} \\approx 0.98(1684)\\) \\(\\color{green} T_{ss} = 3 \\tau\\) (5%) \\(\\color{green}y(t=3\\tau) = 1 - e^{-3} \\approx 0.95(0213)\\)\n\n\n\n\n\n\\(\\color{YellowOrange}\\underline{\\text{Unit impulse response}}\\)\n\n\n \n\n\n\n\n\\(\\color{YellowOrange}\\mathcal{L}\\{\\delta(t)\\} = 1\\) \\(\\color{YellowOrange}Y(s) = \\displaystyle\\frac{a}{s+a}\\) \\(\\color{YellowOrange}y(t) = a \\cdot e^{-at}\\)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Time-domain Response</span>"
+    ]
+  },
+  {
+    "objectID": "4_time-domain_response.html#unit-impulse-response-of-2nd-order-system",
+    "href": "4_time-domain_response.html#unit-impulse-response-of-2nd-order-system",
+    "title": "4  Time-domain Response",
+    "section": "4.2 Unit impulse response of 2nd order system",
+    "text": "4.2 Unit impulse response of 2nd order system\n\\[\\color{red}\\boxed{\\color{black}\\frac{\\omega_n^2}{s^2+2 \\xi \\omega_n s + \\omega_n^2}} \\quad \\color{red}\\text{typical}\\]\n\n\n\n\\[ \\frac{\\omega_n^2}{s^2 + 2 \\xi \\omega_n s} = \\frac{\\omega_n^2}{s(s + 2 \\xi \\omega_n)} = \\color{red}\\underset{\\text{1st}}{\\underline{\\color{black}\\frac{a_1}{s}}} \\color{black} - \\color{red}\\underset{\\text{1st}}{\\underline{\\color{black}\\frac{a_2}{s+2\\xi\\omega_n}}}\\]\n\n\n \n\n\n\n\n\\[ \\frac{\\omega_n^2}{s^2 + \\omega_n^2} = \\frac{\\omega_n^2}{(s + j\\omega_n)(s - j\\omega_n)} \\]\n\n\n\n\n\n\nFor typical 2nd order systems: \\[\\color{red}\\text{C.E.} \\quad \\color{blue}\\underset{a}{\\underline{1}}\\color{red}s^2 + \\color{blue}\\underset{b}{\\underline{\\color{red}2 \\xi \\omega_n}} \\color{red} s + \\color{blue}\\underset{c}{\\underline{\\color{red}\\omega_n^2}} \\color{red} = 0\\]\n\\[\\begin{align*}\n    s &= \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a} \\\\\n      &= \\frac{-2 \\xi \\omega_n \\pm \\sqrt{(2 \\xi \\omega_n)^2 - 4 \\omega_n^2}}{2} \\\\\n      &= \\frac{-2 \\xi \\omega_n \\pm 2 \\omega_n \\sqrt{\\xi^2 - 1}}{2} \\\\\n      &= -\\xi \\omega_n \\pm \\omega_n \\sqrt{\\xi^2 - 1}\n\\end{align*}\\]\n\n\n\nWhen \\(\\xi &gt; 1\\), overdamped. \\[\\color{YellowOrange}\\text{S.O.S.} = \\frac{a_1}{s+p_1} + \\frac{a_2}{s+p_2} \\color{blue} = \\boxed{a_1 \\cdot e^{p_1 t} + a_2 \\cdot e^{p_2 t}}\\]\n\n\n\n\n\n\n\n\n\nWhen \\(\\xi = 1\\), critically damped. \\[\\color{YellowOrange}\\text{S.O.S.} = \\frac{\\omega_n^2}{(s+\\omega_n)^2} = \\color{blue} \\boxed{(a_1 + a_2 t) \\cdot e^{-\\omega_n t}}\\]\n\n\n\n\n\n\n\n\n\n\\(\\color{red}\\boxed{\\color{black}\\text{When }\\xi &lt; 1\\text{, underdamped.}}\\) \\[\\begin{align*}\n\\color{YellowOrange}s &\\color{YellowOrange}= -\\color{red}\\underset{\\sigma}{\\underbrace{\\color{YellowOrange}\\xi \\omega_n}} \\pm j \\cdot \\color{red}\\underset{\\omega}{\\underbrace{\\color{YellowOrange}\\sqrt{1 - \\xi^2} \\cdot \\omega_n}} \\\\\n\\color{red} s &\\color{red}= -\\sigma \\pm j \\omega\n\\end{align*}\\]\n\n\n\n\n\n\n\\[\\begin{align*}\n    \\frac{\\omega_n^2}{s^2 + 2 \\xi \\omega_n s + \\omega_n^2} &= \\frac{\\omega_n^2}{(s + \\xi \\omega_n)^2 + (1-\\xi^2) \\omega_n^2} \\\\\n    &= \\frac{\\omega_n^2}{(s + \\sigma)^2 + \\omega^2} \\\\\n    &= \\frac{c_1}{(s + \\sigma) + j \\omega} + \\frac{c_2}{(s + \\sigma) - j \\omega}\n\\end{align*}\\]\n\nTo find \\(c_1\\) and \\(c_2\\): \\[\\begin{align*}\n    c_1 \\cdot (s+\\sigma - j \\omega) + c_2 \\cdot (s+\\sigma + j \\omega) &= \\omega_n^2 \\\\\n    \\color{red}\\underset{0}{\\underbrace{\\color{green}(c_1 + c_2)}} \\cdot (s+\\sigma) + j \\omega (c_2 - c_1) &= \\omega_n^2\n\\end{align*}\\]\n\n\\[ \\color{Orchid}c_1 = -c_2 \\] \\[ \\color{Orchid}2c_2 \\cdot j \\omega = \\omega_n^2 \\implies c_2 = \\frac{\\omega_n^2}{2 j \\omega},\\quad c_1 = -\\frac{\\omega_n^2}{2 j \\omega}\\]\n\\[\\begin{align*}\n    \\mathcal{L}^{-1}\\left\\{\\frac{\\omega_n^2}{(s + \\sigma)^2 + \\omega^2}\\right\\} &= c_1\\cdot e^{-(\\sigma + j \\omega)t} + c_2\\cdot e^{-(\\sigma - j \\omega)t} \\\\\n    &= -\\frac{\\omega_n^2}{2 j \\omega} \\cdot e^{-\\sigma t} \\cdot e^{-j \\omega t} + \\frac{\\omega_n^2}{2 j \\omega} \\cdot e^{-\\sigma t} \\cdot e^{j \\omega t} \\\\\n    &= \\frac{\\omega_n^2}{\\color{YellowOrange}\\cancel{\\color{black}2j}\\color{black}\\omega} \\color{black}\\cdot e^{-\\sigma t} \\cdot \\color{YellowOrange}\\frac{\\color{black}(e^{j \\omega t} - e^{-j \\omega t})}{2j} \\\\\n    &= \\frac{\\omega_n^2}{\\omega} \\cdot e^{-\\sigma t} \\cdot \\sin(\\omega t) \\\\\n    &= \\color{red}\\underline{\\underline{\\color{black}\\frac{\\omega_n}{\\sqrt{1-\\xi^2}} \\cdot e^{-\\xi \\omega_n t} \\cdot \\sin(\\sqrt{1-\\xi^2} \\cdot \\omega_n t)}} \\quad \\text{unit impulse response}\n\\end{align*}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Time-domain Response</span>"
+    ]
+  },
+  {
+    "objectID": "4_time-domain_response.html#unit-step-response-of-s.o.s.",
+    "href": "4_time-domain_response.html#unit-step-response-of-s.o.s.",
+    "title": "4  Time-domain Response",
+    "section": "4.3 Unit step response of S.O.S.",
+    "text": "4.3 Unit step response of S.O.S.\n\\[\\begin{array}{lll}\n\\text{Overdamped } & \\xi &gt; 1 & \\displaystyle\\frac{a_1}{s+p_1} + \\frac{a_2}{s+p_2} \\\\\n& & \\boxed{a_1 \\cdot e^{p_1 t} + a_2 \\cdot e^{p_2 t}} \\\\\n\\text{Critically damped } & \\xi = 1 & \\displaystyle\\frac{\\omega_n^2}{(s+\\omega_n)^2} \\\\\n& & \\boxed{(a_1 + a_2 t) \\cdot e^{-\\omega_n t}} \\\\\n\\text{Underdamped } & \\xi &lt; 1 & \\displaystyle\\frac{c_1}{s + \\sigma + j \\omega} + \\frac{c_2}{s + \\sigma - j \\omega} \\\\\n& & \\boxed{\\frac{\\omega_n}{\\sqrt{1-\\xi^2}} \\cdot e^{-\\xi \\omega_n t} \\cdot \\sin(\\sqrt{1-\\xi^2} \\cdot \\omega_n t)}\n\\end{array}\\]\n\n\n\n\\[\\begin{align*}\n    Y(s) &= \\frac{1}{s} \\cdot \\frac{\\omega_n^2}{s^2 + 2 \\xi \\omega_n s + \\omega_n^2} \\\\\n    &= \\frac{c_1}{s} + \\frac{c_2}{s + \\sigma + j\\omega} + \\frac{c_3}{s + \\sigma - j\\omega}\n\\end{align*}\\]\nAssignment 1 due on May 22nd.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Time-domain Response</span>"
     ]
   }
 ]

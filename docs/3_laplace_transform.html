@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./4_time-domain_response.html" rel="next">
 <link href="./2_fourier_transform.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -160,6 +161,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Laplace Transform</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_time-domain_response.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Time-domain Response</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -174,6 +181,7 @@ window.Quarto = {
   <li><a href="#laplace-transform" id="toc-laplace-transform" class="nav-link" data-scroll-target="#laplace-transform"><span class="header-section-number">3.2</span> Laplace Transform</a></li>
   <li><a href="#why-do-we-need-to-find-exponentials" id="toc-why-do-we-need-to-find-exponentials" class="nav-link" data-scroll-target="#why-do-we-need-to-find-exponentials"><span class="header-section-number">3.3</span> Why do we need to find exponentials?</a></li>
   <li><a href="#l.t.-examples" id="toc-l.t.-examples" class="nav-link" data-scroll-target="#l.t.-examples"><span class="header-section-number">3.4</span> L.T. Examples</a></li>
+  <li><a href="#l.t.-examples-contd---0515" id="toc-l.t.-examples-contd---0515" class="nav-link" data-scroll-target="#l.t.-examples-contd---0515">L.T. Examples (cont’d) - 05/15</a></li>
   </ul>
 </nav>
     </div>
@@ -213,30 +221,44 @@ window.Quarto = {
     &amp;= \frac{1 - i\omega}{1 + \omega^2} \\
     &amp;= \frac{1}{1 + \omega^2} + \frac{-i\omega}{1 + \omega^2} .
 \end{align*}\]</span></p>
+<div style="text-align: center">
 <img src="3_laplace_transform_files/mediabag/3be3a42a325cd7fcb0ca625b5a9139a33c8e778f.svg" class="img-fluid">
+</div>
 <div style="color:#994C01;">
 <p><br> Q2. What is the F.T. of <span class="math inline">\(u(t)\)</span>?</p>
 </div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{align*}
     \mathcal{F}[u(t)] &amp;= \int_{-\infty}^{+\infty} u(t) \cdot e^{-i\omega t} \,dt \\
     &amp;= \int_{0}^{+\infty} e^{-i\omega t} \,dt \\
     &amp;= \left. -\frac{1}{i\omega} e^{-i\omega t} \right\rvert_{0}^{+\infty} \\
     &amp;= -\frac{1}{i\omega} \big(\color{red}\underset{\text{value}}{\underset{\text{undetermined}}{\underline{\color{black}e^{-i\omega\infty}}}} \color{black} - 1\big)
 \end{align*}\]</span></p>
-<div style="text-align: center">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <img src="3_laplace_transform_files/mediabag/2d2faaf793f36325c696c2ce616d68528673a618.svg" class="img-fluid">
+</div>
+</div>
 </div>
 <div style="color:#994C01;">
 <p>Q3. What is the F.T. of <span class="math inline">\(e^t \cdot u(t)\)</span>?</p>
 </div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{align*}
     \mathcal{F}[e^t \cdot u(t)] &amp;= \int_{-\infty}^{+\infty} e^t \cdot u(t) \cdot e^{-i\omega t} \,dt \\
     &amp;= \int_{0}^{+\infty} e^{(1 - i\omega) t} \,dt \\
     &amp;= \left. \frac{1}{1 - i\omega} e^{(1 - i\omega) t} \right\rvert_{0}^{+\infty} \\
     &amp;= \frac{1}{1 - i\omega} \cdot (\infty - 1)
 \end{align*}\]</span></p>
-<div style="text-align: center">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <img src="3_laplace_transform_files/mediabag/e9ee85bb10fc7d26d16853e6fb5fdf3600b0dbb3.svg" class="img-fluid">
+</div>
+</div>
 </div>
 </section>
 <section id="laplace-transform" class="level2" data-number="3.2">
@@ -308,7 +330,7 @@ LTI system is differential equations (D.E.)
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<img src="3_laplace_transform_files/mediabag/7486ccc42a01da6ecd1067dacea159ed70a85336.svg" class="img-fluid">
+<img src="3_laplace_transform_files/mediabag/3c26d63fcb618cedb4a3d5bb3ce14542febf273e.svg" class="img-fluid">
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><b>KVL</b>:<br> <span class="math display">\[\underset{\text{D.E.}}{\underbrace{V_i = L \cdot \frac{di(t)}{dt} + R \cdot i(t)}}\]</span></p>
@@ -373,7 +395,7 @@ Solutions to D.E. must be either
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{align*}
     \mathcal{L}[t \cdot u(t)] &amp;= \int_{0}^{+\infty} t \cdot e^{-st} \,dt \\
-    &amp;= \int_{0}^{+\infty} -\frac{1}{s} \cdot t \,de^{-st} \\
+    &amp;= \int_{0}^{+\infty} -\frac{1}{s} \cdot t \,de^{-st} \qquad \color{YellowOrange}\frac{d e^{-st}}{dt} = -s \cdot e^{-st}\\
     &amp;= -\frac{1}{s} \int_{0}^{\infty} t \cdot \,de^{-st} \\
     &amp;= -\frac{1}{s} \left[ t \cdot e^{-st} \bigg\rvert_{0}^{\infty} - \int_{0}^{\infty} e^{-st} \,dt \right] \\
     &amp;= -\frac{1}{s} \left[ \cancel{0 - 0} - \left(-\frac{1}{s}\right)\cdot e^{-st} \bigg\rvert_{0}^{\infty} \right] \\
@@ -392,11 +414,53 @@ Solutions to D.E. must be either
 </div>
 </li>
 </ul>
-
-
 </section>
+<section id="l.t.-examples-contd---0515" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="l.t.-examples-contd---0515">L.T. Examples (cont’d) - 05/15</h2>
+<ul style="list-style-type: '⑤ ';">
+<li>
+<p>&nbsp;</p>
+<img src="3_laplace_transform_files/mediabag/38ad9866adbb534c7a9e7b538989055364925527.svg" class="img-fluid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{align*}
+    \mathcal{L}[t \cdot \sin(\omega t)] &amp;= \mathcal{L}\{\frac{1}{2i} \cdot t \cdot e^{it} - \frac{1}{2i} \cdot t \cdot e^{-it}\} \\
+    &amp;= \frac{1}{2i} \cdot \mathcal{L}\{t \cdot e^{it}\} - \frac{1}{2i} \cdot \mathcal{L}\{t \cdot e^{-it}\} \\
+    &amp;= \frac{1}{2i} \cdot \frac{1}{(s - i)^2} - \frac{1}{2i} \cdot \frac{1}{(s + i)^2} \\
+    &amp;= \frac{1}{2i} \cdot \frac{4i \cdot s}{(s-i)^2 (s+i)^2} \\
+    &amp;= \frac{2s}{(s^2 + 1)^2}
+\end{align*}\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<span class="math display">\[\begin{align*}
+    &amp;\color{YellowOrange} \sin t= \frac{e^{it} - e^{-it}}{2i} \\
+    &amp;\color{red} \mathcal{L}\{t\} = \frac{1}{s^2} \\
+    &amp;\color{red} \mathcal{L}\{t \cdot e^{at}\} = \frac{1}{(s-a)^2} \\
+    &amp;\color{red} (s+i)(s-i) = s^2 + 1
+\end{align*}\]</span>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div></div></div></li>
+</ul></section></main></div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 
-</main> <!-- /main -->
+</div>
+
+
+<div style="text-align: center">
+<img src="3_laplace_transform_files/mediabag/3e8c160d63c444b78dc29295d6282ff9f716fecf.svg" class="img-fluid">
+</div>
+<div style="text-align: center">
+<img src="3_laplace_transform_files/mediabag/a24b218105362299c9383301e13bc4ab36405754.svg" class="img-fluid">
+</div>
+
+
+
+
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -804,9 +868,12 @@ Solutions to D.E. must be either
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./4_time-domain_response.html" class="pagination-link" aria-label="Time-domain Response">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Time-domain Response</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
-</div> <!-- /content -->
+ <!-- /content -->
 
 
 
