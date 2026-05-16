@@ -13,6 +13,11 @@ book:
     - 3_laplace_transform.qmd
     - 4_time-domain_response.qmd
     # - references.qmd
+  page-footer: 
+    left: "EE6653 - Power Electronics, taught by Prof. Shuang Xu, UNB" 
+    right: 
+      - icon: github
+        href: https://github.com/q30zhang/EE6653_notes
 
 bibliography: references.bib
 
