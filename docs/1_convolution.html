@@ -177,7 +177,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#linear-time-invariant-lti-systems" id="toc-linear-time-invariant-lti-systems" class="nav-link active" data-scroll-target="#linear-time-invariant-lti-systems"><span class="header-section-number">1.1</span> Linear Time-Invariant (LTI) Systems</a></li>
+  <li><a href="#linear-time-invariant-lti-systems" id="toc-linear-time-invariant-lti-systems" class="nav-link active" data-scroll-target="#linear-time-invariant-lti-systems"><span class="header-section-number">1.1</span> Linear Time-Invariant (LTI) Systems</a>
+  <ul class="collapse">
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">3 properties</a></li>
+  </ul></li>
   <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution"><span class="header-section-number">1.2</span> Convolution</a></li>
   </ul>
 </nav>
@@ -206,35 +209,105 @@ window.Quarto = {
 
 <section id="linear-time-invariant-lti-systems" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="linear-time-invariant-lti-systems"><span class="header-section-number">1.1</span> Linear Time-Invariant (LTI) Systems</h2>
-<p><img src="images/chapter_1-1.png" class="img-fluid"></p>
+<div class="columns">
+<div class="column" style="width:fit-content;">
+<img src="1_convolution_files/mediabag/79659f4e0c7421e2abdd5c551b6ee519bdb1c309.svg" class="img-fluid">
+</div><div class="column" style="color:magenta;">
+<p>&nbsp; Classical control theory (root locus, Bode plot)</p>
+</div>
+</div>
+<section id="properties" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="properties">3 properties</h3>
+<p><span class="math inline">\(\color{RedOrange}\boxed{\textbf{Homogeneity}}\)</span></p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{equation}
+\underset{\quad\quad\quad \color{magenta} {}^{\uparrow_{\hspace{-3pt}\_\_\_}}\,\,\text{scaling factor}}
+{\begin{array}{rcl}
+\text{if} \quad x &amp; \rightarrow &amp; y \\
+\text{then} \quad 2x &amp; \rightarrow &amp; 2y \\
+\color{magenta}a \color{black} \,x &amp; \rightarrow &amp; \color{magenta}a \color{black} \,y
+\end{array}}
+\end{equation}\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<span class="math display">\[\begin{array}{rcll}
+\color{ForestGreen} \text{E.g.}\quad\text{Is}\quad y &amp; \color{ForestGreen} = &amp; \color{ForestGreen} 3x+1 &amp; \color{ForestGreen} \text{LTI ?} \\
+\color{blue} 4 &amp; &amp; \color{blue} 1 &amp; \\
+\color{blue} 7 &amp; &amp; \color{blue} 2 &amp; \color{Magenta}\text{NO} \\
+\color{blue} 10 &amp; &amp; \color{blue} 3 &amp; \\[2ex]
+\color{ForestGreen} \text{Is}\quad y &amp; \color{ForestGreen} = &amp; \color{ForestGreen} 3x &amp; \color{ForestGreen} \text{LTI ?} \\
+\color{blue} 3 &amp; &amp; \color{blue} 1 &amp; \\
+\color{blue} 6 &amp; &amp; \color{blue} 2 &amp; \color{Magenta}\text{YES} \\
+\end{array}\]</span>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="text-align:right">
+<img src="1_convolution_files/mediabag/3e812dcc10e0966eacd09608483e42ac4b7a20a4.svg" class="img-fluid">
+<p>&nbsp;</p>
+</div><div class="column">
+<p>small-signal modeling: <span class="math display">\[\begin{align*}
+    \color{RedOrange} Y + \Delta y \,&amp;\color{RedOrange}= 3(X + \Delta x) + 1 \\
+    \color{magenta}\underline{\color{RedOrange} Y} \color{RedOrange} + \Delta y \,&amp;\color{RedOrange}= \color{magenta}\underline{\color{RedOrange} 3X} \color{RedOrange} + 3\Delta x + \color{magenta}\underline{\color{RedOrange}1} \\
+    \color{RedOrange} \Delta y \,&amp;\color{RedOrange}= 3\Delta x
+\end{align*}\]</span></p>
+</div><div class="column" style="text-align:right">
+<img src="1_convolution_files/mediabag/f9340ca4c59b7ee47dece1bf836c4db465c62b45.svg" class="img-fluid">
+<p>&nbsp;</p>
+</div><div class="column">
+small-signal modeling:
+<p><span class="math display">\[\begin{align*}
+    \color{RedOrange} Y + \Delta y \,&amp;\color{RedOrange}= (X + \Delta x)^2 \\
+    \color{magenta}\underline{\color{RedOrange} Y} \color{RedOrange} + \Delta y \,&amp;\color{RedOrange}= \color{magenta}\underline{\color{RedOrange} X^2} \color{RedOrange} + 2X \cdot \Delta x + \color{magenta}\cancel{\color{RedOrange} \Delta x^2} \quad \text{for small }\Delta x \\
+    \color{RedOrange} \Delta y \,&amp;\color{RedOrange}= \color{magenta}\underset{\displaystyle\frac{dy}{dx}\bigg\rvert_{x=X}}{\underset{\uparrow}{\underline{{\color{RedOrange} 2X}}}} \color{RedOrange} \cdot \Delta x
+\end{align*}\]</span></p>
+</div><div class="column" style="text-align:right">
+<img src="1_convolution_files/mediabag/ab30e791baa69e3847ab57e4d661883703183cc2.svg" class="img-fluid">
+<p>&nbsp;</p>
+</div><div class="column">
+small-signal modeling:
+<p><span class="math display">\[\begin{align*}
+    \color{RedOrange} \Delta y \,&amp;\color{RedOrange}= e^X \cdot \Delta x
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="math inline">\(\color{RedOrange}\boxed{\textbf{Superposition}}\)</span></p>
+<span class="math display">\[\begin{array}{lrcl}
+\text{if} &amp; x_1 &amp; \rightarrow &amp; y_1, \\
+&amp; x_2 &amp; \rightarrow &amp; y_2 \\
+\text{then} &amp; (x_1+x_2) &amp; \rightarrow &amp; (y_1+y_2)
+\end{array}\]</span>
+<p><span class="math inline">\(\color{RedOrange}\boxed{\textbf{Time Translation}}\)</span></p>
+<span class="math display">\[\begin{array}{lrcl}
+\text{if} &amp; x(t) &amp; \rightarrow &amp; y(t), \\
+\text{then} &amp; x(t-\tau) &amp; \rightarrow &amp; y(t-\tau)
+\end{array}\]</span>
+<div style="color:green">
+<p>E.g. Unit impulse response</p>
+<img src="1_convolution_files/mediabag/f4b000dd4f2fd177f212093a3e3cb0cc18e1b379.svg" class="img-fluid">
+</div>
+</section>
 </section>
 <section id="convolution" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="convolution"><span class="header-section-number">1.2</span> Convolution</h2>
 <p><span class="math display">\[\begin{equation}
     h(t) * x(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau) \,d\tau
 \end{equation}\]</span></p>
+<div style="text-align:center">
 <img src="1_convolution_files/mediabag/66d1202cb28ba9586f7c38a0cbf670f8d940bc9c.svg" class="img-fluid">
+</div>
 <p>where <span class="math inline">\(h(t)\)</span> is the unit impulse response: <span class="math inline">\(\begin{cases}\text{when } x(t) = \delta(t)\\\text{then } y(t) = h(t)\end{cases}\)</span></p>
-<p><img src="images/1-2_2.png" class="img-fluid" width="400"></p>
+<img src="1_convolution_files/mediabag/44c9686144df569f8003a349f3bd71d1f36ffada.svg" class="img-fluid">
 <p><span class="math display">\[ \int_{-\infty}^{\infty} h(t) \,dt = 1.  \qquad y(t) = \delta(0) \cdot h(t) + \delta(1) \cdot h(t-1) + \delta(2) \cdot h(t-2) .\]</span></p>
 <p>For LTI system, <span class="math inline">\(y(t)\)</span> is the sum of the scaled unit impulse response of <span class="math inline">\(x(t)\)</span> at each time instant <span class="math inline">\(\tau\)</span>. <span class="math display">\[y(t) = \int_{-\infty}^{\infty} x(\tau)h(t-\tau) \,d\tau\]</span> where <span class="math inline">\(x(\tau)\)</span> is the scaling factor at <span class="math inline">\(t=\tau\)</span>, and <span class="math inline">\(h(t-\tau)\)</span> is the unit impulse response at <span class="math inline">\(t=\tau\)</span>.</p>
-<p>For a continuous $x(t) with <span class="math inline">\(h(t) = \dfrac{1}{2}t\)</span>, (<span class="math inline">\(0 \le t \le 2\)</span>), what is <span class="math inline">\(y(t)\)</span>? <img src="images/1-2_3.png" class="img-fluid" width="400"></p>
-<!-- ```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-
-t = np.linspace(0, 2, 100)
-h = 0.5 * t
-
-fig, axs = plt.subplots(3, 2, figsize=(8, 8))
-
-axs[0, 0].plot(t, h)
-# axs[0, 0].set_title("Impulse Response h(t)")
-axs[0, 0].set_xlabel("Time (t)")
-axs[0, 0].set_ylabel("$x(t)$")
-plt.grid("off")
-plt.show()
-``` -->
+<p>For a continuous <span class="math inline">\(x(t)\)</span> with <span class="math inline">\(h(t) = \dfrac{1}{2}t\)</span>, (<span class="math inline">\(0 \le t \le 2\)</span>), what is <span class="math inline">\(y(t)\)</span>?</p>
+<div style="text-align:center">
+<img src="1_convolution_files/mediabag/47c48428d3f0d95fc68d0e1c9835acee1135caf3.svg" class="img-fluid">
+<p>&nbsp;</p>
+</div>
 <p>Time domain convolution compuation is expensive, and it can be simplified by using Fourier transform to transfer <strong>convolution</strong> in <em>time domain</em> to <strong>multiplication</strong> in <em>frequency domain</em>.</p>
 <p><span class="math display">\[\text{Time domain} \underset{\text{F. T.}}{\overset{\text{Fourier Transform}}{\longrightarrow}} \text{Frequency domain}\]</span></p>
 <p><span class="math display">\[\text{F. T.:}\quad Y(\omega) = \int_{-\infty}^{\infty} y(t) e^{-j\omega t} \,dt\]</span></p>
