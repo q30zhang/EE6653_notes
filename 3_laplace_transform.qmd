@@ -591,7 +591,6 @@ $$\underset{\text{D.E.}}{\underbrace{F - kx - \alpha \cdot \dot{x} = m \cdot \dd
     axis/.style={->, thick, black},
     orange/.style={orange!60!black}
 ]
-
 \begin{scope}[xshift=-1cm, yshift=-1.5cm]
     % axes
     \draw[axis] (0,0) -- (2,0) node[right] {$t$};
@@ -601,7 +600,6 @@ $$\underset{\text{D.E.}}{\underbrace{F - kx - \alpha \cdot \dot{x} = m \cdot \dd
     \draw[domain=0:2, loosely dotted, variable=\x, orange, thick] plot ({\x}, {\x});
     \draw[domain=0:2, loosely dotted, variable=\x, orange, thick] plot ({\x}, {-\x});
 \end{scope}
-
 \begin{scope}[xshift=4cm, yshift=-1.5cm]
     % axes
     \draw[axis] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
@@ -613,12 +611,10 @@ $$\underset{\text{D.E.}}{\underbrace{F - kx - \alpha \cdot \dot{x} = m \cdot \dd
     \node[red, right] at (0.1,1) {$i$};
     \node[red, right] at (0.1,-1) {$-i$};
 \end{scope}
-
 \end{tikzpicture}
 ```
 
 ::: {layout-ncol=2}
-
 \begin{align*}
     \mathcal{L}[t \cdot \sin(\omega t)] &= \mathcal{L}\{\frac{1}{2i} \cdot t \cdot e^{it} - \frac{1}{2i} \cdot t \cdot e^{-it}\} \\
     &= \frac{1}{2i} \cdot \mathcal{L}\{t \cdot e^{it}\} - \frac{1}{2i} \cdot \mathcal{L}\{t \cdot e^{-it}\} \\
@@ -633,10 +629,9 @@ $$\underset{\text{D.E.}}{\underbrace{F - kx - \alpha \cdot \dot{x} = m \cdot \dd
     &\color{red} \mathcal{L}\{t \cdot e^{at}\} = \frac{1}{(s-a)^2} \\
     &\color{red} (s+i)(s-i) = s^2 + 1
 \end{align*}
+:::
 </li>
 </ul>
-
-:::
 
 <div style="text-align: center">
 
