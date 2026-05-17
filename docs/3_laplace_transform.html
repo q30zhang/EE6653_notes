@@ -212,7 +212,9 @@ window.Quarto = {
 <div style="color:#994C01;">
 <p>Q1. What is the F.T. of <span class="math inline">\(u(t) \cdot e^{-t}\)</span>?</p>
 </div>
+<div style="text-align:center">
 <img src="3_laplace_transform_files/mediabag/3caadfa3047284b71915fa3d2247c4fe59b22675.svg" class="img-fluid">
+</div>
 <p><span class="math display">\[\begin{align*}
     \mathcal{F}[u(t) \cdot e^{-t}] &amp;= \int_{-\infty}^{+\infty} u(t) \cdot e^{-t} \cdot e^{-i\omega t} \,dt \\
     &amp;= \int_{0}^{+\infty} e^{-(1 + i\omega) t} \,dt \\
@@ -233,7 +235,7 @@ window.Quarto = {
 <p><span class="math display">\[\begin{align*}
     \mathcal{F}[u(t)] &amp;= \int_{-\infty}^{+\infty} u(t) \cdot e^{-i\omega t} \,dt \\
     &amp;= \int_{0}^{+\infty} e^{-i\omega t} \,dt \\
-    &amp;= \left. -\frac{1}{i\omega} e^{-i\omega t} \right\rvert_{0}^{+\infty} \\
+    &amp;= \left. -\frac{1}{i\omega} e^{-i\omega t} \right\rvert_{0}^{+\infty} \\[2ex]
     &amp;= -\frac{1}{i\omega} \big(\color{red}\underset{\text{value}}{\underset{\text{undetermined}}{\underline{\color{black}e^{-i\omega\infty}}}} \color{black} - 1\big)
 \end{align*}\]</span></p>
 </div>
