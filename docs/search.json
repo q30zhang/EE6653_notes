@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "EE6653 - Power Electronics Notes",
     "section": "",
-    "text": "Preface\nThis is the course notes for EE6653: Power Electronics taught by Prof. Shuang Xu at the University of New Brunswick in Summer 2026.\n\\[\n\\textbf{Interdisciplinary course} \\quad \\begin{cases}\n\\underline{\\text{Electronics}}\\\\\n{\\underline{\\text{Electric circuits}}}\\underset{\\text{Resonance converters}}{\\hspace{-12pt}\\underset{{}^\\searrow \\text{AC--AC converters}}{}}\\\\\n\\underline{\\underline{\\text{Control}}}\n\\end{cases}\n\\]\nCourse objective:\nSolidify your basic knowledge.",
+    "text": "Preface\nThis is the course notes for EE6653: Power Electronics taught by Prof. Shuang Xu at the University of New Brunswick in Summer 2026.\n\\[\n\\textbf{Interdisciplinary course} \\quad \\begin{cases}\n\\underline{\\text{Electronics}}\\\\\n\\underline{\\text{Electric circuits}}\\\\\n\\underline{\\underline{\\text{Control}}} \\qquad \\begin{array}{rl}\\small\\searrow \\hspace{-2ex}&\\tiny{\\text{AC--AC converters}}\\\\[-2ex]&\\tiny{\\text{Resonance converters}}\\end{array}\n\\end{cases}\n\\]\nCourse objective:\nSolidify your basic knowledge.",
     "crumbs": [
       "Preface"
     ]
