@@ -72,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -190,6 +219,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
 <p>This is the course notes for EE6653: Power Electronics taught by Prof.&nbsp;Shuang Xu at the University of New Brunswick in Summer 2026.</p>
+<p><span class="math display">\[
+\textbf{Interdisciplinary course} \quad \begin{cases}
+\underline{\text{Electronics}}\\
+{\underline{\text{Electric circuits}}}\underset{\text{Resonance converters}}{\hspace{-12pt}\underset{{}^\searrow \text{AC--AC converters}}{}}\\
+\underline{\underline{\text{Control}}}
+\end{cases}
+\]</span></p>
+<p><strong>Course objective</strong>:</p>
+<p>Solidify your basic knowledge.</p>
 
 
 </section>
