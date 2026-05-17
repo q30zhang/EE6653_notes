@@ -322,8 +322,8 @@ Input $x(t)$:
   \draw[->] (-3,0) -- (sys.west);
   \draw[->] (sys.east) -- (3,0);
 
-  \node[above] at (-3,0.5) {$X(s)$};
-  \node[below] at (-3,0.5) {$\displaystyle\frac{1}{s}$};
+  \node[above] at (-3,0) {$X(s)$};
+  \node[below,red] at (-3,0) {$\displaystyle\frac{1}{s}$};
   \node[above] at (3,0) {$Y(s)$};
 
 \end{tikzpicture}
@@ -387,13 +387,13 @@ $\color{green}y(t=3\tau) = 1 - e^{-3} \approx 0.95(0213)$
 
 ::: {layout="[0.3, 0.7]"}
 
-$\color{YellowOrange}\underline{\text{Unit impulse response}}$<br>
+$\color{RedOrange}\underline{\text{Unit impulse response}}$<br>
 
 &nbsp;
 
-$\color{YellowOrange}\mathcal{L}\{\delta(t)\} = 1$<br>
-$\color{YellowOrange}Y(s) = \displaystyle\frac{a}{s+a}$<br>
-$\color{YellowOrange}y(t) = a \cdot e^{-at}$
+$\color{RedOrange}\mathcal{L}\{\delta(t)\} = 1$<br>
+$\color{RedOrange}Y(s) = \displaystyle\frac{a}{s+a}$<br>
+$\color{RedOrange}y(t) = a \cdot e^{-at}$
 
 ```{.tikz}
 \begin{tikzpicture}[
@@ -499,7 +499,7 @@ $$\color{YellowOrange}\text{S.O.S.} = \frac{\omega_n^2}{(s+\omega_n)^2} = \color
 
 $\color{red}\boxed{\color{black}\text{When }\xi < 1\text{, underdamped.}}$
 \begin{align*}
-\color{YellowOrange}s &\color{YellowOrange}= -\color{red}\underset{\sigma}{\underbrace{\color{YellowOrange}\xi \omega_n}} \pm j \cdot \color{red}\underset{\omega}{\underbrace{\color{YellowOrange}\sqrt{1 - \xi^2} \cdot \omega_n}} \\
+\color{YellowOrange}s &\color{YellowOrange}= -\color{red}\underset{\sigma}{\underbrace{\color{YellowOrange}\xi \omega_n}} \pm j \cdot \color{red}\underset{\omega}{\underbrace{\color{YellowOrange}\sqrt{1 - \xi^2} \cdot \omega_n}} \\[1ex]
 \color{red} s &\color{red}= -\sigma \pm j \omega
 \end{align*}
 
