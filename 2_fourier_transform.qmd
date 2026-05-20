@@ -282,8 +282,42 @@ Fourier Series: Every periodic function can be represented by a series of (co)si
 \end{tikzpicture}
 ```
 
-
 Why decompose into sinusoids?
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    \node[above] at (-2.5,0) {$x(t)$};
+    \node[above] at (2.5,0) {$y(t)$};
+    
+    \draw[magenta] (-3.2,-1) -- (-3.0,-1) -- (-3.0,-0.8) -- (-2.8,-0.8)
+              -- (-2.8,-1) -- (-2.6,-1) -- (-2.6,-0.8) -- (-2.4,-0.8)
+              -- (-2.4,-1) -- (-2.2,-1) -- (-2.2,-0.8) -- (-2.0,-0.8)
+              -- (-2.0,-1) -- (-1.8,-1) -- (-1.8,-0.8) -- (-1.6,-0.8)
+              -- (-1.6,-1) -- (-1.4,-1) -- (-1.4,-0.8) -- (-1.2,-0.8)
+              -- (-1.2,-1) -- (-1.0,-1);
+    \draw[blue,domain=-3.2:-1, smooth, samples=100,variable=\x] plot (\x,{0.1*sin(deg(5*pi*\x))-1.6});
+    \draw[magenta] (1.0,-0.8) -- (1.2,-1) -- (1.4,-0.8) -- (1.6,-1)
+                -- (1.8,-0.8) -- (2.0,-1) -- (2.2,-0.8) -- (2.4,-1)
+                -- (2.6,-0.8) -- (2.8,-1) -- (3.0,-0.8) -- (3.2,-1);
+    \draw[blue,domain=1:3.2, smooth, samples=100,variable=\x] plot (\x,{0.3*sin(deg(5*pi*(\x-0.2)))-1.6});
+\end{tikzpicture}
+```
+:::
+
+::: {.column}
+$\qquad\color{magenta}a,\, \displaystyle\frac{1}{a}\,x(t)$<br>
+$\qquad\color{blue}\boxed{\color{magenta}x_1(t)} \color{magenta} \pm \color{blue}\boxed{\color{magenta}x_2(t)}$<br>
+$\qquad\color{magenta}\displaystyle\int \color{blue}\boxed{\color{magenta}x(t)} \color{magenta} \,dt ,\, \frac{d\, \color{blue}\boxed{\color{magenta}x(t)}}{dt}$
+:::
+::::
+
+
+
 
 
 ## Fourier Series
@@ -346,9 +380,9 @@ Every periodic function can be represented by a series of (co)sines.
 ```
 
 \begin{align*}
-    f(x) &= a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
+    f(x) =&\, a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
     &+ b_0 \cdot \sin(0x) + b_1 \cdot \sin(1\omega x) + b_2 \cdot \sin(2\omega x) + \cdots \\
-    &= a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+    =&\, a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
 \end{align*}
 
 To find $\begin{cases}a_0,\,a_1,\,a_2, \dots \\ b_0,\,b_1,\,b_2, \dots \end{cases}$
@@ -559,17 +593,11 @@ E.g. $f(x) = \begin{cases}
     a_0 &= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx \\
     &= \frac{1}{2\pi} \left[ \int_{0}^{\pi} 1 \,dx + \int_{-\pi}^{0} -1 \,dx \right] \\
     &= \frac{1}{2\pi} \left[] \pi + (-\pi) \right] \\
-    &= 0 .
-\end{align*}
-
-\begin{align*}
+    &= 0 . \\[1ex]
     a_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
     &= \frac{1}{\pi} \left[ \int_{0}^{\pi} \cos nx \,dx + \int_{-\pi}^{0} -\cos nx \,dx \right] \\
     &= \frac{1}{\pi} \left[ \frac{1}{n}\sin nx \Big|_0^{\pi} + \frac{1}{n}\sin nx \Big|_{-\pi}^{0} \right] \\
-    &= 0 .
-\end{align*}
-
-\begin{align*}
+    &= 0 . \\[1ex]
     b_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx \\
     &= \frac{1}{\pi} \left[ \int_{0}^{\pi} \sin nx \,dx + \int_{-\pi}^{0} -\sin nx \,dx \right] \\
     &= \frac{1}{\pi} \left[ -\frac{1}{n}\cos nx \Big|_0^{\pi} + \frac{1}{n}\cos nx \Big|_{-\pi}^{0} \right] \\
@@ -700,7 +728,7 @@ where $c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \c
 
 $$ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}$$
 where
-$$c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt$$.
+$$c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt .$$
 
 <div style="color:blue;">When $f(t)$ is non-periodic, $\begin{array}{l}
 \ \\
@@ -715,9 +743,10 @@ T \to \infty,\\
 \end{align*}
 
 \begin{equation}
-    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,\Delta\omega_n
+    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt} \cdot e^{i\omega_nt}} \color{YellowOrange} \,\Delta\omega_n
 \end{equation}
 
+::: {style="text-align:center"}
 ```{.tikz}
 \begin{tikzpicture}[
     >=latex,
@@ -739,13 +768,14 @@ T \to \infty,\\
     \draw[red] (4,0) -- (4,1.1);
     \draw[red] (4.1,0) -- (4.1,1.1);
     \node[red, below] at (4.05,-0.1) {$\Delta x$};
-    \node[orange, below] at (4,-1.1) {$\displaystyle\sum_{-\infty}^{+\infty} y(x) \cdot \Delta x = \int_{-\infty}^{+\infty} y(x) \,dx$};
+    \node[orange, below] at (4,-0.8) {$\displaystyle\sum_{-\infty}^{+\infty} y(x) \cdot \Delta x = \int_{-\infty}^{+\infty} y(x) \,dx$};
 \end{tikzpicture}
 ```
+:::
 
 \begin{align*}
     \color{YellowOrange}f(t) &\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n \\
-    &\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,d\omega
+    &\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega t} \,d\omega
 \end{align*}
 
 \begin{equation}

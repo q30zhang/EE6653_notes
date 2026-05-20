@@ -244,6 +244,13 @@ More direct.
 <img src="2_fourier_transform_files/mediabag/2efa92726c0737e62b34428e23ea44c8e35d23cf.svg" class="img-fluid">
 <img src="2_fourier_transform_files/mediabag/8347c16053ee14c63f677bc60a7b45e30ffb4a7f.svg" class="img-fluid">
 <p>Why decompose into sinusoids?</p>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<img src="2_fourier_transform_files/mediabag/b98ea0995472695a6b0d97c318bf0c966eccc38d.svg" class="img-fluid">
+</div><div class="column">
+<p><span class="math inline">\(\qquad\color{magenta}a,\, \displaystyle\frac{1}{a}\,x(t)\)</span><br> <span class="math inline">\(\qquad\color{blue}\boxed{\color{magenta}x_1(t)} \color{magenta} \pm \color{blue}\boxed{\color{magenta}x_2(t)}\)</span><br> <span class="math inline">\(\qquad\color{magenta}\displaystyle\int \color{blue}\boxed{\color{magenta}x(t)} \color{magenta} \,dt ,\, \frac{d\, \color{blue}\boxed{\color{magenta}x(t)}}{dt}\)</span></p>
+</div>
+</div>
 </section>
 <section id="fourier-series" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="fourier-series"><span class="header-section-number">2.2</span> Fourier Series</h2>
@@ -252,9 +259,9 @@ More direct.
 <p>Every periodic function can be represented by a series of (co)sines.</p>
 <img src="2_fourier_transform_files/mediabag/db7540f51951b6bc6a83b41fe43348a91483fe07.svg" class="img-fluid">
 <p><span class="math display">\[\begin{align*}
-    f(x) &amp;= a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
+    f(x) =&amp;\, a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
     &amp;+ b_0 \cdot \sin(0x) + b_1 \cdot \sin(1\omega x) + b_2 \cdot \sin(2\omega x) + \cdots \\
-    &amp;= a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
+    =&amp;\, a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
 \end{align*}\]</span></p>
 <p>To find <span class="math inline">\(\begin{cases}a_0,\,a_1,\,a_2, \dots \\ b_0,\,b_1,\,b_2, \dots \end{cases}\)</span></p>
 <p>Orthogonal functions:</p>
@@ -376,15 +383,11 @@ Every 2 same functions are unorthogonal.
     a_0 &amp;= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx \\
     &amp;= \frac{1}{2\pi} \left[ \int_{0}^{\pi} 1 \,dx + \int_{-\pi}^{0} -1 \,dx \right] \\
     &amp;= \frac{1}{2\pi} \left[] \pi + (-\pi) \right] \\
-    &amp;= 0 .
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
+    &amp;= 0 . \\[1ex]
     a_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
     &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \cos nx \,dx + \int_{-\pi}^{0} -\cos nx \,dx \right] \\
     &amp;= \frac{1}{\pi} \left[ \frac{1}{n}\sin nx \Big|_0^{\pi} + \frac{1}{n}\sin nx \Big|_{-\pi}^{0} \right] \\
-    &amp;= 0 .
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
+    &amp;= 0 . \\[1ex]
     b_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx \\
     &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \sin nx \,dx + \int_{-\pi}^{0} -\sin nx \,dx \right] \\
     &amp;= \frac{1}{\pi} \left[ -\frac{1}{n}\cos nx \Big|_0^{\pi} + \frac{1}{n}\cos nx \Big|_{-\pi}^{0} \right] \\
@@ -462,7 +465,7 @@ Every 2 same functions are unorthogonal.
 </section>
 <section id="fourier-transform-contd---0513" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="fourier-transform-contd---0513">Fourier Transform (cont’d) - 05/13</h2>
-<p><span class="math display">\[ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}\]</span> where <span class="math display">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt\]</span>.</p>
+<p><span class="math display">\[ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}\]</span> where <span class="math display">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt .\]</span></p>
 <div style="color:blue;">
 <p>When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(\begin{array}{l}
 \ \\
@@ -475,12 +478,14 @@ T \to \infty,\\
     &amp;= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
 \end{align*}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,\Delta\omega_n
+    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt} \cdot e^{i\omega_nt}} \color{YellowOrange} \,\Delta\omega_n
 \end{equation}\]</span></p>
-<img src="2_fourier_transform_files/mediabag/9973f6021981a6f74c62d0c5f6ffd58a2d9d378b.svg" class="img-fluid">
+<div style="text-align:center">
+<img src="2_fourier_transform_files/mediabag/62247b90034cc139f5385c52d7db9953a30c8027.svg" class="img-fluid">
+</div>
 <p><span class="math display">\[\begin{align*}
     \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n \\
-    &amp;\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega_nt} \,d\omega
+    &amp;\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega t} \,d\omega
 \end{align*}\]</span></p>
 <p><span class="math display">\[\begin{equation}
     \color{red}F(\omega) = \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt \quad\text{(F.T.)}
