@@ -181,6 +181,8 @@ window.Quarto = {
   <li><a href="#unit-step-response-of-1st-order-system" id="toc-unit-step-response-of-1st-order-system" class="nav-link" data-scroll-target="#unit-step-response-of-1st-order-system"><span class="header-section-number">4.1</span> Unit step response of 1st order system</a></li>
   <li><a href="#unit-impulse-response-of-2nd-order-system" id="toc-unit-impulse-response-of-2nd-order-system" class="nav-link" data-scroll-target="#unit-impulse-response-of-2nd-order-system"><span class="header-section-number">4.2</span> Unit impulse response of 2nd order system</a></li>
   <li><a href="#unit-step-response-of-s.o.s." id="toc-unit-step-response-of-s.o.s." class="nav-link" data-scroll-target="#unit-step-response-of-s.o.s."><span class="header-section-number">4.3</span> Unit step response of S.O.S.</a></li>
+  <li><a href="#unit-step-response-of-s.o.s.-contd---0522" id="toc-unit-step-response-of-s.o.s.-contd---0522" class="nav-link" data-scroll-target="#unit-step-response-of-s.o.s.-contd---0522">Unit step response of S.O.S. (cont’d) - 05/22</a></li>
+  <li><a href="#side-topic-eulers-formula" id="toc-side-topic-eulers-formula" class="nav-link" data-scroll-target="#side-topic-eulers-formula">Side Topic: Euler’s Formula</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -446,7 +448,157 @@ Settling time:<br> <span class="math inline">\(T_{ss} = 4 \tau = \displaystyle\f
     Y(s) &amp;= \frac{1}{s} \cdot \frac{\omega_n^2}{s^2 + 2 \xi \omega_n s + \omega_n^2} \\
     &amp;= \frac{c_1}{s} + \frac{c_2}{s + \sigma + j\omega} + \frac{c_3}{s + \sigma - j\omega}
 \end{align*}\]</span></p>
-<p><span style="color:red;">Assignment 1 due on May 22nd.</span></p>
+</section>
+<section id="unit-step-response-of-s.o.s.-contd---0522" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="unit-step-response-of-s.o.s.-contd---0522">Unit step response of S.O.S. (cont’d) - 05/22</h2>
+<div style="text-align: center">
+<img src="4_time-domain_response_files/mediabag/178d28bd4f318daaea8270ac7a415f42f642ce83.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    Y(s) &amp;= \frac{1}{s} \cdot \frac{\omega_n^2}{s^2 + 2 \xi \omega_n s + \omega_n^2} \\
+    &amp;= \frac{c_1}{s} + \frac{c_2}{s + \sigma + j\omega} + \frac{c_3}{s + \sigma - j\omega}
+\end{align*}\]</span></p>
+<p>To find <span class="math inline">\(c_1,\,c_2,\,c_3\)</span>, we multiply both side by <span class="math inline">\(\color{YellowOrange}\boxed{\color{black} s \cdot \left(s^2 + 2\xi\omega_n s + \omega_n^2\right)}\,\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+    \omega_n^2 &amp;= c_1 \cdot \left(s^2 + 2\xi\omega_n s + \omega_n^2\right) + c_2 \cdot s \cdot (s+\sigma+j\omega) + c_3 \cdot s \cdot (s+\sigma-j\omega) \\
+    \omega_n^2 &amp;= \color{blue}\underset{0}{\underline{\color{black}(c_1+c_2+c_3) s^2}} \color{black} + \color{red}\underline{\color{black}c_1 \cdot 2 \sigma \cdot s + c_2 \cdot (\sigma - j\omega) s} \color{black} + \color{red}\underset{0}{\underline{\color{black}c_3 \cdot (\sigma + j\omega) s}} \color{black} + \color{green}\underset{\quad{}^\searrow 1}{\color{black} c_1} \color{black} \cdot \omega_n^2
+\end{align*}\]</span></p>
+<div style="color:red">
+<p>Note from last class: <span class="math display">\[\begin{align*}
+    \sigma &amp;= \xi \omega_n \\
+    \omega &amp;= \sqrt{1-\xi^2} \cdot \omega_n
+\end{align*}\]</span></p>
+</div>
+<p><span class="math display">\[\color{Peach} \begin{cases} c_1+c_2+c_3=0 \\ c_1 \cdot 2\sigma + c_2 \cdot (\sigma-j\omega) + c_3 \cdot (\sigma+j\omega) = 0\end{cases}\]</span></p>
+<p><span class="math display">\[\begin{cases} c_2+c_3=-1 \\
+\color{RedOrange}\underset{\color{red}\underline{\underline{\color{RedOrange}\displaystyle c_3-c_2 = -\frac{\sigma}{j\omega}}}}{\underset{\displaystyle \sigma + (c_3-c_2) \cdot j\omega}{\underbrace{\color{black}2\sigma + (c_2+c_3)\sigma}}} \color{black} + (c_3-c_2) \cdot j\omega = 0\end{cases}\]</span></p>
+<p><span class="math display">\[\color{red} \begin{cases}\displaystyle c_2 = -\frac{1}{2} + \frac{\sigma}{2j\omega} \\ \displaystyle c_3 = -\frac{1}{2} - \frac{\sigma}{2j\omega}\\\end{cases}\]</span></p>
+<p>So <span class="math inline">\(\displaystyle Y(s) = \frac{1}{s} + \frac{-\frac{1}{2} + \frac{\sigma}{2j\omega}}{s+\sigma+j\omega} + \frac{-\frac{1}{2} - \frac{\sigma}{2j\omega}}{s+\sigma-j\omega}\)</span> .</p>
+<p><span class="math display">\[\begin{align*}
+    y(t) &amp;= 1 + \left(-\frac{1}{2} + \frac{\sigma}{2j\omega}\right) \cdot e^{-(\sigma+j\omega)t} + \left(-\frac{1}{2} - \frac{\sigma}{2j\omega}\right) \cdot e^{-(\sigma-j\omega)t} \\
+    &amp;= 1 - \frac{1}{2} \left[e^{-(\sigma+j\omega)t} + e^{-(\sigma-j\omega)t}\right] + \frac{\sigma}{2j\omega} \left[e^{-(\sigma+j\omega)t} - e^{-(\sigma-j\omega)t}\right] \\
+    &amp;= 1 - e^{-\sigma t} \cdot \frac{e^{-j\omega t} + e^{j\omega t}}{2} + \frac{\sigma}{\omega} \cdot e^{-\sigma t} \cdot \frac{e^{-j\omega t} + e^{j\omega t}}{2j} \\
+    &amp;= 1 - e^{-\sigma t} \cdot \left(\cos \omega t + \frac{\sigma}{\omega} \cdot \sin \omega t\right) .
+\end{align*}\]</span></p>
+<div style="color:#ADA100">
+<p>Side note: <span class="math display">\[ A \cdot \sin \omega t + B \cdot \cos \omega t = C \cdot \sin(\omega t + \varphi) \]</span> <span class="math display">\[ C = \sqrt{A^2+B^2} \]</span> <span class="math display">\[ \tan\varphi = \displaystyle\frac{B}{A} \implies \varphi = \arctan \frac{B}{A} \]</span></p>
+</div>
+<p><span class="math display">\[\begin{align*}
+    y(t) &amp;= 1 - e^{-\sigma t} \cdot \sqrt{1 + \frac{\sigma^2}{\omega^2}} \cdot \sin \left(\omega t + \color{red}\underset{\varphi}{\underbrace{\color{black}\arctan\frac{\omega}{\sigma}}} \right) \\
+    &amp;= 1 - e^{-\xi \omega_n t} \sqrt{1 + \frac{\xi^2 \color{red}\cancel{\omega_n^2}}{(1-\xi^2)\color{red}\cancel{\omega_n^2}}} \cdot \sin\left(\color{red}\underset{\omega}{\underbrace{\color{black} \sqrt{1-\xi^2} \omega_n}} \color{black} t + \varphi\right) \\
+    &amp;= 1 - \frac{1}{\sqrt{1-\xi^2}} \cdot e^{-\xi\omega_n t} \cdot \sin(\omega t + \varphi) .
+\end{align*}\]</span></p>
+<div style="text-align: center">
+<img src="4_time-domain_response_files/mediabag/4c69cda01c85643b15976f15bc125d2a090aa99e.svg" class="img-fluid">
+</div>
+<p>&nbsp;<br> <span class="math inline">\(\boxed{\textbf{Performance Index}}\)</span></p>
+<p><strong>Rise Time</strong> (<span class="math inline">\(T_r\)</span>) <span class="math display">\[1 - \color{YellowOrange}\underset{0}{\underbrace{\color{black}\frac{1}{\sqrt{1-\xi^2}} \cdot e^{-\xi\omega_n \cdot T_r} \cdot \sin(\omega T_r + \varphi)}} \color{black} = 1\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{YellowOrange} \sin(\omega T_r + \varphi) \, &amp;\color{YellowOrange}= 0 \\
+    \color{YellowOrange} \omega T_r + \varphi \, &amp;\color{YellowOrange}= k \cdot \pi \\
+    \color{YellowOrange} T_r \, &amp;\color{YellowOrange}= \frac{\pi-\varphi}{\omega} = \frac{\pi-\varphi}{\sqrt{1-\xi^2} \cdot \omega_n}
+\end{align*}\]</span></p>
+<div style="text-align: center">
+<img src="4_time-domain_response_files/mediabag/df090e08b59b652024ca748e69075bef246894cf.svg" class="img-fluid">
+</div>
+<p><strong>Peak Time</strong> (<span class="math inline">\(T_p\)</span>) <span class="math display">\[\frac{dy}{dt} = \frac{\omega_n}{\sqrt{1-\xi^2}} \cdot e^{-\xi\omega_n T_p} \cdot \sin \omega T_p = 0\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \color{YellowOrange} \sin \omega T_p \, &amp;\color{YellowOrange}= 0 \\
+    \color{YellowOrange} \omega T_p \, &amp;\color{YellowOrange}= k \cdot \pi \\
+    \color{YellowOrange} T_p \, &amp;\color{YellowOrange}= \frac{\pi}{\omega} = \frac{\pi}{\sqrt{1-\xi^2} \cdot \omega_n}
+\end{align*}\]</span></p>
+<p><strong>Percent Overshoot (P.O.)</strong> <span class="math display">\[\begin{align*}
+    y(T_p) &amp;= 1 - \frac{1}{\sqrt{1-\xi^2}} \cdot e^{-\frac{\xi\pi}{\sqrt{1-\xi^2}}} \cdot \sin(\pi+\varphi) \\
+    &amp;= 1 + \frac{\sin\varphi}{\sqrt{1-\xi^2}} \cdot e^{-\frac{\xi\pi}{\sqrt{1-\xi^2}}}
+\end{align*}\]</span></p>
+<p><span class="math display">\[\color{red} \tan\varphi = \frac{\sqrt{1-\xi^2} \,\omega_n}{\xi \omega_n} \implies \sin\varphi = \sqrt{1-\xi^2}\]</span></p>
+<p>So, <span class="math inline">\(\quad y(T_p) = 1 + \color{red}\underline{\underline{\color{black} e^{-\frac{\xi\pi}{\sqrt{1-\xi^2}}}}}\)</span>.</p>
+<p><span class="math display">\[\color{blue} \mathrm{P.O.} = e^{-\frac{\xi\pi}{\sqrt{1-\xi^2}}} \]</span></p>
+<p><strong>Settling time</strong> (<span class="math inline">\(T_s\)</span>) <span class="math display">\[1-e^{-\sigma T_s} \approx 90\%\]</span> <span class="math display">\[T_s = \frac{4}{\sigma} = \frac{4}{\xi \omega_n}\]</span></p>
+</section>
+<section id="side-topic-eulers-formula" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="side-topic-eulers-formula">Side Topic: Euler’s Formula</h2>
+<p><span class="math display">\[\begin{align*}
+    e^{i\theta} &amp;= \cos\theta + i \cdot \sin\theta \\
+    e^{-i\theta} &amp;= \cos\theta - i \cdot \sin\theta
+\end{align*}\]</span></p>
+<div class="quarto-layout-panel" data-layout="[0.1, 0.9]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\underline{i \sim \text{Imaginary number}}.\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<p><span class="math display">\[\color{YellowOrange}i=\sqrt{-1}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\mathbb{N} \sim \text{Natural number}.\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<p><span class="math display">\[0,1,2,3,\dots \quad \color{red}{+}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\mathbb{Z} \sim \text{Interger}.\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<p><span class="math display">\[\dots,-3,-2,-1,0,1,2,3,\dots \quad \color{red}{+,-,\times}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\mathbb{Q} \sim \text{Rational number}.\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<p><span class="math display">\[\frac{2}{3},\, \frac{3}{2} \quad \color{red}{+,-,\times,\div}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\mathbb{R} \sim \text{Real number}\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<img src="4_time-domain_response_files/mediabag/922049d8d8fa584aabf1d78a9e4d604edbec0f8a.svg" class="img-fluid">
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
+<p><span class="math display">\[\mathbb{C} \sim \text{Complex number}\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 90.0%;justify-content: flex-start;">
+<img src="4_time-domain_response_files/mediabag/ee9529f6aa8daac1f4dd8dbfaf5f33cc047f73cb.svg" class="img-fluid">
+</div>
+</div>
+</div>
+<div style="text-align: center">
+<img src="4_time-domain_response_files/mediabag/26049ca014fb9952ae677a8d8f75a142d43e0d10.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    z &amp;= a + i\cdot b \\
+    &amp;= \left\lvert z \right\rvert \angle \theta = \sqrt{a^2+b^2} \angle \arctan\frac{b}{a} \\
+    &amp;= \underset{\color{red} a = \left\lvert z \right\rvert \cdot \cos\theta, \quad b = \left\lvert z \right\rvert \cdot \sin\theta}{\color{blue}\underline{\color{black} \left\lvert z \right\rvert \cdot e^{i\theta} = \color{Peach} \left\lvert z \right\rvert \cdot \cos\theta + i \cdot \left\lvert z \right\rvert \cdot \sin\theta}}
+\end{align*}\]</span></p>
+<p><span class="math display">\[ \color{blue} e^{i\theta} = \cos\theta + i \cdot \sin\theta \]</span></p>
+<p><strong>Euler’s number</strong> <span class="math inline">\(e\)</span></p>
+<p><span class="math display">\[e = \lim_{n\to\infty} \left(1+\frac{1}{n}\right)^n\]</span></p>
+<p><span style="color:red">Compound interest: (Jacob Bernoulli)</span></p>
+<span class="math display">\[\begin{array}{llll}
+n=1: &amp; 1 &amp; 2 \\
+n=2: &amp; 1 &amp; 1.5 &amp; 1.5^2=2.25 \\
+n=3: &amp; 1 &amp; 1.33 &amp; 1.33^3=2.35 \\
+n=4: &amp; 1 &amp; 1.25 &amp; 1.25^4=2.44 \\
+&amp; &amp; &amp; \vdots \\
+&amp; &amp; &amp; e = 2.718281828459045\cdots
+\end{array}\]</span>
+<p><span class="math display">\[e^x = \lim_{n\to\infty} \left(1+\frac{x}{n}\right)^n\]</span></p>
+<p><span class="math display">\[ e^1=1 \to \left(1+\frac{1}{n}\right) \to \left(1+\frac{1}{n}\right)^2 \to \left(1+\frac{1}{n}\right)^2 \to \dots \to \left(1+\frac{1}{n}\right)^n \]</span></p>
+<p><span class="math display">\[ e^{i\cdot1}=1 \to \left(1+\frac{i}{n}\right) \to \left(1+\frac{i}{n}\right)^2 \to \left(1+\frac{i}{n}\right)^2 \to \dots \to \left(1+\frac{i}{n}\right)^n \]</span></p>
+<img src="4_time-domain_response_files/mediabag/06197c9c82ee334358d2f9c058b306c143f6cd47.svg" class="img-fluid">
+<p><span style="color:blue">The distance for each step is <span class="math inline">\(\displaystyle\frac{1}{n}\)</span>; after <span class="math inline">\(n\)</span> steps, we will travel distance of 1.</span></p>
+<p><span class="math display">\[\color{red} e^{i\cdot 2\pi} = 1\]</span></p>
+<p><span class="math display">\[\color{red}\boxed{e^{i\pi} = -1} \sim \text{Euler's identity}\]</span></p>
 
 
 </section>
