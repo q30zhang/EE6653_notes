@@ -1,0 +1,418 @@
+# Frequency Response
+
+\usepackage{cancel}
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    \node[above] at (-2.5,0) {$x(t)$};
+    \node[above] at (2.5,0) {$y(t)$};
+    \node[below,blue] at (-3,0) {\color{red}\underline{\underline{\color{blue}DC}}};
+    \node[below,blue] at (-2.55,0) {$+$};
+    \node[below,blue] at (-2,0) {\color{orange}\underline{\color{blue}sine}};
+    \node[above] at (2.5,0) {$y(t)$};
+    \node[below,blue] at (2,0) {$\color{red}\underline{\underline{\color{blue}y_{\mathrm{DC}}}}$};
+    \node[below,blue] at (2.5,0) {$+$};
+    \node[below,blue] at (3,0) {$\color{orange}\underline{\color{blue}y_\mathrm{sine}}$};
+    \node[below,red] at (-3,-1.5) {time-domain};
+    \node[below,red] at (-3,-2) {response};
+    \node[below,orange] at (3,-1.5) {frequency response};
+    \draw[red] (-3,-0.6) -- (-3,-1.5);
+    \draw[red] (2,-0.6) -- (-2.9,-1.5);
+    \draw[orange] (-2,-0.6) -- (2.9,-1.5);
+    \draw[orange] (3,-0.6) -- (3,-1.5);
+
+    \node[right,red] at (4,1) {$a,\,\displaystyle\frac{1}{a},\,\pm,$};
+    \node[right,red] at (4,0) {$\displaystyle\int\,dt,\,\frac{d}{dt}$};
+\end{tikzpicture}
+```
+:::
+
+**E.g.**
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+    \draw[->] (0,0) -- (1.5,0);
+    \draw (1.5,-1) -- (1.5,1);
+    \draw[->] (1.5,1) -- (2.5,1);
+    \draw[->] (1.5,-1) -- (2.5,-1);
+    \draw (2.5,0.5) -- (2.5,1.5) -- (3.5,1) -- (2.5,0.5);
+    \node at (2.8,1) {$2$};
+    \draw (2.5,-0.5) rectangle (4,-1.5);
+    \node at (3.25,-1) {$\displaystyle\int\,dt$};
+    \draw (3.5,1) -- (5,1);
+    \draw (4,-1) -- (5,-1);
+    \draw[->] (5,1) -- (5,0.1);
+    \draw[->] (5,-1) -- (5,-0.1);
+    \draw (5,0) circle (0.1cm);
+    \draw[->] (5.1,0) -- (6.5,0);
+    \node[left] at (5,0.3) {$+$};
+    \node[left] at (5,-0.3) {$+$};
+    \node[above,orange!60!black] at (0.5,0) {$\sin\frac{1}{2}t$};
+    \node[above,orange!60!black] at (6,0) {$y(t)$};
+    \draw[loosely dashed, violet] (1.1,1.8) rectangle (5.4,-1.8);
+    \node[above,violet] at (3.25,1.8) {$LTI$};
+    \node[above,violet] at (4.25,1) {$G(s)$};
+\end{tikzpicture}
+```
+:::
+
+::: {layout-ncol=2}
+\begin{align*}
+y(t) &= 2 \cdot \sin\frac{1}{2}t + \int\sin\frac{1}{2}t\,dt \\
+&= 2 \cdot \sin\frac{1}{2}t - 2 \cdot \cos\frac{1}{2}t \\
+&= \sqrt{2^2+2^2} \cdot \sin\left(\frac{1}{2}t - 45^\circ\right)
+\end{align*}
+
+\begin{align*}
+\color{green}
+\sin't \,&\color{green}= \cos t \\
+\color{green}\cos't \,&\color{green}= -\sin t \\
+\color{green}\sin(\alpha+\beta) \,&\color{green}= \sin\alpha \cdot \cos\beta + \sin\beta \cdot \cos\alpha \\
+\color{green}\cos(\alpha+\beta) \,&\color{green}= \cos\alpha \cdot \cos\beta - \sin\alpha \cdot \sin\beta \\[2ex]
+& \color{red} \sin\frac{1}{2}t \cdot \cos 45^\circ - \cos\frac{1}{2}t \cdot \sin 45^\circ
+\end{align*}
+:::
+
+$$ y(t) = \color{red}\underset{\text{amplitude}}{\underset{\text{change in}}{\underbrace{\color{black}2\sqrt{2}}}} \color{black} \cdot \sin\Big(\color{blue}\underset{\text{frequency}}{\underset{\text{same}}{\underline{\underline{\color{black}\frac{1}{2}t}}}} \color{red}\underset{\text{phase angle}}{\underset{\text{change in}}{\underbrace{\color{black} - 45^\circ}}} \color{black} \Big)$$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+\begin{scope}
+    \draw[axis] (0,0) -- (5.5,0) node[right,green!50!black] {$\omega\,\mathrm{(rad/s)}$};
+    \draw[axis] (0,-1) -- (0,3.5) node[above,orange!50!black] {$\lvert G(j\omega) \rvert$};
+    \foreach \x in {0.5,1.5,2.5,3.5,4.5} {
+        \draw (\x,0) -- (\x,0.1);
+    }
+    \foreach \x in {0.01,0.1,1,10,100} {
+        \node[below] at ({ln(\x)/ln(10)+2.5},0) {\x};
+    }
+    \foreach \y in {1,2,3} {
+        \draw (0,\y) -- (0.1,\y);
+        \node[left] at (0,\y) {\y};
+    }
+    \node[right] at (0.8,4) {Amplitude scaling};
+    \draw[thick,red,domain=2:4.5] plot (\x,{sqrt(4+(10^(\x-2.5))^(-2))});
+    \draw[red,dashed] ({2.5-ln(2)/ln(10)},0) -- ({2.5-ln(2)/ln(10)},{2*sqrt(2)});
+    \draw[red,dashed] (0,{2*sqrt(2)}) -- ({2.5-ln(2)/ln(10)},{2*sqrt(2)});
+    \node[red,left] at (-0.2,{2*sqrt(2)}) {$2\sqrt{2}$};
+    \draw[red,dashed] (2.5,0) -- (2.5,{sqrt(5)});
+    \draw[red,dashed] (0,{sqrt(5)}) -- (2.5,{sqrt(5)});
+    \node[red,left] at (-0.2,{sqrt(5)}) {$\sqrt{5}$};
+    \node[red,below] at ({2.5-ln(2)/ln(10)},0) {$0.5$};
+\end{scope}
+\begin{scope}[yshift=-2.5cm]
+    \draw[axis] (0,0) -- (5.5,0) node[right,green!50!black] {$\omega\,\mathrm{(rad/s)}$};
+    \draw[axis] (0,-2) -- (0,0.5) node[above,orange!50!black] {$\angle G(j\omega)$};
+    \foreach \x in {0.5,1.5,2.5,3.5,4.5} {
+        \draw (\x,0) -- (\x,0.1);
+    }
+    \foreach \x in {0.01,0.1,1,10,100} {
+        \node[above] at ({ln(\x)/ln(10)+2.5},0) {\x};
+    }
+    \node[right] at (0.8,0.8) {Phase change};
+    \draw[thick,red,domain=0:4.5] plot (\x,{rad(atan(-1/2/(10^(\x-2.5))))});
+    \draw (0,-pi/2) -- (0.1,-pi/2);
+    \draw (0,-pi/4) -- (0.1,-pi/4);
+    \node[left] at (0,-pi/2) {$-90^\circ$};
+    \node[left] at (0,-pi/4) {$-45^\circ$};
+    \node[red,above] at ({2.5-ln(2)/ln(10)},0) {$0.5$};
+    \draw[red,dashed] (0,-pi/4) -- ({2.5-ln(2)/ln(10)},-pi/4);
+    \draw[red,dashed] ({2.5-ln(2)/ln(10)},0) -- ({2.5-ln(2)/ln(10)},-pi/4);
+    \draw[red,dashed] (2.5,{-rad(atan(0.5))}) -- (2.5,0);
+    \draw[red,dashed] (2.5,{-rad(atan(0.5))}) -- (0,{-rad(atan(0.5))});
+    \node[left,red] at (0,{-rad(atan(0.5))}) {$-26.565^\circ$};
+\end{scope}
+\end{tikzpicture}
+```
+:::
+
+When $x(t) = \sin t$,
+
+::: {layout-ncol=2}
+\begin{align*}
+y(t) &= 2\sin t + \int \sin t \,dt \\
+&= 2\sin t - \cos t \\
+&= \sqrt{5} \cdot \sin(t-\varphi)
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+    \draw[green!50!black,->] (0,0) -- (2,0);
+    \draw[green!50!black,->] (0,0) -- (2,-1);
+    \draw[green!50!black,->] (2,0) -- (2,-1);
+    \node[right,green!50!black] at (2,-0.5) {$1$};
+    \node[above,green!50!black] at (1,0) {$2$};
+    \node[below,green!50!black] at (1,-1) {$\displaystyle\tan\varphi = \frac{1}{2}$};
+    \node[below,green!50!black] at (1.7,-2) {$\varphi = 26.565^\circ$};
+\end{tikzpicture}
+```
+:::
+
+T.F.: $\color{purple} G(s) = 2 + \displaystyle\frac{1}{s}$
+
+For frequency response, we will let $s=j\omega$.
+
+$$ G(j\omega) = 2 + \frac{1}{j\omega} = 2 - \frac{1}{\omega} \cdot j $$
+
+::: {style="color:#F7981B"}
+When $\omega=\displaystyle\frac{1}{2}\, \mathrm{rad/s}$,
+
+$$ G(j\omega) = 2-2j, \quad \begin{cases} \lvert G(j\omega) \rvert = 2\sqrt{2} \\ \angle G(j\omega) = -45^\circ\end{cases} $$
+
+When $\omega=1\, \mathrm{rad/s}$,
+
+$$ G(j\omega) = 2-j, \quad \begin{cases} \lvert G(j\omega) \rvert = \sqrt{5} \\ \angle G(j\omega) = -26.565^\circ\end{cases} $$
+:::
+
+::: {style="color:red"}
+Why the amplitude scaling is $\lvert G(j\omega) \rvert$ and the phase change is $\angle G(j\omega)$ ?
+:::
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$G(s) = \displaystyle\frac{N(s)}{D(s)}$};
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    \node[above] at (-2.5,0) {$x(t)=A \cdot \sin \omega t$};
+    \node[below,blue] at (-2.5,0) {$X(s)=\displaystyle\frac{A \cdot \omega}{s^2+\omega^2}$};
+    \node[above] at (2.5,0) {$y(t)$};
+    \node[below,blue] at (2.5,0) {$Y(s)$};
+\end{tikzpicture}
+```
+:::
+
+\begin{align*}
+    Y(s) &= X(s) \cdot G(s) \\
+    &= \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \\
+    &= \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n} \\
+    \mathcal{L}^{-1}\{Y(s)\} = y(t) &= \color{red}\underbrace{\color{black}c_1 \cdot e^{j\omega t} + c_2 \cdot e^{-j\omega t}} \color{black} + k_1 \cdot e^{-p_1 t} + e^{-p_2 t} + \cdots + k_n \cdot e^{-p_n t}
+\end{align*}
+
+If the LTI system is stable,
+$$y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}$$
+
+$$ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} .$$
+
+Assume $s=+j\omega$, $A \cdot \omega \cdot N(j\omega) = 2 \cdot j\omega \cdot c_1 \cdot D(j\omega)$
+
+$$c_1 = \frac{A \cdot \omega \cdot N(j\omega)}{2j\omega \cdot D(j\omega)} = \frac{A}{2j} \cdot G(j\omega) .$$
+
+## Why the amplitede scaling is ...
+
+$$y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}$$
+
+\begin{align*}
+    &\, \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n) \color{red}{=: D(s)}} \\
+    =&\, \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n}
+\end{align*}
+
+<span style="color:#F76B1B">Multiply both sides with $(s^2+\omega^2) D(s)$:</span>
+
+$$ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} $$
+
+Assume $s=+j\omega\quad \implies \quad c_1 = \displaystyle \frac{A}{2j} \cdot G(j\omega)$.
+
+Assume $s=-j\omega$,
+
+$$A \cdot \omega \cdot N(-j\omega) = -2j\omega \cdot c_2 \cdot D(-j\omega)$$
+
+$$c_2 = \frac{A \cdot \omega \cdot D(-j\omega)}{-2j\omega \cdot D(-j\omega)} = -\frac{A}{2j} \cdot G(-j\omega)$$
+
+Therefore,
+
+$$y(t\to\infty) = \frac{A}{2j} \cdot G(j\omega) \cdot e^{j\omega t} - \frac{A}{2j} \cdot G(-j\omega) \cdot e^{-j\omega t} .$$
+
+::: {style="color:#F76B1B"}
+\begin{array}{rccccc}
+    \mathrm{L.T.} & G(s) & \implies & G(j\omega) & \implies & F(\omega) \\
+    & s=\sigma+j\omega & & \sigma=0 & & \mathrm{F.T.}
+\end{array}
+:::
+
+::: {style="color:#F7981B"}
+If $F(\omega) = a + i \cdot b$, then
+
+\begin{align*}
+    F(\omega) &= \int_{-\infty}^{+\infty} \left[f(t) \cdot \cos \omega t + j \cdot f(t) \cdot \sin \omega t\right] \,dt \\
+    &= \int_{-\infty}^{+\infty} f(t) \cdot e^{j\omega t} \,dt \\
+    \color{YellowOrange}\mathrm{Then} \quad F(-\omega) \,&\color{YellowOrange}= \int_{-\infty}^{+\infty} \Bigg[\color{red}\underset{a}{\underbrace{\color{YellowOrange} f(t) \cdot \cos \omega t}} \color{YellowOrange} - \color{red}\underset{b}{\underbrace{\color{YellowOrange}j \cdot f(t) \cdot \sin \omega t}} \color{YellowOrange}\Bigg] \,dt \\
+    &= a - i \cdot b
+\end{align*}
+:::
+
+\begin{align*}
+    y(t\to\infty) &= \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{j\varphi} \cdot e^{j\omega t} - \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{-j\varphi} \cdot e^{-j\omega t} \\
+    &= A \cdot \lvert G(j\omega) \rvert \cdot \frac{e^{j\omega t + j\varphi} - e^{-(j\omega t + j\varphi)}}{2j} \\
+    &= A \cdot \color{blue}\underset{\text{scaling}}{\underset{\text{Amplitude}}{\underbrace{\color{black} \lvert G(j\omega) \rvert}}} \color{black} \cdot \sin(\omega t + \color{blue}\underset{\varphi=\angle G(j\omega)}{\underbrace{\color{black}\varphi}} \color{black} )
+\end{align*}
+
+## Frequency response of 1st-order system
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$G(s) = \displaystyle\frac{a}{s+a}$};
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    \node[left] at (-1.2,0.3) {$x(t)=A \cdot \sin(\omega t+\theta)$};
+    \node[right] at (1.2,0.3) {$y(t) = A \cdot \color{blue}{\underline{\color{black} \lvert G(j\omega) \rvert}} \color{black} \cdot \sin\Big(\omega t + \theta + \color{blue}{\underline{\color{black} \angle G(j\omega)}}\color{black}\Big)$};
+\end{tikzpicture}
+```
+:::
+
+::: {style="color:#F7981B"}
+\begin{align*}
+    G(j\omega) &= \frac{a}{a+j\omega} \\
+    &= \frac{a(a-j\omega)}{a^2+\omega^2} \\
+    &= \frac{a}{a^2+\omega^2} + \frac{-j\omega a}{a^2+\omega^2} \\
+    &= \frac{1}{1 + \left(\frac{\omega}{a}\right)^2} + j \cdot \frac{-\omega/a}{1+\left(\frac{\omega}{a}\right)^2}
+ + \frac{}{}\end{align*}
+:::
+
+$\boxed{\textbf{Polar Plot}}$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+    \draw[axis] (-2,0) -- (2,0) node[right] {Re};
+    \draw[axis] (0,-2) -- (0,2) node[above] {Im};
+    \node[right,red] at (3,0.5) {$\omega = 0$};
+    \node[right,red] at (3,0) {$\omega\uparrow$};
+    \node[right,red] at (3,-0.5) {$\omega = +\infty$};
+    
+    \draw[red,->] (1,0) arc (0:-90:0.5);
+    \draw[red] (0.5,-0.5) arc (-90:-180:0.5);
+    \draw[red,->] (-0.5,0.2) arc (90:60:0.8);
+    \draw[red,->] (1.2,0.5) arc (0:-30:0.8);
+    \node[below,red] at (0.5,-0.5) {$\omega\uparrow$};
+    \node[above,red] at (-1,0.5) {end};
+    \node[above,red] at (-1,0) {point};
+    \node[above,red] at (1.2,1) {starting};
+    \node[above,red] at (1.2,0.5) {point};
+    \draw[blue,->] (0,0) -- ({0.5+sqrt(0.24)},-0.1);
+    \draw[blue,->] (0,0) -- ({0.5+sqrt(0.16)},-0.3);
+    \draw[blue,->] (0,0) -- ({0.5-sqrt(0.09)},-0.4);
+\end{tikzpicture}
+```
+:::
+
+$$G(j\omega) \to \text{polar plot}$$
+
+<ul style="list-style-type: '① ';color:#B139FA">
+<li>Hard to see the effect of individual poles/zeros. <span style="color:red">(Root Locus)</span></li>
+</ul>
+
+<ul style="list-style-type: '② ';color:#B139FA">
+<li>Indirect information of $\lvert G(j\omega) \rvert$ and $\angle G(j\omega)$. <span style="color:red">(Bode Plot)</span></li>
+</ul>
+
+$$\lvert G(j\omega) \rvert = \sqrt{\frac{1}{\left(1+\frac{\omega^2}{a^2}\right)^2} + \frac{\omega^2/a^2}{\left(1+\frac{\omega^2}{a^2}\right)}} = \boxed{\frac{1}{\sqrt{1+\frac{\omega^2}{a^2}}}}$$
+
+$$\angle G(j\omega) = \boxed{\arctan \left(-\frac{\omega}{a}\right)}$$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+\begin{scope}
+    \draw[axis] (0,0) -- (5.5,0) node[right] {$\omega$};
+    \draw[axis] (0,-0.5) -- (0,2) node[above] {$\lvert G(j\omega) \rvert$};
+    \draw[thick,domain=0:5] plot (\x,{1/sqrt(1+10^(\x-2.5))});
+    \node[below,red] at (0.5,0) {$0.1a$};
+    \node[below] at (2.5,0) {$a$};
+    \node[below,red] at (4.5,0) {$10a$};
+    \draw[dashed,red] (0.5,0) -- (0.5,{1/sqrt(0.99)});
+    \draw[dashed] (2.5,0) -- (2.5,{1/sqrt(2)});
+    \draw[dashed,red] (4.5,0) -- (4.5,{1/sqrt(101)});
+    \node[right] at (2.5,0.9) {$0.707$};
+    \node[left] at (0,1) {$1$};
+\end{scope}
+\begin{scope}[yshift=-2cm]
+    \draw[axis] (0,0) -- (5.5,0) node[right] {$\omega$};
+    \draw[axis] (0,-2) -- (0,0.5) node[above] {$\angle G(j\omega)$};
+    \draw[thick,red,domain=0:5] plot (\x,{rad(atan(-10^((\x-2.5)/2)))});
+    \node[above,red] at (0.5,0) {$0.1a$};
+    \node[above] at (2.5,0) {$a$};
+    \node[above,red] at (4.5,0) {$10a$};
+    \draw[dashed,red] (2.5,0) -- (2.5,{-pi/4});
+    \draw[dashed,red] (0,-pi/4) -- (2.5,{-pi/4});
+    \draw[dashed,red] (4.5,0) -- (4.5,{rad(atan(-10))});
+    \draw[dashed,red] (0,{rad(atan(-10))}) -- (4.5,{rad(atan(-10))});
+    \draw[dashed,red] (0,-pi/2) -- (5,{-pi/2});
+    \node[left,red] at (0,-pi/4) {$-45^\circ$};
+    \node[left,red] at (0,-pi/2) {$-90^\circ$};
+\end{scope}
+\end{tikzpicture}
+```
+:::
+
+::: {style="color:green"}
+\begin{array}{rl}
+    \omega \ll a: & \left(\frac{\omega}{a}\right)^2 \to 0 \implies \lvert G(j\omega) \rvert \to 1 \\
+    \omega \uparrow: & \left(\frac{\omega}{a}\right)^2 \uparrow \implies \lvert G(j\omega) \rvert \downarrow \\
+    \omega = a: & \lvert G(j\omega) \rvert = \frac{1}{\sqrt{2}} = 0.707 \\
+    \omega \gg a: & \left(\frac{\omega}{a}\right)^2 \to \infty \implies \lvert G(j\omega) \rvert \to 0
+\end{array}
+:::
+
+
+## Bode Plot
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex, thick]
+    \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$LTI$};
+    \draw[->] (-3,0) -- (sys.west);
+    \draw[->] (sys.east) -- (3,0);
+    \node[above] at (-2.5,0) {$X(s)$};
+    \node[above] at (2.5,0) {$Y(s)$};
+    \node[below] at (0,-0.5) {$G(s)$};
+\end{tikzpicture}
+```
+:::
+
+\begin{align*}
+    G(s) &= k_1 \cdot \frac{(s+z_1)(s+z_2) \cdots (s+z_m)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \qquad \color{red} m < n \\
+    \color{YellowOrange} G(j\omega) \,&\color{YellowOrange}= k_1 \cdot \frac{(z_1+j\omega)(z_2+j\omega) \cdots (z_m+j\omega)}{(p_1+j\omega)(p_2+j\omega) \cdots (p_n+j\omega)} \\
+    \color{YellowOrange} \lvert G(j\omega) \rvert \,&\color{YellowOrange}= \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
+    \color{YellowOrange} \angle G(j\omega) \,&\color{YellowOrange}= \angle k_1 + \angle \varphi_{z_1} + \angle \varphi_{z_2} + \cdots + \angle \varphi_{z_m} \\
+    &\color{YellowOrange} \qquad\quad - \angle \varphi_{p_1} - \angle \varphi_{p_2} - \cdots - \angle \varphi_{p_n}
+\end{align*}
+
+::: {style="color:green"}
+Side note
+\begin{align*}
+    G_1(j\omega) &= a + bi = r_1 \cdot e^{i\theta_1} \\
+    G_2(j\omega) &= r_2 \cdot e^{i\theta_2} \\
+    G_1(j\omega) \cdot G_2(j\omega) &= r_1 \cdot r_2 \cdot e^{i(\theta_1+\theta_2)}
+\end{align*}
+:::
+
+\begin{align*}
+    \log \lvert G(j\omega) \rvert =&\, \log \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
+    =&\, \log \lvert k_1 \rvert +\log\lvert z_1+j\omega\rvert +\log\lvert z_2+j\omega \rvert + \cdots +\log\lvert z_m+j\omega\rvert \\
+    & \qquad\quad -\log\lvert p_1+j\omega\rvert - \log\lvert p_2+j\omega\rvert - \dots - \log\lvert p_n+j\omega\rvert
+\end{align*}
+
+$$\color{red}\lvert G(j\omega) \rvert = \lvert G_1(j\omega) \rvert \cdot \lvert G_2(j\omega) \rvert \cdot \lvert G_3(j\omega) \rvert$$

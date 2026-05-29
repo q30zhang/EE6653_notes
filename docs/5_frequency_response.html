@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Fourier Transform – EE6653 - Power Electronics Notes</title>
+<title>5&nbsp; Frequency Response – EE6653 - Power Electronics Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_laplace_transform.html" rel="next">
-<link href="./1_convolution.html" rel="prev">
+<link href="./4_time-domain_response.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -112,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_fourier_transform.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fourier Transform</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_frequency_response.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +150,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_fourier_transform.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2_fourier_transform.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fourier Transform</span></span></a>
   </div>
 </li>
@@ -169,7 +168,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_frequency_response.html" class="sidebar-item-text sidebar-link">
+  <a href="./5_frequency_response.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></span></a>
   </div>
 </li>
@@ -183,14 +182,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#frequency-domain" id="toc-frequency-domain" class="nav-link active" data-scroll-target="#frequency-domain"><span class="header-section-number">2.1</span> Frequency domain</a></li>
-  <li><a href="#fourier-series" id="toc-fourier-series" class="nav-link" data-scroll-target="#fourier-series"><span class="header-section-number">2.2</span> Fourier Series</a>
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2.2.1</span> Overview</a></li>
-  <li><a href="#finding-fourier-coefficients" id="toc-finding-fourier-coefficients" class="nav-link" data-scroll-target="#finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</a></li>
-  </ul></li>
-  <li><a href="#fourier-transform" id="toc-fourier-transform" class="nav-link" data-scroll-target="#fourier-transform"><span class="header-section-number">2.3</span> Fourier Transform</a></li>
-  <li><a href="#fourier-transform-contd---0513" id="toc-fourier-transform-contd---0513" class="nav-link" data-scroll-target="#fourier-transform-contd---0513">Fourier Transform (cont’d) - 05/13</a></li>
+  <li><a href="#why-the-amplitede-scaling-is" id="toc-why-the-amplitede-scaling-is" class="nav-link active" data-scroll-target="#why-the-amplitede-scaling-is"><span class="header-section-number">5.1</span> Why the amplitede scaling is …</a></li>
+  <li><a href="#frequency-response-of-1st-order-system" id="toc-frequency-response-of-1st-order-system" class="nav-link" data-scroll-target="#frequency-response-of-1st-order-system"><span class="header-section-number">5.2</span> Frequency response of 1st-order system</a></li>
+  <li><a href="#bode-plot" id="toc-bode-plot" class="nav-link" data-scroll-target="#bode-plot"><span class="header-section-number">5.3</span> Bode Plot</a></li>
   </ul>
 </nav>
     </div>
@@ -199,7 +193,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fourier Transform</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></h1>
 </div>
 
 
@@ -216,302 +210,181 @@ window.Quarto = {
 </header>
 
 
-<section id="frequency-domain" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="frequency-domain"><span class="header-section-number">2.1</span> Frequency domain</h2>
-<ul style="list-style-type: '① ';">
-<li>
-The convolution in time domain is the multiplication in frequency domain:
-</li>
-<div style="text-align: center;">
-<img src="2_fourier_transform_files/mediabag/bbbe3909c68eca91a0bedfee2119d3bb13126763.svg" class="img-fluid">
-</div>
-</ul>
-<ul style="list-style-type: '② ';">
-<li>
-More convenient.
-</li>
-<p>E.g. sine wave</p>
-<p>Time domain:</p>
-<img src="2_fourier_transform_files/mediabag/29ea95b3fb295c263ebcd6b29d88e20c4b8ed14d.svg" class="img-fluid">
-<p>Frequency domain:</p>
-<img src="2_fourier_transform_files/mediabag/cfca35be42645eadd6470549f1336950913139e9.svg" class="img-fluid">
-</ul>
-<ul style="list-style-type: '③ ';">
-<li>
-More direct.
-</li>
-<!-- **③** More direct. -->
-<p>Time domain:</p>
-<img src="2_fourier_transform_files/mediabag/655d1d156ef6fd42a309bd67af59e102dbd3a0a0.svg" class="img-fluid">
-<p>Frequency domain:</p>
-<img src="2_fourier_transform_files/mediabag/2b7c6831f0c936a771de415c1454b31b5eebf723.svg" class="img-fluid">
-</ul>
-<p>Fourier Series: Every periodic function can be represented by a series of (co)sines.</p>
-<img src="2_fourier_transform_files/mediabag/2efa92726c0737e62b34428e23ea44c8e35d23cf.svg" class="img-fluid">
-<img src="2_fourier_transform_files/mediabag/8347c16053ee14c63f677bc60a7b45e30ffb4a7f.svg" class="img-fluid">
-<p>Why decompose into sinusoids?</p>
-<div class="columns">
-<div class="column" style="width: fit-content;">
-<img src="2_fourier_transform_files/mediabag/b98ea0995472695a6b0d97c318bf0c966eccc38d.svg" class="img-fluid">
-</div><div class="column">
-<p><span class="math inline">\(\qquad\color{magenta}a,\, \displaystyle\frac{1}{a}\,x(t)\)</span><br> <span class="math inline">\(\qquad\color{blue}\boxed{\color{magenta}x_1(t)} \color{magenta} \pm \color{blue}\boxed{\color{magenta}x_2(t)}\)</span><br> <span class="math inline">\(\qquad\color{magenta}\displaystyle\int \color{blue}\boxed{\color{magenta}x(t)} \color{magenta} \,dt ,\, \frac{d\, \color{blue}\boxed{\color{magenta}x(t)}}{dt}\)</span></p>
-</div>
-</div>
-</section>
-<section id="fourier-series" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="fourier-series"><span class="header-section-number">2.2</span> Fourier Series</h2>
-<section id="overview" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">2.2.1</span> Overview</h3>
-<p>Every periodic function can be represented by a series of (co)sines.</p>
-<img src="2_fourier_transform_files/mediabag/db7540f51951b6bc6a83b41fe43348a91483fe07.svg" class="img-fluid">
-<p><span class="math display">\[\begin{align*}
-    f(x) =&amp;\, a_0 \cdot \cos(0x) + a_1 \cdot \cos(1\omega x) + a_2 \cdot \cos(2\omega x) + \cdots \\
-    &amp;+ b_0 \cdot \sin(0x) + b_1 \cdot \sin(1\omega x) + b_2 \cdot \sin(2\omega x) + \cdots \\
-    =&amp;\, a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
-\end{align*}\]</span></p>
-<p>To find <span class="math inline">\(\begin{cases}a_0,\,a_1,\,a_2, \dots \\ b_0,\,b_1,\,b_2, \dots \end{cases}\)</span></p>
-<p>Orthogonal functions:</p>
-<p>If <span class="math inline">\(\displaystyle\int_a^b g(x) \cdot f(x) \,dx = 0\)</span>, then <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> are orthogonal on <span class="math inline">\([a, b]\)</span>.</p>
-<p>Orthogonal collection of (co)sines:</p>
-<p><span class="math display">\[\{ \cancel{0=\sin 0x},\, 1=\cos 0x,\, \sin x,\, \cos x,\, \sin 2x,\, \cos 2x,\, \sin 3x,\, \cos 3x,\, \dots \}\]</span></p>
-<ul style="list-style-type: '① ';">
-<li>
-Every 2 different functions are orthogonal.
-</li>
-</ul>
-<ul style="list-style-type: '② ';">
-<li>
-Every 2 same functions are unorthogonal.
-</li>
-<ol type="a">
-<li>
-<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \cos nx \,dx = 0\)</span>.
-</li>
-<li>
-<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx = 0,\, n \ne m\)</span>.
-</li>
-<li>
-<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx = 0,\, n \ne m\)</span>.
-</li>
-<li>
-<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} 1 \cdot \sin nx \,dx = 0\)</span>.
-</li>
-<li>
-<span class="math inline">\(\displaystyle\int_{-\pi}^{\pi} 1 \cdot \cos nx \,dx = 0\)</span>.
-</li>
-</ol></ul>
-
-<img src="2_fourier_transform_files/mediabag/d92d211e699d2996add9bbc6a430848339a59915.svg" class="img-fluid">
-<div style="color:#994C01;">
-<ol type="a">
-<li></li>
-</ol>
-<p><span class="math display">\[\begin{align*}
-    &amp;\, \int_{-\pi}^{\pi} \sin nx \cdot \cos mx \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\sin(nx + mx) + \sin(nx - mx)\right] \,dx \\
-    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \sin(n + m)x + \sin(n - m)x \,dx \\
-    =&amp;\, 0
-\end{align*}\]</span></p>
-<ol start="2" type="a">
-<li></li>
-</ol>
-<p><span class="math display">\[\begin{align*}
-    &amp;\, \int_{-\pi}^{\pi} \sin nx \cdot \sin mx \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx - mx) - \cos(nx + mx)\right] \,dx \\
-    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n - m)x - \cos(n + m)x \,dx \\
-    =&amp;\, \begin{cases}
-        0, &amp; n \ne m \\
-        \pi, &amp; n = m
-    \end{cases}
-\end{align*}\]</span></p>
-<ol start="3" type="a">
-<li></li>
-</ol>
-<p><span class="math display">\[\begin{align*}
-    &amp;\, \int_{-\pi}^{\pi} \cos nx \cdot \cos mx \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \frac{1}{2}\left[\cos(nx + mx) + \cos(nx - mx)\right] \,dx \\
-    =&amp;\, \frac{1}{2} \int_{-\pi}^{\pi} \cos(n + m)x + \cos(n - m)x \,dx \\
-    =&amp;\, \begin{cases}
-        0, &amp; n \ne m \\
-        \pi, &amp; n = m
-    \end{cases}
-\end{align*}\]</span></p>
-</div>
-</section>
-<section id="finding-fourier-coefficients" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="finding-fourier-coefficients"><span class="header-section-number">2.2.2</span> Finding Fourier coefficients</h3>
-<p><span class="math display">\[ f(x) = a_0 + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) \]</span></p>
-<p>To find <span class="math inline">\(a_2\)</span>:</p>
-<p><span class="math display">\[\begin{align*}
-    &amp;\, \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cos x + a_2 \cdot \cos 2x + \cdots\right. \\
-    &amp;\, \quad\quad\, \left.b_1 \cdot \sin x + b_2 \cdot \sin 2x + \cdots\right) \cdot \cos 2x \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \big( a_0 \cdot \cancelto{0}{\cos 2x} + a_1 \cdot \cancelto{0}{\cos x \cdot \cos 2x} + \boxed{a_2 \cdot \cos^2 2x} + \cdots \\
-    &amp;+ b_1 \cdot \cancelto{0}{\sin x \cdot \cos 2x} + b_2 \cdot \cancelto{0}{\sin 2x \cdot \cos 2x} + \cdots \big) \,dx \\
-    =&amp;\, a_2 \cdot \int_{-\pi}^{\pi} \cos^2 2x \,dx \\
-    =&amp;\, a_2 \cdot \int_{-\pi}^{\pi} \frac{1 + \cancelto{0}{\cos 4x}}{2} \,dx \\
-    =&amp;\, \pi \cdot a_2 .
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    a_2 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos 2x \,dx
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}{a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}{b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx}
-\end{equation}\]</span></p>
-<p>To find <span class="math inline">\(a_0\)</span>: <span class="math display">\[\begin{align*}
-    &amp;\, \int_{-\pi}^{\pi} f(x) \cdot 1 \,dx \\
-    =&amp;\, \int_{-\pi}^{\pi} \left(a_0 + a_1 \cdot \cancelto{0}{\cos x} + a_2 \cdot \cancelto{0}{\cos 2x} + \cdots\right. \\
-    &amp;\, \quad\quad\, \left.b_1 \cdot \cancelto{0}{\sin x} + b_2 \cdot \cancelto{0}{\sin 2x} + \cdots\right) \cdot 1 \,dx \\
-    =&amp;\, 2\pi a_0 .
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}{a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx}
-\end{equation}\]</span></p>
-<p><span style="color:blue;">Alternatively, with</span></p>
-<p><span class="math display">\[\begin{equation}
-    f(x) = \color{blue}{\frac{a_0}{2}} \color{black} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right) ,
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{blue}{a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \,dx}
-\end{equation}\]</span></p>
-<p>E.g. <span class="math inline">\(f(x) = \begin{cases}
-    1, &amp; \quad [0, \pi] \\
-    -1, &amp; \quad [-\pi, 0)
-    \end{cases}\)</span></p>
-<img src="2_fourier_transform_files/mediabag/9fa402145ab673f7a22d0a4e3cba5fd288e640c8.svg" class="img-fluid">
-<p><span class="math display">\[\begin{equation}
-    f(x) = \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_0}} + \sum_{n=1}^{\infty} \left( \underset{\color{red}{0}}{\color{red}\underline{\color{black}a_n}} \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    a_0 &amp;= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \,dx \\
-    &amp;= \frac{1}{2\pi} \left[ \int_{0}^{\pi} 1 \,dx + \int_{-\pi}^{0} -1 \,dx \right] \\
-    &amp;= \frac{1}{2\pi} \left[] \pi + (-\pi) \right] \\
-    &amp;= 0 . \\[1ex]
-    a_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
-    &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \cos nx \,dx + \int_{-\pi}^{0} -\cos nx \,dx \right] \\
-    &amp;= \frac{1}{\pi} \left[ \frac{1}{n}\sin nx \Big|_0^{\pi} + \frac{1}{n}\sin nx \Big|_{-\pi}^{0} \right] \\
-    &amp;= 0 . \\[1ex]
-    b_n &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx \\
-    &amp;= \frac{1}{\pi} \left[ \int_{0}^{\pi} \sin nx \,dx + \int_{-\pi}^{0} -\sin nx \,dx \right] \\
-    &amp;= \frac{1}{\pi} \left[ -\frac{1}{n}\cos nx \Big|_0^{\pi} + \frac{1}{n}\cos nx \Big|_{-\pi}^{0} \right] \\
-    &amp;= \frac{1}{n\pi} \left(-\cos n\pi + \cos 0 + \cos 0 - \cos(-n\pi) \right) \\
-    &amp;= \frac{2}{n\pi} \left(1 - \cos n\pi\right) \\
-    &amp;= \begin{cases}
-        \displaystyle\frac{4}{n\pi}, &amp; n = 1,\,3,\,5,\, \dots \\
-        0, &amp; n = 0,\,2,\,4,\, \dots
-    \end{cases}
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}{f(x) = \frac{4}{\pi} \left( \sin x + \frac{1}{3}\sin 3x + \frac{1}{5}\sin 5x + \frac{1}{7}\sin 7x \cdots \right) = \boxed{\sum_{n=1,3,5,\dots}^{\infty} \frac{4}{n\pi} \cdot \sin nx}}
-\end{equation}\]</span></p>
-<img src="2_fourier_transform_files/mediabag/628eaaacc9c6b38b3e072e94e3f39861c446e6ad.svg" class="img-fluid">
-</section>
-</section>
-<section id="fourier-transform" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="fourier-transform"><span class="header-section-number">2.3</span> Fourier Transform</h2>
-<p><span class="math display">\[\begin{equation}
-    f(x) = \frac{A_0}{2} + \sum_{n=1}^{\infty} A_n \cdot \sin(nx+\varphi_n)
-\end{equation}\]</span></p>
-<p><span style="color:#FFAA33;">Let <span class="math inline">\(a_n = A_n\sin\varphi_n\)</span>, <span class="math inline">\(b_n = A_n\cos\varphi_n\)</span>,</span></p>
-<p><span class="math display">\[\begin{equation}
-    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \cos(nx) + b_n \cdot \sin(nx) \right)
-\end{equation}\]</span></p>
-<p>Applying <span style="color:blue;">Euler’s formula</span>:</p>
-<p><span class="math display">\[\begin{equation}\color{blue}
-    \begin{cases}
-        e^{ix} &amp;= \cos x + i \sin x \\
-        e^{-ix} &amp;= \cos x - i \sin x
-    \end{cases} \implies \begin{cases}
-        \cos x &amp;= \displaystyle\frac{e^{ix} + e^{-ix}}{2} \\
-        \sin x &amp;= \displaystyle\frac{e^{ix} - e^{-ix}}{2i}
-    \end{cases},
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    f(x) &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( a_n \cdot \frac{e^{inx} + e^{-inx}}{2} + b_n \cdot \frac{e^{inx} - e^{-inx}}{2i} \right) \\
-    &amp;= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left( \frac{a_n - ib_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n + ib_n}{2} \cdot e^{-inx} \right) \\
-    &amp;= \sum_{n=0}^{\infty} \frac{a_n}{2} \cdot e^{inx} + \sum_{n=1}^{\infty} \frac{a_n-ib_n}{2} \cdot e^{inx} + \sum_{n=-1,-2,-3}^{-\infty} \frac{a_{-n}+ib_{-n}}{2} \cdot e^{inx}
-\end{align*}\]</span></p>
-<p>Define: <span class="math display">\[\begin{equation}
-    c_n = \begin{cases}
-        \displaystyle\frac{a_0}{2}, &amp; n = 0 \\
-        \displaystyle\frac{a_n - ib_n}{2}, &amp; n = 1,2,3,\dots \\
-        \displaystyle\frac{a_{-n} + ib_{-n}}{2}, &amp; n = -1,-2,-3,\dots
-    \end{cases}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    \color{YellowOrange} a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \cos nx \,dx \\
-    \color{YellowOrange} b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \sin nx \,dx
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    \text{Then, }\quad n=0: c_n &amp;= \frac{a_0}{2} = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \color{red}{\cdot e^{-inx}} \,dx \\
-    n=1,2,3,\dots\, : c_n &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - i f(x) \cdot \sin nx\right]\,dx \\
-    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot \left(\cos nx - i \sin nx\right)\,dx \\
-    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx \\
-    n=-1,-2,-3,\dots\, : c_n &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi \left[f(x) \cdot \cos nx - f(x) \cdot i \cdot \sin nx\right] \,dx \\
-    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \left(\cos nx - i\cdot \sin nx\right) \,dx \\
-    &amp;= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx .
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    \color{Periwinkle}f(x) &amp;\color{Periwinkle}= \sum_{n=0}^\infty c_n \cdot e^{inx} + \sum_{n=1}^{+\infty} c_n \cdot e^{inx} + \sum_{n=-1}^{-\infty} c_n \cdot e^{inx} \\
-    &amp;\color{Periwinkle}= \sum_{n=-\infty}^{+\infty} c_n \cdot e^{inx}
-\end{align*}\]</span> <span style="color:#5453A6;">where <span class="math inline">\(\color{Periwinkle}c_n = \displaystyle\frac{1}{2\pi} \int_{-\pi}^\pi f(x) \cdot e^{-inx} \,dx\)</span>.</span></p>
-<p>When the period is NOT <span class="math inline">\(2\pi\)</span>, <span class="math display">\[f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i \omega_n t}\]</span> where <span class="math inline">\(c_n = \displaystyle \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i \omega_n t} \,dt\)</span>.</p>
-<p><span style="color:green;"> When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(T \to \infty\)</span>, <span class="math inline">\(\Delta \omega_n = \omega_{n+1}-\omega_n = \displaystyle\frac{2\pi}{T} \to 0\)</span>.</span></p>
-<p><span class="math display">\[\begin{align*}
-    \color{green}c_n &amp;\color{green}= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
-    &amp;\color{green}= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \frac{1}{2\pi} \int_{\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \cdot e^{i\omega_n t} \Delta \omega_n \\
-    &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n
-\end{align*}\]</span></p>
-</section>
-<section id="fourier-transform-contd---0513" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="fourier-transform-contd---0513">Fourier Transform (cont’d) - 05/13</h2>
-<p><span class="math display">\[ f(t) = \sum_{n=-\infty}^{+\infty} c_n \cdot e^{i\omega_n t} \quad\text{(discrete)}\]</span> where <span class="math display">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot e^{-i\omega_n t} \,dt .\]</span></p>
-<div style="color:blue;">
-<p>When <span class="math inline">\(f(t)\)</span> is non-periodic, <span class="math inline">\(\begin{array}{l}
-\ \\
-T \to \infty,\\
-\Delta \omega_n\to 0.
-\end{array}\)</span></p>
-</div>
-<p><span class="math display">\[\begin{align*}
-    c_n &amp;= \lim_{T\to\infty} \frac{1}{T} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_n t}\,dt \\
-    &amp;= \lim_{\Delta\omega_n \to 0} \int_{-\infty}^{+\infty} \frac{\Delta \omega_n}{2\pi} f(t) \cdot e^{-i\omega_n t} \,dt
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{YellowOrange}f(t) = \sum_{n=-\infty}^{+\infty} \lim_{\Delta \omega_n \to 0} \color{blue}\underset{y(\omega_n)}{\underline{\color{YellowOrange}\frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt} \cdot e^{i\omega_nt}} \color{YellowOrange} \,\Delta\omega_n
-\end{equation}\]</span></p>
 <div style="text-align:center">
-<img src="2_fourier_transform_files/mediabag/62247b90034cc139f5385c52d7db9953a30c8027.svg" class="img-fluid">
+<img src="5_frequency_response_files/mediabag/f66d877f5d9fd0b4f0b9d53de41d23db09460cc3.svg" class="img-fluid">
 </div>
+<p><strong>E.g.</strong></p>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/71a4e1b22feacc272754bdae306f3a2a89010128.svg" class="img-fluid">
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{align*}
-    \color{YellowOrange}f(t) &amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \frac{1}{2\pi} \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega_nt} \,dt \cdot e^{i\omega_nt} \,d\omega_n \\
-    &amp;\color{YellowOrange}= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \color{red}\underset{F(\omega)}{\underline{\color{YellowOrange}\int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt}} \color{YellowOrange} \cdot e^{i\omega t} \,d\omega
-\end{align*}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}F(\omega) = \int_{-\infty}^{+\infty} f(t) \cdot e^{-i\omega t} \,dt \quad\text{(F.T.)}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
-    \color{red}f(t) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} F(\omega) \cdot e^{i\omega t} \,d\omega \quad\text{(inverse F.T.)}
-\end{equation}\]</span></p>
-<div style="color:#5453A6;">
-<p><span class="math display">\[\begin{align*}
-    \text{F. S.} \quad \longrightarrow &amp;\quad \text{periodic} \\
-    \text{F. T.} \quad \longrightarrow &amp;\quad \text{non-periodic}
+y(t) &amp;= 2 \cdot \sin\frac{1}{2}t + \int\sin\frac{1}{2}t\,dt \\
+&amp;= 2 \cdot \sin\frac{1}{2}t - 2 \cdot \cos\frac{1}{2}t \\
+&amp;= \sqrt{2^2+2^2} \cdot \sin\left(\frac{1}{2}t - 45^\circ\right)
 \end{align*}\]</span></p>
 </div>
-<div style="color:green;">
-<p><b>Limitation</b>: F.T. can only deal with time-domain function that is absolutely convergent.</p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{align*}
+\color{green}
+\sin't \,&amp;\color{green}= \cos t \\
+\color{green}\cos't \,&amp;\color{green}= -\sin t \\
+\color{green}\sin(\alpha+\beta) \,&amp;\color{green}= \sin\alpha \cdot \cos\beta + \sin\beta \cdot \cos\alpha \\
+\color{green}\cos(\alpha+\beta) \,&amp;\color{green}= \cos\alpha \cdot \cos\beta - \sin\alpha \cdot \sin\beta \\[2ex]
+&amp; \color{red} \sin\frac{1}{2}t \cdot \cos 45^\circ - \cos\frac{1}{2}t \cdot \sin 45^\circ
+\end{align*}\]</span></p>
 </div>
-<div style="color:blue;">
-<p>Side note: <span class="math display">\[ e^{i\omega t} = \cos \omega t + i \sin \omega t \]</span> <span class="math display">\[ \int_{-\infty}^{+\infty} f(t) \div e^{i\omega t} \,dt\]</span> <span class="math inline">\(6 \div 2\)</span></p>
-<p><span class="math inline">\(6 - 2 - 2 - 2 = 0\)</span></p>
 </div>
+</div>
+<p><span class="math display">\[ y(t) = \color{red}\underset{\text{amplitude}}{\underset{\text{change in}}{\underbrace{\color{black}2\sqrt{2}}}} \color{black} \cdot \sin\Big(\color{blue}\underset{\text{frequency}}{\underset{\text{same}}{\underline{\underline{\color{black}\frac{1}{2}t}}}} \color{red}\underset{\text{phase angle}}{\underset{\text{change in}}{\underbrace{\color{black} - 45^\circ}}} \color{black} \Big)\]</span></p>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/b986ee0e601fa9347fc5257a3fc061d271fadc13.svg" class="img-fluid">
+</div>
+<p>When <span class="math inline">\(x(t) = \sin t\)</span>,</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{align*}
+y(t) &amp;= 2\sin t + \int \sin t \,dt \\
+&amp;= 2\sin t - \cos t \\
+&amp;= \sqrt{5} \cdot \sin(t-\varphi)
+\end{align*}\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="5_frequency_response_files/mediabag/938fa7b846184af13698fa1bce48a1f7991df3aa.svg" class="img-fluid">
+</div>
+</div>
+</div>
+<p>T.F.: <span class="math inline">\(\color{purple} G(s) = 2 + \displaystyle\frac{1}{s}\)</span></p>
+<p>For frequency response, we will let <span class="math inline">\(s=j\omega\)</span>.</p>
+<p><span class="math display">\[ G(j\omega) = 2 + \frac{1}{j\omega} = 2 - \frac{1}{\omega} \cdot j \]</span></p>
+<div style="color:#F7981B">
+<p>When <span class="math inline">\(\omega=\displaystyle\frac{1}{2}\, \mathrm{rad/s}\)</span>,</p>
+<p><span class="math display">\[ G(j\omega) = 2-2j, \quad \begin{cases} \lvert G(j\omega) \rvert = 2\sqrt{2} \\ \angle G(j\omega) = -45^\circ\end{cases} \]</span></p>
+<p>When <span class="math inline">\(\omega=1\, \mathrm{rad/s}\)</span>,</p>
+<p><span class="math display">\[ G(j\omega) = 2-j, \quad \begin{cases} \lvert G(j\omega) \rvert = \sqrt{5} \\ \angle G(j\omega) = -26.565^\circ\end{cases} \]</span></p>
+</div>
+<div style="color:red">
+<p>Why the amplitude scaling is <span class="math inline">\(\lvert G(j\omega) \rvert\)</span> and the phase change is <span class="math inline">\(\angle G(j\omega)\)</span> ?</p>
+</div>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/f5f980b93dd95963c3b862ad95e80ecb1b8e3d1f.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    Y(s) &amp;= X(s) \cdot G(s) \\
+    &amp;= \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \\
+    &amp;= \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n} \\
+    \mathcal{L}^{-1}\{Y(s)\} = y(t) &amp;= \color{red}\underbrace{\color{black}c_1 \cdot e^{j\omega t} + c_2 \cdot e^{-j\omega t}} \color{black} + k_1 \cdot e^{-p_1 t} + e^{-p_2 t} + \cdots + k_n \cdot e^{-p_n t}
+\end{align*}\]</span></p>
+<p>If the LTI system is stable, <span class="math display">\[y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}\]</span></p>
+<p><span class="math display">\[ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} .\]</span></p>
+<p>Assume <span class="math inline">\(s=+j\omega\)</span>, <span class="math inline">\(A \cdot \omega \cdot N(j\omega) = 2 \cdot j\omega \cdot c_1 \cdot D(j\omega)\)</span></p>
+<p><span class="math display">\[c_1 = \frac{A \cdot \omega \cdot N(j\omega)}{2j\omega \cdot D(j\omega)} = \frac{A}{2j} \cdot G(j\omega) .\]</span></p>
+<section id="why-the-amplitede-scaling-is" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="why-the-amplitede-scaling-is"><span class="header-section-number">5.1</span> Why the amplitede scaling is …</h2>
+<p><span class="math display">\[y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    &amp;\, \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n) \color{red}{=: D(s)}} \\
+    =&amp;\, \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n}
+\end{align*}\]</span></p>
+<p><span style="color:#F76B1B">Multiply both sides with <span class="math inline">\((s^2+\omega^2) D(s)\)</span>:</span></p>
+<p><span class="math display">\[ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} \]</span></p>
+<p>Assume <span class="math inline">\(s=+j\omega\quad \implies \quad c_1 = \displaystyle \frac{A}{2j} \cdot G(j\omega)\)</span>.</p>
+<p>Assume <span class="math inline">\(s=-j\omega\)</span>,</p>
+<p><span class="math display">\[A \cdot \omega \cdot N(-j\omega) = -2j\omega \cdot c_2 \cdot D(-j\omega)\]</span></p>
+<p><span class="math display">\[c_2 = \frac{A \cdot \omega \cdot D(-j\omega)}{-2j\omega \cdot D(-j\omega)} = -\frac{A}{2j} \cdot G(-j\omega)\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[y(t\to\infty) = \frac{A}{2j} \cdot G(j\omega) \cdot e^{j\omega t} - \frac{A}{2j} \cdot G(-j\omega) \cdot e^{-j\omega t} .\]</span></p>
+<div style="color:#F76B1B">
+<span class="math display">\[\begin{array}{rccccc}
+    \mathrm{L.T.} &amp; G(s) &amp; \implies &amp; G(j\omega) &amp; \implies &amp; F(\omega) \\
+    &amp; s=\sigma+j\omega &amp; &amp; \sigma=0 &amp; &amp; \mathrm{F.T.}
+\end{array}\]</span>
+</div>
+<div style="color:#F7981B">
+<p>If <span class="math inline">\(F(\omega) = a + i \cdot b\)</span>, then</p>
+<p><span class="math display">\[\begin{align*}
+    F(\omega) &amp;= \int_{-\infty}^{+\infty} \left[f(t) \cdot \cos \omega t + j \cdot f(t) \cdot \sin \omega t\right] \,dt \\
+    &amp;= \int_{-\infty}^{+\infty} f(t) \cdot e^{j\omega t} \,dt \\
+    \color{YellowOrange}\mathrm{Then} \quad F(-\omega) \,&amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \Bigg[\color{red}\underset{a}{\underbrace{\color{YellowOrange} f(t) \cdot \cos \omega t}} \color{YellowOrange} - \color{red}\underset{b}{\underbrace{\color{YellowOrange}j \cdot f(t) \cdot \sin \omega t}} \color{YellowOrange}\Bigg] \,dt \\
+    &amp;= a - i \cdot b
+\end{align*}\]</span></p>
+</div>
+<p><span class="math display">\[\begin{align*}
+    y(t\to\infty) &amp;= \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{j\varphi} \cdot e^{j\omega t} - \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{-j\varphi} \cdot e^{-j\omega t} \\
+    &amp;= A \cdot \lvert G(j\omega) \rvert \cdot \frac{e^{j\omega t + j\varphi} - e^{-(j\omega t + j\varphi)}}{2j} \\
+    &amp;= A \cdot \color{blue}\underset{\text{scaling}}{\underset{\text{Amplitude}}{\underbrace{\color{black} \lvert G(j\omega) \rvert}}} \color{black} \cdot \sin(\omega t + \color{blue}\underset{\varphi=\angle G(j\omega)}{\underbrace{\color{black}\varphi}} \color{black} )
+\end{align*}\]</span></p>
+</section>
+<section id="frequency-response-of-1st-order-system" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="frequency-response-of-1st-order-system"><span class="header-section-number">5.2</span> Frequency response of 1st-order system</h2>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/779848fc0d7e58995e32c6e9b0eca6e62e019cbc.svg" class="img-fluid">
+</div>
+<div style="color:#F7981B">
+<p><span class="math display">\[\begin{align*}
+    G(j\omega) &amp;= \frac{a}{a+j\omega} \\
+    &amp;= \frac{a(a-j\omega)}{a^2+\omega^2} \\
+    &amp;= \frac{a}{a^2+\omega^2} + \frac{-j\omega a}{a^2+\omega^2} \\
+    &amp;= \frac{1}{1 + \left(\frac{\omega}{a}\right)^2} + j \cdot \frac{-\omega/a}{1+\left(\frac{\omega}{a}\right)^2}
++ \frac{}{}\end{align*}\]</span></p>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Polar Plot}}\)</span></p>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/1113c3c36ea670ae218eb49d55ce492db256a160.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[G(j\omega) \to \text{polar plot}\]</span></p>
+<ul style="list-style-type: '① ';color:#B139FA">
+<li>
+Hard to see the effect of individual poles/zeros. <span style="color:red">(Root Locus)</span>
+</li>
+</ul>
+<ul style="list-style-type: '② ';color:#B139FA">
+<li>
+Indirect information of <span class="math inline">\(\lvert G(j\omega) \rvert\)</span> and <span class="math inline">\(\angle G(j\omega)\)</span>. <span style="color:red">(Bode Plot)</span>
+</li>
+</ul>
+<p><span class="math display">\[\lvert G(j\omega) \rvert = \sqrt{\frac{1}{\left(1+\frac{\omega^2}{a^2}\right)^2} + \frac{\omega^2/a^2}{\left(1+\frac{\omega^2}{a^2}\right)}} = \boxed{\frac{1}{\sqrt{1+\frac{\omega^2}{a^2}}}}\]</span></p>
+<p><span class="math display">\[\angle G(j\omega) = \boxed{\arctan \left(-\frac{\omega}{a}\right)}\]</span></p>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/456907f31043e77b54113b00df5f7a4502b1ad3a.svg" class="img-fluid">
+</div>
+<div style="color:green">
+<span class="math display">\[\begin{array}{rl}
+    \omega \ll a: &amp; \left(\frac{\omega}{a}\right)^2 \to 0 \implies \lvert G(j\omega) \rvert \to 1 \\
+    \omega \uparrow: &amp; \left(\frac{\omega}{a}\right)^2 \uparrow \implies \lvert G(j\omega) \rvert \downarrow \\
+    \omega = a: &amp; \lvert G(j\omega) \rvert = \frac{1}{\sqrt{2}} = 0.707 \\
+    \omega \gg a: &amp; \left(\frac{\omega}{a}\right)^2 \to \infty \implies \lvert G(j\omega) \rvert \to 0
+\end{array}\]</span>
+</div>
+</section>
+<section id="bode-plot" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="bode-plot"><span class="header-section-number">5.3</span> Bode Plot</h2>
+<div style="text-align:center">
+<img src="5_frequency_response_files/mediabag/ca18f7e0f3bb470542759db08d1e6112a7d65179.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    G(s) &amp;= k_1 \cdot \frac{(s+z_1)(s+z_2) \cdots (s+z_m)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \qquad \color{red} m &lt; n \\
+    \color{YellowOrange} G(j\omega) \,&amp;\color{YellowOrange}= k_1 \cdot \frac{(z_1+j\omega)(z_2+j\omega) \cdots (z_m+j\omega)}{(p_1+j\omega)(p_2+j\omega) \cdots (p_n+j\omega)} \\
+    \color{YellowOrange} \lvert G(j\omega) \rvert \,&amp;\color{YellowOrange}= \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
+    \color{YellowOrange} \angle G(j\omega) \,&amp;\color{YellowOrange}= \angle k_1 + \angle \varphi_{z_1} + \angle \varphi_{z_2} + \cdots + \angle \varphi_{z_m} \\
+    &amp;\color{YellowOrange} \qquad\quad - \angle \varphi_{p_1} - \angle \varphi_{p_2} - \cdots - \angle \varphi_{p_n}
+\end{align*}\]</span></p>
+<div style="color:green">
+<p>Side note <span class="math display">\[\begin{align*}
+    G_1(j\omega) &amp;= a + bi = r_1 \cdot e^{i\theta_1} \\
+    G_2(j\omega) &amp;= r_2 \cdot e^{i\theta_2} \\
+    G_1(j\omega) \cdot G_2(j\omega) &amp;= r_1 \cdot r_2 \cdot e^{i(\theta_1+\theta_2)}
+\end{align*}\]</span></p>
+</div>
+<p><span class="math display">\[\begin{align*}
+    \log \lvert G(j\omega) \rvert =&amp;\, \log \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
+    =&amp;\, \log \lvert k_1 \rvert +\log\lvert z_1+j\omega\rvert +\log\lvert z_2+j\omega \rvert + \cdots +\log\lvert z_m+j\omega\rvert \\
+    &amp; \qquad\quad -\log\lvert p_1+j\omega\rvert - \log\lvert p_2+j\omega\rvert - \dots - \log\lvert p_n+j\omega\rvert
+\end{align*}\]</span></p>
+<p><span class="math display">\[\color{red}\lvert G(j\omega) \rvert = \lvert G_1(j\omega) \rvert \cdot \lvert G_2(j\omega) \rvert \cdot \lvert G_3(j\omega) \rvert\]</span></p>
 
 
 </section>
@@ -919,14 +792,11 @@ T \to \infty,\\
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./1_convolution.html" class="pagination-link" aria-label="Convolution">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Convolution</span></span>
+      <a href="./4_time-domain_response.html" class="pagination-link" aria-label="Time-domain Response">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Time-domain Response</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_laplace_transform.html" class="pagination-link" aria-label="Laplace Transform">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Laplace Transform</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
