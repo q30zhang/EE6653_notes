@@ -268,10 +268,10 @@ If $F(\omega) = a + i \cdot b$, then
 ```{.tikz}
 \begin{tikzpicture}[>=latex, thick]
     \node[draw, minimum width=2.2cm, minimum height=1cm] (sys) {$G(s) = \displaystyle\frac{a}{s+a}$};
-    \draw[->] (-3,0) -- (sys.west);
-    \draw[->] (sys.east) -- (3,0);
-    \node[left] at (-1.2,0.3) {$x(t)=A \cdot \sin(\omega t+\theta)$};
-    \node[right] at (1.2,0.3) {$y(t) = A \cdot \color{blue}{\underline{\color{black} \lvert G(j\omega) \rvert}} \color{black} \cdot \sin\Big(\omega t + \theta + \color{blue}{\underline{\color{black} \angle G(j\omega)}}\color{black}\Big)$};
+    \draw[->] (-5,0) -- (sys.west);
+    \draw[->] (sys.east) -- (8,0);
+    \node[left] at (-1.2,0.4) {$x(t)=A \cdot \sin(\omega t+\theta)$};
+    \node[right] at (1.2,0.4) {$y(t) = A \cdot \color{blue} \lvert G(j\omega) \rvert \color{black} \cdot \sin\left(\omega t + \theta + \color{blue} \angle G(j\omega) \color{black} \right)$};
 \end{tikzpicture}
 ```
 :::
@@ -282,7 +282,7 @@ If $F(\omega) = a + i \cdot b$, then
     &= \frac{a(a-j\omega)}{a^2+\omega^2} \\
     &= \frac{a}{a^2+\omega^2} + \frac{-j\omega a}{a^2+\omega^2} \\
     &= \frac{1}{1 + \left(\frac{\omega}{a}\right)^2} + j \cdot \frac{-\omega/a}{1+\left(\frac{\omega}{a}\right)^2}
- + \frac{}{}\end{align*}
+\end{align*}
 :::
 
 $\boxed{\textbf{Polar Plot}}$
@@ -416,3 +416,4 @@ Side note
 \end{align*}
 
 $$\color{red}\lvert G(j\omega) \rvert = \lvert G_1(j\omega) \rvert \cdot \lvert G_2(j\omega) \rvert \cdot \lvert G_3(j\omega) \rvert$$
+

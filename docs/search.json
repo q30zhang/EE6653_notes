@@ -234,7 +234,7 @@
     "href": "5_frequency_response.html#frequency-response-of-1st-order-system",
     "title": "5  Frequency Response",
     "section": "5.2 Frequency response of 1st-order system",
-    "text": "5.2 Frequency response of 1st-order system\n\n\n\n\n\\[\\begin{align*}\n    G(j\\omega) &= \\frac{a}{a+j\\omega} \\\\\n    &= \\frac{a(a-j\\omega)}{a^2+\\omega^2} \\\\\n    &= \\frac{a}{a^2+\\omega^2} + \\frac{-j\\omega a}{a^2+\\omega^2} \\\\\n    &= \\frac{1}{1 + \\left(\\frac{\\omega}{a}\\right)^2} + j \\cdot \\frac{-\\omega/a}{1+\\left(\\frac{\\omega}{a}\\right)^2}\n+ \\frac{}{}\\end{align*}\\]\n\n\\(\\boxed{\\textbf{Polar Plot}}\\)\n\n\n\n\\[G(j\\omega) \\to \\text{polar plot}\\]\n\n\nHard to see the effect of individual poles/zeros. (Root Locus)\n\n\n\n\nIndirect information of \\(\\lvert G(j\\omega) \\rvert\\) and \\(\\angle G(j\\omega)\\). (Bode Plot)\n\n\n\\[\\lvert G(j\\omega) \\rvert = \\sqrt{\\frac{1}{\\left(1+\\frac{\\omega^2}{a^2}\\right)^2} + \\frac{\\omega^2/a^2}{\\left(1+\\frac{\\omega^2}{a^2}\\right)}} = \\boxed{\\frac{1}{\\sqrt{1+\\frac{\\omega^2}{a^2}}}}\\]\n\\[\\angle G(j\\omega) = \\boxed{\\arctan \\left(-\\frac{\\omega}{a}\\right)}\\]\n\n\n\n\n\\[\\begin{array}{rl}\n    \\omega \\ll a: & \\left(\\frac{\\omega}{a}\\right)^2 \\to 0 \\implies \\lvert G(j\\omega) \\rvert \\to 1 \\\\\n    \\omega \\uparrow: & \\left(\\frac{\\omega}{a}\\right)^2 \\uparrow \\implies \\lvert G(j\\omega) \\rvert \\downarrow \\\\\n    \\omega = a: & \\lvert G(j\\omega) \\rvert = \\frac{1}{\\sqrt{2}} = 0.707 \\\\\n    \\omega \\gg a: & \\left(\\frac{\\omega}{a}\\right)^2 \\to \\infty \\implies \\lvert G(j\\omega) \\rvert \\to 0\n\\end{array}\\]",
+    "text": "5.2 Frequency response of 1st-order system\n\n\n\n\n\\[\\begin{align*}\n    G(j\\omega) &= \\frac{a}{a+j\\omega} \\\\\n    &= \\frac{a(a-j\\omega)}{a^2+\\omega^2} \\\\\n    &= \\frac{a}{a^2+\\omega^2} + \\frac{-j\\omega a}{a^2+\\omega^2} \\\\\n    &= \\frac{1}{1 + \\left(\\frac{\\omega}{a}\\right)^2} + j \\cdot \\frac{-\\omega/a}{1+\\left(\\frac{\\omega}{a}\\right)^2}\n\\end{align*}\\]\n\n\\(\\boxed{\\textbf{Polar Plot}}\\)\n\n\n\n\\[G(j\\omega) \\to \\text{polar plot}\\]\n\n\nHard to see the effect of individual poles/zeros. (Root Locus)\n\n\n\n\nIndirect information of \\(\\lvert G(j\\omega) \\rvert\\) and \\(\\angle G(j\\omega)\\). (Bode Plot)\n\n\n\\[\\lvert G(j\\omega) \\rvert = \\sqrt{\\frac{1}{\\left(1+\\frac{\\omega^2}{a^2}\\right)^2} + \\frac{\\omega^2/a^2}{\\left(1+\\frac{\\omega^2}{a^2}\\right)}} = \\boxed{\\frac{1}{\\sqrt{1+\\frac{\\omega^2}{a^2}}}}\\]\n\\[\\angle G(j\\omega) = \\boxed{\\arctan \\left(-\\frac{\\omega}{a}\\right)}\\]\n\n\n\n\n\\[\\begin{array}{rl}\n    \\omega \\ll a: & \\left(\\frac{\\omega}{a}\\right)^2 \\to 0 \\implies \\lvert G(j\\omega) \\rvert \\to 1 \\\\\n    \\omega \\uparrow: & \\left(\\frac{\\omega}{a}\\right)^2 \\uparrow \\implies \\lvert G(j\\omega) \\rvert \\downarrow \\\\\n    \\omega = a: & \\lvert G(j\\omega) \\rvert = \\frac{1}{\\sqrt{2}} = 0.707 \\\\\n    \\omega \\gg a: & \\left(\\frac{\\omega}{a}\\right)^2 \\to \\infty \\implies \\lvert G(j\\omega) \\rvert \\to 0\n\\end{array}\\]",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Frequency Response</span>"
     ]
@@ -247,6 +247,36 @@
     "text": "5.3 Bode Plot\n\n\n\n\\[\\begin{align*}\n    G(s) &= k_1 \\cdot \\frac{(s+z_1)(s+z_2) \\cdots (s+z_m)}{(s+p_1)(s+p_2) \\cdots (s+p_n)} \\qquad \\color{red} m &lt; n \\\\\n    \\color{YellowOrange} G(j\\omega) \\,&\\color{YellowOrange}= k_1 \\cdot \\frac{(z_1+j\\omega)(z_2+j\\omega) \\cdots (z_m+j\\omega)}{(p_1+j\\omega)(p_2+j\\omega) \\cdots (p_n+j\\omega)} \\\\\n    \\color{YellowOrange} \\lvert G(j\\omega) \\rvert \\,&\\color{YellowOrange}= \\lvert k_1 \\rvert \\cdot \\frac{\\lvert z_1+j\\omega\\rvert \\cdot \\lvert z_2+j\\omega \\rvert \\cdots \\lvert z_m+j\\omega\\rvert}{\\lvert p_1+j\\omega\\rvert \\cdot \\lvert p_2+j\\omega\\rvert \\cdots \\lvert p_n+j\\omega\\rvert} \\\\\n    \\color{YellowOrange} \\angle G(j\\omega) \\,&\\color{YellowOrange}= \\angle k_1 + \\angle \\varphi_{z_1} + \\angle \\varphi_{z_2} + \\cdots + \\angle \\varphi_{z_m} \\\\\n    &\\color{YellowOrange} \\qquad\\quad - \\angle \\varphi_{p_1} - \\angle \\varphi_{p_2} - \\cdots - \\angle \\varphi_{p_n}\n\\end{align*}\\]\n\nSide note \\[\\begin{align*}\n    G_1(j\\omega) &= a + bi = r_1 \\cdot e^{i\\theta_1} \\\\\n    G_2(j\\omega) &= r_2 \\cdot e^{i\\theta_2} \\\\\n    G_1(j\\omega) \\cdot G_2(j\\omega) &= r_1 \\cdot r_2 \\cdot e^{i(\\theta_1+\\theta_2)}\n\\end{align*}\\]\n\n\\[\\begin{align*}\n    \\log \\lvert G(j\\omega) \\rvert =&\\, \\log \\lvert k_1 \\rvert \\cdot \\frac{\\lvert z_1+j\\omega\\rvert \\cdot \\lvert z_2+j\\omega \\rvert \\cdots \\lvert z_m+j\\omega\\rvert}{\\lvert p_1+j\\omega\\rvert \\cdot \\lvert p_2+j\\omega\\rvert \\cdots \\lvert p_n+j\\omega\\rvert} \\\\\n    =&\\, \\log \\lvert k_1 \\rvert +\\log\\lvert z_1+j\\omega\\rvert +\\log\\lvert z_2+j\\omega \\rvert + \\cdots +\\log\\lvert z_m+j\\omega\\rvert \\\\\n    & \\qquad\\quad -\\log\\lvert p_1+j\\omega\\rvert - \\log\\lvert p_2+j\\omega\\rvert - \\dots - \\log\\lvert p_n+j\\omega\\rvert\n\\end{align*}\\]\n\\[\\color{red}\\lvert G(j\\omega) \\rvert = \\lvert G_1(j\\omega) \\rvert \\cdot \\lvert G_2(j\\omega) \\rvert \\cdot \\lvert G_3(j\\omega) \\rvert\\]",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "6_power_electronic_converters.html",
+    "href": "6_power_electronic_converters.html",
+    "title": "6  Power Electronic Converters",
+    "section": "",
+    "text": "6.1 Power Semiconductor Devices\n\\(\\boxed{\\textbf{Diamond}} \\quad \\,\\)(Wide-bandgap devices)\n\\(\\boxed{\\textbf{Doping}}\\)\n\\(\\boxed{\\textbf{Diode}}\\)\n\\(\\boxed{\\textbf{Bipolar Junction Transistor}}\\) BJT\nBase: thin and lightly doped.\nEmitter: heavily doped.\nCollector: intermediately doped.\n\\(\\boxed{\\textbf{Junction Field Effect Transistor}}\\) JFET",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Power Electronic Converters</span>"
+    ]
+  },
+  {
+    "objectID": "6_power_electronic_converters.html#power-semiconductor-devices",
+    "href": "6_power_electronic_converters.html#power-semiconductor-devices",
+    "title": "6  Power Electronic Converters",
+    "section": "",
+    "text": "\\(\\boxed{\\textbf{Silicon}} \\quad 14\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\boxed{\\textbf{Graphite}}\\)\n\n\n\\(\\boxed{\\textbf{Copper}}\\) (Cu 29)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndope with Group V elements. (P, As)\n\nN-type semiconductor\n\n\n\n\ndope with Group III elements (B, Al)\n\nP-type semiconductor\n\n\n\n\n\n\n\n\n\n\n\nif \\(V_e &gt; 0.7\\,V\\), \\(e^-\\) passes through the depletion layer. (Conduct)\n\n\n\n\n\n\n\nDepletion layer expands and there is no current. (Block)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nApply \\(V_{\\mathrm{BE}} &gt; 0.7\\,V\\), \\(e^-\\) flow into base\n\n\n\n\nVery few \\(e^-\\) will stay in base, (lightly doped) most \\(e^-\\) will flow to collector. (thin)\n\n\n\n\nWith \\(V_{\\mathrm{CE}}&gt;0\\), \\(e^-\\) will flow out. (current)\n\n\n\n\n\n\n\n\n\\[V_{\\mathrm{GS}} = V_\\mathrm{G} - V_\\mathrm{S} &lt; 0\\]\n\n\nWhen \\(V_{\\mathrm{GS}} = 0\\), JFET is ON.\n\n\n\n\nWhen \\(V_{\\mathrm{GS}} &lt; 0\\), depletion layer expands. \\(I=0\\). (OFF)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Power Electronic Converters</span>"
+    ]
+  },
+  {
+    "objectID": "6_power_electronic_converters.html#dc-dc-converter",
+    "href": "6_power_electronic_converters.html#dc-dc-converter",
+    "title": "6  Power Electronic Converters",
+    "section": "6.2 DC – DC Converter",
+    "text": "6.2 DC – DC Converter\n \\(\\left(\\begin{array}{l}V,I\\, \\to \\text{constant} \\\\ v,i,\\, \\to \\text{variable}\\end{array}\\right)\\) \n\n\n\n\n\nReplace \\(R\\) with a switch (BJT, FET).\n\n\n\n\n\n\nAdd an inductor \\(L\\) in series.\n\n\n\n\n\nAdd a diode for freewheeling path.\n\n\n\n\n\n\nAdd a capacitor \\(C\\) with \\(R_0\\).\n\n\n\n\\(\\displaystyle L \\cdot \\frac{di_L}{dt} = V_i-V_0 \\implies \\frac{di_L}{dt} = \\frac{V_i-V_0}{L}\\)\n\n\n\n\n\\[\\begin{align*}\n    \\quad \\frac{V_i-V_0}{\\color{blue}\\cancel{\\color{red} L}} \\color{red} \\cdot t_{\\mathrm{on}} &= \\frac{V_0}{\\color{blue}\\cancel{\\color{red} L}} \\cdot t_{\\mathrm{off}} \\\\\n    \\quad (V_i-V_0) D \\cdot \\color{blue}\\cancel{\\color{red} T_s} &= V_0 \\cdot (1-D) \\color{blue}\\cancel{\\color{red} T_s}\\\\\n    D \\cdot V_i &= V_0\n\\end{align*}\\]\n\n\n\\(\\displaystyle L \\cdot \\frac{di_L}{dt} = 0-V_0 \\implies \\frac{di_L}{dt} = -\\frac{V_0}{L}\\)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Power Electronic Converters</span>"
     ]
   }
 ]

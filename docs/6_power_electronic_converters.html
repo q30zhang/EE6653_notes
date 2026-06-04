@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Qiaoxuan Zhang">
-<meta name="dcterms.date" content="2026-05-06">
 
-<title>EE6653 - Power Electronics Notes</title>
+<title>6&nbsp; Power Electronic Converters – EE6653 - Power Electronics Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_convolution.html" rel="next">
+<link href="./5_frequency_response.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -113,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./6_power_electronic_converters.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -140,7 +138,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -176,7 +174,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6_power_electronic_converters.html" class="sidebar-item-text sidebar-link">
+  <a href="./6_power_electronic_converters.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></span></a>
   </div>
 </li>
@@ -190,7 +188,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#power-semiconductor-devices" id="toc-power-semiconductor-devices" class="nav-link active" data-scroll-target="#power-semiconductor-devices"><span class="header-section-number">6.1</span> Power Semiconductor Devices</a></li>
+  <li><a href="#dc-dc-converter" id="toc-dc-dc-converter" class="nav-link" data-scroll-target="#dc-dc-converter"><span class="header-section-number">6.2</span> DC – DC Converter</a></li>
   </ul>
 </nav>
     </div>
@@ -199,26 +198,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EE6653 - Power Electronics Notes</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta column-body">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Qiaoxuan Zhang </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 6, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -228,18 +215,182 @@ window.Quarto = {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is the course notes for EE6653: Power Electronics taught by Prof.&nbsp;Shuang Xu at the University of New Brunswick in Summer 2026.</p>
-<p><span class="math display">\[
-\textbf{Interdisciplinary course} \quad \begin{cases}
-\underline{\text{Electronics}}\\
-\underline{\text{Electric circuits}}\\
-\underline{\underline{\text{Control}}} \qquad \begin{array}{rl}\small\searrow \hspace{-2ex}&amp;\tiny{\text{AC--AC converters}}\\[-2ex]&amp;\tiny{\text{Resonance converters}}\end{array}
-\end{cases}
-\]</span></p>
-<p><strong>Course objective</strong>:</p>
-<p>Solidify your basic knowledge.</p>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<p>DC – DC <span style="color:red">(chopper)</span> <span class="math inline">\(\quad\)</span></p>
+<p>DC – AC <span style="color:red">(inverter)</span> <span class="math inline">\(\quad\)</span></p>
+</div><div class="column" style="width: fit-content;">
+<p>AC – DC <span style="color:red">(rectifier)</span></p>
+<p>AC – AC <span style="color:red">(inverter)</span></p>
+</div>
+</div>
+<section id="power-semiconductor-devices" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="power-semiconductor-devices"><span class="header-section-number">6.1</span> Power Semiconductor Devices</h2>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<p><span class="math inline">\(\boxed{\textbf{Silicon}} \quad 14\)</span></p>
+<img src="6_power_electronic_converters_files/mediabag/b5b555fc321a5464f602a119ffa08e44c6d3d53d.svg" class="img-fluid">
+</div><div class="column">
+<img src="6_power_electronic_converters_files/mediabag/1e95c09ca5305e32cea0c59dc4b86eac80656bc7.svg" class="img-fluid">
+</div>
+</div>
+<p>&nbsp;</p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/b08f99dbe7c447bc23d54b3a2e8dc3e9ac661446.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<p><span class="math inline">\(\boxed{\textbf{Diamond}} \quad \,\)</span><span style="color:red">(Wide-bandgap devices)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/43aa241946eaa32fdc3b1eac3eaba936449d5ece.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\boxed{\textbf{Graphite}}\)</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\boxed{\textbf{Copper}}\)</span> (Cu 29)</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/d4d221b52d4198a23a4df516f4d07d548d30faae.svg" class="img-fluid">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/cad0498473c9daa64677225d372990611ff35823.svg" class="img-fluid">
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p><span class="math inline">\(\boxed{\textbf{Doping}}\)</span></p>
+<ul style="list-style-type: '① ';">
+<li>
+dope with Group V elements. (P, As)
+</li>
+<p><span style="color:#ADA100">N-type semiconductor</span></p>
+<img src="6_power_electronic_converters_files/mediabag/3ae68f3d13cfadde6abc0d2f4b6ddceff1ef1792.svg" class="img-fluid">
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+dope with Group III elements (B, Al)
+</li>
+<p><span style="color:#ADA100">P-type semiconductor</span></p>
+<img src="6_power_electronic_converters_files/mediabag/0a6792d8768c7373915d04246f53b1e8edf772d5.svg" class="img-fluid">
+</ul>
+<p><span class="math inline">\(\boxed{\textbf{Diode}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/fa8a997b7597c6f377ed3df9ba670cb6970d1449.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<img src="6_power_electronic_converters_files/mediabag/de1b6b0d9925d79b03060331845bf244cc6fb14a.svg" class="img-fluid">
+</div><div class="column">
+<p>if <span class="math inline">\(V_e &gt; 0.7\,V\)</span>,<br> <span class="math inline">\(e^-\)</span> passes through the depletion layer. <span style="color:red">(Conduct)</span></p>
+</div>
+</div>
+<p>&nbsp;</p>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<img src="6_power_electronic_converters_files/mediabag/09a58a49cb516c3eb606a73029aaad4e351058bb.svg" class="img-fluid">
+</div><div class="column">
+<p>Depletion layer expands and there is no current. <span style="color:red">(Block)</span></p>
+</div>
+</div>
+<p>&nbsp;</p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/9a8a564a6807cc40218ab40e7311b5e4cbd7d868.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<p><span class="math inline">\(\boxed{\textbf{Bipolar Junction Transistor}}\)</span> BJT</p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/32d979c15009eb69aa30e8d88c954bbff7e9881b.svg" class="img-fluid">
+</div>
+<p>Base: thin and lightly doped.</p>
+<p>Emitter: heavily doped.</p>
+<p>Collector: intermediately doped.</p>
+<div style="color:green">
+<ul style="list-style-type: '① ';">
+<li>
+<span style="color:green">Apply <span class="math inline">\(V_{\mathrm{BE}} &gt; 0.7\,V\)</span>, <span class="math inline">\(e^-\)</span> flow into base<span>
+</span></span></li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+<span style="color:green">Very few <span class="math inline">\(e^-\)</span> will stay in base, </span><span style="color:red">(lightly doped)</span><br> <span style="color:green">most <span class="math inline">\(e^-\)</span> will flow to collector. </span><span style="color:red">(thin)</span>
+</li>
+</ul>
+<ul style="list-style-type: '③ ';">
+<li>
+<span style="color:green">With <span class="math inline">\(V_{\mathrm{CE}}&gt;0\)</span>, <span class="math inline">\(e^-\)</span> will flow out. <span><span style="color:red">(current)</span>
+</span></span></li>
+</ul>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Junction Field Effect Transistor}}\)</span> JFET</p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/dfb5c53fec2278f0f9ad96815d71a714fd76caa2.svg" class="img-fluid">
+</div>
+<div style="color:green">
+<p><span class="math display">\[V_{\mathrm{GS}} = V_\mathrm{G} - V_\mathrm{S} &lt; 0\]</span></p>
+<ul style="list-style-type: '① ';">
+<li>
+When <span class="math inline">\(V_{\mathrm{GS}} = 0\)</span>, JFET is ON.
+</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+When <span class="math inline">\(V_{\mathrm{GS}} &lt; 0\)</span>, depletion layer expands. <span class="math inline">\(I=0\)</span>. <span style="color:red">(OFF)</span>
+</li>
+</ul>
+</div>
+</section>
+<section id="dc-dc-converter" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="dc-dc-converter"><span class="header-section-number">6.2</span> DC – DC Converter</h2>
+<p><span style="color:green"> <span class="math inline">\(\left(\begin{array}{l}V,I\, \to \text{constant} \\ v,i,\, \to \text{variable}\end{array}\right)\)</span> </span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/94ed8419ffdb44b3ac459b7159905e1445e5c5ee.svg" class="img-fluid">
+</div>
+<ul style="list-style-type: '① ';">
+<li>
+Replace <span class="math inline">\(R\)</span> with a switch (BJT, FET).
+</li>
+<img src="6_power_electronic_converters_files/mediabag/31392226a39d8ac5ed0141c8205b51431dacd9c5.svg" class="img-fluid">
+<img src="6_power_electronic_converters_files/mediabag/3646553e751f77705ee5d72c3dc2bcd8229b8e9a.svg" class="img-fluid">
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Add an inductor <span class="math inline">\(L\)</span> in series.
+</li>
+<img src="6_power_electronic_converters_files/mediabag/5d8a26cb6e5b7ac41c186cd648cf30229441fab0.svg" class="img-fluid">
+</ul>
+<ul style="list-style-type: '③ ';">
+<li>
+Add a diode for freewheeling path.
+</li>
+<img src="6_power_electronic_converters_files/mediabag/176b207f65f4e4d291c5b84e4dcffaedbc7ff1d6.svg" class="img-fluid">
+<img src="6_power_electronic_converters_files/mediabag/536c9a99ea7fee0f4cd3b31c40e0be497b640ea1.svg" class="img-fluid">
+</ul>
+<ul style="list-style-type: '④ ';">
+<li>
+Add a capacitor <span class="math inline">\(C\)</span> with <span class="math inline">\(R_0\)</span>.
+</li>
+<img src="6_power_electronic_converters_files/mediabag/e5fe82139527504c4ca6bc73069c1b7211f20577.svg" class="img-fluid">
+<img src="6_power_electronic_converters_files/mediabag/b7dc7c77e366a291f2b068441496be2a103a9743.svg" class="img-fluid">
+<p><span class="math inline">\(\displaystyle L \cdot \frac{di_L}{dt} = V_i-V_0 \implies \frac{di_L}{dt} = \frac{V_i-V_0}{L}\)</span></p>
+<div class="columns">
+<div class="column" style="width: fit-content;">
+<img src="6_power_electronic_converters_files/mediabag/68349981659ae36cb7a184bc2f9c3aa0b6d85904.svg" class="img-fluid">
+</div><div class="column" style="color:red">
+<p><span class="math display">\[\begin{align*}
+    \quad \frac{V_i-V_0}{\color{blue}\cancel{\color{red} L}} \color{red} \cdot t_{\mathrm{on}} &amp;= \frac{V_0}{\color{blue}\cancel{\color{red} L}} \cdot t_{\mathrm{off}} \\
+    \quad (V_i-V_0) D \cdot \color{blue}\cancel{\color{red} T_s} &amp;= V_0 \cdot (1-D) \color{blue}\cancel{\color{red} T_s}\\
+    D \cdot V_i &amp;= V_0
+\end{align*}\]</span></p>
+</div>
+</div>
+<p><span class="math inline">\(\displaystyle L \cdot \frac{di_L}{dt} = 0-V_0 \implies \frac{di_L}{dt} = -\frac{V_0}{L}\)</span></p>
+</ul>
 
 
 </section>
@@ -647,11 +798,11 @@ window.Quarto = {
   </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
+      <a href="./5_frequency_response.html" class="pagination-link" aria-label="Frequency Response">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_convolution.html" class="pagination-link" aria-label="Convolution">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Convolution</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

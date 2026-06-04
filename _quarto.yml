@@ -13,6 +13,7 @@ book:
     - 3_laplace_transform.qmd
     - 4_time-domain_response.qmd
     - 5_frequency_response.qmd
+    - 6_power_electronic_converters.qmd
     # - references.qmd
   page-footer: 
     left: "EE6653 - Power Electronics, taught by Prof. Shuang Xu, UNB" 

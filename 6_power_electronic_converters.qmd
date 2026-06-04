@@ -1,0 +1,1208 @@
+# Power Electronic Converters
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+DC -- DC <span style="color:red">(chopper)</span> $\quad$
+
+DC -- AC <span style="color:red">(inverter)</span> $\quad$
+:::
+
+::: {.column style="width: fit-content;"}
+AC -- DC <span style="color:red">(rectifier)</span>
+
+AC -- AC <span style="color:red">(inverter)</span>
+:::
+::::
+
+
+## Power Semiconductor Devices
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+$\boxed{\textbf{Silicon}} \quad 14$
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+\draw[loosely dashed] (0,0) circle[radius=0.5cm];
+\draw[loosely dashed] (0,0) circle[radius=1cm];
+\draw[loosely dashed] (0,0) circle[radius=1.5cm];
+\node at (0,0) {Si};
+\fill[red] (0,0.5) circle[radius=0.05cm];
+\fill[red] (0,-0.5) circle[radius=0.05cm];
+\foreach \x in {0,1,...,7} {
+    \fill[red] ({cos(\x*45)},{sin(\x*45)}) circle[radius=0.05cm];
+}
+\foreach \x in {0,1,2,3} {
+    \fill[red] ({1.5*cos(\x*90)},{1.5*sin(\x*90)}) circle[radius=0.05cm];
+}
+\node[red] at (-2,-1.5) {$\le 2n^2$};
+\node[below,red] at (0,-1.5) {valence electrons};
+\end{tikzpicture}
+```
+:::
+
+::: {.column}
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    style={yellow!50!black},
+    scale=1.25
+]
+\node at (0,0) {H};
+\node at (6,0) {He};
+\node at (0,-0.5) {Li};
+\node at (0.5,-0.5) {Be};
+\node at (0,-1) {Na};
+\node at (0.5,-1) {Mg};
+\node at (0,-1.5) {K};
+\node at (0.5,-1.5) {Ca};
+\node at (0,-2) {$\vdots$};
+\node at (0.5,-2) {$\vdots$};
+\draw (1,-2.5) -- (1,-1.25) -- (3,-1.25) -- (3,-2.5);
+\node at (3.5,-0.5) {B};
+\node at (4,-0.5) {C};
+\node at (4.5,-0.5) {N};
+\node at (5,-0.5) {O};
+\node at (5.5,-0.5) {F};
+\node at (6,-0.5) {Ne};
+\node at (3.5,-1) {Al};
+\node at (4,-1) {Si};
+\node at (4.5,-1) {P};
+\node at (5,-1) {S};
+\node at (5.5,-1) {Cl};
+\node at (6,-1) {Ar};
+\node at (3.5,-1.5) {Ga};
+\node at (4,-1.5) {Ge};
+\node at (4.5,-1.5) {As};
+\node at (5,-1.5) {Sn};
+\node at (5.5,-1.5) {Br};
+\node at (6,-1.5) {Kr};
+\node at (3.5,-2) {$\vdots$};
+\node at (4,-2) {$\vdots$};
+\node at (4.5,-2) {$\vdots$};
+\node at (5,-2) {$\vdots$};
+\node at (5.5,-2) {$\vdots$};
+\node at (6,-2) {$\vdots$};
+\draw[red] (3.25,-0.25) -- (3.25,-0.75) -- (3.75,-0.75)
+                        -- (3.75,-1.25) -- (4.25,-1.25)
+                        -- (4.25,-1.75) -- (4.75,-1.75)
+                        -- (4.75,-2.25) -- (5.25,-2.25);
+\draw[red] (3.86,-1.2) -- (4.15,-1.2);
+\draw[red,->] (3.6,0.25) arc (0:-60:0.6);
+\node[red,above] at (3.6,0.25) {$45^\circ$ metalloid line};
+\end{tikzpicture}
+```
+
+:::
+::::
+
+&nbsp;
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node at (0,0) {Si};
+\node[pink!60!black] at (0,1) {Si};
+\node[pink!60!black] at (1,0) {Si};
+\node[pink!60!black] at (-1,0) {Si};
+\node[pink!60!black] at (0,-1) {Si};
+\draw[dashed,red] (0,0) circle[radius=0.75cm];
+\fill[pink!60!black] (-0.1,0.5) circle[radius=0.05cm];
+\fill (0.1,0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (0.1,-0.5) circle[radius=0.05cm];
+\fill (-0.1,-0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (0.5,0.1) circle[radius=0.05cm];
+\fill (0.5,-0.1) circle[radius=0.05cm];
+\fill[pink!60!black] (-0.5,-0.1) circle[radius=0.05cm];
+\fill (-0.5,0.1) circle[radius=0.05cm];
+\fill[pink!60!black] (-1.5,0) circle[radius=0.05cm];
+\fill[pink!60!black] (1.5,0) circle[radius=0.05cm];
+\fill[pink!60!black] (0,1.5) circle[radius=0.05cm];
+\fill[pink!60!black] (0,-1.5) circle[radius=0.05cm];
+\fill[pink!60!black] (1,0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (1,-0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (-1,0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (-1,-0.5) circle[radius=0.05cm];
+\fill[pink!60!black] (0.5,1) circle[radius=0.05cm];
+\fill[pink!60!black] (-0.5,1) circle[radius=0.05cm];
+\fill[pink!60!black] (0.5,-1) circle[radius=0.05cm];
+\fill[pink!60!black] (-0.5,-1) circle[radius=0.05cm];
+\draw[violet] (-0.5,0.1) circle[radius=0.125cm];
+\draw[violet,->] (-1,1) -- (-0.6,0.2);
+\node[left,violet] at (-1,1) {free $e^-$};
+\draw[->, pink!60!black] (1.5,1.2) -- (0.6,0.6);
+\node[right,pink!60!black] at (1.5,1.2) {Stable according to Octet rule};
+\node[right,blue] at (1.8,0) {Kinetic energy $\propto T$};
+\node[right,violet] at (1.5,-0.6) {Vibration will cause the dislodge};
+\node[right,violet] at (1.5,-1.2) {of $e^-$ (free electrons)};
+
+\node at (2,-3) {Si};
+\node at (3,-3) {Si};
+\node at (4,-3) {Si};
+\node at (2,-4) {Si};
+\node at (3,-4) {Si};
+\node at (4,-4) {Si};
+\draw (1.25,-3) -- (1.75,-3);
+\draw (2.25,-3) -- (2.75,-3);
+\draw (3.25,-3) -- (3.75,-3);
+\draw (4.25,-3) -- (4.75,-3);
+\draw (1.25,-4) -- (1.75,-4);
+\draw (2.25,-4) -- (2.75,-4);
+\draw (3.25,-4) -- (3.75,-4);
+\draw (4.25,-4) -- (4.75,-4);
+\draw (2,-2.25) -- (2,-2.75);
+\draw (2,-3.25) -- (2,-3.75);
+\draw (2,-4.25) -- (2,-4.75);
+\draw (3,-2.25) -- (3,-2.75);
+\draw (3,-3.25) -- (3,-3.75);
+\draw (3,-4.25) -- (3,-4.75);
+\draw (4,-2.25) -- (4,-2.75);
+\draw (4,-3.25) -- (4,-3.75);
+\draw (4,-4.25) -- (4,-4.75);
+\node[right] at (5,-3.5) {(Planner)};
+
+\node at (3,-6) {Si};
+\node at (2,-6.5) {Si};
+\node at (4,-6.5) {Si};
+\node at (3,-7) {Si};
+\draw (3,-5.25) -- (3,-5.75);
+\draw (3,-6.25) -- (3,-6.75);
+\draw (2.25,-6.375) -- (2.75,-6.125);
+\draw (3.75,-6.375) -- (3.25,-6.125);
+\draw (1.75,-6.375) -- (1.25,-6.125);
+\draw (4.25,-6.375) -- (4.75,-6.125);
+\draw (2,-6.75) -- (2,-7.25);
+\draw (4,-6.75) -- (4,-7.25);
+\draw (1.75,-6.625) -- (1.25,-6.875);
+\draw (4.25,-6.625) -- (4.75,-6.875);
+\draw (2.25,-7.375) -- (2.75,-7.125);
+\draw (3.75,-7.375) -- (3.25,-7.125);
+\draw (3,-7.25) -- (3,-7.75);
+\node[right] at (5,-6.5) {(Tetrahedral in reality)};
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+$\boxed{\textbf{Diamond}} \quad \,$<span style="color:red">(Wide-bandgap devices)</span>
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node at (0,0) {C};
+\node at (1,0) {C};
+\node at (0,1) {C};
+\node at (1,1) {C};
+\foreach \x in {-1,0,1} {
+    \draw (0.25+\x,0) -- (0.75+\x,0);
+    \draw (0.25+\x,1) -- (0.75+\x,1);
+    \draw (0,0.25+\x) -- (0,0.75+\x);
+    \draw (1,0.25+\x) -- (1,0.75+\x);
+}
+\node at (5,0) {C};
+\node at (4,0.5) {C};
+\node at (5,1) {C};
+\node at (6,0.5) {C};
+\draw (5,1.25) -- (5,1.75);
+\draw (4.25,0.625) -- (4.75,0.875);
+\draw (5.75,0.625) -- (5.25,0.875);
+\draw (5,0.25) -- (5,0.75);
+\draw (4.25,-0.375) -- (4.75,-0.125);
+\draw (5.75,-0.375) -- (5.25,-0.125);
+\draw (5,-0.75) -- (5,-0.25);
+\draw (3.75,0.625) -- (3.25,0.875);
+\draw (3.75,0.375) -- (3.25,0.125);
+\draw (4,0.25) -- (4,-0.25);
+\draw (6.25,0.625) -- (6.75,0.875);
+\draw (6.25,0.375) -- (6.75,0.125);
+\draw (6,0.25) -- (6,-0.25);
+
+\node[red,right] at (7,0.75) {C -- C bond $\gg$};
+\node[red,right] at (7,0.25) {S -- S bond};
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+::: {layout-ncol=2}
+$\boxed{\textbf{Graphite}}$
+
+$\boxed{\textbf{Copper}}$ (Cu 29)
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node at (0,0) {C};
+\node at (1,0.5) {C};
+\node at (-1,0.5) {C};
+\node at (1,1.5) {C};
+\node at (-1,1.5) {C};
+\node at (0,2) {C};
+\node[scale=0.6] at (0.1,0.2) {$-$};
+\node[scale=0.6] at (0.7,0.55) {$-$};
+\node[scale=0.6] at (-0.7,0.55) {$-$};
+\node[scale=0.6] at (0.7,1.45) {$-$};
+\node[scale=0.6] at (-0.7,1.45) {$-$};
+\node[scale=0.6] at (-0.1,1.8) {$-$};
+\draw (0,-0.75) -- (0,-0.25);
+\draw (0.25,0.125) -- (0.75,0.375);
+\draw (-0.25,0.125) -- (-0.75,0.375);
+\draw (1.75,0.125) -- (1.25,0.375);
+\draw (-1.75,0.125) -- (-1.25,0.375);
+\draw (1,0.75) -- (1,1.25);
+\draw (-1,0.75) -- (-1,1.25);
+\draw (0.25,1.875) -- (0.75,1.625);
+\draw (-0.25,1.875) -- (-0.75,1.625);
+\draw (1.75,1.875) -- (1.25,1.625);
+\draw (-1.75,1.875) -- (-1.25,1.625);
+\draw (0,2.25) -- (0,2.75);
+\node[yellow!50!black,below] at (0,-0.75) {conductor};
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node at (0,0) {Cu};
+\draw (0.5,0) arc (0:60:0.5);
+\draw (0.5,0) arc (0:-60:0.5);
+\fill[white] (0.5,0) circle[radius=0.25cm];
+\node at (0.5,0) {$2$};
+\draw (1,0) arc (0:40:1);
+\draw (1,0) arc (0:-40:1);
+\fill[white] (1,0) circle[radius=0.25cm];
+\node at (1,0) {$8$};
+\draw (1.5,0) arc (0:30:1.5);
+\draw (1.5,0) arc (0:-30:1.5);
+\fill[white] (1.5,0) circle[radius=0.25cm];
+\node at (1.5,0) {$18$};
+\draw (2,0) arc (0:25:2);
+\draw (2,0) arc (0:-25:2);
+\fill[white] (2,0) circle[radius=0.25cm];
+\node at (2,0) {$1$};
+\node[right,red] at (2.5,0) {Cu${}^{2+}$};
+\draw[white] (0,2) -- (0.1,2);
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+$\boxed{\textbf{Doping}}$
+
+<ul style="list-style-type: '① ';">
+<li>dope with Group V elements. (P, As)</li>
+<span style="color:#ADA100">N-type semiconductor</span>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node[orange!50!black] at (0,0) {P};
+\node at (0,1) {Si};
+\node at (1,0) {Si};
+\node at (-1,0) {Si};
+\node at (0,-1) {Si};
+\fill (-0.1,0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (0.1,0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (0.1,-0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (-0.1,-0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (0.5,0.1) circle[radius=0.05cm];
+\fill (0.5,-0.1) circle[radius=0.05cm];
+\fill (-0.5,-0.1) circle[radius=0.05cm];
+\fill[orange!50!black] (-0.5,0.1) circle[radius=0.05cm];
+\fill (-1.5,0) circle[radius=0.05cm];
+\fill (1.5,0) circle[radius=0.05cm];
+\fill (0,1.5) circle[radius=0.05cm];
+\fill (0,-1.5) circle[radius=0.05cm];
+\fill (1,0.5) circle[radius=0.05cm];
+\fill (1,-0.5) circle[radius=0.05cm];
+\fill (-1,0.5) circle[radius=0.05cm];
+\fill (-1,-0.5) circle[radius=0.05cm];
+\fill (0.5,1) circle[radius=0.05cm];
+\fill (-0.5,1) circle[radius=0.05cm];
+\fill (0.5,-1) circle[radius=0.05cm];
+\fill (-0.5,-1) circle[radius=0.05cm];
+\fill (0.3,-0.6) circle[radius=0.05cm];
+\draw[red] (0.3,-0.6) circle[radius=0.125cm];
+\draw[red,->] (1,-1) -- (0.42,-0.65);
+\node[right,red] at (1,-1) {free};
+\node[right,red] at (1,-1.4) {electron};
+\node[right] at (2.4,-1.4) {$e^-$};
+\node[right,orange!50!black] at (2.5,0.75) {$n^+$ -- heavily doped};
+\node[right,orange!50!black] at (2.5,0) {$n^-$ -- lightly doped};
+\end{tikzpicture}
+```
+
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>dope with Group III elements (B, Al)</li>
+<span style="color:#ADA100">P-type semiconductor</span>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\node[orange!50!black] at (0,0) {B};
+\node at (0,1) {Si};
+\node at (1,0) {Si};
+\node at (-1,0) {Si};
+\node at (0,-1) {Si};
+\fill (-0.1,0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (0.1,0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (-0.1,-0.5) circle[radius=0.05cm];
+\fill[orange!50!black] (0.5,0.1) circle[radius=0.05cm];
+\fill[orange!50!black] (-0.5,0.1) circle[radius=0.05cm];
+\fill (0.5,-0.1) circle[radius=0.05cm];
+\fill (-0.5,-0.1) circle[radius=0.05cm];
+\fill (-1.5,0) circle[radius=0.05cm];
+\fill (1.5,0) circle[radius=0.05cm];
+\fill (0,1.5) circle[radius=0.05cm];
+\fill (0,-1.5) circle[radius=0.05cm];
+\fill (1,0.5) circle[radius=0.05cm];
+\fill (1,-0.5) circle[radius=0.05cm];
+\fill (-1,0.5) circle[radius=0.05cm];
+\fill (-1,-0.5) circle[radius=0.05cm];
+\fill (0.5,1) circle[radius=0.05cm];
+\fill (-0.5,1) circle[radius=0.05cm];
+\fill (0.5,-1) circle[radius=0.05cm];
+\fill (-0.5,-1) circle[radius=0.05cm];
+\draw[red,thick] (0.1,-0.5) circle[radius=0.05cm];
+\draw[red,->] (1,-1) -- (0.2,-0.55);
+\node[right,red] at (1,-1) {hole};
+\node[right,orange!50!black] at (2.5,0.75) {$p^+$ -- heavily doped};
+\node[right,orange!50!black] at (2.5,0) {$p^-$ -- lightly doped};
+\end{tikzpicture}
+```
+
+</ul>
+
+$\boxed{\textbf{Diode}}$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\foreach \x in {0.25,0.75,...,3.75} {
+    \draw (\x,-0.25) circle[radius=0.2cm];
+    \draw (\x,-0.75) circle[radius=0.2cm];
+}
+\foreach \x in {0.25,0.75,...,1.75} {
+    \node at (\x,-0.25) {$-$};
+    \node at (\x,-0.75) {$-$};
+    \draw ({\x+0.2},-0.45) circle[radius=0.05cm];
+    \draw ({\x+0.2},-0.95) circle[radius=0.05cm];
+}
+\foreach \x in {2.25,2.75,...,3.75} {
+    \node at (\x,-0.25) {$+$};
+    \node at (\x,-0.75) {$+$};
+    \draw ({\x+0.15},-0.45) -- ({\x+0.225},-0.45);
+    \draw ({\x+0.15},-0.95) -- ({\x+0.225},-0.95);
+}
+\draw[green!50!black,->] (2.2,-0.3) -- (1.8,-0.3);
+\draw[green!50!black,->] (2.2,-0.5) -- (1.8,-0.5);
+\draw[green!50!black,->] (2.2,-0.7) -- (1.8,-0.7);
+\node[above,green!50!black] at (2,0) {$\Vec{E}$};
+\draw[red,loosely dashed] (1.5,0.5) -- (1.5,-1.5);
+\draw[red,loosely dashed] (2.5,0.5) -- (2.5,-1.5);
+\node[above,red] at (2,0.5) {depletion layer};
+\draw (0,0) rectangle (4,-1);
+\draw[blue] (2.2,0.25) arc (270:290:5);
+\node[right,blue] at (4,0.75) {barrier potential};
+\node[right,blue] at (4,0.25) {$=0.7\,V$ (silicon)};
+\node at (-0.5,-1.25) {B${}^-$};
+\draw[loosely dashed] (-0.5,-1.25) circle[radius=0.4cm];
+\node at (4.5,-1.25) {P${}^+$};
+\draw[loosely dashed] (4.5,-1.25) circle[radius=0.4cm];
+\node[below] at (1,-1) {P};
+\node[below] at (3,-1) {N};
+\node[below,orange!50!black] at (2,-1) {$e^-$};
+\node[below,orange!50!black] at (2,-1.5) {p--n junction};
+\node[below,orange!50!black] at (0,-2) {$\Vec{F} = q \cdot \Vec{E}$};
+\end{tikzpicture}
+```
+
+:::
+
+&nbsp;
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw[white] (-1.5,0.5) rectangle (5.5,-3);
+\foreach \x in {0.25,0.75,...,3.75} {
+    \draw (\x,-0.25) circle[radius=0.2cm];
+    \draw (\x,-0.75) circle[radius=0.2cm];
+}
+\foreach \x in {0.25,0.75,...,1.75} {
+    \node at (\x,-0.25) {$-$};
+    \node at (\x,-0.75) {$-$};
+    \draw ({\x+0.2},-0.45) circle[radius=0.05cm];
+    \draw ({\x+0.2},-0.95) circle[radius=0.05cm];
+}
+\foreach \x in {2.25,2.75,...,3.75} {
+    \node at (\x,-0.25) {$+$};
+    \node at (\x,-0.75) {$+$};
+    \draw ({\x+0.15},-0.45) -- ({\x+0.225},-0.45);
+    \draw ({\x+0.15},-0.95) -- ({\x+0.225},-0.95);
+}
+\draw[green!50!black,->] (2.2,-0.3) -- (1.8,-0.3);
+\draw[green!50!black,->] (2.2,-0.5) -- (1.8,-0.5);
+\draw[green!50!black,->] (2.2,-0.7) -- (1.8,-0.7);
+\node[above,blue] at (2,0) {$0.7\,V$};
+\draw[red,loosely dashed] (1.5,0.5) -- (1.5,-1.25);
+\draw[red,loosely dashed] (2.5,0.5) -- (2.5,-1.25);
+\node[below] at (1,-1) {P};
+\node[below] at (3,-1) {N};
+\draw (0,0) rectangle (4,-1);
+\draw (0,-0.5) -- (-1,-0.5) -- (-1,-2) -- (1.8,-2);
+\draw (1.8,-1.75) -- (1.8,-2.25);
+\draw (1.95,-1.9) -- (1.95,-2.1);
+\draw (2.1,-1.75) -- (2.1,-2.25);
+\draw (2.25,-1.9) -- (2.25,-2.1);
+\draw (2.25,-2) -- (5,-2) -- (5,-0.5) -- (4,-0.5);
+\node[above] at (2,-1.75) {$V_e$};
+\node[above] at (1.5,-2) {${}_+$};
+\node[above] at (2.5,-2) {${}_-$};
+\draw[->,red] (-1.25,-0.875) arc (180:140:1);
+\node[red,left] at (-1.25,-0.5) {$I$};
+\draw[->,orange!50!black] (-0.5,-0.75) arc (140:180:1);
+\node[orange!50!black,right] at (-0.7,-1) {$e^-$};
+\end{tikzpicture}
+```
+:::
+
+::: {.column}
+if $V_e > 0.7\,V$,<br>
+$e^-$ passes through the depletion layer. <span style="color:red">(Conduct)</span>
+:::
+::::
+
+&nbsp;
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw[white] (-1.5,0.5) rectangle (5.5,-3);
+\foreach \x in {0.25,0.75,...,3.75} {
+    \draw (\x,-0.25) circle[radius=0.2cm];
+    \draw (\x,-0.75) circle[radius=0.2cm];
+}
+\foreach \x in {0.25,0.75,...,1.75} {
+    \node at (\x,-0.25) {$-$};
+    \node at (\x,-0.75) {$-$};
+    \draw ({\x+0.2},-0.45) circle[radius=0.05cm];
+    \draw ({\x+0.2},-0.95) circle[radius=0.05cm];
+}
+\foreach \x in {2.25,2.75,...,3.75} {
+    \node at (\x,-0.25) {$+$};
+    \node at (\x,-0.75) {$+$};
+    \draw ({\x+0.15},-0.45) -- ({\x+0.225},-0.45);
+    \draw ({\x+0.15},-0.95) -- ({\x+0.225},-0.95);
+}
+\draw[green!50!black,->] (2.2,-0.3) -- (1.8,-0.3);
+\draw[green!50!black,->] (2.2,-0.5) -- (1.8,-0.5);
+\draw[green!50!black,->] (2.2,-0.7) -- (1.8,-0.7);
+\draw[red,loosely dashed] (1.5,0.25) -- (1.5,-1.25);
+\draw[red,loosely dashed] (2.5,0.25) -- (2.5,-1.25);
+\draw[red,loosely dashed] (1,0.25) -- (1,-1.25);
+\draw[red,loosely dashed] (2,0.25) -- (2,-1.25);
+\draw[red,->] (4,-0.3) -- (4.4,-0.3);
+\draw[red,->] (4,-0.7) -- (4.4,-0.7);
+\node[red,above] at (5,-0.5) {$+$};
+\node[red,above] at (-1,-0.5) {$-$};
+\node[below] at (1,-1) {P};
+\node[below] at (3,-1) {N};
+\draw (0,0) rectangle (4,-1);
+\draw (0,-0.5) -- (-1,-0.5) -- (-1,-2) -- (1.8,-2);
+\draw (1.8,-1.75) -- (1.8,-2.25);
+\draw (1.95,-1.9) -- (1.95,-2.1);
+\draw (2.1,-1.75) -- (2.1,-2.25);
+\draw (2.25,-1.9) -- (2.25,-2.1);
+\draw (2.25,-2) -- (5,-2) -- (5,-0.5) -- (4,-0.5);
+\node[below] at (2,-2.25) {$V_e$};
+\node[below] at (1.5,-2) {${}_+$};
+\node[below] at (2.5,-2) {${}_-$};
+\end{tikzpicture}
+
+```
+:::
+
+::: {.column}
+Depletion layer expands and there is no current. <span style="color:red">(Block)</span>
+:::
+::::
+
+&nbsp;
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+    \draw (1,0) -- (2,0);
+    \draw (2,-0.2) -- (2,0.2) -- (2.3,0) -- (2,-0.2);
+    \draw (2.3,-0.2) -- (2.3,0.2);
+    \draw (2.3,0) -- (3.5,0);
+    \draw[orange!50!black] (3.5,0) -- (4.5,0) -- (4.5,-1.5) -- (2.2,-1.5);
+    \draw[orange!50!black] (2.1,-1.3) -- (2.1,-1.7);
+    \draw[orange!50!black] (2.2,-1.4) -- (2.2,-1.6);
+    \draw[orange!50!black] (2.1,-1.5) -- (0,-1.5) -- (0,0) -- (1,0);
+    \draw[orange!50!black,->] (0.5,0.2) -- (1.5,0.2);
+    \node[orange!50!black,above] at (1,0.2) {$I$};
+    \node[right] at (0,-1) {Anode};
+    \node[left] at (4.5,-1) {Cathode};
+
+    \draw (1,-3) -- (2,-3);
+    \draw (2,-3.2) -- (2,-2.8) -- (2.3,-3) -- (2,-3.2);
+    \draw (2.3,-2.8) -- (2.3,-3.2);
+    \draw (2.3,-3) -- (3.5,-3);
+    \draw[orange!50!black] (3.5,-3) -- (4.5,-3) -- (4.5,-4.5) -- (2.2,-4.5);
+    \draw[orange!50!black] (2.1,-4.4) -- (2.1,-4.6);
+    \draw[orange!50!black] (2.2,-4.3) -- (2.2,-4.7);
+    \draw[orange!50!black] (2.1,-4.5) -- (0,-4.5) -- (0,-3) -- (1,-3);
+    \node[orange!50!black,above] at (3,-3) {no $I$};
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+$\boxed{\textbf{Bipolar Junction Transistor}}$ BJT
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\draw (-1,1.5) rectangle (1,-1.5);
+\draw (-1,0.3) -- (1,0.3);
+\draw (-1,-0.3) -- (1,-0.3);
+\foreach \x in {-0.6,0,0.6} {
+    \draw (\x,1.2) circle[radius=0.2cm];
+    \draw (\x,0.6) circle[radius=0.2cm];
+    \node at (\x,1.2) {$+$};
+    \node at (\x,0.6) {$+$};
+    \node[scale=0.6] at (\x+0.25,1) {$-$};
+    \node[scale=0.6] at (\x+0.25,0.4) {$-$};
+}
+\draw (-0.5,0) circle[radius=0.2cm];
+\draw (0.5,0) circle[radius=0.2cm];
+\node at (-0.5,0) {$-$};
+\node at (0.5,0) {$-$};
+\draw[green!50!black] (-0.2,-0.2) circle[radius=0.075cm];
+\draw[green!50!black] (0.8,-0.2) circle[radius=0.075cm];
+\foreach \x in {-0.858,-0.574,...,0.858} {
+    \foreach \y in {-0.5,-0.9,-1.3} {
+        \draw (\x,\y) circle[radius=0.1cm];
+        \node[scale=0.5] at (\x,\y) {$+$};
+        \node[scale=0.3] at (\x+0.1,\y-0.15) {$-$};
+    }
+}
+\foreach \x in {-0.75,-0.45,...,0.76} {
+    \draw[red,->] (\x,-0.6) -- (\x,-0.1);
+}
+\node[red,scale=0.6] at (-0.85,-0.1) {$e^-$};
+
+\draw (-1,0) -- (-1.95,0);
+\draw (-2,0) circle[radius=0.05cm];
+\draw (0,-1.5) -- (0,-2.45);
+\draw (0,-2.5) circle[radius=0.05cm];
+\draw (0,1.5) -- (0,1.95);
+\draw (0,2) circle[radius=0.05cm];
+\draw[green!50!black] (-2.05,0) -- (-2.5,0) -- (-2.5,-0.95);
+\draw[green!50!black] (-2.7,-0.95) -- (-2.3,-0.95);
+\draw[green!50!black] (-2.6,-1.05) -- (-2.4,-1.05);
+\draw[green!50!black] (-2.5,-1.05) -- (-2.5,-2.5) -- (-0.05,-2.5);
+\draw[green!50!black] (2.7,0.05) -- (2.3,0.05);
+\draw[green!50!black] (2.6,-0.05) -- (2.4,-0.05);
+\draw[green!50!black] (0.05,-2.5) -- (2.5,-2.5) -- (2.5,-0.05);
+\draw[green!50!black] (2.5,0.05) -- (2.5,2) -- (0.05,2);
+\node[right,green!50!black] at (2.7,0) {$V_{\mathrm{CE}}$};
+\node[left,green!50!black] at (-2.7,-1) {$V_{\mathrm{BE}}$};
+\node[scale=0.6,left,green!50!black] at (-2.6,-0.7) {$+$};
+\node[scale=0.6,left,green!50!black] at (-2.6,-1.3) {$-$};
+\node[right] at (0,-2.75) {Emitter};
+\node[left] at (-2,0.25) {Base};
+\node[right] at (0,1.75) {Collector};
+\node[right] at (1,0.9) {$n$};
+\node[right] at (1,0) {$p^-$};
+\node[right] at (1,-0.9) {$n^+$};
+\draw[orange!50!black,->] (1.25,1.1) arc (180:0:0.5);
+\node[orange!50!black,below] at (1.75,1.6) {$e^-$};
+\draw[red,->] (2.75,1) arc (-30:60:1);
+\node[red,right] at (2.85,2) {$I$};
+\end{tikzpicture}
+```
+:::
+
+Base: thin and lightly doped.
+
+Emitter: heavily doped.
+
+Collector: intermediately doped.
+
+::: {style="color:green"}
+<ul style="list-style-type: '① ';">
+<li><span style="color:green">Apply $V_{\mathrm{BE}} > 0.7\,V$, $e^-$ flow into base<span></li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>
+<span style="color:green">Very few $e^-$ will stay in base, </span><span style="color:red">(lightly doped)</span><br>
+<span style="color:green">most $e^-$ will flow to collector. </span><span style="color:red">(thin)</span>
+</li>
+</ul>
+
+<ul style="list-style-type: '③ ';">
+<li><span style="color:green">With $V_{\mathrm{CE}}>0$, $e^-$ will flow out. <span><span style="color:red">(current)</span></li>
+</ul>
+:::
+
+$\boxed{\textbf{Junction Field Effect Transistor}}$ JFET
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\draw (-1,1.5) rectangle (1,-1.5);
+\draw (-1,0.75) arc (90:-90:0.75);
+\draw (1,0.75) arc (90:270:0.75);
+\foreach \x in {-0.8,-0.4,0,0.4,0.8} {
+    \node[scale=0.7] at (\x,1.2) {$-$};
+    \node[scale=0.7] at (\x,-1.2) {$-$};
+}
+\foreach \x in {-0.6,-0.2,0.2,0.6} {
+    \node[scale=0.7] at (\x,0.9) {$-$};
+    \node[scale=0.7] at (\x,-0.9) {$-$};
+}
+\foreach \x in {-0.2,0.2} {
+    \node[scale=0.7] at (\x,0.6) {$-$};
+    \node[scale=0.7] at (\x,-0.6) {$-$};
+}
+\node[scale=0.7] at (0,0.3) {$-$};
+\node[scale=0.7] at (0,0) {$-$};
+\node[scale=0.7] at (0,-0.3) {$-$};
+\draw[red] (-0.65,0.5) circle[radius=0.1cm];
+\draw[red] (-0.5,0.3) circle[radius=0.1cm];
+\draw[red] (-0.4,0.1) circle[radius=0.1cm];
+\draw[red] (-0.4,-0.1) circle[radius=0.1cm];
+\draw[red] (-0.5,-0.3) circle[radius=0.1cm];
+\draw[red] (-0.65,-0.5) circle[radius=0.1cm];
+
+\draw[red] (-0.55,0.75) circle[radius=0.1cm];
+\draw[red] (-0.3,0.5) circle[radius=0.1cm];
+\draw[red] (-0.15,0.2) circle[radius=0.1cm];
+\draw[red] (-0.15,-0.2) circle[radius=0.1cm];
+\draw[red] (-0.3,-0.5) circle[radius=0.1cm];
+\draw[red] (-0.55,-0.75) circle[radius=0.1cm];
+
+\draw[red] (-0.45,-0.95) circle[radius=0.1cm];
+\draw[red] (-0.2,-0.7) circle[radius=0.1cm];
+\draw[red] (-0.05,-0.4) circle[radius=0.1cm];
+\draw[red] (0.05,-0.2) circle[radius=0.1cm];
+\draw[red] (0.1,0) circle[radius=0.1cm];
+
+\node[red,scale=0.6] at (-0.65,0.5) {$+$};
+\node[red,scale=0.6] at (-0.5,0.3) {$+$};
+\node[red,scale=0.6] at (-0.4,0.1) {$+$};
+\node[red,scale=0.6] at (-0.4,-0.1) {$+$};
+\node[red,scale=0.6] at (-0.5,-0.3) {$+$};
+\node[red,scale=0.6] at (-0.65,-0.5) {$+$};
+
+\node[red,scale=0.6] at (-0.55,0.75) {$+$};
+\node[red,scale=0.6] at (-0.3,0.5) {$+$};
+\node[red,scale=0.6] at (-0.15,0.2) {$+$};
+\node[red,scale=0.6] at (-0.15,-0.2) {$+$};
+\node[red,scale=0.6] at (-0.3,-0.5) {$+$};
+\node[red,scale=0.6] at (-0.55,-0.75) {$+$};
+
+\node[red,scale=0.6] at (-0.45,-0.95) {$+$};
+\node[red,scale=0.6] at (-0.2,-0.7) {$+$};
+\node[red,scale=0.6] at (-0.05,-0.4) {$+$};
+\node[red,scale=0.6] at (0.05,-0.2) {$+$};
+\node[red,scale=0.6] at (0.1,0) {$+$};
+
+\node at (-0.7,0) {$p$};
+\node at (0.7,0) {$p$};
+\node at (0,1) {$n$};
+\node at (0,-1) {$n$};
+
+\draw (-1,0) -- (-1.95,0);
+\draw (-2,0) circle[radius=0.05cm];
+\draw (0,-1.5) -- (0,-2.45);
+\draw (0,-2.5) circle[radius=0.05cm];
+\draw (0,1.5) -- (0,1.95);
+\draw (0,2) circle[radius=0.05cm];
+\draw[green!50!black] (-2,-0.05) -- (-2,-0.95);
+\draw[green!50!black] (-2.2,-0.95) -- (-1.8,-0.95);
+\draw[green!50!black] (-2.1,-1.05) -- (-1.9,-1.05);
+\draw[green!50!black] (-2,-1.05) -- (-2,-2.5) -- (-0.05,-2.5);
+\draw[green!50!black] (2.7,0.05) -- (2.3,0.05);
+\draw[green!50!black] (2.6,-0.05) -- (2.4,-0.05);
+\draw[green!50!black] (0.05,-2.5) -- (2.5,-2.5) -- (2.5,-0.05);
+\draw[green!50!black] (2.5,0.05) -- (2.5,2) -- (0.05,2);
+\node[right,green!50!black] at (2.7,0) {$V_{\mathrm{DS}}$};
+\node[left,green!50!black] at (-2.2,-1) {$V_{\mathrm{GS}}$};
+\node[scale=0.6,left,green!50!black] at (-2.1,-0.7) {$+$};
+\node[scale=0.6,left,green!50!black] at (-2.1,-1.3) {$-$};
+\node[right] at (0,-2.75) {Source};
+\node[left] at (-2,0.25) {Gate};
+\node[right] at (0,1.75) {Drain};
+\draw[orange!50!black,->] (1.25,1.1) arc (180:0:0.5);
+\node[orange!50!black,below] at (1.75,1.6) {$e^-$};
+\draw[red,->] (2.75,1) arc (-30:60:1);
+\node[red,right] at (2.85,2) {$I$};
+\node[red,right] at (3.5,1.5) {Normally ON};
+\end{tikzpicture}
+```
+:::
+
+::: {style="color:green"}
+$$V_{\mathrm{GS}} = V_\mathrm{G} - V_\mathrm{S} < 0$$
+
+<ul style="list-style-type: '① ';">
+<li>When $V_{\mathrm{GS}} = 0$, JFET is ON.</li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>When $V_{\mathrm{GS}} < 0$, depletion layer expands. $I=0$. <span style="color:red">(OFF)</span></li>
+</ul>
+
+:::
+
+## DC -- DC Converter
+
+<span style="color:green">
+$\left(\begin{array}{l}V,I\, \to \text{constant} \\ v,i,\, \to \text{variable}\end{array}\right)$
+</span>
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw (0,-1) -- (0,0) -- (1,0);
+\draw (1,0) -- (1.05,0.2) -- (1.15,-0.2) -- (1.25,0.2) -- (1.35,-0.2)
+            -- (1.45,0.2) -- (1.55,-0.2) -- (1.6,0);
+\draw (1.6,0) -- (2.5,0) -- (2.5,-0.7);
+\draw (2.5,-0.7) -- (2.7,-0.75) -- (2.3,-0.85) -- (2.7,-0.95)
+                 -- (2.3,-1.05) -- (2.7,-1.15) -- (2.3,-1.25)
+                 -- (2.5,-1.3);
+\draw (2.5,-1.3) -- (2.5,-2) -- (0,-2) -- (0, -1.1);
+\draw (-0.2,-1) -- (0.2,-1);
+\draw (-0.1,-1.1) -- (0.1,-1.1);
+\node[left] at (-0.2,-0.8) {$100\,V$};
+\node[left] at (-0.45,-1.3) {$V_i$};
+\node[below] at (0.75,-0.2) {$R$};
+\node[below,orange!50!black] at (1.5,-0.2) {$=50\,\Omega$};
+\draw[->,red] (0.2,0) -- (0.3,0);
+\draw[->,red] (2.2,0) -- (2.3,0);
+\node[above,red] at (0.25,0) {$I_i$};
+\node[above,red] at (2.25,0) {$I_0$};
+\node[left] at (2.3,-1) {$R_0$};
+\node[right] at (2.7,-1) {$V_0$};
+\node[right] at (2.5,-0.5) {$\tiny+$};
+\node[right] at (2.5,-1.5) {$\tiny-$};
+\node[left] at (2.5,-1.7) {$50\,\Omega$};
+
+\node[red,right] at (3.5,0) {$I_i = I_0 = \displaystyle\frac{V_i}{R+R_0}=1\,A$};
+\node[right] at (3.5,-0.75) {$V_0 = I_0 \cdot R_0 = 50\,\Omega$};
+\node[orange!50!black,right] at (3.5,-1.25) {$P_i = V_i \cdot I_i = 100\,W$};
+\node[orange!50!black,right] at (3.5,-1.75) {$P_0 = V_0 \cdot I_0 = 50\,W$};
+\node[orange!50!black,right] at (3.5,-2.5) {$\eta = \displaystyle\frac{P_0}{P_i}=50\%$};
+\node[red] at (1.25,-2.5) {Low efficiency};
+\draw[red] (0,-2.25) rectangle (2.5,-2.75);
+\node[orange!50!black,above] at (1.25,0.5) {$100\V \to 50\,V$};
+\end{tikzpicture}
+```
+
+:::
+
+<ul style="list-style-type: '① ';">
+<li>Replace $R$ with a switch (BJT, FET).</li>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw (0,-1) -- (0,0) -- (1,0);
+\draw (1.05,0) circle[radius=0.05cm];
+\draw (1.1,0.02) -- (1.6,0.2);
+\draw (1.6,0) -- (2.5,0) -- (2.5,-0.7);
+\draw (2.5,-0.7) -- (2.7,-0.75) -- (2.3,-0.85) -- (2.7,-0.95)
+                 -- (2.3,-1.05) -- (2.7,-1.15) -- (2.3,-1.25)
+                 -- (2.5,-1.3);
+\draw (2.5,-1.3) -- (2.5,-2) -- (0,-2) -- (0, -1.1);
+\draw (-0.2,-1) -- (0.2,-1);
+\draw (-0.1,-1.1) -- (0.1,-1.1);
+\node[left] at (-0.2,-1) {$V_i$};
+\node[left] at (0,-0.5) {$\tiny+$};
+\node[left] at (0,-1.5) {$\tiny-$};
+\node[below] at (1.3,0) {$S$};
+\draw[->,red] (2.2,0) -- (2.3,0);
+\node[above,red] at (2.25,0) {$i_0$};
+\node[left] at (2.3,-1) {$R_0$};
+\node[right] at (2.7,-1) {$V_0$};
+\node[right] at (2.5,-0.5) {$\tiny+$};
+\node[right] at (2.5,-1.5) {$\tiny-$};
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[
+    >=latex,
+    axis/.style={->, black}
+]
+    \draw[axis] (0,0) -- (5,0) node[right] {$t$};
+    \draw[axis] (0,1.5) -- (5,1.5) node[right] {$t$};
+    \draw[axis] (0,3) -- (5,3) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,4.5);
+    \node[left] at (0,4.5) {$S$};
+    \node[left] at (0,3) {$v_0$};
+    \node[left] at (0,1.5) {$i_0$};
+    \draw[thick,orange!50!black] (0,4) -- (2,4) -- (2,3) 
+                              -- (4,3) -- (4,4) -- (5,4);
+    \draw[thick,violet] (0,2.5) -- (2,2.5) -- (2,1.5) 
+                     -- (4,1.5) -- (4,2.5) -- (5,2.5);
+    \draw[thick,violet] (0,1) -- (2,1) -- (2,0) 
+                     -- (4,0) -- (4,1) -- (5,1);
+    \draw[<->,violet] (0.5,0) -- (0.5,1);
+    \node[right,violet] at (0.5,0.5) {$\displaystyle\frac{V_i}{R_0}$};
+    \draw[<->,violet] (0.5,1.5) -- (0.5,2.5);
+    \node[right,violet] at (0.5,2) {$V_i$};
+    \draw[red] (0,2) -- (5,2) node[right,red] {$V_0=50\,V$};
+    \draw[<->,red] (5,1.5) -- (5,2);
+
+    \foreach \x in {0,0.2,...,1.8} {
+        \draw ({7.5+\x},3) -- ({7.6+\x},3);
+        \draw ({7.6+\x},3) -- ({7.6+\x},4);
+        \draw ({7.6+\x},4) -- ({7.7+\x},4);
+        \draw ({7.7+\x},3) -- ({7.7+\x},4);
+    }
+    \draw (9.5,3) -- (9.6,3);
+    \draw[white!80!black] (7.5,3.5) -- (10,3.5);
+    \draw[<->] (10,3) -- (10,4);
+    \node[right] at (10,3.5) {$V_i=100\,V$};
+    \node[red] at (9,2) {Pulsating voltage};
+    \draw[red] (7.5,2.5) rectangle (10.5,1.5);
+\end{tikzpicture}
+```
+
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>Add an inductor $L$ in series.</li>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\draw (0,-1) -- (0,0) -- (1,0);
+\draw (1.05,0) circle[radius=0.05cm];
+\draw (1.1,0.02) -- (1.6,0.2);
+\draw (1.6,0) -- (2.1,0);
+\draw (2.1,0) arc (180:0:0.1);
+\draw (2.3,0) arc (180:0:0.1);
+\draw (2.5,0) arc (180:0:0.1);
+\draw (2.7,0) arc (180:0:0.1);
+\draw (2.9,0) -- (3.5,0) -- (3.5,-0.7);
+\draw (3.5,-0.7) -- (3.7,-0.75) -- (3.3,-0.85) -- (3.7,-0.95)
+                 -- (3.3,-1.05) -- (3.7,-1.15) -- (3.3,-1.25)
+                 -- (3.5,-1.3);
+\draw (3.5,-1.3) -- (3.5,-2) -- (0,-2) -- (0, -1.1);
+\draw (-0.2,-1) -- (0.2,-1);
+\draw (-0.1,-1.1) -- (0.1,-1.1);
+\node[left] at (-0.2,-1) {$V_i$};
+\node[left] at (0,-0.5) {$\tiny+$};
+\node[left] at (0,-1.5) {$\tiny-$};
+\node[below] at (1.3,0) {$S$};
+\node[below] at (2.5,0) {$L$};
+\draw[->,red] (3.2,0) -- (3.3,0);
+\node[above,red] at (3.25,0) {$i_0$};
+\node[left] at (3.3,-1) {$R_0$};
+
+\begin{scope}[xshift=5cm,yshift=-2cm]
+    \draw[axis] (0,0) -- (5,0) node[right] {$t$};
+    \draw[axis] (0,1) -- (5,1) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,2);
+    \node[left] at (0,2) {$S$};
+    \node[left] at (0,1) {$i_0$};
+    \draw[thick,yellow!50!black] (0,1.5) -- (2,1.5) -- (2,1) 
+                              -- (4,1) -- (4,1.5) -- (5,1.5);
+    \draw[thick,violet] (2,{0.8-0.8*exp(-2)}) -- (2,0) -- (4,0);
+    \draw[dashed] (4,0) -- (4,1);
+    \draw[domain=0:2,thick,violet] plot (\x,{0.8-0.8*exp(-\x)});
+    
+    \node at (2,-1) {$v_L = L \cdot \displaystyle\frac{di_L}{dt}=$};
+    \node[red] at (3.4,-1.02) {$\infty$};
+    \draw[red] (0.7,-0.5) rectangle (3.75,-1.5);
+\end{scope}
+\end{tikzpicture}
+```
+
+</ul>
+
+<ul style="list-style-type: '③ ';">
+<li>Add a diode for freewheeling path.</li>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\draw (0,-1) -- (0,0) -- (1,0);
+\draw (1.05,0) circle[radius=0.05cm];
+\draw (1.1,0.02) -- (1.6,0.2);
+\draw (1.6,0) -- (2.1,0);
+\draw (2.1,0) arc (180:0:0.1);
+\draw (2.3,0) arc (180:0:0.1);
+\draw (2.5,0) arc (180:0:0.1);
+\draw (2.7,0) arc (180:0:0.1);
+\draw (2.9,0) -- (3.5,0) -- (3.5,-0.7);
+\draw (3.5,-0.7) -- (3.7,-0.75) -- (3.3,-0.85) -- (3.7,-0.95)
+                 -- (3.3,-1.05) -- (3.7,-1.15) -- (3.3,-1.25)
+                 -- (3.5,-1.3);
+\draw (3.5,-1.3) -- (3.5,-2) -- (0,-2) -- (0, -1.1);
+\draw (-0.2,-1) -- (0.2,-1);
+\draw (-0.1,-1.1) -- (0.1,-1.1);
+\node[left] at (-0.2,-1) {$V_i$};
+\node[left] at (0,-0.5) {$\tiny+$};
+\node[left] at (0,-1.5) {$\tiny-$};
+\node[below] at (1.3,0) {$S$};
+\node[below] at (2.5,0) {$L$};
+\draw[->,red] (3.2,0) -- (3.3,0);
+\node[above,red] at (3.25,0) {$i_0$};
+\node[left] at (3.3,-1) {$R_0$};
+\node[right] at (3.7,-1) {$V_0$};
+\node[right] at (3.5,-0.5) {$\tiny+$};
+\node[right] at (3.5,-1.5) {$\tiny-$};
+\draw (1.85,0) -- (1.85,-0.75);
+\draw (1.85,-2) -- (1.85,-1.25);
+\draw (1.6,-0.75) -- (2.1,-0.75);
+\draw (1.6,-1.25) -- (2.1,-1.25) -- (1.85,-0.75) -- (1.6,-1.25);
+\node[right] at (2,-1) {$D$};
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\begin{scope}
+    \draw[axis] (0,0) -- (5,0) node[right] {$t$};
+    \draw[axis] (0,1.5) -- (5,1.5) node[right] {$t$};
+    \draw[axis] (0,3) -- (5,3) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,4.5);
+    \node[left] at (0,4) {$S$};
+    \node[left] at (0,2.5) {$i_0$};
+    \node[left] at (0,1) {$v_0$};
+    \draw[dashed] (4,0) -- (4,3);
+    \draw[dashed] (2,0) -- (2,3);
+    \draw[thick,orange!50!black] (0,4) -- (2,4) -- (2,3) 
+                              -- (4,3) -- (4,4) -- (5,4);
+    \draw[domain=0:2,thick,violet] plot (\x,{1-exp(-\x)+1.5});
+    \draw[domain=0:2,thick,blue] plot (\x,{1-exp(-\x)});
+    \draw[domain=2:4,thick,violet] plot (\x,{(1-exp(-2))*exp(-\x+2)+1.5});
+    \draw[domain=2:4,thick,blue] plot (\x,{(1-exp(-2))*exp(-\x+2)});
+    \draw[domain=4:5,thick,violet] plot (\x,{1-exp(-\x+4+ln(1-exp(-2)+exp(-4)))+1.5});
+    \draw[domain=4:5,thick,blue] plot (\x,{1-exp(-\x+4+ln(1-exp(-2)+exp(-4)))});
+    \node[red] at (2.5,-1) {$v_0$ still has some ripple};
+    \draw[red] (0.5,-0.6) rectangle (4.5,-1.4);
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=4cm,style={green!50!black}]
+    \draw (0,-1) -- (0,0) -- (1,0);
+    \draw (1.05,0) circle[radius=0.05cm];
+    \draw (1.1,0) -- (1.6,0);
+    \fill (1.55,0) circle[radius=0.05cm];
+    \draw (1.6,0) -- (2.1,0);
+    \draw (2.1,0) arc (180:0:0.1);
+    \draw (2.3,0) arc (180:0:0.1);
+    \draw (2.5,0) arc (180:0:0.1);
+    \draw (2.7,0) arc (180:0:0.1);
+    \draw (2.9,0) -- (3.5,0) -- (3.5,-0.7);
+    \draw (3.5,-0.7) -- (3.7,-0.75) -- (3.3,-0.85) -- (3.7,-0.95)
+                     -- (3.3,-1.05) -- (3.7,-1.15) -- (3.3,-1.25)
+                     -- (3.5,-1.3);
+    \draw (3.5,-1.3) -- (3.5,-2) -- (0,-2) -- (0, -1.1);
+    \draw (-0.2,-1) -- (0.2,-1);
+    \draw (-0.1,-1.1) -- (0.1,-1.1);
+    \node[left] at (-0.2,-1) {$V_i$};
+    \node[left] at (0,-0.5) {$\tiny+$};
+    \node[left] at (0,-1.5) {$\tiny-$};
+    \node[below] at (1.3,0) {$S$};
+    \node[below] at (2.5,0) {$L$};
+    \node[right] at (3.7,-1) {$R$};
+    \node[right] at (-0.5,0.5) {$S$ is ON};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=0.5cm,style={green!50!black}]
+    \draw (1.85,0) -- (2.1,0);
+    \draw (2.1,0) arc (180:0:0.1);
+    \draw (2.3,0) arc (180:0:0.1);
+    \draw (2.5,0) arc (180:0:0.1);
+    \draw (2.7,0) arc (180:0:0.1);
+    \draw (2.9,0) -- (3.5,0) -- (3.5,-0.7);
+    \draw (3.5,-0.7) -- (3.7,-0.75) -- (3.3,-0.85) -- (3.7,-0.95)
+                     -- (3.3,-1.05) -- (3.7,-1.15) -- (3.3,-1.25)
+                     -- (3.5,-1.3);
+    \draw (3.5,-1.3) -- (3.5,-2) -- (1.85,-2);
+    \node[below] at (2.5,0) {$L$};
+    \node[right] at (3.7,-1) {$R$};
+    \node[right] at (-0.5,0.5) {$S$ is OFF};
+    \draw (1.85,0) -- (1.85,-0.75);
+    \draw (1.85,-2) -- (1.85,-1.25);
+    \draw (1.6,-0.75) -- (2.1,-0.75);
+    \draw (1.6,-1.25) -- (2.1,-1.25) -- (1.85,-0.75) -- (1.6,-1.25);
+    \node[right] at (2.1,-1) {$D$};
+\end{scope}
+\end{tikzpicture}
+```
+
+</ul>
+
+<ul style="list-style-type: '④ ';">
+<li>Add a capacitor $C$ with $R_0$.</li>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\draw (0,-1) -- (0,0) -- (1,0);
+\draw (1.05,0) circle[radius=0.05cm];
+\draw (1.1,0.02) -- (1.6,0.2);
+\draw (1.6,0) -- (2.1,0);
+\draw (2.1,0) arc (180:0:0.1);
+\draw (2.3,0) arc (180:0:0.1);
+\draw (2.5,0) arc (180:0:0.1);
+\draw (2.7,0) arc (180:0:0.1);
+\draw (2.9,0) -- (4.5,0) -- (4.5,-0.7);
+\draw (4.5,-0.7) -- (4.7,-0.75) -- (4.3,-0.85) -- (4.7,-0.95)
+                 -- (4.3,-1.05) -- (4.7,-1.15) -- (4.3,-1.25)
+                 -- (4.5,-1.3);
+\draw (4.5,-1.3) -- (4.5,-2) -- (0,-2) -- (0, -1.1);
+\draw (-0.2,-1) -- (0.2,-1);
+\draw (-0.1,-1.1) -- (0.1,-1.1);
+\node[left] at (-0.2,-1) {$V_i$};
+\node[left] at (0,-0.5) {$\tiny+$};
+\node[left] at (0,-1.5) {$\tiny-$};
+\node[below] at (1.3,0) {$S$};
+\node[below] at (2.5,0) {$L$};
+\draw[->,red] (1.95,0) -- (2.05,0);
+\node[above,red] at (2,0) {$i_L$};
+\node[left] at (4.3,-1) {$R_0$};
+\node[right] at (4.7,-1) {$V_0$};
+\node[right] at (4.5,-0.5) {$\tiny+$};
+\node[right] at (4.5,-1.5) {$\tiny-$};
+\draw (1.85,0) -- (1.85,-0.75);
+\draw (1.85,-2) -- (1.85,-1.25);
+\draw (1.6,-0.75) -- (2.1,-0.75);
+\draw (1.6,-1.25) -- (2.1,-1.25) -- (1.85,-0.75) -- (1.6,-1.25);
+\node[right] at (2,-1) {$D$};
+\draw (3.3,0) -- (3.3,-0.95);
+\draw (3.1,-0.95) -- (3.5,-0.95);
+\draw (3.1,-1.05) -- (3.5,-1.05);
+\draw (3.3,-1.05) -- (3.3,-2);
+\node[left] at (3.1,-1) {$C$};
+\draw[loosely dashed,pink!50!black] (3.9,-1) ellipse (1.3cm and 1.4cm);
+\node[pink!50!black,right] at (5.5,0) {If $C$ is large};
+\node[pink!50!black,right] at (5.5,-0.5) {enough, $V_0$ is};
+\node[pink!50!black,right] at (5.5,-1) {constant.};
+\draw[pink!50!black] (5.1,-1.8) arc (90:45:0.75);
+\draw[pink!50!black,->] ({5.1+sqrt(2)/2*0.75},{-2.55+sqrt(2)/2*0.75}) arc (225:270:0.75);
+\draw[pink!50!black] (6.5,-1.5) -- (6.5,-2);
+\draw[pink!50!black] (6.5,-2.25) circle[radius=0.25cm];
+\draw[pink!50!black] (6.5,-2.5) -- (6.5,-3);
+\node[pink!50!black,scale=0.5] at (6.5,-2.125) {$+$};
+\node[pink!50!black,scale=0.5] at (6.5,-2.375) {$-$};
+\node[pink!50!black,right] at (6.75,-2.25) {$V_0$};
+\node[below] at (2.5,-2.25) {Buck converter};
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\begin{scope}[xshift=5cm]
+    \draw[axis] (0,0) -- (5,0) node[right] {$t$};
+    \draw[axis] (0,1.5) -- (5,1.5) node[right] {$t$};
+    \draw[axis] (0,0) -- (0,3);
+    \node[left] at (0,2.5) {$S$};
+    \node[left] at (0,1) {$i_0$};
+    \draw[loosely dashed] (4,0) -- (4,1.5);
+    \draw[loosely dashed] (2,0) -- (2,1.5);
+    \draw[thick,orange!50!black] (0,2.5) -- (2,2.5) -- (2,1.5) 
+                              -- (4,1.5) -- (4,2.5) -- (5,2.5);
+    \draw[domain=0:2,thick,red] plot (\x,{0.4*\x+0.2});
+    \draw[domain=2:4,thick,red] plot (\x,{1.8-0.4*\x});
+    \draw[domain=4:6,thick,red] plot (\x,{-1.4+0.4*\x});
+    \draw[domain=6:8,thick,red] plot (\x,{3.4-0.4*\x});
+    \draw[blue] (-0.2,0.2) -- (0.2,0.2);
+    \draw[blue] (1.8,1) -- (2.2,1);
+    \draw[blue] (3.8,0.2) -- (4.2,0.2);
+    \draw[blue,<->] (1.8,0.2) -- (1.8,1);
+    \draw[blue,<->] (2.2,0.2) -- (2.2,1);
+    \draw[red] (1,0.6) -- (1,0.8) -- (1.5,0.8);
+    \node[red,above] at (0.7,0.5) {$\displaystyle\frac{V_i-V_0}{L}$};
+    \draw[red] (3,0.6) -- (3,0.8) -- (2.5,0.8);
+    \node[red,above] at (3.3,0.5) {$\displaystyle -\frac{V_0}{L}$};
+    \draw[green!50!black,<->] (0,2.8) -- (4,2.8);
+    \draw[green!50!black,<->] (0,1.75) -- (2,1.75);
+    \draw[green!50!black,<->] (2,1.75) -- (4,1.75);
+    \node[green!50!black,above] at (2,2.8) {$T_s$};
+    \node[green!50!black,above] at (1,1.75) {$t_{\mathrm{on}}$};
+    \node[green!50!black,above] at (3,1.75) {$t_{\mathrm{off}}$};
+    \node[green!50!black,right] at (5.5,3) {$D=\displaystyle\frac{t_{\mathrm{on}}}{T_s}$};
+    \node[green!50!black,right] at (5.5,2) {$0 < D < 1$};
+\end{scope}
+\begin{scope}[xshift=0cm,yshift=2cm,style={green!50!black}]
+    \draw (0,-1) -- (0,0) -- (1,0);
+    \draw (1.05,0) circle[radius=0.05cm];
+    \draw (1.1,0) -- (1.6,0);
+    \fill (1.55,0) circle[radius=0.05cm];
+    \draw (1.6,0) -- (2.1,0);
+    \draw (2.1,0) arc (180:0:0.1);
+    \draw (2.3,0) arc (180:0:0.1);
+    \draw (2.5,0) arc (180:0:0.1);
+    \draw (2.7,0) arc (180:0:0.1);
+    \draw (2.9,0) -- (3.5,0) -- (3.5,-0.7);
+    \draw (3.5,-1) circle[radius=0.3cm];
+    \node[scale=0.6] at (3.5,-0.85) {$+$};
+    \node[scale=0.6] at (3.5,-1.15) {$-$};
+    \draw (3.5,-1.3) -- (3.5,-2) -- (0,-2) -- (0, -1.1);
+    \draw (-0.2,-1) -- (0.2,-1);
+    \draw (-0.1,-1.1) -- (0.1,-1.1);
+    \node[left] at (-0.2,-1) {$V_i$};
+    \node[left] at (0,-0.5) {$\tiny+$};
+    \node[left] at (0,-1.5) {$\tiny-$};
+    \node[below] at (1.3,0) {$S$};
+    \node[below] at (2.5,0) {$L$};
+    \node[left] at (3.2,-1) {$V_0$};
+    \node[right] at (-0.5,0.5) {$S$ is ON};
+\end{scope}
+\end{tikzpicture}
+```
+
+$\displaystyle L \cdot \frac{di_L}{dt} = V_i-V_0 \implies \frac{di_L}{dt} = \frac{V_i-V_0}{L}$
+
+:::: {.columns}
+::: {.column style="width: fit-content;"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,axis/.style={->, black}]
+\begin{scope}[xshift=0cm,yshift=2cm,style={green!50!black}]
+    \draw (0,0) -- (1.3,0);
+    \draw (1.3,0) arc (180:0:0.1);
+    \draw (1.5,0) arc (180:0:0.1);
+    \draw (1.7,0) arc (180:0:0.1);
+    \draw (1.9,0) arc (180:0:0.1);
+    \draw (2.1,0) -- (3.5,0) -- (3.5,-0.7);
+    \draw (3.5,-1) circle[radius=0.3cm];
+    \node[scale=0.6] at (3.5,-0.85) {$+$};
+    \node[scale=0.6] at (3.5,-1.15) {$-$};
+    \draw (3.5,-1.3) -- (3.5,-2) -- (0,-2);
+    \node[below] at (1.7,0) {$L$};
+    \node[left] at (3.2,-1) {$V_0$};
+    \node[right] at (-0.5,0.5) {$S$ is OFF};
+    \draw (0,0) -- (0,-0.75);
+    \draw (0,-2) -- (0,-1.2);
+    \draw (-0.25,-0.75) -- (0.25,-0.75);
+    \draw (-0.25,-1.2) -- (0.25,-1.2) -- (0,-0.75) -- (-0.25,-1.2);
+    \node[left] at (-0.25,-1) {$D$};
+\end{scope}
+\end{tikzpicture}
+```
+:::
+
+::: {.column style="color:red"}
+\usepackage{cancel}
+\begin{align*}
+    \quad \frac{V_i-V_0}{\color{blue}\cancel{\color{red} L}} \color{red} \cdot t_{\mathrm{on}} &= \frac{V_0}{\color{blue}\cancel{\color{red} L}} \cdot t_{\mathrm{off}} \\
+    \quad (V_i-V_0) D \cdot \color{blue}\cancel{\color{red} T_s} &= V_0 \cdot (1-D) \color{blue}\cancel{\color{red} T_s}\\
+    D \cdot V_i &= V_0
+\end{align*}
+:::
+::::
+
+$\displaystyle L \cdot \frac{di_L}{dt} = 0-V_0 \implies \frac{di_L}{dt} = -\frac{V_0}{L}$
+</ul>
