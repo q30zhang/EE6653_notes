@@ -188,8 +188,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#power-semiconductor-devices" id="toc-power-semiconductor-devices" class="nav-link active" data-scroll-target="#power-semiconductor-devices"><span class="header-section-number">6.1</span> Power Semiconductor Devices</a></li>
+  <li><a href="#power-semiconductor-devices-0603" id="toc-power-semiconductor-devices-0603" class="nav-link active" data-scroll-target="#power-semiconductor-devices-0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices (06/03)</a></li>
   <li><a href="#dc-dc-converter" id="toc-dc-dc-converter" class="nav-link" data-scroll-target="#dc-dc-converter"><span class="header-section-number">6.2</span> DC – DC Converter</a></li>
+  <li><a href="#ac-dc-converters-0605" id="toc-ac-dc-converters-0605" class="nav-link" data-scroll-target="#ac-dc-converters-0605"><span class="header-section-number">6.3</span> AC – DC Converters (06/05)</a></li>
+  <li><a href="#dc-ac-converters" id="toc-dc-ac-converters" class="nav-link" data-scroll-target="#dc-ac-converters"><span class="header-section-number">6.4</span> DC – AC Converters</a></li>
   </ul>
 </nav>
     </div>
@@ -224,8 +226,8 @@ window.Quarto = {
 <p>AC – AC <span style="color:red">(inverter)</span></p>
 </div>
 </div>
-<section id="power-semiconductor-devices" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="power-semiconductor-devices"><span class="header-section-number">6.1</span> Power Semiconductor Devices</h2>
+<section id="power-semiconductor-devices-0603" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="power-semiconductor-devices-0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices (06/03)</h2>
 <div class="columns">
 <div class="column" style="width: fit-content;">
 <p><span class="math inline">\(\boxed{\textbf{Silicon}} \quad 14\)</span></p>
@@ -376,21 +378,231 @@ Add a diode for freewheeling path.
 Add a capacitor <span class="math inline">\(C\)</span> with <span class="math inline">\(R_0\)</span>.
 </li>
 <img src="6_power_electronic_converters_files/mediabag/e5fe82139527504c4ca6bc73069c1b7211f20577.svg" class="img-fluid">
-<img src="6_power_electronic_converters_files/mediabag/b7dc7c77e366a291f2b068441496be2a103a9743.svg" class="img-fluid">
+<div style="width:100%">
+<img src="6_power_electronic_converters_files/mediabag/ecc31e4d62fea4f871dd9e90d98b7582f179b714.svg" class="img-fluid">
+</div>
 <p><span class="math inline">\(\displaystyle L \cdot \frac{di_L}{dt} = V_i-V_0 \implies \frac{di_L}{dt} = \frac{V_i-V_0}{L}\)</span></p>
-<div class="columns">
-<div class="column" style="width: fit-content;">
+<div style="width:100%">
 <img src="6_power_electronic_converters_files/mediabag/68349981659ae36cb7a184bc2f9c3aa0b6d85904.svg" class="img-fluid">
-</div><div class="column" style="color:red">
-<p><span class="math display">\[\begin{align*}
+</div>
+<p><span class="math inline">\(\displaystyle L \cdot \frac{di_L}{dt} = 0-V_0 \implies \frac{di_L}{dt} = -\frac{V_0}{L}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/4f9c84ed81e7658d810ef87f7b0040ee693fffdc.svg" class="img-fluid">
+</div>
+<span class="math display">\[\begin{align*}
     \quad \frac{V_i-V_0}{\color{blue}\cancel{\color{red} L}} \color{red} \cdot t_{\mathrm{on}} &amp;= \frac{V_0}{\color{blue}\cancel{\color{red} L}} \cdot t_{\mathrm{off}} \\
     \quad (V_i-V_0) D \cdot \color{blue}\cancel{\color{red} T_s} &amp;= V_0 \cdot (1-D) \color{blue}\cancel{\color{red} T_s}\\
     D \cdot V_i &amp;= V_0
-\end{align*}\]</span></p>
-</div>
-</div>
-<p><span class="math inline">\(\displaystyle L \cdot \frac{di_L}{dt} = 0-V_0 \implies \frac{di_L}{dt} = -\frac{V_0}{L}\)</span></p>
+\end{align*}\]</span>
 </ul>
+</section>
+<section id="ac-dc-converters-0605" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="ac-dc-converters-0605"><span class="header-section-number">6.3</span> AC – DC Converters (06/05)</h2>
+<p><span class="math inline">\(\boxed{\textbf{Half-wave rectifier}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/d6c72a42ec2fc07bc6c8fba2c89a5f7c6ea4479c.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    V_0 &amp;= \frac{1}{2\pi} \int_0^{\pi} V_m \cdot \sin \omega t \,d \omega t \\
+    &amp;= \frac{1}{2\pi} \cdot V_m \cdot (-\cos \omega t) \bigg\rvert_0^\pi \\
+    &amp;= \frac{1}{2\pi} \cdot V_m \cdot (-\cos \pi + \cos 0) \\
+    &amp;= \frac{V_m}{\pi} = \frac{\sqrt{2} V_{\mathrm{rms}}}{\pi} = 0.45 V_{\mathrm{rms}}
+\end{align*}\]</span></p>
+<div style="color:red">
+<p>Drawbacks:</p>
+<ul style="list-style-type: '① ';">
+<li>
+Low AC voltage utilization (45%).
+</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Discontinuous <span class="math inline">\(v_0\)</span> (Larger filter).
+</li>
+</ul>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Full-bridge rectifier}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/9563ffdb6db670136fef48178e1b74f6c7804367.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    V_0 &amp;= \frac{1}{\pi} \cdot \int_0^\pi V_m \cdot \sin \omega t \,d\omega t \\
+    &amp;= \frac{1}{\pi} \cdot V_m \cdot (-\cos \omega t)\bigg\rvert_0^\pi \\
+    &amp;= \frac{2V_m}{\pi} = \frac{2\sqrt{2}\,V_m}{\pi} = 0.9 V_{\mathrm{rms}}
+\end{align*}\]</span></p>
+<div style="color:green">
+<ul style="list-style-type: '① ';">
+<li>
+Higher AC voltage utilization.
+</li>
+</ul>
+</div>
+<div style="color:red">
+<ul style="list-style-type: '① ';">
+<li>
+Low input Power Factor (PF).
+</li>
+</ul>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Controlled rectifier}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/97ea351cb4c7c3fe4e4a2d15d93a1b1bd27096f9.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+V_0 &amp;= \frac{1}{\pi} \int_\alpha^\pi V_m \cdot \sin \omega t \,d\omega t \\
+&amp;= \frac{1}{\pi} \cdot V_m \cdot (-\cos \omega t) \bigg\rvert_\alpha^\pi \\
+&amp;= \frac{1}{\pi} \cdot V_m \cdot (1 + \cos\alpha)
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\boxed{\textbf{PWM rectifier}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/767e0e86eff7f9dffd0d8968210dbc7dfabb4663.svg" class="img-fluid">
+</div>
+<div class="columns" style="width:100%">
+<div class="column" style="width: fit-content">
+<img src="6_power_electronic_converters_files/mediabag/5f41947f81098db0536fc18afe7afef1775b06dc.svg" class="img-fluid">
+</div><div class="column">
+<p><br> <span class="math inline">\(\quad\)</span> Bipolar Junction Transistor (BJT)</p>
+</div>
+</div>
+<p style="margin-bottom:0">
+&nbsp;
+</p>
+<div class="columns" style="width:100%">
+<div class="column" style="width: fit-content">
+<img src="6_power_electronic_converters_files/mediabag/b97cd9be093d7d15d7664dcf86b8c1de2f39f0cd.svg" class="img-fluid">
+</div><div class="column">
+<p><br> <span class="math inline">\(\quad\)</span> Insulated Gate Bipolar Transistor (IGBT)</p>
+</div>
+</div>
+<p style="margin-bottom:0">
+&nbsp;
+</p>
+<div style="color:green">
+<ul style="list-style-type: '✓ ';">
+<li>
+High input PF.
+</li>
+</ul>
+</div>
+</section>
+<section id="dc-ac-converters" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="dc-ac-converters"><span class="header-section-number">6.4</span> DC – AC Converters</h2>
+<p><span class="math inline">\(\boxed{\textbf{Half-bridge inverter}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/dc0dc9aa7d5cb1e835a5f4d1e7a042562f6be9ea.svg" class="img-fluid">
+</div>
+<p>According to F.S., the amplitude of the fundamental component is: <span class="math display">\[ \frac{4}{\pi} \cdot \frac{1}{2}V_{dc} = \frac{2}{\pi}V_{dc} = V_{1,m}\]</span></p>
+<p><span class="math display">\[V_{1,\mathrm{rms}} = \frac{V_{1,m}}{\sqrt{2}} = \frac{\sqrt{2}}{\pi}V_{dc} = 0.45V_{dc}\]</span></p>
+<div style="color:red">
+<ul style="list-style-type: '① ';">
+<li>
+Low DC voltage utilization (45%).
+</li>
+</ul>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Full-bridge inverter}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/ccc65ae00dfe64587322631db6c7944332ba4a74.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\begin{align*}
+    V_{1,m} &amp;= \frac{4}{\pi} \cdot V_{dc} \\
+    V_{1,\mathrm{rms}} &amp;= \frac{2\sqrt{2}}{\pi} \cdot V_{dc} = 0.9\,V_{dc}
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\boxed{\textbf{Pulse Width Modulation}}\)</span></p>
+<div style="color:green">
+<p>Square wave: <span class="math display">\[v_0 = \frac{4}{\pi} V_{dc} \cdot \bigg(\overset{\color{red}{v_1}}{\sin\omega t} + \overset{\color{YellowOrange}{\mathrm{harmonics}}}{\color{YellowOrange}\underline{\color{green}\frac{1}{3}\cdot\sin 3\omega t} \color{green} + \color{YellowOrange}\underline{\color{green}\frac{1}{5}\cdot\sin 5\omega t}} + \cdots\bigg)\]</span></p>
+</div>
+<div class="columns">
+<div class="column" style="width: fit-content">
+<p><span style="color:#FFAE42">Low order harmonics:<span class="math inline">\(\quad\)</span></span></p>
+<p><span style="color:red">Large filter size <span class="math inline">\(\qquad\)</span></span></p>
+</div><div class="column">
+<p><span style="color:#FFAE42">3rd, 5th, 7th, …</span></p>
+<img src="6_power_electronic_converters_files/mediabag/571020c8cdfe8ec735bdc6075ee72448c0798000.svg" class="img-fluid">
+</div>
+</div>
+<p>Different shaped pulses with the same area produce similar effects on the <span class="math inline">\(\color{red}\underline{\color{black}\text{system with inertia}}\)</span>.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\color{RedOrange}\underline{\textbf{Kinematics}}\)</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\color{RedOrange}\underline{\textbf{Electric circuits}}\)</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/c55b91c539030848526584cacf00317f0807d6d9.svg" class="img-fluid">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/b40dea5c207fdf54149ac08185e4589b53a7fe34.svg" class="img-fluid">
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\color{red} F = ma = m \cdot \frac{dv}{dt}\)</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(\color{red} v_L = L \cdot \frac{di_L}{dt}\)</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span style="color:#FCB001">Impulse momentum theorem</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span style="color:#FCB001">Volt-second law</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(F \cdot \Delta t = m \cdot \Delta v\)</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><span class="math inline">\(v \cdot \Delta t = L \cdot \Delta i\)</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/07e95090d288b3fc55a0a0866cbb8f0836f50d1d.svg" class="img-fluid">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/64c99e1b3e4cc2ec9b75978286e7475247ba748b.svg" class="img-fluid">
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="6_power_electronic_converters_files/mediabag/dc064be4e01e65fdd274f6c440b15e2d37652d6c.svg" class="img-fluid">
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Sinusoidal PWM}}\)</span> SPWM</p>
+<p><span class="math inline">\(\color{red}\underline{\color{black}\text{Pulse width}}\)</span> varies according to a sine wave <span style="color:red"><span class="math inline">\(\to\)</span> sinusoidal <span class="math inline">\(v_0\)</span></span></p>
+<p>with fixed <span class="math inline">\(T_s\)</span>, <span class="math inline">\(d = \displaystyle\frac{t_{\mathrm{on}}}{T_s}\)</span> varies according to sine wave.<span class="math inline">\(\color{red}{}^{\nearrow}\)</span></p>
+<p><span style="color:blue">SPWM is only feasible when <span class="math inline">\(v_0 \propto d\)</span></span></p>
+<p><span style="color:red">Buck converter: <span class="math inline">\(V_0=D \cdot V_i\)</span></span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/61e4cf159693dd7dd63dec67cabe427dfe1d3340.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/023b35ef36cee5c58d8a08552d44a396fd310a59.svg" class="img-fluid">
+</div>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/b96a202d6a480118817188c2a976ac9943ca4fd9.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<p><span class="math inline">\(\boxed{\textbf{Unipolar SPWM}}\)</span></p>
+<p>During positive halfcycle,<br> <span class="math inline">\(\quad S_3\)</span> is always OFF,<br> <span class="math inline">\(\quad S_4\)</span> is always ON,<br> <span style="color:violet">when <span class="math inline">\(S_1\)</span> is ON (<span class="math inline">\(t_{\mathrm{on}}\)</span>), <span class="math inline">\(v_0 = V_{dc}\)</span>.</span><br> <span style="color:violet">when <span class="math inline">\(S_2\)</span> is ON (<span class="math inline">\(t_{\mathrm{off}}\)</span>), <span class="math inline">\(v_0 = 0\)</span>.</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/d5d73bfb27d2ccb88f0411d5c14c956f8ac5a700.svg" class="img-fluid">
+</div>
+<p>&nbsp;</p>
+<p><span class="math inline">\(\boxed{\textbf{Bipolar SPWM}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/2684ed9849dac47a329c87c99f29554275d8b384.svg" class="img-fluid">
+</div>
 
 
 </section>

@@ -213,7 +213,7 @@ Assume $s=+j\omega$, $A \cdot \omega \cdot N(j\omega) = 2 \cdot j\omega \cdot c_
 
 $$c_1 = \frac{A \cdot \omega \cdot N(j\omega)}{2j\omega \cdot D(j\omega)} = \frac{A}{2j} \cdot G(j\omega) .$$
 
-## Why the amplitede scaling is ...
+## Why the amplitude scaling is ...
 
 $$y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}$$
 
