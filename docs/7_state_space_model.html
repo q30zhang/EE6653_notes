@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Frequency Response – EE6653 - Power Electronics Notes</title>
+<title>7&nbsp; State Space Model (S.S.M.) – EE6653 - Power Electronics Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./6_power_electronic_converters.html" rel="next">
-<link href="./4_time-domain_response.html" rel="prev">
+<link href="./6_power_electronic_converters.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -112,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_frequency_response.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./7_state_space_model.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -169,7 +168,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_frequency_response.html" class="sidebar-item-text sidebar-link active">
+  <a href="./5_frequency_response.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></span></a>
   </div>
 </li>
@@ -181,7 +180,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./7_state_space_model.html" class="sidebar-item-text sidebar-link">
+  <a href="./7_state_space_model.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></span></a>
   </div>
 </li>
@@ -190,28 +189,20 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#why-the-amplitude-scaling-is" id="toc-why-the-amplitude-scaling-is" class="nav-link active" data-scroll-target="#why-the-amplitude-scaling-is"><span class="header-section-number">5.1</span> Why the amplitude scaling is …</a></li>
-  <li><a href="#frequency-response-of-1st-order-system" id="toc-frequency-response-of-1st-order-system" class="nav-link" data-scroll-target="#frequency-response-of-1st-order-system"><span class="header-section-number">5.2</span> Frequency response of 1st-order system</a></li>
-  <li><a href="#bode-plot" id="toc-bode-plot" class="nav-link" data-scroll-target="#bode-plot"><span class="header-section-number">5.3</span> Bode Plot</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Frequency Response</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -224,183 +215,95 @@ window.Quarto = {
 
 
 <div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/f66d877f5d9fd0b4f0b9d53de41d23db09460cc3.svg" class="img-fluid">
+<img src="7_state_space_model_files/mediabag/4fe2925acde67767311f0e60f85c61c5cec8e9dc.svg" class="img-fluid">
 </div>
-<p><strong>E.g.</strong></p>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/71a4e1b22feacc272754bdae306f3a2a89010128.svg" class="img-fluid">
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{align*}
-y(t) &amp;= 2 \cdot \sin\frac{1}{2}t + \int\sin\frac{1}{2}t\,dt \\
-&amp;= 2 \cdot \sin\frac{1}{2}t - 2 \cdot \cos\frac{1}{2}t \\
-&amp;= \sqrt{2^2+2^2} \cdot \sin\left(\frac{1}{2}t - 45^\circ\right)
+\mathrm{KVL:}\quad v(t)\, &amp;\color{black}= R \cdot \dot{Q}(t) + L \cdot \ddot{Q}(t) + \frac{Q(t)}{C} \\
+\color{red} \mathrm{L.T.:} \quad V(s)\, &amp;\color{red}= sRQ(s) + s^2LQ(s) + \frac{1}{C} \cdot Q(s) \\
+&amp;\color{red}= \left(s^2L+sR+\frac{1}{C}\right) Q(s) \\
+\mathrm{T.F.} = \color{red} \frac{Q(s)}{V(s)} \,&amp;\color{red}= \frac{1}{s^2L+sR+\frac{1}{C}} \qquad \color{black} \mathrm{S.I.S.O.}
 \end{align*}\]</span></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><u>Why do we need S.S.M.?</u></p>
+<ul style="list-style-type: '① ';">
+<li>
+Modern control theory.
+</li>
+M.I.M.O.
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Relationship among state variables internal behavior.
+</li>
+</ul>
+<p><span class="math inline">\(\begin{cases}\color{red}\underline{\color{black}\dot{X} = \color{Salmon}\boxed{\color{black}A}\color{black} X + BU} \color{Salmon}\longrightarrow \\ Y = CX+DU\end{cases} \color{Salmon} \begin{bmatrix}\dot{x}_1\\\dot{x}_2\\\vdots\\\dot{x}_n\end{bmatrix} = \begin{bmatrix}\\[2ex]\quad n \times n \quad\\[2ex]\,\end{bmatrix} \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} + BU\)</span></p>
+<p><span style="color:green">S.S.M. is a set of 1st-order D.E.’s.</span></p>
+<p><u>Why do we use 1st-order D.E. to represent system dynamics?</u></p>
+<ul style="list-style-type: '① ';">
+<li>
+1st-order D.E. is easier to be solved.
+</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+The future states are totally dependent on present states.
+</li>
+<div style="color:#F27E50">
+<p>E.g. Kinematics.</p>
 <p><span class="math display">\[\begin{align*}
-\color{green}
-\sin't \,&amp;\color{green}= \cos t \\
-\color{green}\cos't \,&amp;\color{green}= -\sin t \\
-\color{green}\sin(\alpha+\beta) \,&amp;\color{green}= \sin\alpha \cdot \cos\beta + \sin\beta \cdot \cos\alpha \\
-\color{green}\cos(\alpha+\beta) \,&amp;\color{green}= \cos\alpha \cdot \cos\beta - \sin\alpha \cdot \sin\beta \\[2ex]
-&amp; \color{red} \sin\frac{1}{2}t \cdot \cos 45^\circ - \cos\frac{1}{2}t \cdot \sin 45^\circ
+\dot{d} = V \color{red}{=1\,m/s} \quad \color{RedOrange} d(t) \,&amp;\color{RedOrange}= d(0) + V \cdot t\\
+&amp;\color{red}= d(0) + t \\
+\hline
+\ddot{d} = a \color{red}{=1\,m/s^2} \quad \color{RedOrange} \dot{d}(t) \,&amp;\color{RedOrange}= \dot{d}(0) + a \cdot t\\
+d(t) &amp;= d(0) + \dot{d}(0) \cdot t + \frac{1}{2}at^2
 \end{align*}\]</span></p>
+<p><span class="math display">\[\int \ddot{Q} \,dt = \dot{Q}(t) + \dot{Q}(0)\]</span> <span class="math display">\[\underline{\int \dot{Q} \,dt = Q(t) + Q(0)}\]</span></p>
 </div>
-</div>
-</div>
-<p><span class="math display">\[ y(t) = \color{red}\underset{\text{amplitude}}{\underset{\text{change in}}{\underbrace{\color{black}2\sqrt{2}}}} \color{black} \cdot \sin\Big(\color{blue}\underset{\text{frequency}}{\underset{\text{same}}{\underline{\underline{\color{black}\frac{1}{2}t}}}} \color{red}\underset{\text{phase angle}}{\underset{\text{change in}}{\underbrace{\color{black} - 45^\circ}}} \color{black} \Big)\]</span></p>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/b986ee0e601fa9347fc5257a3fc061d271fadc13.svg" class="img-fluid">
-</div>
-<p>When <span class="math inline">\(x(t) = \sin t\)</span>,</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+</ul>
+<p><u>How do we choose state variables?</u></p>
+<p>choose <span class="math inline">\(x_1 = Q\)</span>, <span class="math inline">\(x_2=\dot{Q}\)</span>.</p>
+<p><span class="math display">\[\begin{cases}\dot{x}_1 = x_2 \\ \color{Salmon}\underline{\color{black}\dot{x}_2 = \displaystyle -\frac{1}{LC} \cdot x_1 - \frac{R}{L} \cdot x_2 + \frac{1}{L} \cdot v(t)}\end{cases}\]</span></p>
 <p><span class="math display">\[\begin{align*}
-y(t) &amp;= 2\sin t + \int \sin t \,dt \\
-&amp;= 2\sin t - \cos t \\
-&amp;= \sqrt{5} \cdot \sin(t-\varphi)
+    \color{Salmon} \mathrm{KVL:} \quad v(t) \,&amp;\color{Salmon}= R \cdot \dot{Q}(t) + L \cdot \ddot{Q}(t) + \frac{1}{C} \cdot Q(t) \\
+    \color{Salmon} \ddot{Q}(t) \,&amp;\color{Salmon}= -\frac{1}{LC} \cdot Q(t) - \frac{R}{L} \cdot \dot{Q}(t) + \frac{1}{L} \cdot v(t)
 \end{align*}\]</span></p>
+<p><span class="math display">\[\color{violet}{\mathrm{S.S.M.:}} \color{black} \begin{cases}
+\begin{bmatrix}\dot{x}_1\\\dot{x}_2\end{bmatrix} = \color{red}\underset{A}{\underbrace{\color{black}\begin{bmatrix}0 &amp; 1 \\ -\displaystyle\frac{1}{LC} &amp; -\displaystyle\frac{R}{L}\end{bmatrix}}} \color{black} \begin{bmatrix}x_1\\x_2\end{bmatrix} + \color{red}\underset{B}{\underbrace{\color{black}\begin{bmatrix}0 \\ \displaystyle\frac{1}{L}\end{bmatrix}}} \\
+y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 &amp; 0\end{bmatrix}}} \color{black} \begin{bmatrix}x_1\\x_2\end{bmatrix} + \color{red}\underset{D}{\underbrace{\color{black}\begin{bmatrix}0\end{bmatrix}}} \color{black} \begin{bmatrix}v(t)\end{bmatrix}
+\end{cases}\]</span></p>
+<p><span class="math display">\[\dot{X} = AX+BU\]</span></p>
+<p><span class="math display">\[\begin{align*}
+    \mathrm{L.T.:} \qquad\qquad sX(s) &amp;= AX(s) + BU(s) \\
+    (sI-A) X(s) &amp;= BU(s) \\
+    X(s) &amp;= (sI-A)^{-1} BU(s)
+\end{align*}\]</span></p>
+<p>Put into output equation:</p>
+<p><span class="math display">\[\begin{align*}
+    Y(s) &amp;= C \cdot (sI-A)^{-1} BU(s) \\
+    &amp;= \underset{\color{red}\checkmark}{C} \cdot \frac{(sI-A)^{\ast}}{\lvert sI-A \rvert} \cdot \underset{\color{red}\checkmark}{B} \cdot \underset{\color{red}V(s)}{\underset{\color{red}\checkmark}{U(s)}}
+\end{align*}\]</span></p>
+<div style="color:green">
+<p><span class="math display">\[sI - A = \begin{bmatrix} s &amp; 0 \\ 0 &amp; s \end{bmatrix} - \begin{bmatrix} 0 &amp; 1 \\ -\displaystyle\frac{1}{LC} &amp; -\displaystyle\frac{R}{L} \end{bmatrix} = \begin{bmatrix} s &amp; -1 \\ \displaystyle\frac{1}{LC} &amp; s+\displaystyle\frac{R}{L} \end{bmatrix}\]</span></p>
+<p><span class="math display">\[(sI - A)^{\ast} = \begin{bmatrix} s+\displaystyle\frac{R}{L} &amp; 1 \\ -\displaystyle\frac{1}{LC} &amp; s \end{bmatrix}\]</span></p>
+<p><span class="math display">\[\color{red}\underline{\color{green}\lvert sI-A \rvert} \color{green} = s\left(s+\frac{R}{L}\right) + \frac{1}{LC} = \color{red}\underline{\color{green} s^2 + \frac{R}{L} s + \frac{1}{LC}}\]</span></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<img src="5_frequency_response_files/mediabag/938fa7b846184af13698fa1bce48a1f7991df3aa.svg" class="img-fluid">
-</div>
-</div>
-</div>
-<p>T.F.: <span class="math inline">\(\color{purple} G(s) = 2 + \displaystyle\frac{1}{s}\)</span></p>
-<p>For frequency response, we will let <span class="math inline">\(s=j\omega\)</span>.</p>
-<p><span class="math display">\[ G(j\omega) = 2 + \frac{1}{j\omega} = 2 - \frac{1}{\omega} \cdot j \]</span></p>
-<div style="color:#F7981B">
-<p>When <span class="math inline">\(\omega=\displaystyle\frac{1}{2}\, \mathrm{rad/s}\)</span>,</p>
-<p><span class="math display">\[ G(j\omega) = 2-2j, \quad \begin{cases} \lvert G(j\omega) \rvert = 2\sqrt{2} \\ \angle G(j\omega) = -45^\circ\end{cases} \]</span></p>
-<p>When <span class="math inline">\(\omega=1\, \mathrm{rad/s}\)</span>,</p>
-<p><span class="math display">\[ G(j\omega) = 2-j, \quad \begin{cases} \lvert G(j\omega) \rvert = \sqrt{5} \\ \angle G(j\omega) = -26.565^\circ\end{cases} \]</span></p>
-</div>
+<p><span class="math display">\[\begin{align*}
+    Y(s) &amp;= \frac{1}{\displaystyle s^2+\frac{R}{L}s + \frac{1}{LC}} \cdot \begin{bmatrix} 1 &amp; 0 \end{bmatrix} \begin{bmatrix} s+\displaystyle\frac{R}{L} &amp; 1 \\ -\displaystyle\frac{1}{LC} &amp; s \end{bmatrix} \begin{bmatrix} 0 \\ \displaystyle\frac{1}{L} \end{bmatrix} U(s) \\
+    &amp;= \frac{\displaystyle\frac{1}{L} \cdot U(s)}{\displaystyle s^2+\frac{R}{L}s + \frac{1}{LC}} \\
+    &amp;= \frac{U(s)}{\displaystyle Ls^2 + Rs + \frac{1}{C}}
+\end{align*}\]</span></p>
 <div style="color:red">
-<p>Why the amplitude scaling is <span class="math inline">\(\lvert G(j\omega) \rvert\)</span> and the phase change is <span class="math inline">\(\angle G(j\omega)\)</span> ?</p>
+<p><span class="math inline">\(\lvert sI-A \rvert = 0\)</span> has the solutions exactly the same as <u>the poles of T.F.</u></p>
+<p>also the same as <u>eigenvalues of matrix A</u></p>
+</div>
+<p><span class="math display">\[\color{violet} A \to \text{poles of T.F.} \to \text{system characteristics}\]</span></p>
+<div style="text-align:center">
+<img src="7_state_space_model_files/mediabag/d79a36fa83a56413a6fdc91156e4735f476f7837.svg" class="img-fluid">
 </div>
 <div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/f5f980b93dd95963c3b862ad95e80ecb1b8e3d1f.svg" class="img-fluid">
+<img src="7_state_space_model_files/mediabag/051f2ab5be89a1868580855013b0c22835568ebb.svg" class="img-fluid">
 </div>
-<p><span class="math display">\[\begin{align*}
-    Y(s) &amp;= X(s) \cdot G(s) \\
-    &amp;= \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \\
-    &amp;= \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n} \\
-    \mathcal{L}^{-1}\{Y(s)\} = y(t) &amp;= \color{red}\underbrace{\color{black}c_1 \cdot e^{j\omega t} + c_2 \cdot e^{-j\omega t}} \color{black} + k_1 \cdot e^{-p_1 t} + e^{-p_2 t} + \cdots + k_n \cdot e^{-p_n t}
-\end{align*}\]</span></p>
-<p>If the LTI system is stable, <span class="math display">\[y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}\]</span></p>
-<p><span class="math display">\[ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} .\]</span></p>
-<p>Assume <span class="math inline">\(s=+j\omega\)</span>, <span class="math inline">\(A \cdot \omega \cdot N(j\omega) = 2 \cdot j\omega \cdot c_1 \cdot D(j\omega)\)</span></p>
-<p><span class="math display">\[c_1 = \frac{A \cdot \omega \cdot N(j\omega)}{2j\omega \cdot D(j\omega)} = \frac{A}{2j} \cdot G(j\omega) .\]</span></p>
-<section id="why-the-amplitude-scaling-is" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="why-the-amplitude-scaling-is"><span class="header-section-number">5.1</span> Why the amplitude scaling is …</h2>
-<p><span class="math display">\[y(t \to \infty) = \color{red}\underline{\underline{\color{black}c_1}} \color{black} \cdot e^{j\omega t} + \color{red}\underline{\underline{\color{black}c_2}} \color{black} \cdot e^{-j\omega t}\]</span></p>
-<p><span class="math display">\[\begin{align*}
-    &amp;\, \frac{A \cdot \omega}{s^2+\omega^2} \cdot \frac{N(s)}{(s+p_1)(s+p_2) \cdots (s+p_n) \color{red}{=: D(s)}} \\
-    =&amp;\, \frac{c_1}{s-j\omega} + \frac{c_2}{s+j\omega} + \frac{k_1}{s+p_1} + \frac{k_2}{s+p_2} + \cdots + \frac{k_n}{s+p_n}
-\end{align*}\]</span></p>
-<p><span style="color:#F76B1B">Multiply both sides with <span class="math inline">\((s^2+\omega^2) D(s)\)</span>:</span></p>
-<p><span class="math display">\[ A \cdot \omega \cdot N(s) = c_1 \cdot (s+j\omega) \cdot D(s) + c_2 \cdot (s-j\omega) \cdot D(s) + k_1 \cdot \frac{(s^2+\omega^2) D(s)}{s+p_1} + \cdots + k_n \cdot \frac{(s^2+\omega^2) D(s)}{s+p_n} \]</span></p>
-<p>Assume <span class="math inline">\(s=+j\omega\quad \implies \quad c_1 = \displaystyle \frac{A}{2j} \cdot G(j\omega)\)</span>.</p>
-<p>Assume <span class="math inline">\(s=-j\omega\)</span>,</p>
-<p><span class="math display">\[A \cdot \omega \cdot N(-j\omega) = -2j\omega \cdot c_2 \cdot D(-j\omega)\]</span></p>
-<p><span class="math display">\[c_2 = \frac{A \cdot \omega \cdot D(-j\omega)}{-2j\omega \cdot D(-j\omega)} = -\frac{A}{2j} \cdot G(-j\omega)\]</span></p>
-<p>Therefore,</p>
-<p><span class="math display">\[y(t\to\infty) = \frac{A}{2j} \cdot G(j\omega) \cdot e^{j\omega t} - \frac{A}{2j} \cdot G(-j\omega) \cdot e^{-j\omega t} .\]</span></p>
-<div style="color:#F76B1B">
-<span class="math display">\[\begin{array}{rccccc}
-    \mathrm{L.T.} &amp; G(s) &amp; \implies &amp; G(j\omega) &amp; \implies &amp; F(\omega) \\
-    &amp; s=\sigma+j\omega &amp; &amp; \sigma=0 &amp; &amp; \mathrm{F.T.}
-\end{array}\]</span>
-</div>
-<div style="color:#F7981B">
-<p>If <span class="math inline">\(F(\omega) = a + i \cdot b\)</span>, then</p>
-<p><span class="math display">\[\begin{align*}
-    F(\omega) &amp;= \int_{-\infty}^{+\infty} \left[f(t) \cdot \cos \omega t + j \cdot f(t) \cdot \sin \omega t\right] \,dt \\
-    &amp;= \int_{-\infty}^{+\infty} f(t) \cdot e^{j\omega t} \,dt \\
-    \color{YellowOrange}\mathrm{Then} \quad F(-\omega) \,&amp;\color{YellowOrange}= \int_{-\infty}^{+\infty} \Bigg[\color{red}\underset{a}{\underbrace{\color{YellowOrange} f(t) \cdot \cos \omega t}} \color{YellowOrange} - \color{red}\underset{b}{\underbrace{\color{YellowOrange}j \cdot f(t) \cdot \sin \omega t}} \color{YellowOrange}\Bigg] \,dt \\
-    &amp;= a - i \cdot b
-\end{align*}\]</span></p>
-</div>
-<p><span class="math display">\[\begin{align*}
-    y(t\to\infty) &amp;= \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{j\varphi} \cdot e^{j\omega t} - \frac{A}{2j} \cdot \lvert G(j\omega) \rvert \cdot e^{-j\varphi} \cdot e^{-j\omega t} \\
-    &amp;= A \cdot \lvert G(j\omega) \rvert \cdot \frac{e^{j\omega t + j\varphi} - e^{-(j\omega t + j\varphi)}}{2j} \\
-    &amp;= A \cdot \color{blue}\underset{\text{scaling}}{\underset{\text{Amplitude}}{\underbrace{\color{black} \lvert G(j\omega) \rvert}}} \color{black} \cdot \sin(\omega t + \color{blue}\underset{\varphi=\angle G(j\omega)}{\underbrace{\color{black}\varphi}} \color{black} )
-\end{align*}\]</span></p>
-</section>
-<section id="frequency-response-of-1st-order-system" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="frequency-response-of-1st-order-system"><span class="header-section-number">5.2</span> Frequency response of 1st-order system</h2>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/c1932e262777c2ca1c4fcd40cbd37cdacdd92c7f.svg" class="img-fluid">
-</div>
-<div style="color:#F7981B">
-<p><span class="math display">\[\begin{align*}
-    G(j\omega) &amp;= \frac{a}{a+j\omega} \\
-    &amp;= \frac{a(a-j\omega)}{a^2+\omega^2} \\
-    &amp;= \frac{a}{a^2+\omega^2} + \frac{-j\omega a}{a^2+\omega^2} \\
-    &amp;= \frac{1}{1 + \left(\frac{\omega}{a}\right)^2} + j \cdot \frac{-\omega/a}{1+\left(\frac{\omega}{a}\right)^2}
-\end{align*}\]</span></p>
-</div>
-<p><span class="math inline">\(\boxed{\textbf{Polar Plot}}\)</span></p>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/1113c3c36ea670ae218eb49d55ce492db256a160.svg" class="img-fluid">
-</div>
-<p><span class="math display">\[G(j\omega) \to \text{polar plot}\]</span></p>
-<ul style="list-style-type: '① ';color:#B139FA">
-<li>
-Hard to see the effect of individual poles/zeros. <span style="color:red">(Root Locus)</span>
-</li>
-</ul>
-<ul style="list-style-type: '② ';color:#B139FA">
-<li>
-Indirect information of <span class="math inline">\(\lvert G(j\omega) \rvert\)</span> and <span class="math inline">\(\angle G(j\omega)\)</span>. <span style="color:red">(Bode Plot)</span>
-</li>
-</ul>
-<p><span class="math display">\[\lvert G(j\omega) \rvert = \sqrt{\frac{1}{\left(1+\frac{\omega^2}{a^2}\right)^2} + \frac{\omega^2/a^2}{\left(1+\frac{\omega^2}{a^2}\right)}} = \boxed{\frac{1}{\sqrt{1+\frac{\omega^2}{a^2}}}}\]</span></p>
-<p><span class="math display">\[\angle G(j\omega) = \boxed{\arctan \left(-\frac{\omega}{a}\right)}\]</span></p>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/456907f31043e77b54113b00df5f7a4502b1ad3a.svg" class="img-fluid">
-</div>
-<div style="color:green">
-<span class="math display">\[\begin{array}{rl}
-    \omega \ll a: &amp; \left(\frac{\omega}{a}\right)^2 \to 0 \implies \lvert G(j\omega) \rvert \to 1 \\
-    \omega \uparrow: &amp; \left(\frac{\omega}{a}\right)^2 \uparrow \implies \lvert G(j\omega) \rvert \downarrow \\
-    \omega = a: &amp; \lvert G(j\omega) \rvert = \frac{1}{\sqrt{2}} = 0.707 \\
-    \omega \gg a: &amp; \left(\frac{\omega}{a}\right)^2 \to \infty \implies \lvert G(j\omega) \rvert \to 0
-\end{array}\]</span>
-</div>
-</section>
-<section id="bode-plot" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="bode-plot"><span class="header-section-number">5.3</span> Bode Plot</h2>
-<div style="text-align:center">
-<img src="5_frequency_response_files/mediabag/ca18f7e0f3bb470542759db08d1e6112a7d65179.svg" class="img-fluid">
-</div>
-<p><span class="math display">\[\begin{align*}
-    G(s) &amp;= k_1 \cdot \frac{(s+z_1)(s+z_2) \cdots (s+z_m)}{(s+p_1)(s+p_2) \cdots (s+p_n)} \qquad \color{red} m &lt; n \\
-    \color{YellowOrange} G(j\omega) \,&amp;\color{YellowOrange}= k_1 \cdot \frac{(z_1+j\omega)(z_2+j\omega) \cdots (z_m+j\omega)}{(p_1+j\omega)(p_2+j\omega) \cdots (p_n+j\omega)} \\
-    \color{YellowOrange} \lvert G(j\omega) \rvert \,&amp;\color{YellowOrange}= \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
-    \color{YellowOrange} \angle G(j\omega) \,&amp;\color{YellowOrange}= \angle k_1 + \angle \varphi_{z_1} + \angle \varphi_{z_2} + \cdots + \angle \varphi_{z_m} \\
-    &amp;\color{YellowOrange} \qquad\quad - \angle \varphi_{p_1} - \angle \varphi_{p_2} - \cdots - \angle \varphi_{p_n}
-\end{align*}\]</span></p>
-<div style="color:green">
-<p>Side note <span class="math display">\[\begin{align*}
-    G_1(j\omega) &amp;= a + bi = r_1 \cdot e^{i\theta_1} \\
-    G_2(j\omega) &amp;= r_2 \cdot e^{i\theta_2} \\
-    G_1(j\omega) \cdot G_2(j\omega) &amp;= r_1 \cdot r_2 \cdot e^{i(\theta_1+\theta_2)}
-\end{align*}\]</span></p>
-</div>
-<p><span class="math display">\[\begin{align*}
-    \log \lvert G(j\omega) \rvert =&amp;\, \log \lvert k_1 \rvert \cdot \frac{\lvert z_1+j\omega\rvert \cdot \lvert z_2+j\omega \rvert \cdots \lvert z_m+j\omega\rvert}{\lvert p_1+j\omega\rvert \cdot \lvert p_2+j\omega\rvert \cdots \lvert p_n+j\omega\rvert} \\
-    =&amp;\, \log \lvert k_1 \rvert +\log\lvert z_1+j\omega\rvert +\log\lvert z_2+j\omega \rvert + \cdots +\log\lvert z_m+j\omega\rvert \\
-    &amp; \qquad\quad -\log\lvert p_1+j\omega\rvert - \log\lvert p_2+j\omega\rvert - \dots - \log\lvert p_n+j\omega\rvert
-\end{align*}\]</span></p>
-<p><span class="math display">\[\color{red}\lvert G(j\omega) \rvert = \lvert G_1(j\omega) \rvert \cdot \lvert G_2(j\omega) \rvert \cdot \lvert G_3(j\omega) \rvert\]</span></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -803,16 +706,13 @@ Indirect information of <span class="math inline">\(\lvert G(j\omega) \rvert\)</
     }
   });
   </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./4_time-domain_response.html" class="pagination-link" aria-label="Time-domain Response">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Time-domain Response</span></span>
+      <a href="./6_power_electronic_converters.html" class="pagination-link" aria-label="Power Electronic Converters">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./6_power_electronic_converters.html" class="pagination-link" aria-label="Power Electronic Converters">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

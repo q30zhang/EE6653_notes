@@ -1,0 +1,158 @@
+# State Space Model (S.S.M.)
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw (0,0) -- (0,1.45);
+\draw (-0.3,1.55) -- (0.3,1.55);
+\draw (-0.15,1.45) -- (0.15,1.45);
+\draw (0,1.55) -- (0,3) -- (0.5,3);
+\draw (0.5,3) -- (0.55,3.2) -- (0.65,2.8) -- (0.75,3.2)
+              -- (0.85,2.8) -- (0.95,3.2) -- (1,3);
+\draw (1,3) -- (2.35,3) arc (180:0:0.1)
+                     arc (180:0:0.1)
+                     arc (180:0:0.1)
+                     arc (180:0:0.1)
+            -- (4,3) -- (4,1.6);
+\draw (3.7,1.6) -- (4.3,1.6);
+\draw (3.7,1.4) -- (4.3,1.4);
+\draw (4,1.4) -- (4,0) -- (0,0);
+\node[left] at (-0.3,1.5) {$v(t)$};
+\node[below] at (0.75,2.8) {$R$};
+\node[below] at (2.75,3) {$L$};
+\draw[red,->] (3.6,3) -- (3.7,3);
+\node[red,above] at (3.7,3) {$i=\displaystyle\frac{dQ}{dt}$};
+\node[left] at (3.7,1.5) {$C$};
+\node[left,scale=0.6] at (3.7,2) {$+$};
+\node[left,scale=0.6] at (3.7,1) {$-$};
+\node[right,red] at (4.5,2.1) {$Q$};
+\draw[red,->] (4.6,2) arc (-30:-90:0.3) arc (90:150:0.3);
+\node[pink!50!black,right] at (5.5,3) {Input: $v(t)$};
+\node[pink!50!black,right] at (5.5,2) {Output: $Q(t)$};
+\node[green!50!black] at (2.25,1.5) {$\displaystyle\frac{Q}{C} = V_C$};
+\end{tikzpicture}
+```
+:::
+
+\begin{align*}
+\mathrm{KVL:}\quad v(t)\, &\color{black}= R \cdot \dot{Q}(t) + L \cdot \ddot{Q}(t) + \frac{Q(t)}{C} \\
+\color{red} \mathrm{L.T.:} \quad V(s)\, &\color{red}= sRQ(s) + s^2LQ(s) + \frac{1}{C} \cdot Q(s) \\
+&\color{red}= \left(s^2L+sR+\frac{1}{C}\right) Q(s) \\
+\mathrm{T.F.} = \color{red} \frac{Q(s)}{V(s)} \,&\color{red}= \frac{1}{s^2L+sR+\frac{1}{C}} \qquad \color{black} \mathrm{S.I.S.O.}
+\end{align*}
+
+<u>Why do we need S.S.M.?</u>
+
+<ul style="list-style-type: '① ';">
+<li>Modern control theory.</li>
+M.I.M.O.
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>Relationship among state variables internal behavior.</li>
+</ul>
+
+$\begin{cases}\color{red}\underline{\color{black}\dot{X} = \color{Salmon}\boxed{\color{black}A}\color{black} X + BU} \color{Salmon}\longrightarrow \\ Y = CX+DU\end{cases} \color{Salmon} \begin{bmatrix}\dot{x}_1\\\dot{x}_2\\\vdots\\\dot{x}_n\end{bmatrix} = \begin{bmatrix}\\[2ex]\quad n \times n \quad\\[2ex]\,\end{bmatrix} \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} + BU$
+
+<span style="color:green">S.S.M. is a set of 1st-order D.E.'s.</span>
+
+<u>Why do we use 1st-order D.E. to represent system dynamics?</u>
+
+<ul style="list-style-type: '① ';">
+<li>1st-order D.E. is easier to be solved.</li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>The future states are totally dependent on present states.</li>
+::: {style="color:#F27E50"}
+E.g. Kinematics.
+
+\begin{align*}
+\dot{d} = V \color{red}{=1\,m/s} \quad \color{RedOrange} d(t) \,&\color{RedOrange}= d(0) + V \cdot t\\
+&\color{red}= d(0) + t \\
+\hline
+\ddot{d} = a \color{red}{=1\,m/s^2} \quad \color{RedOrange} \dot{d}(t) \,&\color{RedOrange}= \dot{d}(0) + a \cdot t\\
+d(t) &= d(0) + \dot{d}(0) \cdot t + \frac{1}{2}at^2
+\end{align*}
+
+$$\int \ddot{Q} \,dt = \dot{Q}(t) + \dot{Q}(0)$$
+$$\underline{\int \dot{Q} \,dt = Q(t) + Q(0)}$$
+:::
+</ul>
+
+<u>How do we choose state variables?</u>
+
+choose $x_1 = Q$, $x_2=\dot{Q}$.
+
+$$\begin{cases}\dot{x}_1 = x_2 \\ \color{Salmon}\underline{\color{black}\dot{x}_2 = \displaystyle -\frac{1}{LC} \cdot x_1 - \frac{R}{L} \cdot x_2 + \frac{1}{L} \cdot v(t)}\end{cases}$$
+
+\begin{align*}
+    \color{Salmon} \mathrm{KVL:} \quad v(t) \,&\color{Salmon}= R \cdot \dot{Q}(t) + L \cdot \ddot{Q}(t) + \frac{1}{C} \cdot Q(t) \\
+    \color{Salmon} \ddot{Q}(t) \,&\color{Salmon}= -\frac{1}{LC} \cdot Q(t) - \frac{R}{L} \cdot \dot{Q}(t) + \frac{1}{L} \cdot v(t)
+\end{align*}
+
+$$\color{violet}{\mathrm{S.S.M.:}} \color{black} \begin{cases}
+\begin{bmatrix}\dot{x}_1\\\dot{x}_2\end{bmatrix} = \color{red}\underset{A}{\underbrace{\color{black}\begin{bmatrix}0 & 1 \\ -\displaystyle\frac{1}{LC} & -\displaystyle\frac{R}{L}\end{bmatrix}}} \color{black} \begin{bmatrix}x_1\\x_2\end{bmatrix} + \color{red}\underset{B}{\underbrace{\color{black}\begin{bmatrix}0 \\ \displaystyle\frac{1}{L}\end{bmatrix}}} \\ 
+y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 & 0\end{bmatrix}}} \color{black} \begin{bmatrix}x_1\\x_2\end{bmatrix} + \color{red}\underset{D}{\underbrace{\color{black}\begin{bmatrix}0\end{bmatrix}}} \color{black} \begin{bmatrix}v(t)\end{bmatrix}
+\end{cases}$$
+
+$$\dot{X} = AX+BU$$
+
+\begin{align*}
+    \mathrm{L.T.:} \qquad\qquad sX(s) &= AX(s) + BU(s) \\
+    (sI-A) X(s) &= BU(s) \\
+    X(s) &= (sI-A)^{-1} BU(s)
+\end{align*}
+
+Put into output equation:
+
+\begin{align*}
+    Y(s) &= C \cdot (sI-A)^{-1} BU(s) \\
+    &= \underset{\color{red}\checkmark}{C} \cdot \frac{(sI-A)^{\ast}}{\lvert sI-A \rvert} \cdot \underset{\color{red}\checkmark}{B} \cdot \underset{\color{red}V(s)}{\underset{\color{red}\checkmark}{U(s)}}
+\end{align*}
+
+::: {style="color:green"}
+$$sI - A = \begin{bmatrix} s & 0 \\ 0 & s \end{bmatrix} - \begin{bmatrix} 0 & 1 \\ -\displaystyle\frac{1}{LC} & -\displaystyle\frac{R}{L} \end{bmatrix} = \begin{bmatrix} s & -1 \\ \displaystyle\frac{1}{LC} & s+\displaystyle\frac{R}{L} \end{bmatrix}$$
+
+$$(sI - A)^{\ast} = \begin{bmatrix} s+\displaystyle\frac{R}{L} & 1 \\ -\displaystyle\frac{1}{LC} & s \end{bmatrix}$$
+
+$$\color{red}\underline{\color{green}\lvert sI-A \rvert} \color{green} = s\left(s+\frac{R}{L}\right) + \frac{1}{LC} = \color{red}\underline{\color{green} s^2 + \frac{R}{L} s + \frac{1}{LC}}$$
+:::
+
+\begin{align*}
+    Y(s) &= \frac{1}{\displaystyle s^2+\frac{R}{L}s + \frac{1}{LC}} \cdot \begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} s+\displaystyle\frac{R}{L} & 1 \\ -\displaystyle\frac{1}{LC} & s \end{bmatrix} \begin{bmatrix} 0 \\ \displaystyle\frac{1}{L} \end{bmatrix} U(s) \\ 
+    &= \frac{\displaystyle\frac{1}{L} \cdot U(s)}{\displaystyle s^2+\frac{R}{L}s + \frac{1}{LC}} \\
+    &= \frac{U(s)}{\displaystyle Ls^2 + Rs + \frac{1}{C}}
+\end{align*}
+
+::: {style="color:red"}
+$\lvert sI-A \rvert = 0$ has the solutions exactly the same as <u>the poles of T.F.</u>
+
+also the same as <u>eigenvalues of matrix A</u>
+:::
+
+$$\color{violet} A \to \text{poles of T.F.} \to \text{system characteristics}$$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\draw[->] (-1,0) -- (1,0) node[right] {$\sigma$};
+\draw[->] (0,-1) -- (0,1) node[above] {$j\omega$};
+\fill[red] (-0.3,0) circle[radius=0.05cm];
+\fill[red] (-0.8,0) circle[radius=0.05cm];
+\fill[red] (0.5,0.3) circle[radius=0.05cm];
+\fill[red] (0.5,-0.3) circle[radius=0.05cm];
+\node[below,red] at (0,-1) {$e^{\sigma t}$};
+\node[right] at (1,0.5) {$s$-plane};
+\end{tikzpicture}
+```
+:::
+
+
+
+::: {style="text-align:center"}
+```{.tikz}
+
+```
+:::
+

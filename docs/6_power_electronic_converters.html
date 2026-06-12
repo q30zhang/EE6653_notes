@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./7_state_space_model.html" rel="next">
 <link href="./5_frequency_response.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -41,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5d71c39eeba758c85068802e89c45306.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -178,6 +179,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7_state_space_model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -188,15 +195,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#power-semiconductor-devices-0603" id="toc-power-semiconductor-devices-0603" class="nav-link active" data-scroll-target="#power-semiconductor-devices-0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices (06/03)</a></li>
+  <li><a href="#power-semiconductor-devices---0603" id="toc-power-semiconductor-devices---0603" class="nav-link active" data-scroll-target="#power-semiconductor-devices---0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices - 06/03</a></li>
   <li><a href="#dc-dc-converter" id="toc-dc-dc-converter" class="nav-link" data-scroll-target="#dc-dc-converter"><span class="header-section-number">6.2</span> DC – DC Converter</a></li>
-  <li><a href="#ac-dc-converters-0605" id="toc-ac-dc-converters-0605" class="nav-link" data-scroll-target="#ac-dc-converters-0605"><span class="header-section-number">6.3</span> AC – DC Converters (06/05)</a></li>
+  <li><a href="#ac-dc-converters---0605" id="toc-ac-dc-converters---0605" class="nav-link" data-scroll-target="#ac-dc-converters---0605"><span class="header-section-number">6.3</span> AC – DC Converters - 06/05</a></li>
   <li><a href="#dc-ac-converters" id="toc-dc-ac-converters" class="nav-link" data-scroll-target="#dc-ac-converters"><span class="header-section-number">6.4</span> DC – AC Converters</a></li>
+  <li><a href="#ac-ac-converters---0612" id="toc-ac-ac-converters---0612" class="nav-link" data-scroll-target="#ac-ac-converters---0612"><span class="header-section-number">6.5</span> AC – AC Converters - 06/12</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -226,8 +234,8 @@ window.Quarto = {
 <p>AC – AC <span style="color:red">(inverter)</span></p>
 </div>
 </div>
-<section id="power-semiconductor-devices-0603" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="power-semiconductor-devices-0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices (06/03)</h2>
+<section id="power-semiconductor-devices---0603" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="power-semiconductor-devices---0603"><span class="header-section-number">6.1</span> Power Semiconductor Devices - 06/03</h2>
 <div class="columns">
 <div class="column" style="width: fit-content;">
 <p><span class="math inline">\(\boxed{\textbf{Silicon}} \quad 14\)</span></p>
@@ -396,8 +404,8 @@ Add a capacitor <span class="math inline">\(C\)</span> with <span class="math in
 \end{align*}\]</span>
 </ul>
 </section>
-<section id="ac-dc-converters-0605" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="ac-dc-converters-0605"><span class="header-section-number">6.3</span> AC – DC Converters (06/05)</h2>
+<section id="ac-dc-converters---0605" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="ac-dc-converters---0605"><span class="header-section-number">6.3</span> AC – DC Converters - 06/05</h2>
 <p><span class="math inline">\(\boxed{\textbf{Half-wave rectifier}}\)</span></p>
 <div style="text-align:center">
 <img src="6_power_electronic_converters_files/mediabag/d6c72a42ec2fc07bc6c8fba2c89a5f7c6ea4479c.svg" class="img-fluid">
@@ -587,10 +595,10 @@ Low DC voltage utilization (45%).
 </div>
 <p>&nbsp;</p>
 <div style="text-align:center">
-<img src="6_power_electronic_converters_files/mediabag/023b35ef36cee5c58d8a08552d44a396fd310a59.svg" class="img-fluid">
+<img src="6_power_electronic_converters_files/mediabag/d5167565356f6855f38e3ae97f471760c4e4c0ad.svg" class="img-fluid">
 </div>
 <div style="text-align:center">
-<img src="6_power_electronic_converters_files/mediabag/b96a202d6a480118817188c2a976ac9943ca4fd9.svg" class="img-fluid">
+<img src="6_power_electronic_converters_files/mediabag/47e928a852cf6a6524be138e5e828f2ecae4c0c7.svg" class="img-fluid">
 </div>
 <p>&nbsp;</p>
 <p><span class="math inline">\(\boxed{\textbf{Unipolar SPWM}}\)</span></p>
@@ -602,6 +610,63 @@ Low DC voltage utilization (45%).
 <p><span class="math inline">\(\boxed{\textbf{Bipolar SPWM}}\)</span></p>
 <div style="text-align:center">
 <img src="6_power_electronic_converters_files/mediabag/2684ed9849dac47a329c87c99f29554275d8b384.svg" class="img-fluid">
+</div>
+</section>
+<section id="ac-ac-converters---0612" class="level2 page-columns page-full" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="ac-ac-converters---0612"><span class="header-section-number">6.5</span> AC – AC Converters - 06/12</h2>
+<p>DC voltage: <span style="color:#F27E50">voltage level/amplitude</span></p>
+<p>AC voltage: <span style="color:#F27E50">amplitude, frequency, phase angle</span></p>
+<span class="math display">\[\begin{array}{rcc}
+&amp; \color{violet}{\text{voltage across}} &amp; \color{violet}{\text{current through}} \\
+&amp; \color{violet}{\boxed{\text{switch}}} &amp; \color{violet}{\boxed{\text{switch}}} \\
+\color{YellowOrange}{\text{DC -- DC}} &amp; \color{red}{\text{unipolar}} &amp; \color{red}{\text{unidirectional}} \\
+\color{YellowOrange}{\text{DC} \leftrightharpoons \text{AC}} &amp; \color{red}{\text{unipolar}} &amp; \color{red}{\text{bidirectional}} \\
+\color{YellowOrange}{\text{AC -- AC}} &amp; \color{green}{\text{bipolar}} &amp; \color{green}{\text{bidirectional}}
+\end{array}\]</span>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/a980a3b8e28fa81affaa985b8a09ed214cfa472d.svg" class="img-fluid">
+</div>
+<p><span class="math inline">\(\boxed{\textbf{Switch characteristics}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/7358cfb1d237949f40ba6a105c1698dda8a8c048.svg" class="img-fluid">
+</div>
+<p><span style="color:red">In order to make BJT and IGBT bidirectional (current),</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/975a1771082567b19708da02a8463f78070b76cd.svg" class="img-fluid">
+</div>
+<p><span style="color:red">In order to make BJT and IGBT bipolar (voltage),</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/a054fdeb66e012c2fd8a9a9f043ed8468ac17cc0.svg" class="img-fluid">
+</div>
+<p><span style="color:red">In order to make BJT bipolar and bidirectional,</span></p>
+<ul style="list-style-type: '① ';">
+<li>
+Antiparallel 2 bipolar switches.
+</li>
+<img src="6_power_electronic_converters_files/mediabag/a361a1bcd0a2643f304a07fabc861650bc4b0724.svg" class="img-fluid">
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Back-to-back 2 bidirectional switches.
+</li>
+<img src="6_power_electronic_converters_files/mediabag/49077953994b5af74cefe0838da42373bd278af6.svg" class="img-fluid">
+</ul>
+<p><span class="math inline">\(\boxed{\textbf{Phase controlled AC converter}}\)</span></p>
+<div style="text-align:center">
+<img src="6_power_electronic_converters_files/mediabag/a9cc49bbafd95507bba258002449d573ff19d8b0.svg" class="img-fluid">
+</div>
+<p><span style="color:red">Disadvantage: Low-order harmonics</span></p>
+<div class="column-left-fit">
+<p><span class="math inline">\(\boxed{\textbf{Phase control}}\)</span></p>
+<img src="6_power_electronic_converters_files/mediabag/cc183d79dd4355c7253dd78ee1108d9be1c3b155.svg" class="img-fluid">
+<p><span class="math inline">\(\boxed{\textbf{On-off control}}\)</span></p>
+<img src="6_power_electronic_converters_files/mediabag/bb56b2644845d928b32e6915572d87afa67104c1.svg" class="img-fluid">
+<p><span class="math inline">\(\boxed{\textbf{PWM control}}\)</span></p>
+<img src="6_power_electronic_converters_files/mediabag/0387226adc2d4568b361c50020600e775025b0be.svg" class="img-fluid">
+<p>&nbsp;</p>
+<p>Similar to SPWM</p>
+<p>&nbsp;</p>
+<img src="6_power_electronic_converters_files/mediabag/37522c0277b98a63035d08e8c28bd6b9dfe33210.svg" class="img-fluid">
 </div>
 
 
@@ -1015,6 +1080,9 @@ Low DC voltage utilization (45%).
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./7_state_space_model.html" class="pagination-link" aria-label="State Space Model (S.S.M.)">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
