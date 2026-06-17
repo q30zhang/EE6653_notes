@@ -149,10 +149,402 @@ $$\color{violet} A \to \text{poles of T.F.} \to \text{system characteristics}$$
 :::
 
 
+## Eigenvalues and Eigenvectors - 06/17
+
+::: {style="text-align:center; color:red"}
+Eigenvalues of $A \quad \longrightarrow \quad$ system stability
+:::
+
+\begin{align*}
+\color{green}{A} \color{black}\vec{v} &= \color{green}{\lambda} \color{black}\vec{v} \\
+\color{green}\swarrow \quad & \qquad \color{green}\searrow \\
+\color{green}\text{linear transformation} & \qquad \color{green}\text{scaling factor}
+\end{align*}
+
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+E.g. $\quad A = \color{YellowOrange}\underset{\text{transformation}}{\underset{\text{2-D linear}}{\underbrace{\color{black}\mat{1&1\\4&-2}}}} \color{black}\quad \vec{v}_1 = \color{YellowOrange}\underset{\text{vector}}{\underset{\text{2-D}}{\underbrace{\color{black}\mat{1\\2}}}} \begin{array}{l}\color{red}x\\\color{red}y\end{array}$
+
+$$A \, \mat{x\\y} = \begin{cases}
+1 \cdot \color{red} x \color{black} + 1 \cdot \color{red} y \color{black} = c_1 \qquad 1 \times 1 + 1 \times 2 = 3 \\ 
+4 \cdot \color{red} x \color{black} - 2 \cdot \color{red} y \color{black} = c_2 \qquad 4 \times 1 - 2 \times 2 = 0
+\end{cases}$$
 
 ::: {style="text-align:center"}
 ```{.tikz}
-
+\begin{tikzpicture}[>=latex]
+\begin{scope}[scale=0.6]
+    \draw[->] (-4,0) -- (5,0) node[right] {$x$};
+    \draw[->] (0,-4) -- (0,5) node[above] {$y$};
+    \foreach \n in {-3,-2,...,3} {
+        \draw (\n,0) -- (\n,0.1);
+        \draw (0,\n) -- (0.1,\n);
+    }
+    \draw[orange!60!black,->,thick] (0,0) -- (1,2) node[above] {$\vec{v}_1$};
+    \node[below,orange!60!black] at (1,0) {$1$};
+    \node[left,orange!60!black] at (0,2) {$2$};
+    \draw[blue,->,thick] (0,0) -- (2,2);
+    \draw[blue,->,thick] (0,0) -- (1,1);
+    \node[below,blue] at (2,0) {$2$};
+    \node[left,blue] at (0,2) {$2$};
+    \node[left,blue] at (0,1) {$1$};
+    \draw[blue,dashed] (0,2) -- (2,2) -- (2,0);
+    \draw[red,->,thick] (0,0) -- (3,0) node[above] {$\vec{v}_1'$};
+    \node[red,below] at (3,0) {$3$};
+\end{scope}
+    \node[right,red] at (3,1.5) {$\vec{v}_1$ is not an eigenvector};
+    \node[right,red] at (3,1) {of matrix $A$};
+\end{tikzpicture}
 ```
+:::
+
+$$\color{red}\underset{A}{\underbrace{\color{green}\mat{1&1\\4&-2}}}\, \color{red}\underset{\vec{v}}{\underbrace{\color{green}\mat{1\\1}}} \color{green} = \mat{2\\2} \color{blue} = \color{red}\underset{\lambda}{\underset{\uparrow}{\color{blue} 2}} \color{blue} \,\cdot \color{red}\underset{\vec{v}}{\underbrace{\color{blue}\mat{1\\1}}}$$
+
+<span style="color:red">$\vec{v}=\mat{1\\1}$ is an eigenvector of $A$, $\lambda=2$ is an eigenvalue of $A$.</span>
+
+With a given matrix $A$, how to calculate its eigenvalue?
+
+$$A \vec{v} = \lambda \vec{v}$$
+
+$$(\lambda I - A) \vec{v} = 0$$
+
+$$ \color{YellowOrange}\underline{\color{black} \lvert \lambda I - A \rvert = 0 \text{ for a non=zero } \vec{v}.}$$
+
+::: {style="color:#F79C3B"}
+Prove:  $\quad \vec{v} = \mat{v_x\\v_y} \quad$ assume $(\lambda I - A) = \mat{a&b\\c&d}
+
+then we have $\mat{a&b\\c&d} \mat{v_x\\v_y} = \mat{0\\0}$
+
+$\begin{cases}a \cdot v_x + b \cdot v_y = 0 \\ c \cdot v_x + d \cdot v_y = 0 \end{cases} \implies \begin{cases}\displaystyle\frac{v_x}{v_y} = -\frac{b}{a} \\ \displaystyle\frac{v_x}{v_y} = -\frac{d}{c} \end{cases}$
+
+then $\displaystyle\frac{b}{a} = \frac{d}{c} \implies ad-bc=0$
+
+$\left\lvert\begin{array}{cc}a&b\\c&d\end{array}\right\rvert = \det \mat{a&b\\c&d} = \lvert \lambda I - A\rvert$
+:::
+
+E.g. $\quad A = \mat{1&1\\4&-2}$
+
+\begin{align*}
+(\lambda I - A) &= \mat{\lambda&0\\0&\lambda} - \mat{1&1\\4&-2} \\
+&= \mat{\lambda-1 & -1 \\ -4 & \lambda+2} \\
+\lvert \lambda I - A \rvert &= (\lambda-1)(\lambda+2) - 4 \\
+&= \lambda^2 + \lambda - 2-4 \\
+&= \lambda^2 + \lambda - 6 \color{YellowOrange} = 0
+\end{align*}
+
+$$\color{YellowOrange}(\lambda+3)(\lambda-2) = 0$$
+
+$$\lambda_1 = 2, \quad \lambda_2 = -3$$
+
+<ul style="list-style-type: '① ';">
+<li>Put $\color{red}\underline{\underline{\color{black}\lambda_1=2}}$ into $(\lambda I - A) \cdot \vec{v} = 0$</li>
+
+$$\mat{1&-1\\-4&4} \mat{v_x\\v_y} = \mat{0\\0}$$
+
+$$\begin{cases}v_x - v_y = 0 \\ -4v_x + 4v_y = 0 \end{cases} \qquad \color{red}\underline{\underline{\color{black}\mat{1\\1}}} \quad \color{red}\underline{\underline{\color{black}\mat{2\\2}}} \quad \color{black} \cdots$$
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>Put $\color{red}\underline{\underline{\color{black}\lambda_2=-3}}$ into $\dots$</li>
+
+$$ \mat{-4&-1\\-4&-1} \mat{v_x\\v_y} = \mat{0\\0} \qquad \color{red}\underline{\underline{\color{black}\mat{1\\-4}}}$$
+</ul>
+
+::: {style="color:red;text-align:center"}
+eigenvalues of $A\quad\longrightarrow\quad$ poles of T.F. $\quad\longrightarrow\quad c_1\cdot e^{\lambda_1 t} + c_2\cdot e^{\lambda_2 t}$
+:::
+
+::: {style="color:blue;text-align:center"}
+Phase portrait
+:::
+
+::: {style="color:green"}
+<b>Side notes for <u>Transition matrix $P$</u></b>
+
+Assume $\quad P = \mat{\vec{v}_1 & \vec{v}_2} = \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}}$
+
+\begin{align*}
+AP &= A \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} = \mat{A \mat{v_{1x}\\v_{1y}} & A \mat{v_{2x}\\v_{2y}}} \\
+&= \mat{\lambda \mat{v_{1x}\\v_{1y}} & \lambda \mat{v_{2x}\\v_{2y}}} \\
+&= \mat{\lambda_1 v_{1x} & \lambda_2 v_{2x} \\ \lambda_1 v_{1y} & \lambda_2 v_{2y}} \\
+&= \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} \color{red}\underset{\Lambda}{\color{green}\underbrace{\mat{\lambda_1 & 0 \\ 0 & \lambda_2}}} \\
+&= P \cdot \Lambda
+\end{align*}
+
+for $\dot{X} = AX$, assume $X = P \cdot Z$
+
+then we have $\dot{X} = \color{blue}\underline{\underline{\color{green}P \dot{Z}}} \color{green} = APZ = \color{blue}\underline{\underline{\color{green}P \Lambda Z}}$
+
+$$\color{blue}\dot{Z} = \Lambda Z$$
+:::
+
+::: {style="color:#F79C3B"}
+$\begin{cases}\dot{x} = ax_1+bx_2 \\ \dot{x}_2 = cx_1 + dx_2\end{cases} \implies \begin{cases}\dot{z}_1 = \lambda_1 z_1 \\ \dot{z}_2 = \lambda_2 z_2\end{cases}$
+:::
+
+
+## Phase Portrait
+
+:::: {.columns}
+::: {.column style="width:fit-content;"}
+1-D:$\quad$
+:::
+
+::: {.column style="width:fit-content;"}
+\begin{align*}
+\dot{x} = x & \color{YellowOrange} \implies x=e^{t} \\
+\frac{dx(t)}{dt} = x(t) & \implies x(t) = e^{t} \quad
+\end{align*}
+:::
+
+::: {.column style="width:fit-content;"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,red]
+\draw[->] (-0.5,0) -- (1.5,0) node[right] {$t$};
+\draw[->] (0,-0.5) -- (0,1.5) node[above] {$e^t$};
+\draw[domain=0:1.5,smooth,variable=\x] plot ({\x},{0.3*exp(\x)});
+\end{tikzpicture}
+```
+:::
+::::
+
+&nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+\end{tikzpicture}
+```
+
+::: {style="color:#F79C3B"}
+<ul style="list-style-type: '① ';">
+<li>Find equilibrium point: $\dot{x} = 0 \implies x = 0$</li>
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>when $x>0$, $\dot{x}>0$, $\color{blue} x \uparrow$</li>
+
+when $x<0$, $\dot{x}<0$, $\color{blue} x \downarrow$
+
+<span style="color:red">unstable. $\underline{\lambda=1}.$</span>
+</ul>
+
+:::
+
+:::: {.columns}
+::: {.column style="width:fit-content;"}
+2-D:$\quad$
+:::
+
+::: {.column style="color:#F79C3B"}
+\begin{align*}
+& \color{black} \mat{\dot{x}_1\\\dot{x}_2} = \mat{a&b\\c&d} \mat{x_1\\x_2} \\
+\implies & \mat{\dot{z}_1\\\dot{z}_2} = \mat{\lambda_1 & 0 \\ 0 & \lambda_2} \mat{z_1\\z_2} \\
+& \begin{cases}
+\dot{z}_1 = \lambda_1 z_1 \\
+\dot{z}_2 = \lambda_2 z_2
+\end{cases}
+\end{align*}
+:::
+::::
+
+::: {style="color:blue;"}
+::: {layout-ncol=2}
+Case I: $\lambda_1 > 0$, $\lambda_2 > 0$.
+
+Case II: $\lambda_1 > 0$, $\lambda_2 < 0$.
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-3,0) -- (3,0) node[right] {$z_1$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$z_2$};
+    \node at (-0.2,-0.2) {$0$};
+    \foreach \n in {1,-1} {
+        \draw[blue,thick,->] (0.4*\n,0.1) -- (2.8*\n,0.1);
+        \draw[blue,thick,->] (0.1,0.4*\n) -- (0.1,2.8*\n);
+    }
+    \foreach \n in {45,135,225,315} {
+        \draw[blue,thick,->] ({0.5*cos(\n)}, {0.5*sin(\n)}) -- ({2.8*cos(\n)}, {2.8*sin(\n)});
+    }
+    \node[red,below,scale=1.5] at (0,-3) {source unstable};
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-3,0) -- (3,0) node[right] {$z_1$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$z_2$};
+    \node at (-0.2,-0.2) {$0$};
+    \foreach \n in {1,-1} {
+        \draw[blue,thick,->] (0.4*\n,0.1) -- (2.8*\n,0.1);
+        \draw[blue,thick,->] (0.1,2.8*\n) -- (0.1,0.4*\n);
+    }
+    \foreach \n in {1,-1} {
+    \foreach \m in {1,-1} {
+        \draw[blue,thick,->,variable=\x, domain=1/2.8*\n:2.8*\n] plot (\x,\m/\x); 
+    }
+    }
+    \node[red,below,scale=1.5] at (0,-3) {saddle unstable};
+\end{tikzpicture}
+```
+
+&nbsp;
+
+&nbsp;
+
+Case III: $\lambda_1 < 0$, $\lambda_2 < 0$.
+
+&nbsp;
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-3,0) -- (3,0) node[right] {$z_1$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$z_2$};
+    \node at (-0.2,-0.2) {$0$};
+    \foreach \n in {1,-1} {
+        \draw[blue,thick,->] (2.8*\n,0.1) -- (0.4*\n,0.1);
+        \draw[blue,thick,->] (0.1,2.8*\n) -- (0.1,0.4*\n);
+    }
+    \foreach \n in {45,135,225,315} {
+        \draw[blue,thick,->] ({2.8*cos(\n)}, {2.8*sin(\n)}) -- ({0.5*cos(\n)}, {0.5*sin(\n)});
+    }
+    \node[red,below,scale=1.5] at (0,-3) {sink stable};
+\end{tikzpicture}
+```
+:::
+:::
+
+Now we have the system property of $\dot{Z} = \Lambda Z$.
+
+\begin{align*}
+    X = PZ &= \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} \mat{z_1\\z_2} \\
+    &= z_1 \color{YellowOrange}\underset{\vec{v}_1}{\underbrace{\color{black}\mat{v_{1x} \\ v_{1y}}}} \color{black} + z_2 \color{YellowOrange}\underset{\vec{v}_2}{\underbrace{\color{black}\mat{v_{2x} \\ v_{2y}}}}
+\end{align*}
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-3,0) -- (3,0) node[right] {$x_1$};
+    \draw[->] (0,-3) -- (0,3) node[above] {$x_2$};
+    \draw[opacity=0.5,orange!60!black] (-3,-1.5) -- (3,1.5);
+    \draw[opacity=0.5,orange!60!black] (-1,-3) -- (1,3);
+    \node[right,orange!60!black] at (3,1.5) {$\vec{v}_1$};
+    \node[right,orange!60!black] at (1,3) {$\vec{v}_2$};
+    \foreach \n in {-1,1} {
+        \draw[red,thick,->] (0.3*\n,0.15*\n) -- (2.6*\n,1.3*\n);
+        \draw[red,thick,->] (0.9*\n,2.7*\n) -- (0.1*\n,0.3*\n);
+    }
+    \foreach \n in {1,-1} {
+    \foreach \m in {1,-1} {
+        \draw[red,thick,->,variable=\x, domain=-1.3:1.65] plot ({\n*0.5*exp(\x) + 0.25*\m*exp(-\x)},{0.25*\n*exp(\x) + 0.75*\m*exp(-\x)}); 
+    }
+    }
+    \node[red,below,scale=1.5] at (0,-3) {Case II};
+\end{tikzpicture}
+```
+:::
+
+<span style="color:red">Conclusion: $\dot{X} = AX$ has the same property as $\dot{Z} = \Lambda Z$.</span>
+
+::: {style="color:green"}
+Summary:
+
+<table class="caption-top table">
+<tr class="header">
+    <th>$\lambda_1$, $\lambda_2$</th>
+    <th></th>
+    <th></th>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_1 < 0$, $\lambda_2 < 0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) -- (1,0);
+    \draw[->] (0,-1) -- (0,1);
+    \foreach \n in {1,-1} {
+        \draw[red,thick,->] (0.8*\n,0.05) -- (0.2*\n,0.05);
+        \draw[red,thick,->] (0.05,0.8*\n) -- (0.05,0.2*\n);
+    }
+    \foreach \n in {45,135,225,315} {
+        \draw[red,thick,->] ({0.8*cos(\n)}, {0.8*sin(\n)}) -- ({0.2*cos(\n)}, {0.2*sin(\n)});
+    }
+\end{tikzpicture}
+```
+<span style="color:red">$\quad$ stable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_1 > 0$, $\lambda_2 < 0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) -- (1,0);
+    \draw[->] (0,-1) -- (0,1);
+    \foreach \n in {1,-1} {
+        \draw[red,thick,->] (0.2*\n,0.05) -- (0.8*\n,0.05);
+        \draw[red,thick,->] (0.05,0.8*\n) -- (0.05,0.2*\n);
+    }
+    \foreach \n in {1,-1} {
+    \foreach \m in {1,-1} {
+        \draw[red,thick,->,variable=\x, domain=0.25*\n:0.8*\n] plot (\x,0.2*\m/\x); 
+    }
+    }
+\end{tikzpicture}
+```
+<span style="color:red">$\quad$ saddle</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_1 > 0$, $\lambda_2 > 0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]\draw[->] (-1,0) -- (1,0);\draw[->] (0,-1) -- (0,1);\foreach \n in {1,-1} {\draw[red,thick,->] (0.2*\n,0.05) -- (0.8*\n,0.05);\draw[red,thick,->] (0.05,0.2*\n) -- (0.05,0.8*\n);}\foreach \n in {45,135,225,315} {\draw[red,thick,->] ({0.2*cos(\n)}, {0.2*sin(\n)}) -- ({0.8*cos(\n)}, {0.8*sin(\n)});}\end{tikzpicture}
+```
+<span style="color:red">$\quad$ unstable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_{1,2} = a \pm bi,\, a=0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) -- (1,0);
+    \draw[->] (0,-1) -- (0,1);
+    \draw[red,thick,domain=0:360,samples=100] plot ({0.5*cos(\x)},{0.5*sin(\x)});
+\end{tikzpicture}
+```
+<span style="color:red">$\quad$ Lyapunov stability</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_{1,2} = a \pm bi,\, a \gt 0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) -- (1,0);
+    \draw[->] (0,-1) -- (0,1);
+    \draw[red,thick,domain=0:500,samples=100,->] plot ({-\x}:{-0.1/180*pi*\x});
+    \draw[red,thick,domain=490:590,samples=20] plot ({-\x}:{-0.1/180*pi*\x});
+\end{tikzpicture}
+```
+<span style="color:red">$\quad$ unstable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+    <td>$\lambda_{1,2} = a \pm bi,\, a \lt 0 \quad$</td>
+<td>
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (-1,0) -- (1,0);
+    \draw[->] (0,-1) -- (0,1);
+    \draw[red,thick,domain=0:780,samples=100] plot ({\x}:{0.06/180*pi*\x});
+    \draw[red,thick,domain=830:770,samples=20,->] plot ({\x}:{0.06/180*pi*\x});
+\end{tikzpicture}
+```
+<span style="color:red">$\quad$ asymptotically stable</span>
+</td>
+</tr>
+</table>
+
 :::
 

@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5d71c39eeba758c85068802e89c45306.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e4c764a9a274d09c515de20b6424a5d2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -189,11 +189,18 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#eigenvalues-and-eigenvectors---0617" id="toc-eigenvalues-and-eigenvectors---0617" class="nav-link active" data-scroll-target="#eigenvalues-and-eigenvectors---0617"><span class="header-section-number">7.1</span> Eigenvalues and Eigenvectors - 06/17</a></li>
+  <li><a href="#phase-portrait" id="toc-phase-portrait" class="nav-link" data-scroll-target="#phase-portrait"><span class="header-section-number">7.2</span> Phase Portrait</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -202,7 +209,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -299,11 +306,249 @@ y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 &amp; 0\en
 <div style="text-align:center">
 <img src="7_state_space_model_files/mediabag/d79a36fa83a56413a6fdc91156e4735f476f7837.svg" class="img-fluid">
 </div>
+<section id="eigenvalues-and-eigenvectors---0617" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="eigenvalues-and-eigenvectors---0617"><span class="header-section-number">7.1</span> Eigenvalues and Eigenvectors - 06/17</h2>
+<div style="text-align:center; color:red">
+<p>Eigenvalues of <span class="math inline">\(A \quad \longrightarrow \quad\)</span> system stability</p>
+</div>
+<p><span class="math display">\[\begin{align*}
+\color{green}{A} \color{black}\vec{v} &amp;= \color{green}{\lambda} \color{black}\vec{v} \\
+\color{green}\swarrow \quad &amp; \qquad \color{green}\searrow \\
+\color{green}\text{linear transformation} &amp; \qquad \color{green}\text{scaling factor}
+\end{align*}\]</span></p>
+<p>E.g. <span class="math inline">\(\quad A = \color{YellowOrange}\underset{\text{transformation}}{\underset{\text{2-D linear}}{\underbrace{\color{black}\begin{bmatrix}1&amp;1\\4&amp;-2\end{bmatrix}}}} \color{black}\quad \vec{v}_1 = \color{YellowOrange}\underset{\text{vector}}{\underset{\text{2-D}}{\underbrace{\color{black}\begin{bmatrix}1\\2\end{bmatrix}}}} \begin{array}{l}\color{red}x\\\color{red}y\end{array}\)</span></p>
+<p><span class="math display">\[A \, \begin{bmatrix}x\\y\end{bmatrix} = \begin{cases}
+1 \cdot \color{red} x \color{black} + 1 \cdot \color{red} y \color{black} = c_1 \qquad 1 \times 1 + 1 \times 2 = 3 \\
+4 \cdot \color{red} x \color{black} - 2 \cdot \color{red} y \color{black} = c_2 \qquad 4 \times 1 - 2 \times 2 = 0
+\end{cases}\]</span></p>
 <div style="text-align:center">
+<img src="7_state_space_model_files/mediabag/e54227ed5ce3252ddaa600a41477d9211e4700bc.svg" class="img-fluid">
+</div>
+<p><span class="math display">\[\color{red}\underset{A}{\underbrace{\color{green}\begin{bmatrix}1&amp;1\\4&amp;-2\end{bmatrix}}}\, \color{red}\underset{\vec{v}}{\underbrace{\color{green}\begin{bmatrix}1\\1\end{bmatrix}}} \color{green} = \begin{bmatrix}2\\2\end{bmatrix} \color{blue} = \color{red}\underset{\lambda}{\underset{\uparrow}{\color{blue} 2}} \color{blue} \,\cdot \color{red}\underset{\vec{v}}{\underbrace{\color{blue}\begin{bmatrix}1\\1\end{bmatrix}}}\]</span></p>
+<p><span style="color:red"><span class="math inline">\(\vec{v}=\begin{bmatrix}1\\1\end{bmatrix}\)</span> is an eigenvector of <span class="math inline">\(A\)</span>, <span class="math inline">\(\lambda=2\)</span> is an eigenvalue of <span class="math inline">\(A\)</span>.</span></p>
+<p>With a given matrix <span class="math inline">\(A\)</span>, how to calculate its eigenvalue?</p>
+<p><span class="math display">\[A \vec{v} = \lambda \vec{v}\]</span></p>
+<p><span class="math display">\[(\lambda I - A) \vec{v} = 0\]</span></p>
+<p><span class="math display">\[ \color{YellowOrange}\underline{\color{black} \lvert \lambda I - A \rvert = 0 \text{ for a non=zero } \vec{v}.}\]</span></p>
+<div style="color:#F79C3B">
+<p>Prove: <span class="math inline">\(\quad \vec{v} = \begin{bmatrix}v_x\\v_y\end{bmatrix} \quad\)</span> assume $(I - A) = </p>
+<p>then we have <span class="math inline">\(\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix} \begin{bmatrix}v_x\\v_y\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\begin{cases}a \cdot v_x + b \cdot v_y = 0 \\ c \cdot v_x + d \cdot v_y = 0 \end{cases} \implies \begin{cases}\displaystyle\frac{v_x}{v_y} = -\frac{b}{a} \\ \displaystyle\frac{v_x}{v_y} = -\frac{d}{c} \end{cases}\)</span></p>
+<p>then <span class="math inline">\(\displaystyle\frac{b}{a} = \frac{d}{c} \implies ad-bc=0\)</span></p>
+<p><span class="math inline">\(\left\lvert\begin{array}{cc}a&amp;b\\c&amp;d\end{array}\right\rvert = \det \begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix} = \lvert \lambda I - A\rvert\)</span></p>
+</div>
+<p>E.g. <span class="math inline">\(\quad A = \begin{bmatrix}1&amp;1\\4&amp;-2\end{bmatrix}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+(\lambda I - A) &amp;= \begin{bmatrix}\lambda&amp;0\\0&amp;\lambda\end{bmatrix} - \begin{bmatrix}1&amp;1\\4&amp;-2\end{bmatrix} \\
+&amp;= \begin{bmatrix}\lambda-1 &amp; -1 \\ -4 &amp; \lambda+2\end{bmatrix} \\
+\lvert \lambda I - A \rvert &amp;= (\lambda-1)(\lambda+2) - 4 \\
+&amp;= \lambda^2 + \lambda - 2-4 \\
+&amp;= \lambda^2 + \lambda - 6 \color{YellowOrange} = 0
+\end{align*}\]</span></p>
+<p><span class="math display">\[\color{YellowOrange}(\lambda+3)(\lambda-2) = 0\]</span></p>
+<p><span class="math display">\[\lambda_1 = 2, \quad \lambda_2 = -3\]</span></p>
+<ul style="list-style-type: '① ';">
+<li>
+Put <span class="math inline">\(\color{red}\underline{\underline{\color{black}\lambda_1=2}}\)</span> into <span class="math inline">\((\lambda I - A) \cdot \vec{v} = 0\)</span>
+</li>
+<p><span class="math display">\[\begin{bmatrix}1&amp;-1\\-4&amp;4\end{bmatrix} \begin{bmatrix}v_x\\v_y\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}\]</span></p>
+<span class="math display">\[\begin{cases}v_x - v_y = 0 \\ -4v_x + 4v_y = 0 \end{cases} \qquad \color{red}\underline{\underline{\color{black}\begin{bmatrix}1\\1\end{bmatrix}}} \quad \color{red}\underline{\underline{\color{black}\begin{bmatrix}2\\2\end{bmatrix}}} \quad \color{black} \cdots\]</span>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+Put <span class="math inline">\(\color{red}\underline{\underline{\color{black}\lambda_2=-3}}\)</span> into <span class="math inline">\(\dots\)</span>
+</li>
+<span class="math display">\[ \begin{bmatrix}-4&amp;-1\\-4&amp;-1\end{bmatrix} \begin{bmatrix}v_x\\v_y\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix} \qquad \color{red}\underline{\underline{\color{black}\begin{bmatrix}1\\-4\end{bmatrix}}}\]</span>
+</ul>
+<div style="color:red;text-align:center">
+<p>eigenvalues of <span class="math inline">\(A\quad\longrightarrow\quad\)</span> poles of T.F. <span class="math inline">\(\quad\longrightarrow\quad c_1\cdot e^{\lambda_1 t} + c_2\cdot e^{\lambda_2 t}\)</span></p>
+</div>
+<div style="color:blue;text-align:center">
+<p>Phase portrait</p>
+</div>
+<div style="color:green">
+<p><b>Side notes for <u>Transition matrix <span class="math inline">\(P\)</span></u></b></p>
+<p>Assume <span class="math inline">\(\quad P = \begin{bmatrix}\vec{v}_1 &amp; \vec{v}_2\end{bmatrix} = \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix}\)</span></p>
+<p><span class="math display">\[\begin{align*}
+AP &amp;= A \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} = \begin{bmatrix}A \begin{bmatrix}v_{1x}\\v_{1y}\end{bmatrix} &amp; A \begin{bmatrix}v_{2x}\\v_{2y}\end{bmatrix}\end{bmatrix} \\
+&amp;= \begin{bmatrix}\lambda \begin{bmatrix}v_{1x}\\v_{1y}\end{bmatrix} &amp; \lambda \begin{bmatrix}v_{2x}\\v_{2y}\end{bmatrix}\end{bmatrix} \\
+&amp;= \begin{bmatrix}\lambda_1 v_{1x} &amp; \lambda_2 v_{2x} \\ \lambda_1 v_{1y} &amp; \lambda_2 v_{2y}\end{bmatrix} \\
+&amp;= \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} \color{red}\underset{\Lambda}{\color{green}\underbrace{\begin{bmatrix}\lambda_1 &amp; 0 \\ 0 &amp; \lambda_2\end{bmatrix}}} \\
+&amp;= P \cdot \Lambda
+\end{align*}\]</span></p>
+<p>for <span class="math inline">\(\dot{X} = AX\)</span>, assume <span class="math inline">\(X = P \cdot Z\)</span></p>
+<p>then we have <span class="math inline">\(\dot{X} = \color{blue}\underline{\underline{\color{green}P \dot{Z}}} \color{green} = APZ = \color{blue}\underline{\underline{\color{green}P \Lambda Z}}\)</span></p>
+<p><span class="math display">\[\color{blue}\dot{Z} = \Lambda Z\]</span></p>
+</div>
+<div style="color:#F79C3B">
+<p><span class="math inline">\(\begin{cases}\dot{x} = ax_1+bx_2 \\ \dot{x}_2 = cx_1 + dx_2\end{cases} \implies \begin{cases}\dot{z}_1 = \lambda_1 z_1 \\ \dot{z}_2 = \lambda_2 z_2\end{cases}\)</span></p>
+</div>
+</section>
+<section id="phase-portrait" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="phase-portrait"><span class="header-section-number">7.2</span> Phase Portrait</h2>
+<div class="columns">
+<div class="column" style="width:fit-content;">
+<p>1-D:<span class="math inline">\(\quad\)</span></p>
+</div><div class="column" style="width:fit-content;">
+<p><span class="math display">\[\begin{align*}
+\dot{x} = x &amp; \color{YellowOrange} \implies x=e^{t} \\
+\frac{dx(t)}{dt} = x(t) &amp; \implies x(t) = e^{t} \quad
+\end{align*}\]</span></p>
+</div><div class="column" style="width:fit-content;">
+<img src="7_state_space_model_files/mediabag/048085ace6d31c7d197c20868b147dc12d8260e1.svg" class="img-fluid">
+</div>
+</div>
+<p>&nbsp;</p>
 <img src="7_state_space_model_files/mediabag/051f2ab5be89a1868580855013b0c22835568ebb.svg" class="img-fluid">
+<div style="color:#F79C3B">
+<ul style="list-style-type: '① ';">
+<li>
+Find equilibrium point: <span class="math inline">\(\dot{x} = 0 \implies x = 0\)</span>
+</li>
+</ul>
+<ul style="list-style-type: '② ';">
+<li>
+when <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(\dot{x}&gt;0\)</span>, <span class="math inline">\(\color{blue} x \uparrow\)</span>
+</li>
+<p>when <span class="math inline">\(x&lt;0\)</span>, <span class="math inline">\(\dot{x}&lt;0\)</span>, <span class="math inline">\(\color{blue} x \downarrow\)</span></p>
+<span style="color:red">unstable. <span class="math inline">\(\underline{\lambda=1}.\)</span></span>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:fit-content;">
+<p>2-D:<span class="math inline">\(\quad\)</span></p>
+</div><div class="column" style="color:#F79C3B">
+<p><span class="math display">\[\begin{align*}
+&amp; \color{black} \begin{bmatrix}\dot{x}_1\\\dot{x}_2\end{bmatrix} = \begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix} \begin{bmatrix}x_1\\x_2\end{bmatrix} \\
+\implies &amp; \begin{bmatrix}\dot{z}_1\\\dot{z}_2\end{bmatrix} = \begin{bmatrix}\lambda_1 &amp; 0 \\ 0 &amp; \lambda_2\end{bmatrix} \begin{bmatrix}z_1\\z_2\end{bmatrix} \\
+&amp; \begin{cases}
+\dot{z}_1 = \lambda_1 z_1 \\
+\dot{z}_2 = \lambda_2 z_2
+\end{cases}
+\end{align*}\]</span></p>
+</div>
+</div>
+<div style="color:blue;">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>Case I: <span class="math inline">\(\lambda_1 &gt; 0\)</span>, <span class="math inline">\(\lambda_2 &gt; 0\)</span>.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>Case II: <span class="math inline">\(\lambda_1 &gt; 0\)</span>, <span class="math inline">\(\lambda_2 &lt; 0\)</span>.</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="7_state_space_model_files/mediabag/8299d44432185967140604807c6aa2d1023e07a4.svg" class="img-fluid">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="7_state_space_model_files/mediabag/5306e6eafeb0e3407eb6cc203fd4717bd72dd60d.svg" class="img-fluid">
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>Case III: <span class="math inline">\(\lambda_1 &lt; 0\)</span>, <span class="math inline">\(\lambda_2 &lt; 0\)</span>.</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<img src="7_state_space_model_files/mediabag/9901fa24d4e6225af1aa931192469384084f954b.svg" class="img-fluid">
+</div>
+</div>
+</div>
+</div>
+<p>Now we have the system property of <span class="math inline">\(\dot{Z} = \Lambda Z\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+    X = PZ &amp;= \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} \begin{bmatrix}z_1\\z_2\end{bmatrix} \\
+    &amp;= z_1 \color{YellowOrange}\underset{\vec{v}_1}{\underbrace{\color{black}\begin{bmatrix}v_{1x} \\ v_{1y}\end{bmatrix}}} \color{black} + z_2 \color{YellowOrange}\underset{\vec{v}_2}{\underbrace{\color{black}\begin{bmatrix}v_{2x} \\ v_{2y}\end{bmatrix}}}
+\end{align*}\]</span></p>
+<div style="text-align:center">
+<img src="7_state_space_model_files/mediabag/588c177db2a01cc47a2ac5b492cf3f6123cecf0d.svg" class="img-fluid">
+</div>
+<p><span style="color:red">Conclusion: <span class="math inline">\(\dot{X} = AX\)</span> has the same property as <span class="math inline">\(\dot{Z} = \Lambda Z\)</span>.</span></p>
+<div style="color:green">
+<p>Summary:</p>
+<table class="caption-top table">
+<tbody><tr class="header">
+<th>
+<span class="math inline">\(\lambda_1\)</span>, <span class="math inline">\(\lambda_2\)</span>
+</th>
+<th>
+</th>
+<th>
+</th>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_1 &lt; 0\)</span>, <span class="math inline">\(\lambda_2 &lt; 0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/0ff97fad07aa5ce75cd572ee2abc007782dcb121.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> stable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_1 &gt; 0\)</span>, <span class="math inline">\(\lambda_2 &lt; 0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/14a045ef647c9f88478a2984655f59da3d9f1fea.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> saddle</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_1 &gt; 0\)</span>, <span class="math inline">\(\lambda_2 &gt; 0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/f3b08d56c423c131b70f0f22f24106e19e301f90.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> unstable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_{1,2} = a \pm bi,\, a=0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/6c6c1c4fdd526c881bf24ee4d0131cee44508859.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> Lyapunov stability</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_{1,2} = a \pm bi,\, a \gt 0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/0da8b543289a87e8ab2ae548fafe2a55c329c5af.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> unstable</span>
+</td>
+</tr>
+<tr class="vertical-text-align-center">
+<td>
+<span class="math inline">\(\lambda_{1,2} = a \pm bi,\, a \lt 0 \quad\)</span>
+</td>
+<td>
+<img src="7_state_space_model_files/mediabag/282df1d39980cf96a988cf44e0f71f3c0cb9ad21.svg" class="img-fluid">
+<span style="color:red"><span class="math inline">\(\quad\)</span> asymptotically stable</span>
+</td>
+</tr>
+</tbody></table>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -706,7 +951,7 @@ y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 &amp; 0\en
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="./6_power_electronic_converters.html" class="pagination-link" aria-label="Power Electronic Converters">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Power Electronic Converters</span></span>

@@ -5,3 +5,14 @@
   grid-template-columns: min-content 1fr;
   gap: 1rem;
 }
+
+table, th, td {
+  border: 1px solid black;
+  // border-bottom-width: 1px;
+  // border-width: 0.5;
+  border-collapse: collapse;
+}
+
+.vertical-text-align-center td {
+  vertical-align: center;
+}
