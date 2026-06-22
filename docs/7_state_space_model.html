@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./8_soft_switching_technique.html" rel="next">
 <link href="./6_power_electronic_converters.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -184,6 +185,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">State Space Model (S.S.M.)</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_soft_switching_technique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Soft-Switching Technique</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -331,7 +338,7 @@ y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 &amp; 0\en
 <p><span class="math display">\[(\lambda I - A) \vec{v} = 0\]</span></p>
 <p><span class="math display">\[ \color{YellowOrange}\underline{\color{black} \lvert \lambda I - A \rvert = 0 \text{ for a non=zero } \vec{v}.}\]</span></p>
 <div style="color:#F79C3B">
-<p>Prove: <span class="math inline">\(\quad \vec{v} = \begin{bmatrix}v_x\\v_y\end{bmatrix} \quad\)</span> assume $(I - A) = </p>
+<p>Prove: <span class="math inline">\(\quad \vec{v} = \begin{bmatrix}v_x\\v_y\end{bmatrix} \quad\)</span> assume <span class="math inline">\((\lambda I - A) = \begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix}\)</span></p>
 <p>then we have <span class="math inline">\(\begin{bmatrix}a&amp;b\\c&amp;d\end{bmatrix} \begin{bmatrix}v_x\\v_y\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}\)</span></p>
 <p><span class="math inline">\(\begin{cases}a \cdot v_x + b \cdot v_y = 0 \\ c \cdot v_x + d \cdot v_y = 0 \end{cases} \implies \begin{cases}\displaystyle\frac{v_x}{v_y} = -\frac{b}{a} \\ \displaystyle\frac{v_x}{v_y} = -\frac{d}{c} \end{cases}\)</span></p>
 <p>then <span class="math inline">\(\displaystyle\frac{b}{a} = \frac{d}{c} \implies ad-bc=0\)</span></p>
@@ -345,8 +352,8 @@ y = \color{red}\underset{C}{\underbrace{\color{black}\begin{bmatrix}1 &amp; 0\en
 &amp;= \lambda^2 + \lambda - 2-4 \\
 &amp;= \lambda^2 + \lambda - 6 \color{YellowOrange} = 0
 \end{align*}\]</span></p>
-<p><span class="math display">\[\color{YellowOrange}(\lambda+3)(\lambda-2) = 0\]</span></p>
-<p><span class="math display">\[\lambda_1 = 2, \quad \lambda_2 = -3\]</span></p>
+<p><span class="math display">\[\color{YellowOrange} (\lambda+3)(\lambda-2) = 0\]</span></p>
+<p><span class="math display">\[\color{YellowOrange} \lambda_1 = 2, \quad \lambda_2 = -3\]</span></p>
 <ul style="list-style-type: '① ';">
 <li>
 Put <span class="math inline">\(\color{red}\underline{\underline{\color{black}\lambda_1=2}}\)</span> into <span class="math inline">\((\lambda I - A) \cdot \vec{v} = 0\)</span>
@@ -369,16 +376,18 @@ Put <span class="math inline">\(\color{red}\underline{\underline{\color{black}\l
 <div style="color:green">
 <p><b>Side notes for <u>Transition matrix <span class="math inline">\(P\)</span></u></b></p>
 <p>Assume <span class="math inline">\(\quad P = \begin{bmatrix}\vec{v}_1 &amp; \vec{v}_2\end{bmatrix} = \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix}\)</span></p>
+<div style="width:fit-content;">
 <p><span class="math display">\[\begin{align*}
 AP &amp;= A \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} = \begin{bmatrix}A \begin{bmatrix}v_{1x}\\v_{1y}\end{bmatrix} &amp; A \begin{bmatrix}v_{2x}\\v_{2y}\end{bmatrix}\end{bmatrix} \\
 &amp;= \begin{bmatrix}\lambda \begin{bmatrix}v_{1x}\\v_{1y}\end{bmatrix} &amp; \lambda \begin{bmatrix}v_{2x}\\v_{2y}\end{bmatrix}\end{bmatrix} \\
 &amp;= \begin{bmatrix}\lambda_1 v_{1x} &amp; \lambda_2 v_{2x} \\ \lambda_1 v_{1y} &amp; \lambda_2 v_{2y}\end{bmatrix} \\
-&amp;= \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} \color{red}\underset{\Lambda}{\color{green}\underbrace{\begin{bmatrix}\lambda_1 &amp; 0 \\ 0 &amp; \lambda_2\end{bmatrix}}} \\
+&amp;= \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatrix} \color{red}\underset{\Lambda}{\underbrace{\color{green}\begin{bmatrix}\lambda_1 &amp; 0 \\ 0 &amp; \lambda_2\end{bmatrix}}} \\
 &amp;= P \cdot \Lambda
 \end{align*}\]</span></p>
+</div>
 <p>for <span class="math inline">\(\dot{X} = AX\)</span>, assume <span class="math inline">\(X = P \cdot Z\)</span></p>
 <p>then we have <span class="math inline">\(\dot{X} = \color{blue}\underline{\underline{\color{green}P \dot{Z}}} \color{green} = APZ = \color{blue}\underline{\underline{\color{green}P \Lambda Z}}\)</span></p>
-<p><span class="math display">\[\color{blue}\dot{Z} = \Lambda Z\]</span></p>
+<p><span class="math inline">\(\qquad\qquad \color{blue}\qquad \dot{Z} = \Lambda Z\)</span></p>
 </div>
 <div style="color:#F79C3B">
 <p><span class="math inline">\(\begin{cases}\dot{x} = ax_1+bx_2 \\ \dot{x}_2 = cx_1 + dx_2\end{cases} \implies \begin{cases}\dot{z}_1 = \lambda_1 z_1 \\ \dot{z}_2 = \lambda_2 z_2\end{cases}\)</span></p>
@@ -399,7 +408,7 @@ AP &amp;= A \begin{bmatrix}v_{1x} &amp; v_{2x} \\ v_{1y} &amp; v_{2y}\end{bmatri
 </div>
 </div>
 <p>&nbsp;</p>
-<img src="7_state_space_model_files/mediabag/051f2ab5be89a1868580855013b0c22835568ebb.svg" class="img-fluid">
+<img src="7_state_space_model_files/mediabag/8e5034c2e7aeb8fea6cf504ccfde8e4ac8e722d5.svg" class="img-fluid">
 <div style="color:#F79C3B">
 <ul style="list-style-type: '① ';">
 <li>
@@ -484,8 +493,6 @@ when <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(\d
 <tbody><tr class="header">
 <th>
 <span class="math inline">\(\lambda_1\)</span>, <span class="math inline">\(\lambda_2\)</span>
-</th>
-<th>
 </th>
 <th>
 </th>
@@ -958,6 +965,9 @@ when <span class="math inline">\(x&gt;0\)</span>, <span class="math inline">\(\d
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./8_soft_switching_technique.html" class="pagination-link" aria-label="Soft-Switching Technique">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Soft-Switching Technique</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

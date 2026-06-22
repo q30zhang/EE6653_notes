@@ -211,7 +211,7 @@ $$(\lambda I - A) \vec{v} = 0$$
 $$ \color{YellowOrange}\underline{\color{black} \lvert \lambda I - A \rvert = 0 \text{ for a non=zero } \vec{v}.}$$
 
 ::: {style="color:#F79C3B"}
-Prove:  $\quad \vec{v} = \mat{v_x\\v_y} \quad$ assume $(\lambda I - A) = \mat{a&b\\c&d}
+Prove:  $\quad \vec{v} = \mat{v_x\\v_y} \quad$ assume $(\lambda I - A) = \mat{a&b\\c&d}$
 
 then we have $\mat{a&b\\c&d} \mat{v_x\\v_y} = \mat{0\\0}$
 
@@ -232,9 +232,9 @@ E.g. $\quad A = \mat{1&1\\4&-2}$
 &= \lambda^2 + \lambda - 6 \color{YellowOrange} = 0
 \end{align*}
 
-$$\color{YellowOrange}(\lambda+3)(\lambda-2) = 0$$
+$$\color{YellowOrange} (\lambda+3)(\lambda-2) = 0$$
 
-$$\lambda_1 = 2, \quad \lambda_2 = -3$$
+$$\color{YellowOrange} \lambda_1 = 2, \quad \lambda_2 = -3$$
 
 <ul style="list-style-type: '① ';">
 <li>Put $\color{red}\underline{\underline{\color{black}\lambda_1=2}}$ into $(\lambda I - A) \cdot \vec{v} = 0$</li>
@@ -258,25 +258,27 @@ eigenvalues of $A\quad\longrightarrow\quad$ poles of T.F. $\quad\longrightarrow\
 Phase portrait
 :::
 
-::: {style="color:green"}
+:::: {style="color:green"}
 <b>Side notes for <u>Transition matrix $P$</u></b>
 
 Assume $\quad P = \mat{\vec{v}_1 & \vec{v}_2} = \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}}$
 
+::: {style="width:fit-content;"}
 \begin{align*}
 AP &= A \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} = \mat{A \mat{v_{1x}\\v_{1y}} & A \mat{v_{2x}\\v_{2y}}} \\
 &= \mat{\lambda \mat{v_{1x}\\v_{1y}} & \lambda \mat{v_{2x}\\v_{2y}}} \\
 &= \mat{\lambda_1 v_{1x} & \lambda_2 v_{2x} \\ \lambda_1 v_{1y} & \lambda_2 v_{2y}} \\
-&= \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} \color{red}\underset{\Lambda}{\color{green}\underbrace{\mat{\lambda_1 & 0 \\ 0 & \lambda_2}}} \\
+&= \mat{v_{1x} & v_{2x} \\ v_{1y} & v_{2y}} \color{red}\underset{\Lambda}{\underbrace{\color{green}\mat{\lambda_1 & 0 \\ 0 & \lambda_2}}} \\
 &= P \cdot \Lambda
 \end{align*}
+:::
 
 for $\dot{X} = AX$, assume $X = P \cdot Z$
 
 then we have $\dot{X} = \color{blue}\underline{\underline{\color{green}P \dot{Z}}} \color{green} = APZ = \color{blue}\underline{\underline{\color{green}P \Lambda Z}}$
 
-$$\color{blue}\dot{Z} = \Lambda Z$$
-:::
+$\qquad\qquad \color{blue}\qquad \dot{Z} = \Lambda Z$
+::::
 
 ::: {style="color:#F79C3B"}
 $\begin{cases}\dot{x} = ax_1+bx_2 \\ \dot{x}_2 = cx_1 + dx_2\end{cases} \implies \begin{cases}\dot{z}_1 = \lambda_1 z_1 \\ \dot{z}_2 = \lambda_2 z_2\end{cases}$
@@ -312,6 +314,23 @@ $\begin{cases}\dot{x} = ax_1+bx_2 \\ \dot{x}_2 = cx_1 + dx_2\end{cases} \implies
 
 ```{.tikz}
 \begin{tikzpicture}[>=latex]
+\begin{scope}
+    \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+    \draw[->] (-0.2,-0.1) -- (-1.8,-0.1);
+    \draw[->] (0.2,-0.1) -- (1.8,-0.1);
+    \draw (0,0) -- (0,0.1);
+    \node[below] at (-0.1,0) {$0$};
+    \draw[orange!60!black] (-1,-1) -- (1,1);
+    \draw[orange!60!black,dashed,->] (0,-1) -- (0,1.2) node[right] {$\dot{x}$};
+    \draw[orange!60!black,dashed] (0.4,0) -- (0.4,0.4);
+\end{scope}
+\begin{scope}[xshift=5.5cm,yshift=0.5cm]
+    \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+    \draw[->] (-0.2,0.1) -- (-1.8,0.1);
+    \draw[->] (0.2,0.1) -- (1.8,0.1);
+    \draw (0,0) -- (0,0.1);
+    \node[below] at (0,0) {$0$};
+\end{scope}
 \end{tikzpicture}
 ```
 
@@ -451,7 +470,6 @@ Summary:
 <table class="caption-top table">
 <tr class="header">
     <th>$\lambda_1$, $\lambda_2$</th>
-    <th></th>
     <th></th>
 </tr>
 <tr class="vertical-text-align-center">

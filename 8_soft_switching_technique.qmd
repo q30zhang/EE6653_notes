@@ -1,0 +1,414 @@
+# Soft-Switching Technique
+
+$\boxed{\textbf{Hard-switching}}$
+
+::: {style="text-align:center"}
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw (0,0.95) -- (0,0) -- (3,0);
+    \draw (0,1.05) -- (0,2) -- (1.2,2);
+    \draw (1.25,2) circle[radius=0.05cm];
+    \node[below] at (1.5,2) {$S$};
+    \node[below,green!50!black] at (1.5,1.6) {$v_S$};
+    \node[below,green!50!black,scale=0.6] at (1,1.6) {$+$};
+    \node[below,green!50!black,scale=0.6] at (2,1.6) {$-$};
+    \draw (1.3,2.02) -- (1.75,2.2);
+    \draw (1.75,2) -- (3,2) -- (3,1.25);
+    \draw (3,1.25) -- (3.2,1.2) -- (2.8,1.1) -- (3.2,1)
+                   -- (2.8,0.9) -- (3.2,0.8) -- (3,0.75);
+    \draw (3,0.75) -- (3,0);
+    \draw (-0.3,1.05) -- (0.3,1.05);
+    \draw (-0.15,0.95) -- (0.15,0.95);
+    \node[left] at (2.7,1) {$R$};
+    \node[left] at (-0.3,1) {$V_{i}$};
+    \node[left] at (0,1.5) {$+$};
+    \node[left] at (0,0.5) {$-$};
+    \draw[red,->] (1,2.3) -- (2,2.3) node[above] {$i_S$};
+\end{tikzpicture}
+```
+:::
+
+::: {layout-ncol=2 style="color:#F79C3B"}
+When S is ON
+
+When S is OFF
+
+$\begin{cases}v_S = 0 \\ i_S = i_R = \color{green} \displaystyle\frac{V_{i}}{R}\end{cases}$
+
+$\begin{cases}v_S = V \color{green} = V_{i} \\ i_S = 0\end{cases}$
+:::
+
+::: {style="text-align:center; color:red"}
+<u>Under ideal case</u>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \begin{scope}
+        \draw[blue] (0,0) -- (2,0) -- (2,1) -- (4,1) node[right] {$v_S$};
+        \draw[orange!60!black] (0,0.5) -- (2,0.5) -- (2,0) -- (4,0);
+        \node[left,orange!60!black] at (0,0.5) {$i_S$};
+        \node[red,above] at (2,1) {Turn-off};
+    \end{scope}
+    \begin{scope}[xshift=6cm]
+        \draw[blue] (0,1) -- (2,1) -- (2,0) -- (4,0);
+        \draw[orange!60!black] (0,0) -- (2,0) -- (2,0.5) -- (4,0.5) node[right] {$i_S$};
+        \node[left,blue] at (0,1) {$v_S$};
+        \node[red,above] at (2,1) {Turn-on};
+    \end{scope}
+    \node [green!50!black,right] at (0,-0.5) {$P_S = v_S \cdot i_S$};
+\end{tikzpicture}
+```
+:::
+
+::: {style="text-align:center"}
+<u>In practical application</u>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \begin{scope}
+        \draw[blue] (0,0) -- (1.7,0) -- (2.3,1) -- (4,1) node[right] {$v_S$};
+        \draw[orange!60!black] (0,0.5) -- (1.7,0.5) -- (2.3,0) -- (4,0);
+        \node[left,orange!60!black] at (0,0.5) {$i_S$};
+        \draw[green!50!black] (0,-1) -- (1.7,-1);
+        \draw[green!50!black,domain=1.7:2.3] plot (\x,{-0.6-0.4/0.09*(\x-2)^2});
+        \draw[green!50!black,loosely dashed] (1.7,-1) -- (1.7,1);
+        \draw[green!50!black,loosely dashed] (2.3,-1) -- (2.3,1);
+        \draw[green!50!black] (2.3,-1) -- (4,-1);
+        \node[left,green!50!black] at (0,-1) {$p_S$};
+        \node[below,green!50!black] at (2,-1) {total $p_S \propto f_S$};
+        \node[red,above] at (2,1.2) {Turn-off};
+    \end{scope}
+    \begin{scope}[xshift=6cm]
+        \draw[blue] (0,1) -- (1.7,1) -- (2.3,0) -- (4,0);
+        \draw[orange!60!black] (0,0) -- (1.7,0) -- (2.3,0.5) -- (4,0.5) node[right] {$i_S$};
+        \node[left,blue] at (0,1) {$v_S$};
+        \draw[green!50!black] (0,-1) -- (1.7,-1);
+        \draw[green!50!black,domain=1.7:2.3] plot (\x,{-0.6-0.4/0.09*(\x-2)^2});
+        \draw[green!50!black,loosely dashed] (1.7,-1) -- (1.7,1);
+        \draw[green!50!black,loosely dashed] (2.3,-1) -- (2.3,1);
+        \draw[green!50!black] (2.3,-1) -- (4,-1);
+        \node[left,green!50!black] at (0,-1) {$p_S$};
+        \node[red,above] at (2,1.2) {Turn-on};
+    \end{scope}
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+$\boxed{\textbf{Soft-switching}}$ <span style="color:red">(to eliminate $\underset{\text{switching}}{\underline{\text{turn-off \& turn-on}}}$ losses)</span>
+
+::: {layout-ncol=2 style="text-align:center"}
+Turn-off
+
+Turn-on
+
+<span style="color:red">① Shift $v_S$ to right</span>
+
+<span style="color:red">① Shift $i_S$ to right</span>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[blue] (0,0) -- (1.7,0);
+    \draw[blue,domain=1.7:3.2] plot (\x,{0.05*(exp(\x-1.7)-1)});
+    \draw[blue] (3.2,{0.05*(exp(3.2-1.7)-1)}) -- (4,1) -- (4.5,1) node[right] {$v_S$};
+    \draw[orange!60!black] (0,0.5) -- (1.7,0.5) -- (2.3,0) -- (4,0);
+    \node[left,orange!60!black] at (0,0.5) {$i_S$};
+    \draw[orange!60!black,loosely dashed] (1.7,0) -- (1.7,1);
+    \draw[orange!60!black,loosely dashed] (2.3,0) -- (2.3,1);
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[blue] (0,1) -- (1.7,1) -- (2.3,0) -- (4.5,0);
+    \draw[orange!60!black] (0,0) -- (1.7,0);
+    \draw[orange!60!black,domain=1.7:2.3] plot (\x,{1/(1+exp(2.7))/(exp(0.6)-1)*(exp(\x-1.7)-1)});
+    \draw[orange!60!black,domain=2.3:4.5] plot (\x,{1/(1+exp(-3*(\x-3.2)))}) node[right] {$i_S$};
+    \node[left,blue] at (0,1) {$v_S$};
+    \draw[orange!60!black,loosely dashed] (1.7,0) -- (1.7,1);
+    \draw[orange!60!black,loosely dashed] (2.3,0) -- (2.3,1);
+\end{tikzpicture}
+```
+
+<span style="color:green">Capacitor in parallel with $S$</span>
+
+<span style="color:green">Inductor in series</span>
+
+<span style="color:red">② Decrease $i_S$ to 0 in advance</span>
+
+<span style="color:red">② Decrease $v_S$ to 0 in advance</span>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[blue] (0,0) -- (1.7,0) -- (2.3,1) -- (4.5,1) node[right] {$v_S$};
+        \draw[orange!60!black] (0,0.45) -- (0.2,0.45);
+        \draw[orange!60!black,domain=0.2:{2.2-asin(0.9)/180}] plot (\x,{0.5*sin(pi*deg(\x-0.2))+0.45});
+        \draw[orange!60!black] ({2.2-asin(0.9)/180},0) -- (4.5,0);
+        \node[left,orange!60!black] at (0,0.5) {$i_S$};
+    \draw[orange!60!black,loosely dashed] (1.7,0) -- (1.7,1);
+    \draw[orange!60!black,loosely dashed] (2.3,0) -- (2.3,1);
+\end{tikzpicture}
+```
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[blue] (0,1) -- (0.2,1);
+    \draw[blue,domain=0.2:{2.2-asin(1/1.05)/180}] plot (\x,{1.05*sin(pi*deg(\x-0.2))+1});
+    \draw[blue] (({2.2-asin(1/1.05)/180},0) -- (4,0);
+    \draw[orange!60!black] (0,0) -- (1.7,0) -- (2.3,0.5) -- (4,0.5) node[right] {$i_S$};
+    \node[left,blue] at (0,1) {$v_S$};
+    \draw[orange!60!black,loosely dashed] (1.7,0) -- (1.7,1);
+    \draw[orange!60!black,loosely dashed] (2.3,0) -- (2.3,1);
+\end{tikzpicture}
+```
+
+<span style="color:green">LC resonance</span>
+
+<span style="color:green">LC resonance</span>
+:::
+
+$\boxed{\textbf{LC resonant circuit}}$
+
+```{.tikz}
+
+```
+
+\usepackage{cancel}
+
+::: {.column-left-fit}
+KVL:
+
+$\begin{cases}\cancel{L}\, \displaystyle\frac{di_L}{dt} = \frac{V_i-v_C}{L} \\ \cancel{C}\, \displaystyle\frac{dv_C}{dt} = \frac{i_L}{C}\end{cases}$
+
+<span style="color:#F79C3B">L.T.</span>
+
+<span style="color:#F79C3B">$\begin{cases}sL \cdot I_L(s) = \displaystyle\frac{1}{s} \cdot V_i - V_C(s) \\ sC \cdot V_C(s) = I_L(s)\end{cases} \qquad \color{red} \mathcal{L}\left[\displaystyle\frac{df(t)}{dt}\right] = sF(s) - \cancelto{0}{f(0)}$</span>
+
+&nbsp;
+
+<span style="color:red">$\begin{cases}I_L(s) = \displaystyle\frac{V_i}{L} \cdot \frac{1}{s^2+\frac{1}{LC}} \\ V_C(s) = \displaystyle\frac{1}{s} \cdot V_i - V_i \cdot \frac{1}{s^2+\frac{1}{LC}}\end{cases} \quad \color{green} \overset{\text{inverse L.T.}}{\implies} \quad \begin{cases}i_L(t) = \displaystyle\frac{V_i}{\sqrt{L/C}} \cdot \sin \sqrt{\frac{1}{LC}} t \\ v_C(t) = V_i - \displaystyle V_i \cdot \cos \sqrt{\frac{1}{LC}} t\end{cases}$</span>
+:::
+
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+$$\dot{X} = AX + BU$$
+$$\mat{\dot{i}_L \\ \dot{v}_C} = \color{red}\underset{A}{\underbrace{\color{black}\mat{0 & -\displaystyle\frac{1}{L} \\ \displaystyle\frac{1}{C} & 0}}} \color{black} \mat{i_L \\ v_C} + \mat{\displaystyle\frac{1}{L} \\ 0} V_i$$
+
+::: {style="text-align:center;color:red"}
+eigenvalues of $A$ are poles of T.F.
+:::
+
+::: {layout-ncol=2}
+\begin{align*}
+\lvert \lambda I - A \rvert &= 0 \\
+\left\lvert \begin{array}{cc}
+\lambda & \displaystyle\frac{1}{L} \\
+\displaystyle-\frac{1}{C} & \lambda
+\end{array} \right\rvert &= 0 \\
+\lambda^2 + \frac{1}{LC} &= 0 \implies \lambda_{1,2} = \pm \color{red}\underline{\underline{\color{black} \sqrt{\frac{1}{LC}}}} \color{black} \cdot i
+\end{align*}
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[blue,->] (-1.5,0) -- (1.5,0) node[right] {$\sigma$};
+    \draw[blue,->] (0,-1.5) -- (0,1.5) node[above] {$j\omega$};
+    \fill[red] (0,0.8) circle[radius=0.05cm];
+    \fill[red] (0,-0.8) circle[radius=0.05cm];
+\end{tikzpicture}
+```
+:::
+
+&nbsp;
+
+<u>E.g. Zero-current Switching</u> (Buck)
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw (0,-0.95) -- (0,0) -- (0.95,0);
+    \draw (1,0) circle[radius=0.05cm];
+    \draw (1.05,0.02) -- (1.5,0.2);
+    \draw (1.5,0) -- (2,0);
+    \draw[orange!60!black] (2,0) arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1);
+    \node[orange!60!black,below] at (2.4,0) {$L_r$};
+    \draw (2.8,0) -- (4.4,0);
+    \draw (4.4,0) arc (180:0:0.1)
+                  arc (180:0:0.1)
+                  arc (180:0:0.1)
+                  arc (180:0:0.1);
+    \draw (5.2,0) -- (6.5,0) -- (6.5,-0.7);
+    \draw (6.5,-0.7) -- (6.7,-0.75) -- (6.3,-0.85) -- (6.7,-0.95)
+                     -- (6.3,-1.05) -- (6.7,-1.15) -- (6.3,-1.25)
+                     -- (6.5,-1.3);
+    \draw (6.5,-1.3) -- (6.5,-2) -- (0,-2) -- (0, -1.05);
+    \draw (-0.3,-0.95) -- (0.3,-0.95);
+    \draw (-0.15,-1.05) -- (0.15,-1.05);
+    \node[left] at (-0.3,-1) {$V_i$};
+    \node[left,scale=0.8] at (0,-0.5) {$+$};
+    \node[left,scale=0.8] at (0,-1.5) {$-$};
+    \node[below] at (1.3,0) {$S$};
+    \node[below] at (4.6,0) {$L$};
+    \draw[->,red] (1.7,0) -- (1.8,0) node[above] {$i_{L_r}$};
+    \node[right] at (6.7,-1) {$R$};
+    \draw (3.8,0) -- (3.8,-0.8);
+    \draw (3.8,-2) -- (3.8,-1.2);
+    \draw (3.6,-0.8) -- (4,-0.8);
+    \draw (3.6,-1.2) -- (4,-1.2) -- (3.8,-0.8) -- (3.6,-1.2);
+    \draw (5.7,0) -- (5.7,-0.95);
+    \draw (5.4,-0.95) -- (6,-0.95);
+    \draw (5.4,-1.05) -- (6,-1.05);
+    \draw (5.7,-1.05) -- (5.7,-2);
+    \node[left] at (5.4,-1) {$C$};
+    \draw[orange!60!black] (3.2,0) -- (3.2,-0.95);
+    \draw[orange!60!black] (2.9,-0.95) -- (3.5,-0.95);
+    \draw[orange!60!black] (2.9,-1.05) -- (3.5,-1.05);
+    \draw[orange!60!black] (3.2,-1.05) -- (3.2,-2);
+    \node[left,orange!60!black] at (2.9,-1) {$C_r$};
+    \node[left,blue] at (2.2,-1) {$V_{C_r}$};
+    \node[left,blue,scale=0.8] at (2.2,-0.6) {$+$};
+    \node[left,blue,scale=0.8] at (2.2,-1.4) {$-$};
+    \draw[loosely dashed,red] (5.6,-1) ellipse (1.5cm and 1.8cm);
+    \draw[red] (7.3,-0.2) -- (7.5,-0.2) -- (7.5,-0.75);
+    \draw[red] (7.5,-1) circle[radius=0.25cm];
+    \node[red] at (7.5,-1) {$\downarrow$};
+    \node[red,right] at (7.75,-1) {$I_L$};
+    \draw[red] (7.5,-1.25) -- (7.5,-1.8) -- (7.3,-1.8);
+\end{tikzpicture}
+```
+
+<ul style="list-style-type: '① ';">
+<li>Before $t_0$:</li>
+
+::: {layout-ncol=2 style="width:fit-content"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,orange!60!black]
+    \draw (3.8,0) -- (3.8,-0.8);
+    \draw (3.8,-2) -- (3.8,-1.2);
+    \draw (3.6,-0.8) -- (4,-0.8);
+    \draw (3.6,-1.2) -- (4,-1.2) -- (3.8,-0.8) -- (3.6,-1.2);
+    
+    \draw (3.8,0) -- (4.8,0) -- (4.8,-0.75);
+    \draw (4.8,-1) circle[radius=0.25cm];
+    \node at (4.8,-1) {$\downarrow$};
+    \node[right] at (5.05,-1) {$I_L$};
+    \draw (4.8,-1.25) -- (4.8,-2) -- (3.8,-2);
+\end{tikzpicture}
+```
+
+$\color{red}\begin{cases}i_{L_r} = 0 \\ \color{blue} v_{C_r} = 0\end{cases}$
+:::
+
+</ul>
+
+<ul style="list-style-type: '② ';">
+<li>$t_0 \sim t_1$: $S$ is turned ON, $i_{L_r}$ increases from 0 to $I_L$.</li>
+
+::: {layout-ncol=2 style="width:fit-content"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,orange!60!black]
+    \draw (0,-0.95) -- (0,0) -- (2,0);
+    \draw (0.75,0) -- (1.25,0.2);
+    \draw (-0.3,-0.95) -- (0.3,-0.95);
+    \draw (-0.15,-1.05) -- (0.15,-1.05);
+    \node[left] at (-0.3,-1) {$V_i$};
+    \node[left,scale=0.8] at (0,-0.5) {$+$};
+    \node[left,scale=0.8] at (0,-1.5) {$-$};
+    \draw (1.5,0) -- (2,0);
+    \draw[->,red] (1.5,0) -- (1.6,0) node[below] {$i_{L_r}$};
+    \draw[orange!60!black] (2,0) arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1);
+    \node[orange!60!black,below] at (2.4,0) {$L_r$};
+    \draw (2.8,0) -- (3.8,0) -- (3.8,-0.8);
+    \draw (0,-1.05) -- (0,-2) -- (3.8,-2) -- (3.8,-1.2);
+    \draw (3.6,-0.8) -- (4,-0.8);
+    \draw (3.6,-1.2) -- (4,-1.2) -- (3.8,-0.8) -- (3.6,-1.2);
+    \draw (3.8,0) -- (4.8,0) -- (4.8,-0.75);
+    \draw (4.8,-1) circle[radius=0.25cm];
+    \node at (4.8,-1) {$\downarrow$};
+    \node[right] at (5.05,-1) {$I_L$};
+    \draw (4.8,-1.25) -- (4.8,-2) -- (3.8,-2);
+\end{tikzpicture}
+```
+
+$\color{red}\begin{cases} \displaystyle\frac{di_{L_r}}{dt} = \frac{V_i}{L_r} \\ \color{blue} v_{C_r} = 0\end{cases}$
+:::
+
+</ul>
+
+<ul style="list-style-type: '③ ';">
+<li>$t_1 \sim t_2$: when $i_{L_r}$ reached $I_L$, $D$ is off. $L_r C_r$ starts resonating.</li>
+
+::: {layout-ncol=2 style="width:fit-content"}
+```{.tikz}
+\begin{tikzpicture}[>=latex,orange!60!black]
+    \draw (0,-0.95) -- (0,0) -- (2,0);
+    \draw (0.75,0) -- (1.25,0.2);
+    \draw[blue] (0.5,0) -- (0.5,0.5) -- (0.9,0.5);
+    \draw[blue] (1.5,0) -- (1.5,0.5) -- (1.1,0.5);
+    \draw[blue] (0.9,0.4) -- (0.9,0.6);
+    \draw[blue] (0.9,0.5) -- (1.1,0.4) -- (1.1,0.6) -- (0.9,0.5);
+    \draw (-0.3,-0.95) -- (0.3,-0.95);
+    \draw (-0.15,-1.05) -- (0.15,-1.05);
+    \node[left] at (-0.3,-1) {$V_i$};
+    \node[left,scale=0.8] at (0,-0.5) {$+$};
+    \node[left,scale=0.8] at (0,-1.5) {$-$};
+    \draw (1.5,0) -- (2,0);
+    \draw[orange!60!black] (2,0) arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1)
+                                 arc (180:0:0.1);
+    \node[orange!60!black,below] at (2.4,0) {$L_r$};
+    \draw (0,-1.05) -- (0,-2) -- (4.8,-2);
+    \draw[orange!60!black] (3.2,0) -- (3.2,-0.95);
+    \draw[orange!60!black] (2.9,-0.95) -- (3.5,-0.95);
+    \draw[orange!60!black] (2.9,-1.05) -- (3.5,-1.05);
+    \draw[orange!60!black] (3.2,-1.05) -- (3.2,-2);
+    \node[left,orange!60!black] at (2.9,-1) {$C_r$};
+    \draw (2.8,0) -- (4.8,0) -- (4.8,-0.75);
+    \draw (4.8,-1) circle[radius=0.25cm];
+    \node at (4.8,-1) {$\downarrow$};
+    \node[right] at (5.05,-1) {$I_L$};
+    \draw (4.8,-1.25) -- (4.8,-2);
+\end{tikzpicture}
+```
+
+$\color{red}\begin{cases} \displaystyle\frac{di_{L_r}}{dt} = \frac{V_i-V_{C_r}}{L_r} \\ \color{blue} \displaystyle\frac{dv_{C_r}}{dt} = \frac{i_{L_r}-I_L}{C_r}\end{cases}$
+:::
+
+$\begin{cases}i_{L_r} = I_L + \displaystyle\frac{V_i}{\sqrt{L_r/C_r}}\cdot \sin \sqrt{\frac{1}{L_r C_r}} t \\ v_{C_r} = V_i - V_i \cdot \cos \sqrt{\frac{1}{L_r C_r}} t\end{cases}$
+
+</ul>
+
+```{.tikz}
+\begin{tikzpicture}[>=latex]
+    \draw[->] (0,0) -- (0,4) node[left] {$S$};
+    \node[left] at (0,2.5) {$i_{L_r}$};
+    \node[left] at (0,1) {$v_{C_r}$};
+    \foreach \y in {0,1.5,3} {
+        \draw[->] (0,\y) -- (6,\y) node[right] {$t$};
+    }
+    \fill[green,opacity=0.3] (4,3.75) rectangle (5,1.5);
+    \node[green!50!black,right] at (5,3.6) {ZCS zone};
+    \draw[thick] (0,3) -- (1,3) -- (1,3.5) -- (4,3.5);
+    \draw[thick,red] (4,3.5) -- (4.5,3.5) -- (4.5,3);
+    \draw[thick,red] (0,1.5) -- (1,1.5) -- (1.5,2);
+    \draw[thick,red,domain=1.5:5] plot (\x,{2+0.7*sin(pi/2*deg(\x-1.5)});
+    \draw[thick,blue] (0,0) -- (1.5,0);
+    \draw[thick,blue,domain=1.5:5.5] plot (\x,{0.5-0.5*cos(pi/2*deg(\x-1.5))});
+    \draw[red,dashed] (0,2) -- (5,2);
+    \draw[red,dashed] (4,1.5) -- (4,3.75);
+    \draw[red,dashed] (5,1.5) -- (5,3.75);
+    \node[red,left] at (0,2) {$I_L$};
+    \draw[blue,dashed] (0,0.5) -- (5.5,0.5);
+    \draw[dashed] (1,0) -- (1,3);
+    \draw[dashed] (1.5,0) -- (1.5,2);
+    \draw[dashed] (1.5,0) -- (1.5,2);
+    \draw[dashed] (3.5,0) -- (3.5,2);
+    \node[below] at (1,0) {$t_0$};
+    \node[below] at (1.5,0) {$t_1$};
+\end{tikzpicture}
+```

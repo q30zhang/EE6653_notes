@@ -15,6 +15,7 @@ book:
     - 5_frequency_response.qmd
     - 6_power_electronic_converters.qmd
     - 7_state_space_model.qmd
+    - 8_soft_switching_technique.qmd
     # - references.qmd
   page-footer: 
     left: "EE6653 - Power Electronics, taught by Prof. Shuang Xu, UNB" 
